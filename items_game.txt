@@ -1,0 +1,4591 @@
+"items_game"
+{
+	"qualities"
+	{
+		"normal"
+		{
+			"value"	"0"
+		}
+		"common"
+		{
+			"value"	"1"
+		}
+		"rare"
+		{
+			"value"	"2"
+		}
+		"unique"
+		{
+			"value"	"3"
+		}
+		"community"
+		{
+			"value"	"7"
+		}
+		"developer"
+		{
+			"value"	"8"
+		}
+	}
+	"items"
+	{
+		"0"
+		{
+			"name"	"TF_WEAPON_BAT"
+			"item_class"	"tf_weapon_bat"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Bat"
+			"item_name"	"#TF_Weapon_Bat"
+			"item_slot"	"melee"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_bat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_bat.mdl"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+		}
+		"1"
+		{
+			"name"	"TF_WEAPON_BOTTLE"
+			"item_class"	"tf_weapon_bottle"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Bottle"
+			"item_name"	"#TF_Weapon_Bottle"
+			"item_slot"	"melee"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_bottle"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_bottle.mdl"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+		}
+		"2"
+		{
+			"name"	"TF_WEAPON_FIREAXE"
+			"item_class"	"tf_weapon_fireaxe"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_FireAxe"
+			"item_name"	"#TF_Weapon_FireAxe"
+			"item_slot"	"melee"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_fireaxe_pyro/c_fireaxe_pyro"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_fireaxe.mdl"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"3"
+		{
+			"name"	"TF_WEAPON_CLUB"
+			"item_class"	"tf_weapon_club"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Club"
+			"item_name"	"#TF_Weapon_Club"
+			"item_slot"	"melee"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_machete"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_machete.mdl"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+		}
+		"4"
+		{
+			"name"	"TF_WEAPON_KNIFE"
+			"item_class"	"tf_weapon_knife"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Knife"
+			"item_name"	"#TF_Weapon_Knife"
+			"item_slot"	"melee"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_knife"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_knife.mdl"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+		}
+		"5"
+		{
+			"name"	"TF_WEAPON_FISTS"
+			"item_class"	"tf_weapon_fists"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Fists"
+			"item_name"	"#TF_Weapon_Fists"
+			"item_slot"	"melee"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/v_models/v_fist_heavy"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	""
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+		}
+		"6"
+		{
+			"name"	"TF_WEAPON_SHOVEL"
+			"item_class"	"tf_weapon_shovel"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Shovel"
+			"item_name"	"#TF_Weapon_Shovel"
+			"item_slot"	"melee"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_shovel"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_shovel.mdl"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+		}
+		"7"
+		{
+			"name"	"TF_WEAPON_WRENCH"
+			"item_class"	"tf_weapon_wrench"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Wrench"
+			"item_name"	"#TF_Weapon_Wrench"
+			"item_slot"	"melee"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_wrench"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_wrench.mdl"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+		}
+		"8"
+		{
+			"name"	"TF_WEAPON_BONESAW"
+			"item_class"	"tf_weapon_bonesaw"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Bonesaw"
+			"item_name"	"#TF_Weapon_Bonesaw"
+			"item_slot"	"melee"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_bonesaw/c_bonesaw"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_bonesaw.mdl"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"9"
+		{
+			"name"	"TF_WEAPON_SHOTGUN_PRIMARY"
+			"item_class"	"tf_weapon_shotgun_primary"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Shotgun"
+			"item_name"	"#TF_Weapon_Shotgun"
+			"item_slot"	"primary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_shotgun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_shotgun.mdl"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+		}
+		"10"
+		{
+			"name"	"TF_WEAPON_SHOTGUN_SOLDIER"
+			"item_class"	"tf_weapon_shotgun_soldier"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Shotgun"
+			"item_name"	"#TF_Weapon_Shotgun"
+			"item_slot"	"secondary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_shotgun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_shotgun.mdl"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+		}
+		"11"
+		{
+			"name"	"TF_WEAPON_SHOTGUN_HWG"
+			"item_class"	"tf_weapon_shotgun_hwg"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Shotgun"
+			"item_name"	"#TF_Weapon_Shotgun"
+			"item_slot"	"secondary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_shotgun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_shotgun.mdl"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+		}
+		"12"
+		{
+			"name"	"TF_WEAPON_SHOTGUN_PYRO"
+			"item_class"	"tf_weapon_shotgun_pyro"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Shotgun"
+			"item_name"	"#TF_Weapon_Shotgun"
+			"item_slot"	"secondary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_shotgun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_shotgun.mdl"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"13"
+		{
+			"name"	"TF_WEAPON_SCATTERGUN"
+			"item_class"	"tf_weapon_scattergun"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Scattergun"
+			"item_name"	"#TF_Weapon_Scattergun"
+			"item_slot"	"primary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_scattergun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_scattergun.mdl"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+		}
+		"14"
+		{
+			"name"	"TF_WEAPON_SNIPERRIFLE"
+			"item_class"	"tf_weapon_sniperrifle"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_SniperRifle"
+			"item_name"	"#TF_Weapon_SniperRifle"
+			"item_slot"	"primary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_sniperrifle"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_sniperrifle.mdl"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+		}
+		"15"
+		{
+			"name"	"TF_WEAPON_MINIGUN"
+			"item_class"	"tf_weapon_minigun"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Minigun"
+			"item_name"	"#TF_Weapon_Minigun"
+			"item_slot"	"primary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_minigun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_minigun.mdl"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+		}
+		"16"
+		{
+			"name"	"TF_WEAPON_SMG"
+			"item_class"	"tf_weapon_smg"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_SMG"
+			"item_name"	"#TF_Weapon_SMG"
+			"item_slot"	"secondary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_smg"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_smg.mdl"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+		}
+		"17"
+		{
+			"name"	"TF_WEAPON_SYRINGEGUN_MEDIC"
+			"item_class"	"tf_weapon_syringegun_medic"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_SyringeGun"
+			"item_name"	"#TF_Weapon_SyringeGun"
+			"item_slot"	"primary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_syringegun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_syringegun.mdl"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"18"
+		{
+			"name"	"TF_WEAPON_ROCKETLAUNCHER"
+			"item_class"	"tf_weapon_rocketlauncher"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_RocketLauncher"
+			"item_name"	"#TF_Weapon_RocketLauncher"
+			"item_slot"	"primary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_rocketlauncher"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_rocketlauncher.mdl"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+		}
+		"19"
+		{
+			"name"	"TF_WEAPON_GRENADELAUNCHER"
+			"item_class"	"tf_weapon_grenadelauncher"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_GrenadeLauncher"
+			"item_name"	"#TF_Weapon_GrenadeLauncher"
+			"item_slot"	"secondary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_grenadelauncher"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_grenadelauncher.mdl"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+		}
+		"20"
+		{
+			"name"	"TF_WEAPON_PIPEBOMBLAUNCHER"
+			"item_class"	"tf_weapon_pipebomblauncher"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_PipebombLauncher"
+			"item_name"	"#TF_Weapon_PipebombLauncher"
+			"item_slot"	"primary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_stickybomb_launcher"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_stickybomb_launcher.mdl"
+			"attach_to_hands"	"0"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+			"visuals"
+			{
+				"skin" "0"
+			}
+		}
+		"21"
+		{
+			"name"	"TF_WEAPON_FLAMETHROWER"
+			"item_class"	"tf_weapon_flamethrower"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_FlameThrower"
+			"item_name"	"#TF_Weapon_FlameThrower"
+			"item_slot"	"primary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_flamethrower/c_flamethrower"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_flamethrower.mdl"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"22"
+		{
+			"name"	"TF_WEAPON_PISTOL"
+			"item_class"	"tf_weapon_pistol"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Pistol"
+			"item_name"	"#TF_Weapon_Pistol"
+			"item_slot"	"secondary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_pistol"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_pistol.mdl"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+		}
+		"23"
+		{
+			"name"	"TF_WEAPON_PISTOL_SCOUT"
+			"item_class"	"tf_weapon_pistol_scout"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Pistol"
+			"item_name"	"#TF_Weapon_Pistol"
+			"item_slot"	"secondary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_pistol"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_pistol.mdl"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+		}
+		"24"
+		{
+			"name"	"TF_WEAPON_REVOLVER"
+			"item_class"	"tf_weapon_revolver"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Revolver"
+			"item_name"	"#TF_Weapon_Revolver"
+			"item_slot"	"secondary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_revolver"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_revolver.mdl"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+		}
+		"25"
+		{
+			"name"	"TF_WEAPON_PDA_ENGINEER_BUILD"
+			"item_class"	"tf_weapon_pda_engineer_build"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_PDA_Engineer"
+			"item_name"	"#TF_Weapon_PDA_Engineer"
+			"item_slot"	"pda"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_builder"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_builder.mdl"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+		}
+		"26"
+		{
+			"name"	"TF_WEAPON_PDA_ENGINEER_DESTROY"
+			"item_class"	"tf_weapon_pda_engineer_destroy"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_PDA_Engineer"
+			"item_name"	"#TF_Weapon_PDA_Engineer"
+			"item_slot"	"pda2"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_pda_engineer"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_builder.mdl"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+		}
+		"27"
+		{
+			"name"	"TF_WEAPON_PDA_SPY"
+			"item_class"	"tf_weapon_pda_spy"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_PDA_Engineer"
+			"item_name"	"#TF_Weapon_PDA_Engineer"
+			"item_slot"	"pda"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_cigarette_case"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_cigarette_case.mdl"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+		}
+		"28"
+		{
+			"name"	"TF_WEAPON_BUILDER"
+			"item_class"	"tf_weapon_builder"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_PDA_Engineer"
+			"item_name"	"#TF_Weapon_PDA_Engineer"
+			"item_slot"	"building"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_pda_engineer"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_builder.mdl"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+		}
+		"29"
+		{
+			"name"	"TF_WEAPON_MEDIGUN"
+			"item_class"	"tf_weapon_medigun"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Medigun"
+			"item_name"	"#TF_Weapon_Medigun"
+			"item_slot"	"secondary"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_medigun/c_medigun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_medigun.mdl"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"30"
+		{
+			"name"	"TF_WEAPON_INVIS"
+			"item_class"	"tf_weapon_invis"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Watch"
+			"item_name"	"#TF_Weapon_Watch"
+			"item_slot"	"pda2"
+			"anim_slot" "FORCE_NOT_USED"
+			"item_quality"	"normal"
+			"baseitem" "1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_spy_watch/parts/c_spy_watch"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/v_models/v_watch_spy.mdl"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+		}
+		"31"
+		{
+			"name"	"TF_WEAPON_FLAREGUN"
+			"item_class"	"tf_weapon_flaregun"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Flaregun"
+			"item_name"	"#TF_Weapon_Flaregun"
+			"item_slot"	"secondary"
+			"item_quality"	"normal"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_flaregun_pyro/c_flaregun_pyro"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_pistol.mdl"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"32"
+		{
+			"name"	"Level 1 Bonesaw"
+			"item_class"	"tf_weapon_bonesaw"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Bonesaw"
+			"item_name"	"#TF_Weapon_Bonesaw"
+			"item_slot"	"melee"
+			"image_inventory"	"backpack/weapons/c_models/c_ubersaw/c_ubersaw"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_bonesaw.mdl"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"33"
+		{
+			"name"	"Level 1 Syringe Gun"
+			"item_class"	"tf_weapon_syringegun_medic"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_SyringeGun"
+			"item_name"	"#TF_Weapon_SyringeGun"
+			"item_slot"	"primary"
+			"image_inventory"	"backpack/weapons/c_models/c_syringegun/c_syringegun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_syringegun.mdl"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"34"
+		{
+			"name"	"Level 1 Medigun"
+			"item_class"	"tf_weapon_medigun"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Medigun"
+			"item_name"	"#TF_Weapon_Medigun"
+			"item_slot"	"secondary"
+			"image_inventory"	"backpack/weapons/c_models/c_medigun/c_medigun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_medigun.mdl"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"35"
+		{
+			"name"	"Unique Achievement Medigun"
+			"item_class"	"tf_weapon_medigun"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Medigun"
+			"item_name"	"#TF_Unique_Achievement_Medigun1"
+			"item_slot"	"secondary"
+			"image_inventory"	"backpack/weapons/c_models/c_overhealer/c_overhealer"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_medigun/c_medigun.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"min_ilevel"	"8"
+			"max_ilevel"	"8"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+			"attributes"
+			{
+				"medigun charge is crit boost"
+				{
+					"attribute_class"	"set_charge_type"
+					"value"	"1"
+				}
+				"ubercharge rate bonus"
+				{
+					"attribute_class"	"mult_medigun_uberchargerate"
+					"value"	"1.25"
+				}
+			}
+			"visuals_red"
+			{
+				"attached_model"
+				{
+					"model"	"models/weapons/c_models/c_overhealer/c_overhealer.mdl"
+				}
+				"custom_particlesystem"
+				{
+					"system"	"medicgun_beam_attrib_overheal_red"
+				}
+			}
+			"visuals_blu"
+			{
+				"attached_model"
+				{
+					"model"	"models/weapons/c_models/c_overhealer/c_overhealer.mdl"
+				}
+				"custom_particlesystem"
+				{
+					"system"	"medicgun_beam_attrib_overheal_blue"
+				}
+			}
+		}
+		"36"
+		{
+			"name"	"Unique Achievement SyringeGun"
+			"item_class"	"tf_weapon_syringegun_medic"
+			"craft_class"	"weapon"
+			"item_logname"	"blutsauger"
+			"item_type_name"	"#TF_Weapon_SyringeGun"
+			"item_name"	"#TF_Unique_Achievement_Syringegun1"
+			"item_slot"	"primary"
+			"image_inventory"	"backpack/weapons/c_models/c_leechgun/c_leechgun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_leechgun/c_leechgun.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+			"attributes"
+			{
+				"heal on hit for rapidfire"
+				{
+					"attribute_class"	"add_onhit_addhealth"
+					"value"	"3"
+				}
+				"health drain"
+				{
+					"attribute_class"	"add_health_regen"
+					"value"	"-2"
+				}
+			}
+		}
+		"37"
+		{
+			"name"	"Unique Achievement Bonesaw"
+			"item_class"	"tf_weapon_bonesaw"
+			"craft_class"	"weapon"
+			"item_logname"	"ubersaw"
+			"item_iconname"	"ubersaw"
+			"item_type_name"	"#TF_Weapon_Bonesaw"
+			"item_name"	"#TF_Unique_Achievement_Bonesaw1"
+			"item_slot"	"melee"
+			"image_inventory"	"backpack/weapons/c_models/c_ubersaw/c_ubersaw"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_ubersaw/c_ubersaw.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+			"attributes"
+			{
+				"add uber charge on hit"
+				{
+					"attribute_class"	"add_onhit_ubercharge"
+					"value"	"0.25"
+				}
+				"fire rate penalty"
+				{
+					"attribute_class"	"mult_postfiredelay"
+					"value"	"1.2"
+				}
+			}
+			"visuals"
+			{
+				"sound_taunt"	"Taunt.MedicViolinUber"
+				"custom_sound1"	"Weapon_UberSaw.HitFlesh"
+			}
+		}
+		"38"
+		{
+			"name"	"Unique Achievement Fireaxe"
+			"item_class"	"tf_weapon_fireaxe"
+			"craft_class"	"weapon"
+			"item_logname"	"axtinguisher"
+			"item_iconname"	"axtinguisher"
+			"item_type_name"	"#TF_Weapon_FireAxe"
+			"item_name"	"#TF_Unique_Achievement_FireAxe1"
+			"item_slot"	"melee"
+			"image_inventory"	"backpack/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+			"attributes"
+			{
+				"crit vs burning players"
+				{
+					"attribute_class"	"or_crit_vs_playercond"
+					"value"	"1"
+				}
+				"dmg penalty vs nonburning"
+				{
+					"attribute_class"	"mult_dmg_vs_nonburning"
+					"value"	"0.5"
+				}
+				"no crit vs nonburning"
+				{
+					"attribute_class"	"set_nocrit_vs_nonburning"
+					"value"	"1"
+				}
+			}
+		}
+		"39"
+		{
+			"name"	"Unique Achievement Flaregun"
+			"item_class"	"tf_weapon_flaregun"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Flaregun"
+			"item_name"	"#TF_Unique_Achievement_Flaregun"
+			"item_slot"	"secondary"
+			"anim_slot"	"ITEM1"
+			"image_inventory"	"backpack/weapons/c_models/c_flaregun_pyro/c_flaregun_pyro"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_flaregun_pyro/c_flaregun_pyro.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+			"attributes"
+			{
+				"hidden secondary max ammo penalty"
+				{
+					"attribute_class"	"mult_maxammo_secondary"
+					"value"	"0.5"
+				}
+			}
+		}
+		"40"
+		{
+			"name"	"Unique Achievement Flamethrower"
+			"item_class"	"tf_weapon_flamethrower"
+			"craft_class"	"weapon"
+			"item_logname"	"backburner"
+			"item_type_name"	"#TF_Weapon_Flamethrower"
+			"item_name"	"#TF_Unique_Achievement_Flamethrower"
+			"item_slot"	"primary"
+			"image_inventory"	"backpack/weapons/c_models/c_backburner/c_backburner"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_flamethrower/c_flamethrower.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+			"attributes"
+			{
+				"mod flamethrower push"
+				{
+					"attribute_class"	"set_flamethrower_push_disabled"
+					"value"	"1"
+				}
+				"mod flamethrower back crit"
+				{
+					"attribute_class"	"set_flamethrower_back_crit"
+					"value"	"1"
+				}
+				"crit mod disabled hidden"
+				{
+					"attribute_class"	"mult_crit_chance"
+					"value"	"0"
+				}
+			}
+			"visuals"
+			{
+				"sound_single_shot"	"Weapon_BackBurner.FireStart"
+				"sound_special1"	"Weapon_BackBurner.FireLoop"
+				"sound_burst"	"Weapon_BackBurner.FireLoopCrit"
+				"attached_model"
+				{
+					"model"	"models/weapons/c_models/c_backburner/c_backburner.mdl"
+				}
+			}
+		}
+		"41"
+		{
+			"name"	"Unique Achievement Minigun"
+			"item_class"	"tf_weapon_minigun"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Minigun"
+			"item_name"	"#TF_Unique_Achievement_Minigun"
+			"item_slot"	"primary"
+			"item_logname"	"natascha"
+			"image_inventory"	"backpack/weapons/c_models/c_w_ludmila/c_w_ludmila"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_minigun.mdl"
+			"attach_to_hands"	"0"
+			"item_quality"	"unique"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+			"attributes"
+			{
+				"slow enemy on hit"
+				{
+					"attribute_class"	"mult_onhit_enemyspeed"
+					"value"	"1.0"
+				}
+				"damage penalty"
+				{
+					"attribute_class"	"mult_dmg"
+					"value"	"0.75"
+				}
+			}
+			"visuals"
+			{
+				"sound_reload"	"Weapon_Minifun.Reload"
+				"sound_empty"	"Weapon_Minifun.ClipEmpty"
+				"sound_double_shot"	"Weapon_Minifun.Fire"
+				"sound_special1"	"Weapon_Minifun.WindUp"
+				"sound_special2"	"Weapon_Minifun.WindDown"
+				"sound_special3"	"Weapon_Minifun.Spin"
+				"sound_burst"	"Weapon_Minifun.FireCrit"
+				"skin"	"2"
+				"attached_model"
+				{
+					"world_model"	"1"
+					"model"	"models/weapons/c_models/c_w_ludmila/c_w_ludmila.mdl"
+				}
+				"attached_model"
+ 				{
+ 					"view_model"	"1"
+ 					"model" "models/weapons/c_models/c_v_ludmila/c_v_ludmila.mdl"
+ 				}
+			}
+		}
+		"42"
+		{
+			"name"	"Unique Achievement Lunchbox"
+			"item_class"	"tf_weapon_lunchbox"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_LunchBox"
+			"item_name"	"#TF_Unique_Achievement_LunchBox"
+			"item_slot"	"secondary"
+			"anim_slot"	"ITEM1"
+			"image_inventory"	"backpack/weapons/c_models/c_sandwich/c_sandwich"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_sandwich/c_sandwich.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+		}
+		"43"
+		{
+			"name"	"Unique Achievement Fists"
+			"item_class"	"tf_weapon_fists"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Fists"
+			"item_name"	"#TF_Unique_Achievement_Fists"
+			"item_slot"	"melee"
+			"item_logname"	"gloves"
+			"item_iconname"	"gloves"
+			"image_inventory"	"backpack/weapons/c_models/c_boxing_gloves/c_boxing_gloves"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_boxing_gloves/c_boxing_gloves.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"min_ilevel"	"7"
+			"max_ilevel"	"7"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+			"attributes"
+			{
+				"critboost on kill"
+				{
+					"attribute_class"	"add_onkill_critboost_time"
+					"value"	"5"
+				}
+				"fire rate penalty"
+				{
+					"attribute_class"	"mult_postfiredelay"
+					"value"	"1.2"
+				}
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup"	"1"
+				"sound_melee_miss"	"Weapon_BoxingGloves.Miss"
+				"sound_melee_hit"	"Weapon_BoxingGloves.HitFlesh"
+				"sound_melee_hit_world"	"Weapon_BoxingGloves.HitWorld"
+				"sound_burst"	"Weapon_BoxingGloves.MissCrit"
+			}
+		}
+		"44"
+		{
+			"name"	"Unique Achievement Bat"
+			"item_class"	"tf_weapon_bat_wood"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Bat"
+			"item_name"	"#TF_Unique_Achievement_Bat"
+			"item_logname"	"sandman"
+			"item_slot"	"melee"
+			"item_quality"	"unique"
+			"min_ilevel"	"15"
+			"max_ilevel"	"15"
+			"attach_to_hands"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_wooden_bat/c_wooden_bat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_wooden_bat/c_wooden_bat.mdl"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+			"attributes"
+			{
+				"mod bat launches balls"
+				{
+					"attribute_class"	"set_weapon_mode"
+					"value"	"1"
+				}
+				"max health additive penalty"
+				{
+					"attribute_class"	"add_maxhealth"
+					"value" "-15"
+				}
+			}
+		}
+		"45"
+		{
+			"name"	"Unique Achievement Scattergun Double"
+			"item_class"	"tf_weapon_scattergun"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Scattergun"
+			"item_name"	"#TF_Unique_Achievement_Scattergun_Double"
+			"item_logname"	"force_a_nature"
+			"item_slot"	"primary"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"image_inventory"	"backpack/weapons/c_models/c_double_barrel"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_double_barrel.mdl"
+			"attach_to_hands" "1"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+			"attributes"
+			{
+				"scattergun has knockback"
+				{
+					"attribute_class"	"set_scattergun_has_knockback"
+					"value"	"1"
+				}
+				"fire rate bonus"
+				{
+					"attribute_class"	"mult_postfiredelay"
+					"value" "0.5"
+				}
+				"bullets per shot bonus"
+				{
+					"attribute_class"	"mult_bullets_per_shot"
+					"value" "1.2"
+				}
+				"damage penalty"
+				{
+					"attribute_class"	"mult_dmg"
+					"value" "0.9"
+				}
+				"clip size penalty"
+				{
+					"attribute_class"	"mult_clipsize"
+					"value" "0.4"
+				}
+				"scattergun no reload single"
+				{
+					"attribute_class"	"set_scattergun_no_reload_single"
+					"value"	"1"
+				}
+			}
+			"visuals"
+			{
+				"sound_single_shot"	"Weapon_Scatter_Gun_Double.Single"
+				"sound_burst"	"Weapon_Scatter_Gun_Double.SingleCrit"
+				"muzzle_flash"	"muzzle_bignasty"
+				"tracer_effect"	"bullet_bignasty_tracer01"
+			}
+		}
+		"46"
+		{
+			"name"	"Unique Achievement EnergyDrink"
+			"item_class"	"tf_weapon_lunchbox_drink"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_LunchBox"
+			"item_name"	"#TF_Unique_Achievement_EnergyDrink"
+			"anim_slot"	"ITEM1"
+			"item_slot"	"secondary"
+			"image_inventory"	"backpack/weapons/c_models/c_energy_drink/c_energy_drink"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_energy_drink/c_energy_drink.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+		}
+		"47"
+		{
+			"name"	"Demo Hat 1"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Demo_Hat_1"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/demo_afro"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/demo/demo_afro.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+		}
+		"48"
+		{
+			"name"	"Engineer Hat 1"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Engineer_Hat_1"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/engineer/mining_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/engineer/mining_hat.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+		}
+		"49"
+		{
+			"name"	"Heavy Hat 1"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Heavy_Hat_1"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/heavy/football_helmet"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/heavy/football_helmet.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+		}
+		"50"
+		{
+			"name"	"Medic Hat 1"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Medic_Hat_1"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/medic/medic_helmet"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/medic/medic_helmet.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"51"
+		{
+			"name"	"Pyro Hat 1"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Pyro_Hat_1"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/pyro/pyro_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/pyro/pyro_hat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"52"
+		{
+			"name"	"Scout Hat 1"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Scout_Hat_1"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/scout/batter_helmet"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/scout/batter_helmet.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+		}
+		"53"
+		{
+			"name"	"Sniper Hat 1"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Sniper_Hat_1"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/sniper/tooth_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/sniper/tooth_hat.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+		}
+		"54"
+		{
+			"name"	"Soldier Hat 1"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Soldier_Hat_1"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/soldier/soldier_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/soldier/soldier_hat.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+		}
+		"55"
+		{
+			"name"	"Spy Hat 1"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Spy_Hat_1"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/spy/spy_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/spy/spy_hat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+		}
+		"56"
+		{
+			"name"	"Unique Achievement Compound Bow"
+			"item_class"	"tf_weapon_compound_bow"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_CompoundBow"
+			"item_name"	"#TF_Unique_Achievement_CompoundBow"
+			"item_slot"	"primary"
+			"item_quality"	"unique"
+			"item_iconname"	"huntsman"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"anim_slot"	"item2"
+			"image_inventory"	"backpack/weapons/c_models/c_bow/c_bow"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_bow/c_bow.mdl"
+			"attach_to_hands"	"1"
+			"flip_viewmodel"	"1"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+			"attributes"
+			{
+				"hidden primary max ammo bonus"
+				{
+					"attribute_class"	"mult_maxammo_primary"
+					"value"	"0.5"
+				}
+			}
+		}
+		"57"
+		{
+			"name"			"Unique Backstab Shield"
+			"item_class"		"tf_wearable_item"
+			"craft_class"	"weapon"
+			"item_type_name" 	"#TF_Wearable_Shield"
+			"item_name"		"#TF_Unique_Backstab_Shield"
+			"item_slot"		"secondary"
+			"anim_slot"	"FORCE_NOT_USED"
+			"item_quality"		"unique"
+			"min_ilevel"		"10"
+			"max_ilevel"		"10"
+			"image_inventory"	"backpack/player/items/sniper/knife_shield"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/sniper/knife_shield.mdl"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+			"attributes"
+			{
+				"backstab shield"
+				{
+					"attribute_class"	"set_blockbackstab_once"
+					"value" "1"
+				}
+			}
+		}	
+		"58"
+		{
+			"name"	"Unique Achievement Jar"
+			"item_class"	"tf_weapon_jar"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Jar"
+			"item_name"	"#TF_Unique_Achievement_Jar"
+			"item_slot"	"secondary"
+			"item_quality"	"unique"
+			"anim_slot"	"item1"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"attach_to_hands"	"1"
+			"image_inventory"	"backpack/weapons/c_models/urinejar"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/urinejar.mdl"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+			"attributes"
+			{
+				"jarate description"
+				{
+					"attribute_class"	"desc_jarate_description"
+					"value"	"1"
+				}
+			}
+		}	
+		"59"
+		{
+			"name"	"Unique Achievement Feign Watch"
+			"item_class"	"tf_weapon_invis"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Watch"
+			"item_name"	"#TF_Unique_Achievement_FeignWatch"
+			"item_slot"	"pda2"
+			"anim_slot"	"FORCE_NOT_USED"
+			"item_quality"	"unique"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"image_inventory"	"backpack/weapons/c_models/c_pocket_watch/parts/c_pocket_watch"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/v_models/v_watch_pocket_spy.mdl"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+			"attributes"
+			{
+				"set cloak is feign death"
+				{
+					"attribute_class"	"set_weapon_mode"
+					"value"	"1"
+				}
+				"mult cloak meter consume rate"
+				{
+					"attribute_class"	"mult_cloak_meter_consume_rate"
+					"value"	"1.6"
+				}
+				"mult cloak meter regen rate"
+				{
+					"attribute_class"	"mult_cloak_meter_regen_rate"
+					"value"	"1.8"
+				}
+			}
+		}
+		"60"
+		{
+			"name"	"Unique Achievement Cloak Watch"
+			"item_class"	"tf_weapon_invis"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Watch"
+			"item_name"	"#TF_Unique_Achievement_CloakWatch"
+			"item_slot"	"pda2"
+			"anim_slot" "FORCE_NOT_USED"
+			"item_quality"	"unique"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"image_inventory"	"backpack/weapons/c_models/c_leather_watch/parts/c_leather_watch"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/v_models/v_watch_leather_spy.mdl"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+			"attributes"
+			{
+				"set cloak is movement based"
+				{
+					"attribute_class"	"set_weapon_mode"
+					"value"	"2"
+				}
+				"mult cloak meter regen rate"
+				{
+					"attribute_class"	"mult_cloak_meter_regen_rate"
+					"value"	"2.0"
+				}
+			}
+		}
+		"61"
+		{
+			"name"	"Unique Achievement Revolver"
+			"item_class"	"tf_weapon_revolver"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Revolver"
+			"item_name"	"#TF_Unique_Achievement_Revolver"
+			"item_slot"	"secondary"
+			"item_quality"	"unique"
+			"item_logname"	"ambassador"
+			"item_iconname"	"ambassador"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"image_inventory"	"backpack/weapons/c_models/c_ambassador/parts/c_ambassador_opt"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_ambassador/c_ambassador.mdl"
+			"attach_to_hands" "1"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+			"attributes"
+			{
+				"revolver use hit locations"
+				{
+					"attribute_class"	"set_weapon_mode"
+					"value"	"1"
+				}
+				"damage penalty"
+				{
+					"attribute_class"	"mult_dmg"
+					"value" "0.85"
+				}
+				"fire rate penalty"
+				{
+					"attribute_class"	"mult_postfiredelay"
+					"value"	"1.2"
+				}
+			}
+			"visuals"
+			{
+				"sound_single_shot" "Weapon_Ambassador.Single"
+				"sound_burst" "Weapon_Ambassador.SingleCrit"
+			}
+		}
+		"94"
+		{
+			"name"	"Engineer Cowboy Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Engineer_Cowboy_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/engineer/engineer_cowboy_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/engineer/engineer_cowboy_hat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"95"
+		{
+			"name"	"Engineer Train Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Engineer_Train_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/engineer/engineer_train_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/engineer/engineer_train_hat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"96"
+		{
+			"name"	"Heavy Ushanka Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Heavy_Ushanka_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/heavy/heavy_ushanka"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/heavy/heavy_ushanka.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+		}
+		"97"
+		{
+			"name"	"Heavy Stocking Cap"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Heavy_Stocking_cap"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/heavy/heavy_stocking_cap"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/heavy/heavy_stocking_cap.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+		}
+		"98"
+		{
+			"name"	"Soldier Pot Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Soldier_Pot_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/soldier/soldier_pot"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/soldier/soldier_pot.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"99"
+		{
+			"name"	"Soldier Viking Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Soldier_Viking_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/soldier/soldier_viking"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/soldier/soldier_viking.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"100"
+		{
+			"name"	"Demo Scott Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Demo_Scott_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/demo_scott"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/demo/demo_scott.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+		}
+		"101"
+		{
+			"name"	"Medic Tyrolean Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Medic_Tyrolean_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/medic/medic_tyrolean"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/medic/medic_tyrolean.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"102"
+		{
+			"name"	"Pyro Chicken Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Pyro_Chicken_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/pyro/pyro_chicken"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/pyro/pyro_chicken.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"103"
+		{
+			"name"	"Spy Camera Beard"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Spy_Camera_Beard"
+			"item_slot"	"misc"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/spy/spy_camera_beard"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/spy/spy_camera_beard.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+		}
+		"104"
+		{
+			"name"	"Medic Mirror Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Medic_Mirror_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/medic/medic_mirror"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/medic/medic_mirror.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"105"
+		{
+			"name"	"Pyro Fireman Helmet"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Pyro_Fireman_Helmet"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/pyro/fireman_helmet"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/pyro/fireman_helmet.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"106"
+		{
+			"name"	"Scout Bonk Helmet"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Scout_Bonk_Helmet"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/scout/bonk_helmet"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/scout/bonk_helmet.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		"107"
+		{
+			"name"	"Scout Newsboy Cap"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Scout_Newsboy_Cap"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/scout/newsboy_cap"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/scout/newsboy_cap.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		"108"
+		{
+			"name"	"Spy Derby Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Spy_Derby_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/spy/derby_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/spy/derby_hat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+		}
+		"109"
+		{
+			"name"	"Sniper Straw Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Sniper_Straw_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/sniper/straw_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/sniper/straw_hat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"110"
+		{
+			"name"	"Sniper Jarate Headband"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Sniper_Jarate_Headband"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/sniper/jarate_headband"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/sniper/jarate_headband.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"111"
+		{
+			"name"	"Hatless - Scout"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Hatless_Scout"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/scout/scout_nohat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	""
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"scout"		"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		"115"
+		{
+			"name"	"Halloween Hat"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name""#TF_Wearable_Holiday_Hat"
+			"item_name"	"#TF_Halloween_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"image_inventory"	"backpack/player/items/all_class/all_halloween"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"holiday_restriction"	"halloween"
+			"model_player_per_class"	
+			{
+				"scout"		"models/player/items/scout/scout_halloween.mdl"
+				"sniper"	"models/player/items/sniper/sniper_halloween.mdl"
+				"soldier"	"models/player/items/soldier/soldier_halloween.mdl"
+				"demoman"	"models/player/items/demo/demo_halloween.mdl"
+				"medic"		"models/player/items/medic/medic_halloween.mdl"
+				"heavy"		"models/player/items/heavy/heavy_halloween.mdl"
+				"spy"		"models/player/items/spy/spy_halloween.mdl"
+				"engineer"	"models/player/items/engineer/engineer_halloween.mdl"
+				"pyro"		"models/player/items/pyro/pyro_halloween.mdl"
+			}
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		"116"
+		{
+			"name"	"Domination Hat"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Domination_Hat"
+			"item_description"	"#TF_Domination_Hat_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"image_inventory"	"backpack/player/items/all_class/all_domination"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player_per_class"	
+			{
+				"scout"		"models/player/items/scout/scout_domination.mdl"
+				"sniper"	"models/player/items/sniper/sniper_domination.mdl"
+				"soldier"	"models/player/items/soldier/soldier_domination.mdl"
+				"demoman"	"models/player/items/demo/demo_domination.mdl"
+				"medic"		"models/player/items/medic/medic_domination.mdl"
+				"heavy"		"models/player/items/heavy/heavy_domination.mdl"
+				"spy"		"models/player/items/spy/spy_domination.mdl"
+				"engineer"	"models/player/items/engineer/engineer_domination.mdl"
+				"pyro"		"models/player/items/pyro/pyro_domination.mdl"
+			}
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		"117"
+		{
+			"name"	"Hatless - Sniper"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Hatless_Sniper"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/sniper/sniper_nohat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	""
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"118"
+		{
+			"name"	"Hatless - Engineer"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Hatless_Engineer"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/engineer/engineer_nohat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	""
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"engineer"		"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"120"
+		{
+			"name"	"Demo Top Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Demo_Top_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/top_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/demo/top_hat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+		}
+		"121"
+		{
+			"name"	"Web Easteregg Medal"
+			"item_class"	"tf_wearable_item"
+			"item_type_name"	"#TF_Wearable_Medal"
+			"item_name"	"#TF_Soldier_Medal_Web_Sleuth"
+			"item_slot"	"misc"
+			"item_quality"	"unique"
+			"min_ilevel"	"100"
+			"max_ilevel"	"100"
+			"image_inventory"	"backpack/player/items/soldier/medal"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	""
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"medal"
+			}
+		}
+		"122"
+		{
+			"name"	"CheatDetectedMinor"
+			"hidden"	"1"
+			"item_class"	"tf_wearable_item"
+			"item_type_name"	"CheatDetector"
+			"item_name"	"#TF_CheatDetectedMinor"
+			"item_slot"	"misc"
+			"item_quality"	"unique"
+			"min_ilevel"	"100"
+			"max_ilevel"	"100"
+			"image_inventory"	""
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	""
+			"used_by_classes"
+			{
+			}
+		}
+		"123"
+		{
+			"name"	"CheatDetectedMajor"
+			"hidden"	"1"
+			"item_class"	"tf_wearable_item"
+			"item_type_name"	"CheatDetector"
+			"item_name"	"#TF_CheatDetectedMajor"
+			"item_slot"	"misc"
+			"item_quality"	"unique"
+			"min_ilevel"	"100"
+			"max_ilevel"	"100"
+			"image_inventory"	""
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	""
+			"used_by_classes"
+			{
+			}
+		}
+		"124"
+		{
+			"name"	"CheatDetectedHonesty"
+			"hidden"	"1"
+			"item_class"	"tf_wearable_item"
+			"item_type_name"	"CheatDetector"
+			"item_name"	"#TF_HonestyReward"
+			"item_slot"	"misc"
+			"item_quality"	"unique"
+			"min_ilevel"	"100"
+			"max_ilevel"	"100"
+			"image_inventory"	""
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	""
+			"used_by_classes"
+			{
+			}
+		}
+		"125"
+		{
+			"name"	"Honest Halo"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name"	"#TF_Wearable_HonestyHalo"
+			"item_name"	"#TF_HonestyHalo"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/player/items/all_class/all_halo"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/all_class/all_halo.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+			"attributes"
+			{
+				"attach particle effect"
+				{
+					"attribute_class"	"set_attached_particle"
+					"value"	"5"
+				}
+			}
+		}
+		"126"
+		{
+			"name"	"L4D Hat"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name"	"#TF_Wearable_L4DHat"
+			"item_name"	"#TF_L4DHat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"image_inventory"	"backpack/player/items/demo/demo_bill"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player_per_class"	
+			{
+				"scout"		"models/player/items/scout/scout_bill.mdl"
+				"sniper"	"models/player/items/sniper/sniper_bill.mdl"
+				"soldier"	"models/player/items/soldier/soldier_bill.mdl"
+				"demoman"	"models/player/items/demo/demo_bill.mdl"
+				"medic"		"models/player/items/medic/medic_bill.mdl"
+				"heavy"		"models/player/items/heavy/heavy_bill.mdl"
+				"spy"		"models/player/items/spy/spy_bill.mdl"
+				"engineer"	"models/player/items/engineer/engineer_bill.mdl"
+				"pyro"		"models/player/items/pyro/pyro_bill.mdl"
+			}
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		"127"
+		{
+			"name"	"Unique Achievement Rocket Launcher"
+			"item_class"	"tf_weapon_rocketlauncher_directhit"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_RocketLauncher"
+			"item_name"	"#TF_Unique_Achievement_RocketLauncher"
+			"item_slot"	"primary"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"image_inventory"	"backpack/weapons/c_models/c_directhit/c_directhit"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_directhit/c_directhit.mdl"
+			"attach_to_hands" "1"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+			"attributes"
+			{
+				"Blast radius decreased"
+				{
+					"attribute_class"	"mult_explosion_radius"
+					"value"	"0.3"
+				}
+				"Projectile speed increased"
+				{
+					"attribute_class"	"mult_projectile_speed"
+					"value"	"1.8"
+				}
+				"damage bonus"
+				{
+					"attribute_class"	"mult_dmg"
+					"value"	"1.25"
+				}
+				"mod mini-crit airborne"
+				{
+					"attribute_class"	"mini_crit_airborne"
+					"value" "1"
+				}
+			}
+		}
+		"128"
+		{
+			"name"	"Unique Achievement Pickaxe"
+			"item_class"	"tf_weapon_shovel"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Pickaxe"
+			"item_name"	"#TF_Unique_Achievement_Pickaxe"
+			"item_logname"	"unique_pickaxe"
+			"item_slot"	"melee"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"image_inventory" "backpack/weapons/c_models/c_pickaxe/c_pickaxe"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_pickaxe/c_pickaxe.mdl"
+			"attach_to_hands" "1"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+			"attributes"
+			{
+				"mod shovel damage boost"
+				{
+					"attribute_class"	"set_weapon_mode"
+					"value"	"1"
+				}
+			}
+			"visuals"
+			{
+				"sound_melee_miss"	"Weapon_PickAxe.Swing"
+				"sound_melee_hit"	"Weapon_PickAxe.HitFlesh"
+				"sound_melee_burst"	"Weapon_PickAxe.SwingCrit"
+			}
+		}
+		"129"
+		{
+			"name"	"Unique Achievement Soldier Buff"
+			"item_class"	"tf_weapon_buff_item"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Battle_Banner"
+			"item_name"	"#TF_Unique_Achievement_SoldierBuff"
+			"item_slot"	"secondary"
+			"item_quality"	"unique"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"image_inventory"	"backpack/weapons/c_models/c_buffpack/c_buffpack"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_bugle/c_bugle.mdl"
+			"attach_to_hands" "1"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+		}
+		"130"
+		{
+			"name"	"Unique Achievement Sticky Launcher"
+			"item_class"	"tf_weapon_pipebomblauncher"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_PipebombLauncher"
+			"item_name"	"#TF_Unique_Achievement_StickyLauncher"
+			"item_slot"	"primary"
+			"item_quality"	"unique"
+			"item_logname"	"stickybomb_defender"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"image_inventory"	"backpack/weapons/w_models/w_stickybomb_defender"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_stickybomb_launcher.mdl"
+			"model_world"	"models/weapons/w_models/w_stickybomb_launcher.mdl"
+			"attach_to_hands"	"1"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+			"attributes"
+			{
+				"sticky detonate mode"
+				{
+					"attribute_class"	"set_detonate_mode"
+					"value"	"1"
+				}
+				"stickies detonate stickies"
+				{
+					"attribute_class"	"stickies_detonate_stickies"
+					"value"	"1"
+				}
+				"maxammo secondary increased"
+				{
+					"attribute_class"	"mult_maxammo_secondary"
+					"value"	"1.5"
+				}
+				"max pipebombs increased"
+				{
+					"attribute_class"	"add_max_pipebombs"
+					"value" "6"
+				}
+				"sticky arm time penalty"
+				{
+					"attribute_class"	"sticky_arm_time"
+					"value"	"0.4"
+				}
+			}
+			"visuals"
+			{
+				"skin" "1"
+				"attached_model"
+ 				{
+ 					"view_model"	"1"
+ 					"model" "models/weapons/v_models/v_stickybomb_defender.mdl"
+ 				}
+			}
+		}
+		"131"
+		{
+			"name"			"Unique Achievement Shield"
+			"item_class"		"tf_wearable_item_demoshield"
+			"craft_class"		"weapon"
+			"item_type_name" 	"#TF_Wearable_Shield"
+			"item_name"		"#TF_Unique_Achievement_Shield"
+			"item_description"	"#TF_Unique_Achievement_Shield_Desc"
+			"item_slot"		"primary"
+			"anim_slot"		"FORCE_NOT_USED"
+			"item_quality"		"unique"
+			"min_ilevel"		"10"
+			"max_ilevel"		"10"
+			"image_inventory"	"backpack/weapons/c_models/c_targe/c_targe"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_targe/c_targe.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+			"attributes"
+			{
+				"dmg taken from fire reduced"
+				{
+					"attribute_class"	"mult_dmgtaken_from_fire"
+					"value"			"0.5"
+				}
+				"dmg taken from blast reduced"
+				{
+					"attribute_class"	"mult_dmgtaken_from_explosions"
+					"value"			"0.35"
+				}
+			}
+		}	
+		"132"
+		{
+			"name"	"Unique Achievement Sword"
+			"item_class"	"tf_weapon_sword"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_Sword"
+			"item_name"	"#TF_Unique_Achievement_Sword"
+			"item_description"	"#TF_Unique_Achievement_Sword_Desc"
+			"item_slot"	"melee"
+			"item_quality"	"unique"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"image_inventory"	"backpack/weapons/c_models/c_claymore/c_claymore"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_claymore/c_claymore.mdl"
+			"attach_to_hands"	"1"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+			"visuals"
+			{
+				"sound_melee_miss"	"Weapon_Sword.Swing"
+				"sound_melee_hit"	"Weapon_Sword.HitFlesh"
+				"sound_melee_hit_world"	"Weapon_Sword.HitWorld"
+				"sound_melee_burst"	"Weapon_Sword.SwingCrit"
+				"sound_special1"	"Sword.Hit"
+				"sound_special2"	"Sword.Idle"
+			}
+			"attributes"
+			{
+				"crit mod disabled"
+				{
+					"attribute_class"	"mult_crit_chance"
+					"value"	"0"
+				}
+				"max health additive penalty"
+				{
+					"attribute_class"	"add_maxhealth"
+					"value" "-25"
+				}
+			}
+		}
+		"133"
+		{
+			"name"			"The Gunboats"
+			"item_class"		"tf_wearable_item"
+			"craft_class"		"boots"
+			"item_type_name" 	"#TF_Wearable_Boots"
+			"item_name"		"#TF_Unique_Blast_Boots"
+			"item_slot"		"secondary"
+			"anim_slot"		"FORCE_NOT_USED"
+			"item_quality"		"unique"
+			"min_ilevel"		"10"
+			"max_ilevel"		"10"
+			"image_inventory"	"backpack/weapons/c_models/c_rocketboots_soldier"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"		"models/weapons/c_models/c_rocketboots_soldier.mdl"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+			"attributes"
+			{
+				"rocket jump damage reduction"
+				{
+					"attribute_class"	"rocket_jump_dmg_reduction"
+					"value" "0.25"
+				}
+			}
+		}	
+		"5000"
+		{
+			"name"	"Craft Bar Level 1"
+			"item_class"	"craft_item"
+			"craft_class"	"craft_bar"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_Bar_A"
+			"image_inventory"	"backpack/crafting/pile_of_junk"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+		}
+		"5001"
+		{
+			"name"	"Craft Bar Level 2"
+			"item_class"	"craft_item"
+			"craft_class"	"craft_bar"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_Bar_B"
+			"image_inventory"	"backpack/crafting/pile_of_junk2"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"2"
+			"max_ilevel"	"2"
+		}
+		"5002"
+		{
+			"name"	"Craft Bar Level 3"
+			"item_class"	"craft_item"
+			"craft_class"	"craft_bar"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_Bar_C"
+			"image_inventory"	"backpack/crafting/pile_of_junk3"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"3"
+			"max_ilevel"	"3"
+		}
+		"5003"
+		{
+			"name"	"Scout Class Token"
+			"item_class"	"class_token"
+			"craft_class"	"craft_token"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_C_1"
+			"item_description"	"#TF_CraftItem_Token_C_Desc"
+			"image_inventory"	"backpack/crafting/token_scout"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"class_token_id"		"scout"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+		}
+		"5004"
+		{
+			"name"	"Sniper Class Token"
+			"item_class"	"class_token"
+			"craft_class"	"craft_token"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_C_2"
+			"item_description"	"#TF_CraftItem_Token_C_Desc"
+			"image_inventory"	"backpack/crafting/token_sniper"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"class_token_id"		"sniper"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+		}
+		"5005"
+		{
+			"name"	"Soldier Class Token"
+			"item_class"	"class_token"
+			"craft_class"	"craft_token"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_C_3"
+			"item_description"	"#TF_CraftItem_Token_C_Desc"
+			"image_inventory"	"backpack/crafting/token_soldier"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"class_token_id"		"soldier"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+		}
+		"5006"
+		{
+			"name"	"Demoman Class Token"
+			"item_class"	"class_token"
+			"craft_class"	"craft_token"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_C_4"
+			"item_description"	"#TF_CraftItem_Token_C_Desc"
+			"image_inventory"	"backpack/crafting/token_demo"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"class_token_id"		"demoman"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+		}
+		"5007"
+		{
+			"name"	"Heavy Class Token"
+			"item_class"	"class_token"
+			"craft_class"	"craft_token"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_C_5"
+			"item_description"	"#TF_CraftItem_Token_C_Desc"
+			"image_inventory"	"backpack/crafting/token_heavy"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"class_token_id"		"heavy"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+		}
+		"5008"
+		{
+			"name"	"Medic Class Token"
+			"item_class"	"class_token"
+			"craft_class"	"craft_token"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_C_6"
+			"item_description"	"#TF_CraftItem_Token_C_Desc"
+			"image_inventory"	"backpack/crafting/token_medic"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"class_token_id"		"medic"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"5009"
+		{
+			"name"	"Pyro Class Token"
+			"item_class"	"class_token"
+			"craft_class"	"craft_token"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_C_7"
+			"item_description"	"#TF_CraftItem_Token_C_Desc"
+			"image_inventory"	"backpack/crafting/token_pyro"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"class_token_id"		"pyro"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"5010"
+		{
+			"name"	"Spy Class Token"
+			"item_class"	"class_token"
+			"craft_class"	"craft_token"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_C_8"
+			"item_description"	"#TF_CraftItem_Token_C_Desc"
+			"image_inventory"	"backpack/crafting/token_spy"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"class_token_id"		"spy"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+		}
+		"5011"
+		{
+			"name"	"Engineer Class Token"
+			"item_class"	"class_token"
+			"craft_class"	"craft_token"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_C_9"
+			"item_description"	"#TF_CraftItem_Token_C_Desc"
+			"image_inventory"	"backpack/crafting/token_engineer"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"class_token_id"		"engineer"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+		}
+		"5012"
+		{
+			"name"	"Slot Token - Primary"
+			"item_class"	"slot_token"
+			"craft_class"	"craft_token"
+			"item_slot"	"primary"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_S_1"
+			"item_description"	"#TF_CraftItem_Token_S_Desc"
+			"image_inventory"	"backpack/crafting/token_primary"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"slot_token_id"		"primary"
+		}
+		"5013"
+		{
+			"name"	"Slot Token - Secondary"
+			"item_class"	"slot_token"
+			"craft_class"	"craft_token"
+			"item_slot"	"secondary"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_S_2"
+			"item_description"	"#TF_CraftItem_Token_S_Desc"
+			"image_inventory"	"backpack/crafting/token_secondary"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"slot_token_id"		"secondary"
+		}
+		"5014"
+		{
+			"name"	"Slot Token - Melee"
+			"item_class"	"slot_token"
+			"craft_class"	"craft_token"
+			"item_slot"	"melee"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_S_3"
+			"item_description"	"#TF_CraftItem_Token_S_Desc"
+			"image_inventory"	"backpack/crafting/token_melee"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"slot_token_id"		"melee"
+		}
+		"5015"
+		{
+			"name"	"Slot Token - Grenade"
+			"item_class"	"slot_token"
+			"craft_class"	"craft_token"
+			"item_slot"	"grenade"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_S_4"
+			"item_description"	"#TF_CraftItem_Token_S_Desc"
+			"image_inventory"	"backpack/weapons/w_models/w_bottle"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"slot_token_id"		"grenade"
+		}
+		"5016"
+		{
+			"name"	"Slot Token - Building"
+			"item_class"	"slot_token"
+			"craft_class"	"craft_token"
+			"item_slot"	"building"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_S_5"
+			"item_description"	"#TF_CraftItem_Token_S_Desc"
+			"image_inventory"	"backpack/weapons/w_models/w_bottle"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"slot_token_id"		"building"
+		}
+		"5017"
+		{
+			"name"	"Slot Token - PDA"
+			"item_class"	"slot_token"
+			"craft_class"	"craft_token"
+			"item_slot"	"pda"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_S_6"
+			"item_description"	"#TF_CraftItem_Token_S_Desc"
+			"image_inventory"	"backpack/crafting/token_pda"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"slot_token_id"		"pda"
+		}
+		"5018"
+		{
+			"name"	"Slot Token - PDA2"
+			"item_class"	"slot_token"
+			"craft_class"	"craft_token"
+			"item_slot"	"pda2"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_S_7"
+			"item_description"	"#TF_CraftItem_Token_S_Desc"
+			"image_inventory"	"backpack/crafting/token_pda"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"slot_token_id"		"pda2"
+		}
+		"5019"
+		{
+			"name"	"Slot Token - Head"
+			"item_class"	"slot_token"
+			"craft_class"	"craft_token"
+			"item_slot"	"head"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_S_8"
+			"item_description"	"#TF_CraftItem_Token_S_Desc"
+			"image_inventory"	"backpack/weapons/w_models/w_bottle"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"slot_token_id"		"head"
+		}
+	}
+	"attributes"
+	{
+		"1"
+		{
+			"name"	"damage penalty"
+			"attribute_class"	"mult_dmg"
+			"attribute_name"	"Minor damage penalty"
+			"min_value"	"0.95"
+			"max_value"	"0.85"
+			"description_string"	"#Attrib_DamageDone_Negative"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"2"
+		{
+			"name"	"damage bonus"
+			"attribute_class"	"mult_dmg"
+			"attribute_name"	"Minor damage bonus"
+			"min_value"	"1.05"
+			"max_value"	"1.1"
+			"description_string"	"#Attrib_DamageDone_Positive"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"3"
+		{
+			"name"	"clip size penalty"
+			"attribute_class"	"mult_clipsize"
+			"attribute_name"	"Minor clip penalty"
+			"min_value"	"0.9"
+			"max_value"	"0.75"
+			"description_string"	"#Attrib_ClipSize_Negative"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"4"
+		{
+			"name"	"clip size bonus"
+			"attribute_class"	"mult_clipsize"
+			"attribute_name"	"Minor clip size bonus"
+			"min_value"	"1.05"
+			"max_value"	"1.1"
+			"description_string"	"#Attrib_ClipSize_Positive"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"5"
+		{
+			"name"	"fire rate penalty"
+			"attribute_class"	"mult_postfiredelay"
+			"attribute_name"	"Minor fire rate penalty"
+			"min_value"	"1.05"
+			"max_value"	"1.25"
+			"description_string"	"#Attrib_FireRate_Negative"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"6"
+		{
+			"name"	"fire rate bonus"
+			"attribute_class"	"mult_postfiredelay"
+			"attribute_name"	"Minor firerate bonus"
+			"min_value"	"0.95"
+			"max_value"	"0.9"
+			"description_string"	"#Attrib_FireRate_Positive"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"7"
+		{
+			"name"	"heal rate penalty"
+			"attribute_class"	"mult_medigun_healrate"
+			"attribute_name"	"Minor heal rate penalty"
+			"min_value"	"0.95"
+			"max_value"	"0.8"
+			"description_string"	"#Attrib_HealRate_Negative"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"8"
+		{
+			"name"	"heal rate bonus"
+			"attribute_class"	"mult_medigun_healrate"
+			"attribute_name"	"Minor heal rate bonus"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_HealRate_Positive"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"9"
+		{
+			"name"	"ubercharge rate penalty"
+			"attribute_class"	"mult_medigun_uberchargerate"
+			"attribute_name"	"Minor uber charge rate penalty"
+			"min_value"	"0.95"
+			"max_value"	"0.85"
+			"description_string"	"#Attrib_UberchargeRate_Negative"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"10"
+		{
+			"name"	"ubercharge rate bonus"
+			"attribute_class"	"mult_medigun_uberchargerate"
+			"attribute_name"	"Minor uber charge rate bonus"
+			"min_value"	"1.05"
+			"max_value"	"1.1"
+			"description_string"	"#Attrib_UberchargeRate_Positive"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"11"
+		{
+			"name"	"overheal bonus"
+			"attribute_class"	"mult_medigun_overheal_amount"
+			"attribute_name"	"Minor overheal bonus"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_OverhealAmount_Positive"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"12"
+		{
+			"name"	"overheal decay penalty"
+			"attribute_class"	"mult_medigun_overheal_decay"
+			"attribute_name"	"Minor overheal decay penalty"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_OverhealDecay_Negative"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"13"
+		{
+			"name"	"overheal decay bonus"
+			"attribute_class"	"mult_medigun_overheal_decay"
+			"attribute_name"	"Minor overheal decay bonus"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_OverhealDecay_Positive"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"14"
+		{
+			"name"	"overheal decay disabled"
+			"attribute_class"	"mult_medigun_overheal_decay"
+			"attribute_name"	"Overheal decay disabled"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_OverhealDecay_Disabled"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"15"
+		{
+			"name"	"crit mod disabled"
+			"attribute_class"	"mult_crit_chance"
+			"attribute_name"	"Crit chance disabled"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_CritChance_Disabled"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"16"
+		{
+			"name"	"heal on hit for rapidfire"
+			"attribute_class"	"add_onhit_addhealth"
+			"attribute_name"	"Minor heal on hit"
+			"min_value"	"1"
+			"max_value"	"5"
+			"description_string"	"#Attrib_HealOnHit_Positive"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"17"
+		{
+			"name"	"add uber charge on hit"
+			"attribute_class"	"add_onhit_ubercharge"
+			"attribute_name"	"Minor add uber charge on hit"
+			"min_value"	"0.01"
+			"max_value"	"0.05"
+			"description_string"	"#Attrib_AddUber_OnHit_Positive"
+			"description_format"	"value_is_additive_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"18"
+		{
+			"name"	"medigun charge is crit boost"
+			"attribute_class"	"set_charge_type"
+			"attribute_name"	"Medigun charge boosts crit chance"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_Medigun_CritBoost"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"neutral"
+		}
+		"19"
+		{
+			"name"	"tmp dmgbuff on hit"
+			"attribute_class"	"addperc_ondmgdone_tmpbuff"
+			"attribute_name"	"Add Tmp Dmg Buff on hit"
+			"min_value"	"0.15"
+			"max_value"	"0.2"
+			"description_string"	"#Attrib_DamageDoneBonus_Positive"
+			"description_format"	"value_is_additive_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"20"
+		{
+			"name"	"crit vs burning players"
+			"attribute_class"	"or_crit_vs_playercond"
+			"attribute_name"	"Critical Hit vs Burning Players"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_CritVsBurning"
+			"description_format"	"value_is_or"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"21"
+		{
+			"name"	"dmg penalty vs nonburning"
+			"attribute_class"	"mult_dmg_vs_nonburning"
+			"attribute_name"	"Damage penalty vs non burning players"
+			"min_value"	"0.99"
+			"max_value"	"0.95"
+			"description_string"	"#Attrib_DmgPenaltyVsNonBurning"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"22"
+		{
+			"name"	"no crit vs nonburning"
+			"attribute_class"	"set_nocrit_vs_nonburning"
+			"attribute_name"	"Crits Disabled vs Non-burning players"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_NoCritVsNonBurning"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"23"
+		{
+			"name"	"mod flamethrower push"
+			"attribute_class"	"set_flamethrower_push_disabled"
+			"attribute_name"	"Disables flamethrower push"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_ModFlamethrowerPush"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"24"
+		{
+			"name"	"mod flamethrower back crit"
+			"attribute_class"	"set_flamethrower_back_crit"
+			"attribute_name"	"Turns on back crits for the flamethrower"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_ModFlamethrower_BackCrits"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"25"
+		{
+			"name"	"hidden secondary max ammo penalty"
+			"attribute_class"	"mult_maxammo_secondary"
+			"attribute_name"	"Minor secondary max ammo penalty"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"unused"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"neutral"
+		}
+		"26"
+		{
+			"name"	"max health additive bonus"
+			"attribute_class"	"add_maxhealth"
+			"attribute_name"	"Minor max health bonus"
+			"min_value"	"5"
+			"max_value"	"15"
+			"description_string"	"#Attrib_MaxHealth_Positive"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"27"
+		{
+			"name"	"alt-fire disabled"
+			"attribute_class"	"unimplemented_altfire_disabled"
+			"attribute_name"	"Alt-fire Disabled"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_AltFire_Disabled"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"neutral"
+		}
+		"28"
+		{
+			"name"	"crit mod disabled hidden"
+			"attribute_class"	"mult_crit_chance"
+			"attribute_name"	"Crit Chance disabled"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_CritChance_Disabled"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"negative"
+		}
+		"29"
+		{
+			"name"	"alt-fire is vampire"
+			"attribute_class"	"set_altfire_mode"
+			"attribute_name"	"Alt-fire Is Vampire"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_AltFire_Is_Vampire"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"30"
+		{
+			"name"	"fists have radial buff"
+			"attribute_class"	"set_weapon_mode"
+			"attribute_name"	"Fists Have Radial Buff"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_FistsHaveRadialBuff"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"neutral"
+		}
+		"31"
+		{
+			"name"	"critboost on kill"
+			"attribute_class"	"add_onkill_critboost_time"
+			"attribute_name"	"Add CritBoost effect on kill"
+			"min_value"	"2"
+			"max_value"	"3"
+			"description_string"	"#Attrib_CritBoost_OnKill"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"32"
+		{
+			"name"	"slow enemy on hit"
+			"attribute_class"	"mult_onhit_enemyspeed"
+			"attribute_name"	"Minor slow enemy on hit"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_Slow_Enemy_OnHit"
+			"description_format"	"value_is_additive_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"33"
+		{
+			"name"	"set cloak is feign death"
+			"attribute_class"	"set_weapon_mode"
+			"attribute_name"	"Replaces cloak power with feign death."
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_CloakIsFeignDeath"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"neutral"
+		}
+		"34"
+		{
+			"name"	"mult cloak meter consume rate"
+			"attribute_class"	"mult_cloak_meter_consume_rate"
+			"attribute_name"	"Rate cloak energy is consumed."
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_CloakMeterConsumeRate"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"35"
+		{
+			"name"	"mult cloak meter regen rate"
+			"attribute_class"	"mult_cloak_meter_regen_rate"
+			"attribute_name"	"Rate cloak energy is regenerated."
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_CloakMeterRegenRate"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"36"
+		{
+			"name"	"spread penalty"
+			"attribute_class"	"mult_spread_scale"
+			"attribute_name"	"Shot spread penalty"
+			"min_value"	"1.05"
+			"max_value"	"1.25"
+			"description_string"	"#Attrib_Spread_Negative"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"37"
+		{
+			"name"	"hidden primary max ammo bonus"
+			"attribute_class"	"mult_maxammo_primary"
+			"attribute_name"	"Primary max ammo bonus"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"unused"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"positive"
+		}
+		"38"
+		{
+			"name"	"mod bat launches balls"
+			"attribute_class"	"set_weapon_mode"
+			"attribute_name"	"Bat can fire several grenades before melee mode."
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_BatLaunchesBalls"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"39"
+		{
+			"name"	"dmg penalty vs nonstunned"
+			"attribute_class"	"unimplemented_mod_dmg_vs_nonstunned"
+			"attribute_name"	"Damage penalty vs non stunned players"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_DmgPenaltyVsNonStunned"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"40"
+		{
+			"name"	"zoom speed mod disabled"
+			"attribute_class"	"unimplemented_mod_zoom_speed_disabled"
+			"attribute_name"	"Zoom Speed Mod Disabled"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_ZoomSpeedMod_Disabled"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"41"
+		{
+			"name"	"sniper charge per sec"
+			"attribute_class"	"mult_sniper_charge_per_sec"
+			"attribute_name"	"sniper charge per sec"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_SniperCharge_Per_Sec"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"42"
+		{
+			"name"	"sniper no headshots"
+			"attribute_class"	"set_weapon_mode"
+			"attribute_name"	"Sniper no headshots"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_SniperNoHeadshots"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"43"
+		{
+			"name"	"scattergun no reload single"
+			"attribute_class"	"set_scattergun_no_reload_single"
+			"attribute_name"	"Scattergun No Reload Single"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_Scattergun_NoReloadSingle"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"neutral"
+		}
+		"44"
+		{
+			"name"	"scattergun has knockback"
+			"attribute_class"	"set_scattergun_has_knockback"
+			"attribute_name"	"Scattergun Has Knockback"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_Scattergun_HasKnockback"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"45"
+		{
+			"name"	"bullets per shot bonus"
+			"attribute_class"	"mult_bullets_per_shot"
+			"attribute_name"	"Minor bullets per shot bonus"
+			"min_value"	"1.05"
+			"max_value"	"1.1"
+			"description_string"	"#Attrib_BulletsPerShot_Bonus"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"46"
+		{
+			"name"	"sniper zoom penalty"
+			"attribute_class"	"mult_zoom_fov"
+			"attribute_name"	"Sniper zoom penalty"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_SniperZoom_Penalty"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"47"
+		{
+			"name"	"sniper no charge"
+			"attribute_class"	"unimplemented_mod_sniper_no_charge"
+			"attribute_name"	"Sniper no charge"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_SniperNoCharge"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"48"
+		{
+			"name"	"set cloak is movement based"
+			"attribute_class"	"set_weapon_mode"
+			"attribute_name"	"Replaces default cloak with a motion based cloak."
+			"min_value"	"2"
+			"max_value"	"2"
+			"description_string"	"#Attrib_CloakIsMovementBased"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"neutral"
+		}
+		"49"
+		{
+			"name"	"no double jump"
+			"attribute_class"	"set_scout_doublejump_disabled"
+			"attribute_name"	"Disables double jump"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_NoDoubleJump"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"50"
+		{
+			"name"	"absorb damage while cloaked"
+			"attribute_class"	"unimplemented_absorb_dmg_while_cloaked"
+			"attribute_name"	"Absorbs damage when cloaked."
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_AbsorbDmgWhileCloaked"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"51"
+		{
+			"name"	"revolver use hit locations"
+			"attribute_class"	"set_weapon_mode"
+			"attribute_name"	"Revolver uses hit locations"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_RevolverUseHitLocations"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"52"
+		{
+			"name"	"backstab shield"
+			"attribute_class"	"set_blockbackstab_once"
+			"attribute_name"	"Stops one backstab."
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_BackstabShield"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"53"
+		{
+			"name"	"fire retardant"
+			"attribute_class"	"set_fire_retardant"
+			"attribute_name"	"Player cannot be set on fire."
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_FireRetardant"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"54"
+		{
+			"name"	"move speed penalty"
+			"attribute_class"	"mult_player_movespeed"
+			"attribute_name"	"Minor move speed penalty"
+			"min_value"	"0.95"
+			"max_value"	"0.85"
+			"description_string"	"#Attrib_MoveSpeed_Penalty"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"55"
+		{
+			"name"	"obsolete ammo penalty"
+			"attribute_class"	"obsolete"
+			"attribute_name"	"Minor primary max ammo penalty"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"unused"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"neutral"
+		}
+		"56"
+		{
+			"name"	"jarate description"
+			"attribute_class"	"desc_jarate_description"
+			"attribute_name"	"Text description of jarate"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_Jarate_Description"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"neutral"
+		}
+		"57"
+		{
+			"name"	"health regen"
+			"attribute_class"	"add_health_regen"
+			"attribute_name"	"Minor health regeneration"
+			"min_value"	"0.3"
+			"max_value"	"0.5"
+			"description_string"	"#Attrib_HealthRegen"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"58"
+		{
+			"name"	"self dmg push force increased"
+			"attribute_class"	"mult_dmgself_push_force"
+			"attribute_name"	"Minor increased self dmg push force"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_SelfDmgPush_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"59"
+		{
+			"name"	"self dmg push force decreased"
+			"attribute_class"	"mult_dmgself_push_force"
+			"attribute_name"	"Minor decreased self dmg push force"
+			"min_value"	"0.95"
+			"max_value"	"0.9"
+			"description_string"	"#Attrib_SelfDmgPush_Decreased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"60"
+		{
+			"name"	"dmg taken from fire reduced"
+			"attribute_class"	"mult_dmgtaken_from_fire"
+			"attribute_name"	"Minor fire damage reduction"
+			"min_value"	"0.95"
+			"max_value"	"0.9"
+			"description_string"	"#Attrib_DmgTaken_From_Fire_Reduced"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"61"
+		{
+			"name"	"dmg taken from fire increased"
+			"attribute_class"	"mult_dmgtaken_from_fire"
+			"attribute_name"	"Minor fire damage increased"
+			"min_value"	"1.05"
+			"max_value"	"1.25"
+			"description_string"	"#Attrib_DmgTaken_From_Fire_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"62"
+		{
+			"name"	"dmg taken from crit reduced"
+			"attribute_class"	"mult_dmgtaken_from_crit"
+			"attribute_name"	"Minor crit damage reduction"
+			"min_value"	"0.9"
+			"max_value"	"0.75"
+			"description_string"	"#Attrib_DmgTaken_From_Crit_Reduced"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"63"
+		{
+			"name"	"dmg taken from crit increased"
+			"attribute_class"	"mult_dmgtaken_from_crit"
+			"attribute_name"	"Minor crit damage increased"
+			"min_value"	"1.05"
+			"max_value"	"1.25"
+			"description_string"	"#Attrib_DmgTaken_From_Crit_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"64"
+		{
+			"name"	"dmg taken from blast reduced"
+			"attribute_class"	"mult_dmgtaken_from_explosions"
+			"attribute_name"	"Minor blast damage reduced"
+			"min_value"	"0.95"
+			"max_value"	"0.9"
+			"description_string"	"#Attrib_DmgTaken_From_Blast_Reduced"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"65"
+		{
+			"name"	"dmg taken from blast increased"
+			"attribute_class"	"mult_dmgtaken_from_explosions"
+			"attribute_name"	"Minor blast damage increased"
+			"min_value"	"1.05"
+			"max_value"	"1.25"
+			"description_string"	"#Attrib_DmgTaken_From_Blast_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"66"
+		{
+			"name"	"dmg taken from bullets reduced"
+			"attribute_class"	"mult_dmgtaken_from_bullets"
+			"attribute_name"	"Minor bullet damage reduced"
+			"min_value"	"0.95"
+			"max_value"	"0.9"
+			"description_string"	"#Attrib_DmgTaken_From_Bullets_Reduced"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"67"
+		{
+			"name"	"dmg taken from bullets increased"
+			"attribute_class"	"mult_dmgtaken_from_bullets"
+			"attribute_name"	"Minor bullet damage increased"
+			"min_value"	"1.05"
+			"max_value"	"1.25"
+			"description_string"	"#Attrib_DmgTaken_From_Bullets_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"68"
+		{
+			"name"	"increase player capture value"
+			"attribute_class"	"add_player_capturevalue"
+			"attribute_name"	"Minor capture value increase"
+			"min_value"	"1"
+			"max_value"	"2"
+			"description_string"	"#Attrib_CaptureValue_Increased"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"69"
+		{
+			"name"	"health from healers reduced"
+			"attribute_class"	"mult_health_fromhealers"
+			"attribute_name"	"Minor penalty to health from healers"
+			"min_value"	"0.95"
+			"max_value"	"0.7"
+			"description_string"	"#Attrib_HealthFromHealers_Reduced"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"70"
+		{
+			"name"	"health from healers increased"
+			"attribute_class"	"mult_health_fromhealers"
+			"attribute_name"	"Minor increase to health from healers"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_HealthFromHealers_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"71"
+		{
+			"name"	"weapon burn dmg increased"
+			"attribute_class"	"mult_wpn_burndmg"
+			"attribute_name"	"Minor increase to burn dmg"
+			"min_value"	"1.05"
+			"max_value"	"1.1"
+			"description_string"	"#Attrib_WpnBurnDmg_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"72"
+		{
+			"name"	"weapon burn dmg reduced"
+			"attribute_class"	"mult_wpn_burndmg"
+			"attribute_name"	"Minor reduction to burn dmg"
+			"min_value"	"0.95"
+			"max_value"	"0.7"
+			"description_string"	"#Attrib_WpnBurnDmg_Reduced"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"73"
+		{
+			"name"	"weapon burn time increased"
+			"attribute_class"	"mult_wpn_burntime"
+			"attribute_name"	"Minor increase to burn time"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_WpnBurnTime_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"74"
+		{
+			"name"	"weapon burn time reduced"
+			"attribute_class"	"mult_wpn_burntime"
+			"attribute_name"	"Minor reduction to burn time"
+			"min_value"	"0.95"
+			"max_value"	"0.7"
+			"description_string"	"#Attrib_WpnBurnTime_Reduced"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"75"
+		{
+			"name"	"aiming movespeed increased"
+			"attribute_class"	"mult_player_aiming_movespeed"
+			"attribute_name"	"Minor aiming movespeed increase"
+			"min_value"	"1.05"
+			"max_value"	"1.1"
+			"description_string"	"#Attrib_AimingMoveSpeed_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"76"
+		{
+			"name"	"maxammo primary increased"
+			"attribute_class"	"mult_maxammo_primary"
+			"attribute_name"	"Minor primary maxammo increase"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_MaxammoPrimary_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"77"
+		{
+			"name"	"maxammo primary reduced"
+			"attribute_class"	"mult_maxammo_primary"
+			"attribute_name"	"Minor primary maxammo reduction"
+			"min_value"	"0.9"
+			"max_value"	"0.6"
+			"description_string"	"#Attrib_MaxammoPrimary_Reduced"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"78"
+		{
+			"name"	"maxammo secondary increased"
+			"attribute_class"	"mult_maxammo_secondary"
+			"attribute_name"	"Minor secondary maxammo increase"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_MaxammoSecondary_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"79"
+		{
+			"name"	"maxammo secondary reduced"
+			"attribute_class"	"mult_maxammo_secondary"
+			"attribute_name"	"Minor secondary maxammo reduction"
+			"min_value"	"0.9"
+			"max_value"	"0.6"
+			"description_string"	"#Attrib_MaxammoSecondary_Reduced"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"80"
+		{
+			"name"	"maxammo metal increased"
+			"attribute_class"	"mult_maxammo_metal"
+			"attribute_name"	"Minor metal maxammo increase"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_MaxammoMetal_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"81"
+		{
+			"name"	"maxammo metal reduced"
+			"attribute_class"	"mult_maxammo_metal"
+			"attribute_name"	"Minor metal maxammo reduction"
+			"min_value"	"0.95"
+			"max_value"	"0.65"
+			"description_string"	"#Attrib_MaxammoMetal_Reduced"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"82"
+		{
+			"name"	"cloak consume rate increased"
+			"attribute_class"	"mult_cloak_meter_consume_rate"
+			"attribute_name"	"Minor cloak consume rate increase"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_CloakConsumeRate_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"83"
+		{
+			"name"	"cloak consume rate decreased"
+			"attribute_class"	"mult_cloak_meter_consume_rate"
+			"attribute_name"	"Minor cloak consume rate decrease"
+			"min_value"	"0.95"
+			"max_value"	"0.7"
+			"description_string"	"#Attrib_CloakConsumeRate_Decreased"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"84"
+		{
+			"name"	"cloak regen rate increased"
+			"attribute_class"	"mult_cloak_meter_regen_rate"
+			"attribute_name"	"Minor cloak regen rate increase"
+			"min_value"	"1.05"
+			"max_value"	"1.1"
+			"description_string"	"#Attrib_CloakRegenRate_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"85"
+		{
+			"name"	"cloak regen rate decreased"
+			"attribute_class"	"mult_cloak_meter_regen_rate"
+			"attribute_name"	"Minor cloak regen rate decrease"
+			"min_value"	"0.95"
+			"max_value"	"0.7"
+			"description_string"	"#Attrib_CloakRegenRate_Decreased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"86"
+		{
+			"name"	"minigun spinup time increased"
+			"attribute_class"	"mult_minigun_spinup_time"
+			"attribute_name"	"Minor minigun spinup time increase"
+			"min_value"	"1.05"
+			"max_value"	"1.2"
+			"description_string"	"#Attrib_MinigunSpinup_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"87"
+		{
+			"name"	"minigun spinup time decreased"
+			"attribute_class"	"mult_minigun_spinup_time"
+			"attribute_name"	"Minor minigun spinup time decrease"
+			"min_value"	"0.95"
+			"max_value"	"0.8"
+			"description_string"	"#Attrib_MinigunSpinup_Decreased"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"88"
+		{
+			"name"	"max pipebombs increased"
+			"attribute_class"	"add_max_pipebombs"
+			"attribute_name"	"Minor max pipebomb increase"
+			"min_value"	"2"
+			"max_value"	"3"
+			"description_string"	"#Attrib_MaxPipebombs_Increased"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"89"
+		{
+			"name"	"max pipebombs decreased"
+			"attribute_class"	"add_max_pipebombs"
+			"attribute_name"	"Minor max pipebomb decrease"
+			"min_value"	"-2"
+			"max_value"	"-4"
+			"description_string"	"#Attrib_MaxPipebombs_Decreased"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"90"
+		{
+			"name"	"SRifle Charge rate increased"
+			"attribute_class"	"mult_sniper_charge_per_sec"
+			"attribute_name"	"Minor charge rate increase"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_SRifleChargeRate_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"91"
+		{
+			"name"	"SRifle Charge rate decreased"
+			"attribute_class"	"mult_sniper_charge_per_sec"
+			"attribute_name"	"Minor charge rate decrease"
+			"min_value"	"0.95"
+			"max_value"	"0.8"
+			"description_string"	"#Attrib_SRifleChargeRate_Decreased"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"92"
+		{
+			"name"	"Construction rate increased"
+			"attribute_class"	"mult_construction_value"
+			"attribute_name"	"Minor construction rate increase"
+			"min_value"	"1.1"
+			"max_value"	"1.3"
+			"description_string"	"#Attrib_ConstructionRate_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"93"
+		{
+			"name"	"Construction rate decreased"
+			"attribute_class"	"mult_construction_value"
+			"attribute_name"	"Minor construction rate decrease"
+			"min_value"	"0.9"
+			"max_value"	"0.7"
+			"description_string"	"#Attrib_ConstructionRate_Decreased"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"94"
+		{
+			"name"	"Repair rate increased"
+			"attribute_class"	"mult_repair_value"
+			"attribute_name"	"Minor repair rate increase"
+			"min_value"	"1.05"
+			"max_value"	"1.2"
+			"description_string"	"#Attrib_RepairRate_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"95"
+		{
+			"name"	"Repair rate decreased"
+			"attribute_class"	"mult_repair_value"
+			"attribute_name"	"Minor repair rate decrease"
+			"min_value"	"0.9"
+			"max_value"	"0.75"
+			"description_string"	"#Attrib_RepairRate_Decreased"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"96"
+		{
+			"name"	"Reload time increased"
+			"attribute_class"	"mult_reload_time"
+			"attribute_name"	"Minor reload time increase"
+			"min_value"	"1.1"
+			"max_value"	"1.4"
+			"description_string"	"#Attrib_ReloadTime_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"97"
+		{
+			"name"	"Reload time decreased"
+			"attribute_class"	"mult_reload_time"
+			"attribute_name"	"Minor reload time decrease"
+			"min_value"	"0.95"
+			"max_value"	"0.85"
+			"description_string"	"#Attrib_ReloadTime_Decreased"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"98"
+		{
+			"name"	"selfdmg on hit for rapidfire"
+			"attribute_class"	"add_onhit_addhealth"
+			"attribute_name"	"Minor self dmg on hit"
+			"min_value"	"-1"
+			"max_value"	"-3"
+			"description_string"	"#Attrib_HealOnHit_Negative"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"99"
+		{
+			"name"	"Blast radius increased"
+			"attribute_class"	"mult_explosion_radius"
+			"attribute_name"	"Minor explosion radius increase"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_BlastRadius_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"100"
+		{
+			"name"	"Blast radius decreased"
+			"attribute_class"	"mult_explosion_radius"
+			"attribute_name"	"Minor explosion radius decrease"
+			"min_value"	"0.95"
+			"max_value"	"0.75"
+			"description_string"	"#Attrib_BlastRadius_Decreased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"101"
+		{
+			"name"	"Projectile range increased"
+			"attribute_class"	"mult_projectile_range"
+			"attribute_name"	"Minor projectile range increase"
+			"min_value"	"1.1"
+			"max_value"	"1.3"
+			"description_string"	"#Attrib_ProjectileRange_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"102"
+		{
+			"name"	"Projectile range decreased"
+			"attribute_class"	"mult_projectile_range"
+			"attribute_name"	"Minor projectile range decrease"
+			"min_value"	"0.9"
+			"max_value"	"0.7"
+			"description_string"	"#Attrib_ProjectileRange_Decreased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"103"
+		{
+			"name"	"Projectile speed increased"
+			"attribute_class"	"mult_projectile_speed"
+			"attribute_name"	"Minor projectile speed increase"
+			"min_value"	"1.05"
+			"max_value"	"1.15"
+			"description_string"	"#Attrib_ProjectileSpeed_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"104"
+		{
+			"name"	"Projectile speed decreased"
+			"attribute_class"	"mult_projectile_speed"
+			"attribute_name"	"Minor projectile speed decrease"
+			"min_value"	"0.9"
+			"max_value"	"0.75"
+			"description_string"	"#Attrib_ProjectileSpeed_Decreased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"105"
+		{
+			"name"	"overheal penalty"
+			"attribute_class"	"mult_medigun_overheal_amount"
+			"attribute_name"	"Minor overheal penalty"
+			"min_value"	"0.9"
+			"max_value"	"0.7"
+			"description_string"	"#Attrib_OverhealAmount_Negative"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"106"
+		{
+			"name"	"weapon spread bonus"
+			"attribute_class"	"mult_spread_scale"
+			"attribute_name"	"Shot spread bonus"
+			"min_value"	"0.95"
+			"max_value"	"0.85"
+			"description_string"	"#Attrib_Spread_Positive"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"107"
+		{
+			"name"	"move speed bonus"
+			"attribute_class"	"mult_player_movespeed"
+			"attribute_name"	"Minor move speed bonus"
+			"min_value"	"1.05"
+			"max_value"	"1.1"
+			"description_string"	"#Attrib_MoveSpeed_Bonus"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"108"
+		{
+			"name"	"health from packs increased"
+			"attribute_class"	"mult_health_frompacks"
+			"attribute_name"	"Minor bonus to health from packs"
+			"min_value"	"1.1"
+			"max_value"	"1.25"
+			"description_string"	"#Attrib_HealthFromPacks_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"109"
+		{
+			"name"	"health from packs decreased"
+			"attribute_class"	"mult_health_frompacks"
+			"attribute_name"	"Minor penalty to health from packs"
+			"min_value"	"0.95"
+			"max_value"	"0.6"
+			"description_string"	"#Attrib_HealthFromPacks_Decreased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"110"
+		{
+			"name"	"heal on hit for slowfire"
+			"attribute_class"	"add_onhit_addhealth"
+			"attribute_name"	"Minor heal on hit"
+			"min_value"	"10"
+			"max_value"	"15"
+			"description_string"	"#Attrib_HealOnHit_Positive"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"111"
+		{
+			"name"	"selfdmg on hit for slowfire"
+			"attribute_class"	"add_onhit_addhealth"
+			"attribute_name"	"Minor self dmg on hit"
+			"min_value"	"-3"
+			"max_value"	"-8"
+			"description_string"	"#Attrib_HealOnHit_Negative"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"112"
+		{
+			"name"	"ammo regen"
+			"attribute_class"	"addperc_ammo_regen"
+			"attribute_name"	"Minor ammo regeneration"
+			"min_value"	"0.03"
+			"max_value"	"0.08"
+			"description_string"	"#Attrib_AmmoRegen"
+			"description_format"	"value_is_additive_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"113"
+		{
+			"name"	"metal regen"
+			"attribute_class"	"add_metal_regen"
+			"attribute_name"	"Minor health regeneration"
+			"min_value"	"1"
+			"max_value"	"8"
+			"description_string"	"#Attrib_MetalRegen"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"114"
+		{
+			"name"	"mod mini-crit airborne"
+			"attribute_class"	"mini_crit_airborne"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_MiniCritAirborneEnemies"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"115"
+		{
+			"name"	"mod shovel damage boost"
+			"attribute_class"	"set_weapon_mode"
+			"attribute_name"	"Shovel deals more damage."
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_ShovelDamageBoost"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"116"
+		{
+			"name"	"mod soldier buff type"
+			"attribute_class"	"set_buff_type"
+			"attribute_name"	"indicates soldier activated buff type"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_SoldierBuffType"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"117"
+		{
+			"name"	"dmg falloff increased"
+			"attribute_class"	"mult_dmg_falloff"
+			"attribute_name"	"Damage falloff"
+			"min_value"	"0.95"
+			"max_value"	"0.9"
+			"description_string"	"#Attrib_Dmg_Falloff_Increased"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"118"
+		{
+			"name"	"dmg falloff decreased"
+			"attribute_class"	"mult_dmg_falloff"
+			"attribute_name"	"Damage falloff"
+			"min_value"	"0.95"
+			"max_value"	"0.9"
+			"description_string"	"#Attrib_Dmg_Falloff_Decreased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"119"
+		{
+			"name"	"sticky detonate mode"
+			"attribute_class"	"set_detonate_mode"
+			"attribute_name"	"indicates method of detonating stickies"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_StickyDetonateMode"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"120"
+		{
+			"name"	"sticky arm time penalty"
+			"attribute_class"	"sticky_arm_time"
+			"attribute_name"	"makes stickies take longer to arm"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_StickyArmTimePenalty"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"121"
+		{
+			"name"	"stickies detonate stickies"
+			"attribute_class"	"stickies_detonate_stickies"
+			"attribute_name"	"indicates these stickies can destroy enemy stickies"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_StickiesDetonateStickies"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"122"
+		{
+			"name"	"mod demo buff type"
+			"attribute_class"	"set_buff_type"
+			"attribute_name"	"indicates demo activated buff type"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_DemoBuffType"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"positive"
+		}
+		"123"
+		{
+			"name"	"speed boost when active"
+			"attribute_class"	"mult_move_speed_when_active"
+			"attribute_name"	"move speed buff when item is active"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_SpeedBoostWhenActive"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"124"
+		{
+			"name"	"mod wrench no upgrades"
+			"attribute_class"	"wrench_no_upgrades"
+			"attribute_name"	"Wrench cannot upgrade"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_WrenchNoUpgrades"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"125"
+		{
+			"name"	"max health additive penalty"
+			"attribute_class"	"add_maxhealth"
+			"attribute_name"	"Minor max health penalty"
+			"min_value"	"-5"
+			"max_value"	"-15"
+			"description_string"	"#Attrib_MaxHealth_Negative"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"126"
+		{
+			"name"	"sticky arm time bonus"
+			"attribute_class"	"sticky_arm_time"
+			"attribute_name"	"makes stickies arm more quickly"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_StickyArmTimeBonus"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"127"
+		{
+			"name"	"sticky air burst mode"
+			"attribute_class"	"set_detonate_mode"
+			"attribute_name"	"set mode to 2"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_StickyAirBurstMode"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"128"
+		{
+			"name"	"provide on active"
+			"attribute_class"	"provide_on_active"
+			"attribute_name"	"the item will only provide its attributes when it is the active weapon"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_ProvideOnActive"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"neutral"
+		}
+		"129"
+		{
+			"name"	"health drain"
+			"attribute_class"	"add_health_regen"
+			"attribute_name"	"Minor health drain"
+			"min_value"	"0.3"
+			"max_value"	"0.5"
+			"description_string"	"#Attrib_HealthDrain"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"130"
+		{
+			"name"	"medic regen bonus"
+			"attribute_class"	"medic_regen"
+			"attribute_name"	"medic regen bonus"
+			"min_value"	"0.3"
+			"max_value"	"0.5"
+			"description_string"	"#Attrib_MedicRegenBonus"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"131"
+		{
+			"name"	"medic regen penalty"
+			"attribute_class"	"medic_regen"
+			"attribute_name"	"medic regen penalty"
+			"min_value"	"0.3"
+			"max_value"	"0.5"
+			"description_string"	"#Attrib_MedicRegenPenalty"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"132"
+		{
+			"name"	"community description"
+			"attribute_class"	"desc_community_description"
+			"attribute_name"	"Text description of community"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_Community_Description"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"neutral"
+		}
+		"133"
+		{
+			"name"	"soldier model index"
+			"attribute_class"	"desc_soldiermedal_index"
+			"attribute_name"	"Text description of soldier medal"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_MedalIndex_Description"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"neutral"
+		}
+		"134"
+		{
+			"name"	"attach particle effect"
+			"attribute_class"	"set_attached_particle"
+			"attribute_name"	"Attach Custom Particle"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_DamageDone_Negative"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"neutral"
+		}
+		"135"
+		{
+			"name"	"rocket jump damage reduction"
+			"attribute_class"	"rocket_jump_dmg_reduction"
+			"attribute_name"	"Reduces damage from rocket jumping"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_RocketJumpDmgReduction"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+	}
+}
