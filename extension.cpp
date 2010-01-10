@@ -66,92 +66,91 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	CBasePlayer *player = META_IFACEPTR(CBasePlayer);
 
 	if (cscript != NULL) {
+		RETURN_META_VALUE(MRES_IGNORED, NULL);
+	}
 
-		edict_t *playerEdict = gameents->BaseEntityToEdict((CBaseEntity *)player);
-		IPlayerInfo *playerinfo = infomanager->GetPlayerInfo(playerEdict);
-		const char *steamID = playerinfo->GetNetworkIDString();
+	edict_t *playerEdict = gameents->BaseEntityToEdict((CBaseEntity *)player);
+	IPlayerInfo *playerinfo = infomanager->GetPlayerInfo(playerEdict);
+	const char *steamID = playerinfo->GetNetworkIDString();
+
+	#ifdef TF2ITEMS_DEBUG_AUTH
+		META_CONPRINTF("Client Steam ID: %s\n", steamID);
+	#endif // TF2ITEMS_DEBUG_AUTH
+
+	KeyValues *player_weapons = new KeyValues("weapon_invalid");
+
+	if (KV_FindSection(player_weapons, g_pCustomWeapons, steamID)) {
 
 		#ifdef TF2ITEMS_DEBUG_AUTH
-			META_CONPRINTF("Client Steam ID: %s\n", steamID);
+			META_LOG(g_PLAPI, "Client has a section.");
 		#endif // TF2ITEMS_DEBUG_AUTH
 
-		KeyValues *player_weapons = new KeyValues("weapon_invalid");
+		KeyValues *player_weapon = new KeyValues("weapon_invalid");
 
-		if (KV_FindSection(player_weapons, g_pCustomWeapons, steamID)) {
+		if (KV_FindSection(player_weapon, player_weapons, cscript->itemdefindex)) {
 
-			#ifdef TF2ITEMS_DEBUG_AUTH
-				META_LOG(g_PLAPI, "Client has a section.");
-			#endif // TF2ITEMS_DEBUG_AUTH
+			#ifdef TF2ITEMS_DEBUG_ITEMS
+				META_LOG(g_PLAPI, "Custom weapon generation started.");
+			#endif // TF2ITEMS_DEBUG_ITEMS
 
-			KeyValues *player_weapon = new KeyValues("weapon_invalid");
+			CScriptCreatedItem newitem;
+			memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
 
-			if (KV_FindSection(player_weapon, player_weapons, cscript->itemdefindex)) { // Community Shotgun
+			int itemlevel;
+			if (KV_FindValue(&itemlevel, player_weapon, "level")) {
+				newitem.itemlevel = itemlevel;
+			}
+			
+			int itemquality;
+			if (KV_FindValue(&itemquality, player_weapon, "quality")) {
+				newitem.itemquality = itemquality;
+			}
 
-				#ifdef TF2ITEMS_DEBUG_AUTH
-					META_LOG(g_PLAPI, "Client has a section for this weapon (12).");
-				#endif // TF2ITEMS_DEBUG_AUTH
+			int count;
+			KeyValues *weapon_attribs = new KeyValues("weapon_invalid");
+			if (KV_FindValue(&count, player_weapon, "count") && KV_FindSection(weapon_attribs, player_weapon, "attributes")) {
 
 				#ifdef TF2ITEMS_DEBUG_ITEMS
-					META_LOG(g_PLAPI, "Community Shotgun generation started.");
+					META_CONPRINTF("Attribute Count: %d\n", count);
 				#endif // TF2ITEMS_DEBUG_ITEMS
 
-				CScriptCreatedItem newitem;
-				memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
+				newitem.attributes = (CScriptCreatedAttribute *)malloc(sizeof(CScriptCreatedAttribute) * count);
+				CScriptCreatedAttribute qq;
 
-				int itemlevel;
-				if (KV_FindValue(&itemlevel, player_weapon, "level")) {
-					newitem.itemlevel = itemlevel;
-				}
-				
-				int itemquality;
-				if (KV_FindValue(&itemquality, player_weapon, "quality")) {
-					newitem.itemquality = itemquality;
-				}
-
-				int count;
-				KeyValues *weapon_attribs = new KeyValues("weapon_invalid");
-				if (KV_FindValue(&count, player_weapon, "count") && KV_FindSection(weapon_attribs, player_weapon, "attributes")) {
+				int searchindex = 0;
+				KeyValues *weapon_attrib;
+				for ( weapon_attrib = weapon_attribs->GetFirstValue(); weapon_attrib; weapon_attrib = weapon_attrib->GetNextValue() ) {
+					qq.attribindex = atoi(weapon_attrib->GetName());
+					qq.attribvalue = weapon_attrib->GetFloat();
+					memcpy(newitem.attributes + searchindex, &qq, sizeof(qq));
 
 					#ifdef TF2ITEMS_DEBUG_ITEMS
-						META_CONPRINTF("Attribute Count: %d\n", count);
+						META_CONPRINTF("Attribute %d Index: %d\n", searchindex, qq.attribindex);
+						META_CONPRINTF("Attribute %d Value: %f\n", searchindex, qq.attribvalue);
 					#endif // TF2ITEMS_DEBUG_ITEMS
 
-					newitem.attributes = (CScriptCreatedAttribute *)malloc(sizeof(CScriptCreatedAttribute) * count);
-					CScriptCreatedAttribute qq;
-
-					int searchindex = 0;
-					KeyValues *weapon_attrib;
-					for ( weapon_attrib = weapon_attribs->GetFirstValue(); weapon_attrib; weapon_attrib = weapon_attrib->GetNextValue() ) {
-						qq.attribindex = atoi(weapon_attrib->GetName());
-						qq.attribvalue = weapon_attrib->GetFloat();
-						memcpy(newitem.attributes + searchindex, &qq, sizeof(qq));
-
-						#ifdef TF2ITEMS_DEBUG_ITEMS
-							META_CONPRINTF("Attribute %d Index: %d\n", searchindex, qq.attribindex);
-							META_CONPRINTF("Attribute %d Value: %f\n", searchindex, qq.attribvalue);
-						#endif // TF2ITEMS_DEBUG_ITEMS
-
-						searchindex = searchindex + 1;
-					}
-
-					newitem.attributes2 = newitem.attributes;
-					newitem.allocatedAttributes = count;
-					newitem.attribcount = count;
+					searchindex = searchindex + 1;
 				}
+				
 				#ifdef TF2ITEMS_DEBUG_ITEMS
-					else {
-							META_LOG(g_PLAPI, "Error in attribute structure or missing count.");
-					}
+					META_CONPRINTF("Found Attribute Count: %d\n", searchindex+1);
 				#endif // TF2ITEMS_DEBUG_ITEMS
 
-				#ifdef TF2ITEMS_DEBUG_ITEMS
-					META_LOG(g_PLAPI, "Community Shotgun generated and given.");
-				#endif // TF2ITEMS_DEBUG_ITEMS
-
-				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
-			} else {
-				RETURN_META_VALUE(MRES_IGNORED, NULL);
+				newitem.attributes2 = newitem.attributes;
+				newitem.allocatedAttributes = count;
+				newitem.attribcount = count;
 			}
+			#ifdef TF2ITEMS_DEBUG_ITEMS
+				else {
+						META_LOG(g_PLAPI, "Error in attribute structure, missing count, or no attributes specified.");
+				}
+			#endif // TF2ITEMS_DEBUG_ITEMS
+
+			#ifdef TF2ITEMS_DEBUG_ITEMS
+				META_LOG(g_PLAPI, "Custom weapon generated and given.");
+			#endif // TF2ITEMS_DEBUG_ITEMS
+
+			RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
 		} else {
 			RETURN_META_VALUE(MRES_IGNORED, NULL);
 		}
@@ -231,7 +230,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 	}
 
 	if (!strcmp(g_pCustomWeapons->GetName(), "custom_weapons") == 0) {
-		snprintf(error, maxlen, "customweps.txt structure corrupt\n");
+		snprintf(error, maxlen, "customweps.txt structure corrupt or incorrect version\n");
 		return false;
 	}	
 

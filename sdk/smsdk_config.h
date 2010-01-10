@@ -37,7 +37,7 @@
 /* Basic information exposed publicly */
 #define SMEXT_CONF_NAME			"TF2 Items"
 #define SMEXT_CONF_DESCRIPTION	"TF2 Item Modifier"
-#define SMEXT_CONF_VERSION		"1.0.0"
+#define SMEXT_CONF_VERSION		"1.0.1"
 #define SMEXT_CONF_AUTHOR		"Asherkin & AzuiSleet"
 #define SMEXT_CONF_URL			"http://limetech.org/"
 #define SMEXT_CONF_LOGTAG		"TF2ITEMS"
