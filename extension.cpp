@@ -65,7 +65,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 
 	CBasePlayer *player = META_IFACEPTR(CBasePlayer);
 
-	if (cscript != NULL) {
+	if (cscript == NULL) {
 		RETURN_META_VALUE(MRES_IGNORED, NULL);
 	}
 
@@ -106,15 +106,15 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				newitem.itemquality = itemquality;
 			}
 
-			int count;
+			int attrib_count;
 			KeyValues *weapon_attribs = new KeyValues("weapon_invalid");
-			if (KV_FindValue(&count, player_weapon, "count") && KV_FindSection(weapon_attribs, player_weapon, "attributes")) {
+			if (KV_FindValue(&attrib_count, player_weapon, "attrib_count") && KV_FindSection(weapon_attribs, player_weapon, "attributes")) {
 
 				#ifdef TF2ITEMS_DEBUG_ITEMS
-					META_CONPRINTF("Attribute Count: %d\n", count);
+					META_CONPRINTF("Attribute Count: %d\n", attrib_count);
 				#endif // TF2ITEMS_DEBUG_ITEMS
 
-				newitem.attributes = (CScriptCreatedAttribute *)malloc(sizeof(CScriptCreatedAttribute) * count);
+				newitem.attributes = (CScriptCreatedAttribute *)malloc(sizeof(CScriptCreatedAttribute) * attrib_count);
 				CScriptCreatedAttribute qq;
 
 				int searchindex = 0;
@@ -137,12 +137,12 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				#endif // TF2ITEMS_DEBUG_ITEMS
 
 				newitem.attributes2 = newitem.attributes;
-				newitem.allocatedAttributes = count;
-				newitem.attribcount = count;
+				newitem.allocatedAttributes = attrib_count;
+				newitem.attribcount = attrib_count;
 			}
 			#ifdef TF2ITEMS_DEBUG_ITEMS
 				else {
-						META_LOG(g_PLAPI, "Error in attribute structure, missing count, or no attributes specified.");
+						META_LOG(g_PLAPI, "Error in attribute structure, missing attrib_count, or no attributes specified.");
 				}
 			#endif // TF2ITEMS_DEBUG_ITEMS
 
@@ -229,7 +229,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		return false;
 	}
 
-	if (!strcmp(g_pCustomWeapons->GetName(), "custom_weapons") == 0) {
+	if (!strcmp(g_pCustomWeapons->GetName(), "custom_weapons_v2") == 0) {
 		snprintf(error, maxlen, "customweps.txt structure corrupt or incorrect version\n");
 		return false;
 	}	

@@ -1,12 +1,12 @@
-"custom_weapons"
+"custom_weapons_v2"
 {
 	"STEAM_0:1:13776935"
 	{
 		"12"
 		{
-			"quality"	"7"
-			"level"		"75"
-			"count"		"5"
+			"quality"		"7"
+			"level"			"75"
+			"attrib_count"	"5"
 			"attributes"
 			{
 				"132"	"0"
@@ -23,9 +23,9 @@
 		}
 		"18"
 		{
-			"quality"	"8"
-			"level"		"100"
-			"count"		"8"
+			"quality"		"8"
+			"level"			"100"
+			"attrib_count"	"8"
 			"attributes"
 			{
 				"134"	"2"
