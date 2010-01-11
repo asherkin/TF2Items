@@ -49,7 +49,6 @@ SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, i
 
 IServerGameClients *gameclients = NULL;
 IServerGameEnts *gameents = NULL;
-IPlayerInfoManager *infomanager = NULL;
 IBaseFileSystem *filesystem = NULL;
 
 IGameConfig *g_pGameConf = NULL;
@@ -72,8 +71,8 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	}
 
 	edict_t *playerEdict = gameents->BaseEntityToEdict((CBaseEntity *)player);
-	IPlayerInfo *playerinfo = infomanager->GetPlayerInfo(playerEdict);
-	const char *steamID = playerinfo->GetNetworkIDString();
+	IGamePlayer * pPlayer = playerhelpers->GetGamePlayer(playerEdict);
+	const char *steamID = pPlayer->GetAuthString();
 
 	#ifdef TF2ITEMS_DEBUG_AUTH
 		META_CONPRINTF("Client Steam ID: %s\n", steamID);
@@ -237,12 +236,15 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 	// If it's a late load, there might be the chance there are players already on the server. Just
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean
 	if (late) {
+		#ifdef TF2ITEMS_DEBUG_HOOKING
+			META_LOG(g_PLAPI, "Is a late load, attempting to hook GiveNamedItem.");
+		#endif // TF2ITEMS_DEBUG_HOOKING
 		int iMaxClients = playerhelpers->GetMaxClients();
 		for (int iClient = 1; iClient <= iMaxClients; iClient++) {
 			IGamePlayer * pPlayer = playerhelpers->GetGamePlayer(iClient);
 			if (pPlayer == NULL) continue;
 			if (pPlayer->IsConnected() == false) continue;
-			if (pPlayer->IsFakeClient() == false) continue;
+			if (pPlayer->IsFakeClient() == true) continue;
 			if (pPlayer->IsInGame() == false) continue;
 
 			// Retrieve the edict
@@ -259,10 +261,14 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 				META_LOG(g_PLAPI, "GiveNamedItem hooked.");
 			#endif // TF2ITEMS_DEBUG_HOOKING
 			g_bHooked = true;
-			return true;
 		}
-	} else {
-		SH_ADD_HOOK_STATICFUNC(IServerGameClients, ClientPutInServer, gameclients, Hook_ClientPutInServer, true);
+	}
+
+	if (g_bHooked == false) {
+		#ifdef TF2ITEMS_DEBUG_HOOKING
+			META_LOG(g_PLAPI, "Is a NOT late load or no players found, attempting to hook ClientPutInServer.");
+		#endif // TF2ITEMS_DEBUG_HOOKING
+		ClientPutInServer_Hook = SH_ADD_HOOK_STATICFUNC(IServerGameClients, ClientPutInServer, gameclients, Hook_ClientPutInServer, true);
 		#ifdef TF2ITEMS_DEBUG_HOOKING
 			META_LOG(g_PLAPI, "ClientPutInServer hooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
@@ -324,7 +330,6 @@ bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool
 
 	GET_V_IFACE_ANY(GetServerFactory, gameclients, IServerGameClients, INTERFACEVERSION_SERVERGAMECLIENTS);
 	GET_V_IFACE_ANY(GetServerFactory, gameents, IServerGameEnts, INTERFACEVERSION_SERVERGAMEENTS);
-	GET_V_IFACE_ANY(GetServerFactory, infomanager, IPlayerInfoManager, INTERFACEVERSION_PLAYERINFOMANAGER);
 	GET_V_IFACE_ANY(GetFileSystemFactory, filesystem, IBaseFileSystem, BASEFILESYSTEM_INTERFACE_VERSION);
 
 	if (!gameclients)
@@ -335,11 +340,6 @@ bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool
 	if (!gameents)
 	{
 		snprintf(error, maxlen, "Could not find interface %s", INTERFACEVERSION_SERVERGAMECLIENTS);
-		return false;
-	}
-	if (!infomanager)
-	{
-		snprintf(error, maxlen, "Could not find interface %s", INTERFACEVERSION_PLAYERINFOMANAGER);
 		return false;
 	}
 	if (!filesystem)
@@ -371,7 +371,7 @@ bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
 	if (GiveNamedItem_Hook != 0) {
 		SH_REMOVE_HOOK_ID(GiveNamedItem_Hook);
 		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "ClientPutInServer unhooked.");
+			META_LOG(g_PLAPI, "GiveNamedItem unhooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
 
