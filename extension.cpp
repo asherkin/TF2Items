@@ -21,11 +21,12 @@
 /*
  *	Atributions & Thanks:
  *	=====================
- *	AzuiSleet		-	Reversed CScriptCreatedItem and realesed it publicly, along with writing most of the item editing code below.
- *	Damizean		-	Fixed padding for CScriptCreatedItem in Linux.
- *	Wazz			-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *.
- *	MatthiasVance	-	Reminded me to comment out '#define INFINITE_PROBLEMS 1'.
- *	yakbot			-	Providing endless fun in #sourcemod while coding.
+ *	AzuiSleet				-	Reversed CScriptCreatedItem and realesed it publicly, along with writing most of the item editing code below.
+ *	Damizean				-	Fixed padding for CScriptCreatedItem in Linux.
+ *	Wazz					-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *.
+ *	MatthiasVance			-	Reminded me to comment out '#define INFINITE_PROBLEMS 1'.
+ *	yakbot					-	Providing endless fun in #sourcemod while coding.
+ *	voogru & Drunken_F00l	-	Inspiring the creation of this.
  */
 
 #include "extension.h"
