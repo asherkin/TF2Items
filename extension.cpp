@@ -143,7 +143,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 			}
 			#ifdef TF2ITEMS_DEBUG_ITEMS
 				else {
-						META_LOG(g_PLAPI, "Error in attribute structure, missing attrib_count, no attributes specified, or quality is equal to 0.");
+						META_LOG(g_PLAPI, "Error in attribute structure, missing attrib_count, no attributes specified or quality is equal to 0.");
 				}
 			#endif // TF2ITEMS_DEBUG_ITEMS
 
