@@ -4,7 +4,7 @@
 	{
 		"12"
 		{
-			"quality"	"7"
+			"quality"	"1"
 			"level"		"75"
 			"count"		"5"
 			"attributes"
@@ -18,12 +18,12 @@
 		}
 		"4"
 		{
-			"quality"	"7"
+			"quality"	"6"
 			"level"		"50"
 		}
 		"18"
 		{
-			"quality"	"8"
+			"quality"	"3"
 			"level"		"100"
 			"count"		"8"
 			"attributes"
