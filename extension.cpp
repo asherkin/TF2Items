@@ -109,7 +109,11 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 
 			int attrib_count;
 			KeyValues *weapon_attribs = new KeyValues("weapon_invalid");
-			if (KV_FindValue(&attrib_count, player_weapon, "attrib_count") && KV_FindSection(weapon_attribs, player_weapon, "attributes") && itemquality != 0) {
+			if (KV_FindValue(&attrib_count, player_weapon, "attrib_count") && KV_FindSection(weapon_attribs, player_weapon, "attributes")) {
+
+				if (newitem.itemquality == 0) {
+					newitem.itemquality = 9;
+				}
 
 				#ifdef TF2ITEMS_DEBUG_ITEMS
 					META_CONPRINTF("Attribute Count: %d\n", attrib_count);
@@ -143,7 +147,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 			}
 			#ifdef TF2ITEMS_DEBUG_ITEMS
 				else {
-						META_LOG(g_PLAPI, "Error in attribute structure, missing attrib_count, no attributes specified or quality is equal to 0.");
+						META_LOG(g_PLAPI, "Error in attribute structure, missing attrib_count or no attributes specified.");
 				}
 			#endif // TF2ITEMS_DEBUG_ITEMS
 
