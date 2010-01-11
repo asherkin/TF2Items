@@ -55,8 +55,9 @@ IBaseFileSystem *filesystem = NULL;
 IGameConfig *g_pGameConf = NULL;
 KeyValues *g_pCustomWeapons = new KeyValues("custom_weapons");
 
-bool bHooked = false;
+bool g_bHooked = false;
 int GiveNamedItem_Hook = 0;
+int ClientPutInServer_Hook = 0;
 
 CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *cscript, bool b) {
 
@@ -171,22 +172,29 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 		META_LOG(g_PLAPI, "ClientPutInServer called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
-	if(!bHooked && pEntity->m_pNetworkable)
-	{
+	if(!g_bHooked && pEntity->m_pNetworkable) {
 		CBaseEntity *baseentity = pEntity->m_pNetworkable->GetBaseEntity();
 		if(!baseentity)
 			return;
 
 		CBasePlayer *player = (CBasePlayer *)baseentity;
 
-		bHooked = true;
+		GiveNamedItem_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem), false);
+		if (ClientPutInServer_Hook != 0) {
+			SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
+		}
+
+		g_bHooked = true;
 
 		#ifdef TF2ITEMS_DEBUG_HOOKING
 			META_LOG(g_PLAPI, "GiveNamedItem hooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 
-		GiveNamedItem_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem), false);
-
+	} else if (ClientPutInServer_Hook != 0) {
+		SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
+		#ifdef TF2ITEMS_DEBUG_HOOKING
+			META_LOG(g_PLAPI, "ClientPutInServer unhooked.");
+		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
 }
 
@@ -225,6 +233,40 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 #endif // TF2ITEMS_DEBUG_HOOKING
 #endif
 	*/
+
+	// If it's a late load, there might be the chance there are players already on the server. Just
+	// check for this and try to hook them instead of waiting for the next player. -- Damizean
+	if (late) {
+		int iMaxClients = playerhelpers->GetMaxClients();
+		for (int iClient = 1; iClient <= iMaxClients; iClient++) {
+			IGamePlayer * pPlayer = playerhelpers->GetGamePlayer(iClient);
+			if (pPlayer == NULL) continue;
+			if (pPlayer->IsConnected() == false) continue;
+			if (pPlayer->IsFakeClient() == false) continue;
+			if (pPlayer->IsInGame() == false) continue;
+
+			// Retrieve the edict
+			edict_t * pEdict = pPlayer->GetEdict();
+			if (pEdict == NULL) continue;
+
+			// Retrieve base player
+			CBasePlayer * pBasePlayer = (CBasePlayer *) pEdict->m_pNetworkable->GetBaseEntity();
+			if (pBasePlayer == NULL) continue;
+
+			// Done, hook the BasePlayer
+			GiveNamedItem_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, pBasePlayer, SH_STATIC(Hook_GiveNamedItem), false);
+			#ifdef TF2ITEMS_DEBUG_HOOKING
+				META_LOG(g_PLAPI, "GiveNamedItem hooked.");
+			#endif // TF2ITEMS_DEBUG_HOOKING
+			g_bHooked = true;
+			return true;
+		}
+	} else {
+		SH_ADD_HOOK_STATICFUNC(IServerGameClients, ClientPutInServer, gameclients, Hook_ClientPutInServer, true);
+		#ifdef TF2ITEMS_DEBUG_HOOKING
+			META_LOG(g_PLAPI, "ClientPutInServer hooked.");
+		#endif // TF2ITEMS_DEBUG_HOOKING
+	}
 
 	char m_File[255] = "";
 	g_pSM->BuildPath(Path_SM, m_File, sizeof(m_File), "data/customweps.txt");
@@ -307,8 +349,6 @@ bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool
 	}
 
 	META_LOG(g_PLAPI, "Starting plugin.");
-
-	SH_ADD_HOOK_STATICFUNC(IServerGameClients, ClientPutInServer, gameclients, Hook_ClientPutInServer, true);
 	
 	return true;
 }
@@ -321,10 +361,19 @@ void TF2Items::SDK_OnUnload() {
 
 bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
 
-	SH_REMOVE_HOOK_STATICFUNC(IServerGameClients, ClientPutInServer, gameclients, Hook_ClientPutInServer, true);
+	if (ClientPutInServer_Hook != 0) {
+		SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
+		#ifdef TF2ITEMS_DEBUG_HOOKING
+			META_LOG(g_PLAPI, "ClientPutInServer unhooked.");
+		#endif // TF2ITEMS_DEBUG_HOOKING
+	}
 
-	if (GiveNamedItem_Hook)
+	if (GiveNamedItem_Hook != 0) {
 		SH_REMOVE_HOOK_ID(GiveNamedItem_Hook);
+		#ifdef TF2ITEMS_DEBUG_HOOKING
+			META_LOG(g_PLAPI, "ClientPutInServer unhooked.");
+		#endif // TF2ITEMS_DEBUG_HOOKING
+	}
 
 	return true;
 }
