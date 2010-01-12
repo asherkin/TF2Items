@@ -1,12 +1,12 @@
-"custom_weapons"
+"custom_weapons_v2"
 {
 	"STEAM_0:1:13776935"
 	{
 		"12"
 		{
-			"quality"	"1"
+			"quality"	"5"
 			"level"		"75"
-			"count"		"5"
+			"attrib_count"		"5"
 			"attributes"
 			{
 				"132"	"0"
@@ -16,16 +16,11 @@
 				"106"	"0.5"
 			}
 		}
-		"4"
-		{
-			"quality"	"6"
-			"level"		"50"
-		}
 		"18"
 		{
-			"quality"	"3"
+			"quality"	"1"
 			"level"		"100"
-			"count"		"8"
+			"attrib_count"		"8"
 			"attributes"
 			{
 				"134"	"2"
@@ -37,6 +32,44 @@
 				"31"	"10"
 				"123"	"3"
 			}
+		}
+		"45"
+		{
+			"quality"	"3"
+			"level"		"10"
+			"attrib_count"		"12"
+			"attributes"
+			{
+				"134"	"2"
+				"2"		"100"
+				"4"	"10"
+				"6"	"0.25"
+				"16"	"500"
+				"26"	"250"
+				"31"	"10"
+				"123"	"3"
+				"134"	"4"
+				"3"		"0.17"
+				"97"	"0.6"
+				"106"	"0.5"
+			}
+		}
+		"4"
+		{
+			"quality"	"9"
+			"level"		"10"
+		}
+	}
+	"*"
+	{
+		"4"
+		{
+			"quality"	"2"
+			"level"		"50"
+		}
+		"*"
+		{
+			"quality"	"3"
 		}
 	}
 }
