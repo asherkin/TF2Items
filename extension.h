@@ -30,6 +30,7 @@
 
 #include "filesystem.h"
 #include "iplayerinfo.h"
+#include "convar.h"
 
 class CBaseEntity;
 class CBasePlayer;
@@ -99,7 +100,7 @@ public:
  * @brief Sample implementation of the SDK Extension.
  * Note: Uncomment one of the pre-defined virtual functions in order to use it.
  */
-class TF2Items : public SDKExtension
+class TF2Items : public SDKExtension, public IConCommandBaseAccessor
 {
 public:
 	/**
@@ -169,10 +170,13 @@ public:
 	 */
 	//virtual bool SDK_OnMetamodPauseChange(bool paused, char *error, size_t maxlen);
 #endif
+public: //IConCommandBaseAccessor
+	bool RegisterConCommandBase(ConCommandBase *pCommand);
 };
 
 bool KV_FindSection(KeyValues *found, KeyValues *source, const char *search);
 bool KV_FindSection(KeyValues *found, KeyValues *source, int search);
 bool KV_FindValue(int *found, KeyValues *source, const char *search);
+CScriptCreatedItem EditWeaponFromFile(CScriptCreatedItem *newitem, KeyValues *player_weapon);
 
 #endif // _INCLUDE_SOURCEMOD_EXTENSION_PROPER_H_
