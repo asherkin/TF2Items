@@ -1,7 +1,7 @@
-#if defined _tf2attrib_included
+#if defined _tf2items_included
 #endinput
 #endif
-#define _tf2attrib_included
+#define _tf2items_included
 
 #define OVERRIDE_CLASSNAME		(1 << 0)
 #define OVERRIDE_ITEM_DEF		(1 << 1)
@@ -9,22 +9,22 @@
 #define OVERRIDE_ITEM_QUALITY	(1 << 3)
 #define OVERRIDE_ATTRIBUTES		(1 << 4)
 
-native Handle:CreateScriptedItemOverride(iFlags);
-native SetOverrideFlags(Handle:hItemOverride, iFlags);
-native GetOverrideFlags(Handle:hItemOverride);
-native SetOverrideClassname(Handle:hItemOverride, String:strClassName[]);
-native GetOverrideClassname(Handle:hItemOverride, String:strDest, iDestSize);
-native SetOverrideItemDefinitionIndex(Handle:hItemOverride, iItemDefinitionIndex);
-native GetOverrideItemDefinitionIndex(Handle:hItemOverride);
-native SetOverrideQuality(Handle:hItemOverride, iEntityQuality); 
-native GetOverrideQuality(Handle:hItemOverride);
-native SetOverrideLevel(Handle:hItemOverride, iEntityLevel); 
-native GetOverrideLevel(Handle:hItemOverride);
-native SetOverrideNumAttributes(Handle:hItemOverride, iNumAttributes);
-native GetOverrideNumAttributes(Handle:hItemOverride);
-native SetOverrideAttribute(Handle:hItemOverride, iSlotIndex, iAttributeDefinitionIndex, Float:flValue);
-native GetOverrideAttributeId(Handle:hItemOverride, iSlotIndex);
-native Float:GetOverrideAttributeValue(Handle:hItemOverride, iSlotIndex); 
+native Handle:TF2Items_CreateItem(iFlags);
+native TF2Items_SetFlags(Handle:hItemOverride, iFlags);
+native TF2Items_GetFlags(Handle:hItemOverride);
+native TF2Items_SetClassname(Handle:hItemOverride, String:strClassName[]);
+native TF2Items_GetClassname(Handle:hItemOverride, String:strDest, iDestSize);
+native TF2Items_SetItemIndex(Handle:hItemOverride, iItemDefinitionIndex);
+native TF2Items_GetItemIndex(Handle:hItemOverride);
+native TF2Items_SetQuality(Handle:hItemOverride, iEntityQuality); 
+native TF2Items_GetQuality(Handle:hItemOverride);
+native TF2Items_SetLevel(Handle:hItemOverride, iEntityLevel); 
+native TF2Items_GetLevel(Handle:hItemOverride);
+native TF2Items_SetNumAttributes(Handle:hItemOverride, iNumAttributes);
+native TF2Items_GetNumAttributes(Handle:hItemOverride);
+native TF2Items_SetAttribute(Handle:hItemOverride, iSlotIndex, iAttributeDefinitionIndex, Float:flValue);
+native TF2Items_GetAttributeId(Handle:hItemOverride, iSlotIndex);
+native Float:TF2Items_GetAttributeValue(Handle:hItemOverride, iSlotIndex); 
 
 /**
 * Called when an item is about to be given to a client. Return Plugin_Changed
@@ -36,7 +36,7 @@ native Float:GetOverrideAttributeValue(Handle:hItemOverride, iSlotIndex);
 * @param iItemDefinitionIndex	Item definition index.
 * @param hItemOverride			.	
 */
-forward Action:OnGiveNamedItem(iClient, String:strClassName[], iItemDefinitionIndex, &Handle:hItemOverride);
+forward Action:TF2Items_OnGiveNamedItem(iClient, String:strClassName[], iItemDefinitionIndex, &Handle:hItemOverride);
 
 /**
 * Do not edit below this line!

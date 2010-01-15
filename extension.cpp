@@ -68,23 +68,23 @@ TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
 
 sp_nativeinfo_t g_ExtensionNatives[] =
 {
-	{ "CreateScriptedItemOverride",		CreateScriptedItemOverride },
-	{ "SetOverrideFlags",				SetOverrideFlags },
-	{ "GetOverrideFlags",				GetOverrideFlags },
-	{ "SetOverrideClassname",			SetOverrideClassname },
-	{ "GetOverrideClassname",			GetOverrideClassname },
-	{ "SetOverrideItemDefinitionIndex",	SetOverrideItemDefinitionIndex },
-	{ "GetOverrideItemDefinitionIndex",	GetOverrideItemDefinitionIndex },
-	{ "SetOverrideQuality",				SetOverrideQuality },
-	{ "GetOverrideQuality",				GetOverrideQuality },
-	{ "SetOverrideLevel",				SetOverrideLevel },
-	{ "GetOverrideLevel",				GetOverrideLevel },
-	{ "SetOverrideNumAttributes",		SetOverrideNumAttributes },
-	{ "GetOverrideNumAttributes",		GetOverrideNumAttributes },
-	{ "SetOverrideAttribute",			SetOverrideAttribute },
-	{ "GetOverrideAttributeId",			GetOverrideAttributeId },
-	{ "GetOverrideAttributeValue",		GetOverrideAttributeValue },
-	{ NULL,								NULL }
+	{ "TF2Items_CreateItem",		TF2Items_CreateItem },
+	{ "TF2Items_SetFlags",			TF2Items_SetFlags },
+	{ "TF2Items_GetFlags",			TF2Items_GetFlags },
+	{ "TF2Items_SetClassname",		TF2Items_SetClassname },
+	{ "TF2Items_GetClassname",		TF2Items_GetClassname },
+	{ "TF2Items_SetItemIndex",		TF2Items_SetItemIndex },
+	{ "TF2Items_GetItemIndex",		TF2Items_GetItemIndex },
+	{ "TF2Items_SetQuality",		TF2Items_SetQuality },
+	{ "TF2Items_GetQuality",		TF2Items_GetQuality },
+	{ "TF2Items_SetLevel",			TF2Items_SetLevel },
+	{ "TF2Items_GetLevel",			TF2Items_GetLevel },
+	{ "TF2Items_SetNumAttributes",	TF2Items_SetNumAttributes },
+	{ "TF2Items_GetNumAttributes",	TF2Items_GetNumAttributes },
+	{ "TF2Items_SetAttribute",		TF2Items_SetAttribute },
+	{ "TF2Items_GetAttributeId",	TF2Items_GetAttributeId },
+	{ "TF2Items_GetAttributeValue",	TF2Items_GetAttributeValue },
+	{ NULL,							NULL }
 };
 
 CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *cscript, bool b) {
@@ -122,20 +122,33 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	// Determine what to do
 	switch(cellResults) {
 		case Pl_Continue:
-		
-			if (strcmp(g_pCustomWeapons->GetName(), "weapon_invalid") == 0)
-				RETURN_META_VALUE(MRES_IGNORED, NULL);
-		
-			player_weapons = new KeyValues("weapon_invalid");
-			player_weapon = new KeyValues("weapon_invalid");
+			{
+				if (strcmp(g_pCustomWeapons->GetName(), "weapon_invalid") == 0)
+					RETURN_META_VALUE(MRES_IGNORED, NULL);
+			
+				player_weapons = new KeyValues("weapon_invalid");
+				player_weapon = new KeyValues("weapon_invalid");
 
-			if (KV_FindSection(player_weapons, g_pCustomWeapons, steamID)) {
-				if (KV_FindSection(player_weapon, player_weapons, cscript->itemdefindex)) {
-					CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
-					RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
-				} else if (KV_FindSection(player_weapon, player_weapons, "*")) {
-					CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
-					RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
+				if (KV_FindSection(player_weapons, g_pCustomWeapons, steamID)) {
+					if (KV_FindSection(player_weapon, player_weapons, cscript->itemdefindex)) {
+						CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
+						RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
+					} else if (KV_FindSection(player_weapon, player_weapons, "*")) {
+						CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
+						RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
+					} else if (KV_FindSection(player_weapons, g_pCustomWeapons, "*")) {
+						if (KV_FindSection(player_weapon, player_weapons, cscript->itemdefindex)) {
+							CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
+							RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
+						} else if (KV_FindSection(player_weapon, player_weapons, "*")) {
+							CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
+							RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
+						} else {
+							RETURN_META_VALUE(MRES_IGNORED, NULL);
+						}
+					} else {
+						RETURN_META_VALUE(MRES_IGNORED, NULL);
+					}
 				} else if (KV_FindSection(player_weapons, g_pCustomWeapons, "*")) {
 					if (KV_FindSection(player_weapon, player_weapons, cscript->itemdefindex)) {
 						CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
@@ -149,49 +162,39 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				} else {
 					RETURN_META_VALUE(MRES_IGNORED, NULL);
 				}
-			} else if (KV_FindSection(player_weapons, g_pCustomWeapons, "*")) {
-				if (KV_FindSection(player_weapon, player_weapons, cscript->itemdefindex)) {
-					CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
-					RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
-				} else if (KV_FindSection(player_weapon, player_weapons, "*")) {
-					CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
-					RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
-				} else {
-					RETURN_META_VALUE(MRES_IGNORED, NULL);
-				}
-			} else {
-				RETURN_META_VALUE(MRES_IGNORED, NULL);
 			}
 			break;
 		case Pl_Changed:
-			TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(cellOverrideHandle);
-			if (pScriptedItemOverride == NULL) {
-				RETURN_META_VALUE(MRES_IGNORED, NULL);
-			}
-
-			// Execute the new attributes set and we're done!
-			char * finalitem = (char*) item;
-			CScriptCreatedItem newitem;
-			memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
-	
-			// Override based on the flags passed to this object.
-			if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
-			if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.itemdefindex = pScriptedItemOverride->m_iItemDefinitionIndex;
-			if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.itemlevel = pScriptedItemOverride->m_iEntityLevel;
-			if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.itemquality = pScriptedItemOverride->m_iEntityQuality;
-			if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 			{
-				// Even if we don't want to override the item quality, do if it's set to
-				// 0.
-				if (newitem.itemquality == 0) newitem.itemquality = 9;
+				TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(cellOverrideHandle);
+				if (pScriptedItemOverride == NULL) {
+					RETURN_META_VALUE(MRES_IGNORED, NULL);
+				}
 
-				// Setup the attributes.
-				newitem.attributes = newitem.attributes2 = pScriptedItemOverride->m_Attributes;
-				newitem.attribcount = newitem.allocatedAttributes = pScriptedItemOverride->m_iCount;
+				// Execute the new attributes set and we're done!
+				char * finalitem = (char*) item;
+				CScriptCreatedItem newitem;
+				memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
+
+				// Override based on the flags passed to this object.
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.itemdefindex = pScriptedItemOverride->m_iItemDefinitionIndex;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.itemlevel = pScriptedItemOverride->m_iEntityLevel;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.itemquality = pScriptedItemOverride->m_iEntityQuality;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
+				{
+					// Even if we don't want to override the item quality, do if it's set to
+					// 0.
+					if (newitem.itemquality == 0) newitem.itemquality = 9;
+
+					// Setup the attributes.
+					newitem.attributes = newitem.attributes2 = pScriptedItemOverride->m_Attributes;
+					newitem.attribcount = newitem.allocatedAttributes = pScriptedItemOverride->m_iCount;
+				}
+
+				// Done
+				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, a, &newitem, b));
 			}
-
-			// Done
-			RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, a, &newitem, b));
 			break;
 		case Pl_Stop:
 			RETURN_META_VALUE(MRES_IGNORED, NULL);
@@ -421,7 +424,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 	g_ScriptedItemOverrideHandleType = g_pHandleSys->CreateType("ScriptedItemOverride", &g_ScriptedItemOverrideHandler,  0,   NULL, NULL,  myself->GetIdentity(),  NULL);
 
 	// Create forwards
-	g_pForwardGiveItem = g_pForwards->CreateForward("OnGiveNamedItem", ET_Event, 4, NULL, Param_Cell, Param_String, Param_Cell, Param_CellByRef);
+	g_pForwardGiveItem = g_pForwards->CreateForward("TF2Items_OnGiveNamedItem", ET_Single, 4, NULL, Param_Cell, Param_String, Param_Cell, Param_CellByRef);
 
 	return true;
 }
@@ -546,7 +549,7 @@ void TScriptedItemOverrideTypeHandler::OnHandleDestroy(HandleType_t type, void *
 	if (pScriptedItemOverride != NULL) delete(pScriptedItemOverride);
 }
 
-static cell_t CreateScriptedItemOverride(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_CreateItem(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = new TScriptedItemOverride;
 	pScriptedItemOverride->m_bFlags = params[1];
@@ -554,7 +557,7 @@ static cell_t CreateScriptedItemOverride(IPluginContext *pContext, const cell_t 
 	return g_pHandleSys->CreateHandle(g_ScriptedItemOverrideHandleType, pScriptedItemOverride, pContext->GetIdentity(), myself->GetIdentity(), NULL);
 }
 
-static cell_t SetOverrideFlags(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_SetFlags(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -564,7 +567,7 @@ static cell_t SetOverrideFlags(IPluginContext *pContext, const cell_t *params)
 	return 0;
 }
 
-static cell_t GetOverrideFlags(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_GetFlags(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -574,33 +577,39 @@ static cell_t GetOverrideFlags(IPluginContext *pContext, const cell_t *params)
 	return 0;
 }
 
-static cell_t SetOverrideClassname(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_SetClassname(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
 	{
-		char * strDest;
-		int iStrLength;
-
-		// Retrieve string and figure out it's length.
-		pContext->LocalToString(params[2], &strDest);
-		iStrLength = strlen(strDest);
-
-		// Avoid it's length to surpass the 256 characters.
-		if (iStrLength > 256) strDest[255] = '\0';
-
-		// Set
-		memmove(pScriptedItemOverride->m_strWeaponClassname, strDest, iStrLength);
+		char * strSource; pContext->LocalToString(params[2], &strSource);
+		snprintf(pScriptedItemOverride->m_strWeaponClassname, 256, "%s", strSource);
 	}
 	return 0;
 }
 
-static cell_t GetOverrideClassname(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_GetClassname(IPluginContext *pContext, const cell_t *params)
 {
-	return 1;
+	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
+	if (pScriptedItemOverride != NULL)
+	{
+		char * strSource = pScriptedItemOverride->m_strWeaponClassname;
+		char * strDestiny; pContext->LocalToString(params[2], &strDestiny);
+		int iSourceSize = strlen(strSource);
+		int iDestinySize = params[3];
+
+		// Perform bounds checking
+		if (iSourceSize >= iDestinySize)	iSourceSize = iDestinySize-1;
+		else								iSourceSize = iDestinySize;
+	 
+		// Copy
+		memmove(strDestiny, strSource, iSourceSize);
+		strDestiny[iSourceSize] = '\0';
+	}
+	return 0;
 }
 
-static cell_t SetOverrideItemDefinitionIndex(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_SetItemIndex(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -610,7 +619,7 @@ static cell_t SetOverrideItemDefinitionIndex(IPluginContext *pContext, const cel
 	return 0;
 }
 
-static cell_t GetOverrideItemDefinitionIndex(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_GetItemIndex(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -620,7 +629,7 @@ static cell_t GetOverrideItemDefinitionIndex(IPluginContext *pContext, const cel
 	return -1;
 }
 
-static cell_t SetOverrideQuality(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_SetQuality(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -631,7 +640,7 @@ static cell_t SetOverrideQuality(IPluginContext *pContext, const cell_t *params)
 	return 0;
 }
 
-static cell_t GetOverrideQuality(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_GetQuality(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -641,7 +650,7 @@ static cell_t GetOverrideQuality(IPluginContext *pContext, const cell_t *params)
 	return 0;
 }
 
-static cell_t SetOverrideLevel(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_SetLevel(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -651,7 +660,7 @@ static cell_t SetOverrideLevel(IPluginContext *pContext, const cell_t *params)
 	return 0;
 }
 
-static cell_t GetOverrideLevel(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_GetLevel(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -661,7 +670,7 @@ static cell_t GetOverrideLevel(IPluginContext *pContext, const cell_t *params)
 	return 0;
 }
 
-static cell_t SetOverrideNumAttributes(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_SetNumAttributes(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -672,7 +681,7 @@ static cell_t SetOverrideNumAttributes(IPluginContext *pContext, const cell_t *p
 	return 0;
 }
 
-static cell_t GetOverrideNumAttributes(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_GetNumAttributes(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -682,7 +691,7 @@ static cell_t GetOverrideNumAttributes(IPluginContext *pContext, const cell_t *p
 	return -1;
 }
 
-static cell_t SetOverrideAttribute(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -700,7 +709,7 @@ static cell_t SetOverrideAttribute(IPluginContext *pContext, const cell_t *param
 	return 0;
 }
 
-static cell_t GetOverrideAttributeId(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
@@ -715,7 +724,7 @@ static cell_t GetOverrideAttributeId(IPluginContext *pContext, const cell_t *par
 	return -1;
 }
 
-static cell_t GetOverrideAttributeValue(IPluginContext *pContext, const cell_t *params)
+static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)

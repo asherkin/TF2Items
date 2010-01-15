@@ -203,22 +203,22 @@ bool KV_FindSection(KeyValues *found, KeyValues *source, int search);
 bool KV_FindValue(int *found, KeyValues *source, const char *search);
 CScriptCreatedItem EditWeaponFromFile(CScriptCreatedItem *newitem, KeyValues *player_weapon);
 
-static cell_t CreateScriptedItemOverride(IPluginContext *pContext, const cell_t *params);
-static cell_t SetOverrideFlags(IPluginContext *pContext, const cell_t *params);
-static cell_t GetOverrideFlags(IPluginContext *pContext, const cell_t *params);
-static cell_t SetOverrideClassname(IPluginContext *pContext, const cell_t *params);
-static cell_t GetOverrideClassname(IPluginContext *pContext, const cell_t *params);
-static cell_t SetOverrideItemDefinitionIndex(IPluginContext *pContext, const cell_t *params);
-static cell_t GetOverrideItemDefinitionIndex(IPluginContext *pContext, const cell_t *params);
-static cell_t SetOverrideQuality(IPluginContext *pContext, const cell_t *params);
-static cell_t GetOverrideQuality(IPluginContext *pContext, const cell_t *params);
-static cell_t SetOverrideLevel(IPluginContext *pContext, const cell_t *params);
-static cell_t GetOverrideLevel(IPluginContext *pContext, const cell_t *params);
-static cell_t SetOverrideNumAttributes(IPluginContext *pContext, const cell_t *params);
-static cell_t GetOverrideNumAttributes(IPluginContext *pContext, const cell_t *params);
-static cell_t SetOverrideAttribute(IPluginContext *pContext, const cell_t *params);
-static cell_t GetOverrideAttributeId(IPluginContext *pContext, const cell_t *params);
-static cell_t GetOverrideAttributeValue(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_CreateItem(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_SetFlags(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_GetFlags(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_SetClassname(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_GetClassname(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_SetItemIndex(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_GetItemIndex(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_SetQuality(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_GetQuality(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_SetLevel(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_GetLevel(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_SetNumAttributes(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_GetNumAttributes(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t *params);
 
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext=NULL);
 
