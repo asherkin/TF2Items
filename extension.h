@@ -31,7 +31,6 @@
 #include "filesystem.h"
 #include "iplayerinfo.h"
 #include "convar.h"
-#include <IBinTools.h>
 
 #define OVERRIDE_CLASSNAME		(1 << 0)
 #define OVERRIDE_ITEM_DEF		(1 << 1)
@@ -140,12 +139,6 @@ public:
 	virtual void SDK_OnUnload();
 
 	/**
-	 * @brief This is called once all known extensions have been loaded.
-	 * Note: It is is a good idea to add natives here, if any are provided.
-	 */
-	virtual void SDK_OnAllLoaded();
-
-	/**
 	 * @brief Called when the pause state is changed.
 	 */
 	//virtual void SDK_OnPauseChange(bool paused);
@@ -225,7 +218,5 @@ extern TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
 extern sp_nativeinfo_t g_ExtensionNatives[];
 extern IForward * g_pForwardGiveItem;
 extern void * g_pScriptCreatedVTable;
-extern IBinTools *g_pBinTools;
-extern ICallWrapper * g_pGiveItemWrapper;
 
 #endif // _INCLUDE_SOURCEMOD_EXTENSION_PROPER_H_

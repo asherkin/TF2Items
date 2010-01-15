@@ -66,9 +66,6 @@ IForward * g_pForwardGiveItem = NULL;
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
 TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
 void * g_pScriptCreatedVTable = NULL;
-IBinTools *g_pBinTools = NULL;
-ICallWrapper * g_pGiveItemWrapper = NULL;
-int g_iGiveNamedItemOffset = 0;
 
 sp_nativeinfo_t g_ExtensionNatives[] =
 {
@@ -94,42 +91,6 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 
 CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverride * p_hOverride, IPluginContext *pContext)
 {
-	if (g_pGiveItemWrapper == NULL)
-	{
-		PassInfo piParameters[5];
-		PassInfo piReturn;
-		piParameters[0].flags = PASSFLAG_BYVAL;
-		piParameters[0].size = sizeof(CBaseEntity*);
-		piParameters[0].type = PassType_Basic;
-
-		piParameters[1].flags = PASSFLAG_BYVAL;
-		piParameters[1].size = sizeof(char*);
-		piParameters[1].type = PassType_Basic;
-
-		piParameters[2].flags = PASSFLAG_BYVAL;
-		piParameters[2].size = sizeof(int);
-		piParameters[2].type = PassType_Basic;
-
-		piParameters[3].flags = PASSFLAG_BYVAL;
-		piParameters[3].size = sizeof(CScriptCreatedItem*);
-		piParameters[3].type = PassType_Basic;
-
-		piParameters[4].flags = PASSFLAG_BYVAL;
-		piParameters[4].size = sizeof(bool);
-		piParameters[4].type = PassType_Basic;
-
-		piReturn.flags = PASSFLAG_BYVAL;
-		piReturn.size = sizeof(CBaseEntity *);
-		piReturn.type = PassType_Basic;
-
-		if (!(g_pGiveItemWrapper = g_pBinTools->CreateVCall(g_iGiveNamedItemOffset, 0, 0, &piReturn, piParameters, 4)))
-		{
-			g_pSM->LogError(myself, "Failed to create call wrapper for GiveNamedItem.");
-			if (pContext != NULL) pContext->ThrowNativeError("Failed to create call wrapper for GiveNamedItem.");
-			return NULL;
-		}
-	}
-
 	// Check if the vtable for CScriptCreatedItem is known at this point.
 	if (g_pScriptCreatedVTable == NULL)
 	{
@@ -152,20 +113,8 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 	hScriptCreatedItem.m_bInitialized = true;
 	if (hScriptCreatedItem.m_iEntityLevel == 0) hScriptCreatedItem.m_iEntityLevel = 9;
 
-	// Prepare arguments for the call.
-	uint8 acParameters[sizeof(CBaseEntity*)+sizeof(char*)+sizeof(int)+sizeof(CScriptCreatedItem*)+sizeof(bool)];
-	uint8 * acCurrentParameter = acParameters;
-	CBaseEntity * hReturn;
-
-	*(CBaseEntity**)		acCurrentParameter = p_hPlayer;				acCurrentParameter += sizeof(CBaseEntity*);
-	*(char**)				acCurrentParameter = strWeaponClassname;	acCurrentParameter += sizeof(char*);
-	*(int*)					acCurrentParameter = 0;						acCurrentParameter += sizeof(int);
-	*(CScriptCreatedItem**)	acCurrentParameter = &hScriptCreatedItem;	acCurrentParameter += sizeof(CScriptCreatedItem*);
-	*(bool*)				acCurrentParameter = 0;						acCurrentParameter += sizeof(bool);
-
-	// Done. Do the call!
-	g_pGiveItemWrapper->Execute(acParameters, &hReturn);
-	return hReturn;
+	// Call the function.
+	return SH_MCALL(p_hPlayer, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, 0);
 }
 
 CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *cscript, bool b) {
@@ -429,12 +378,13 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		return false;
 	}
 
-	if (!g_pGameConf->GetOffset("GiveNamedItem", &g_iGiveNamedItemOffset))
+	int iOffset;
+	if (!g_pGameConf->GetOffset("GiveNamedItem", &iOffset))
 	{
 		snprintf(error, maxlen, "Could not find offset for GiveNamedItem");
 		return false;
 	} else {
-		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, g_iGiveNamedItemOffset, 0, 0);
+		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, iOffset, 0, 0);
 	}
 
 	/*
@@ -502,9 +452,6 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		}
 	}
 
-	// Only work if we have bintools running
-	sharesys->AddDependency(myself, "bintools.ext", true, true);
-
 	// Register natives for Pawn
 	sharesys->AddNatives(myself, g_ExtensionNatives);
 	sharesys->RegisterLibrary(myself, "TF2Items");
@@ -516,11 +463,6 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 	g_pForwardGiveItem = g_pForwards->CreateForward("TF2Items_OnGiveNamedItem", ET_Single, 4, NULL, Param_Cell, Param_String, Param_Cell, Param_CellByRef);
 
 	return true;
-}
-
-void TF2Items::SDK_OnAllLoaded()
-{
-	SM_GET_LATE_IFACE(BINTOOLS, g_pBinTools);
 }
 
 bool KV_FindSection(KeyValues *found, KeyValues *source, const char *search) {
@@ -605,7 +547,8 @@ bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool
 
 void TF2Items::SDK_OnUnload() {
 	gameconfs->CloseGameConfigFile(g_pGameConf);
-	if (g_pGiveItemWrapper != NULL) g_pGiveItemWrapper->Destroy();
+	g_pHandleSys->RemoveType(g_ScriptedItemOverrideHandleType, myself->GetIdentity());
+	g_pForwards->ReleaseForward(g_pForwardGiveItem);
 }
 
 bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
