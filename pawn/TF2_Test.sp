@@ -1,9 +1,7 @@
 #pragma semicolon 1 // Force strict semicolon mode.
 
 #include <sourcemod>
-#include <sdktools>
-#include <tf2>
-#include <tf2_attributes>
+#include <tf2items>
 
 #define PLUGIN_NAME              "TF2Items Sample Plugin"
 #define PLUGIN_AUTHOR            "Damizean"
