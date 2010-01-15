@@ -35,9 +35,9 @@
  */
 
 /* Basic information exposed publicly */
-#define SMEXT_CONF_NAME			"TF2 Items"
+#define SMEXT_CONF_NAME			"TF2Items"
 #define SMEXT_CONF_DESCRIPTION	"TF2 Item Modifier"
-#define SMEXT_CONF_VERSION		"1.1.0"
+#define SMEXT_CONF_VERSION		"1.2.0"
 #define SMEXT_CONF_AUTHOR		"Asherkin & AzuiSleet"
 #define SMEXT_CONF_URL			"http://limetech.org/"
 #define SMEXT_CONF_LOGTAG		"TF2ITEMS"
@@ -56,19 +56,19 @@
 #define SMEXT_CONF_METAMOD		
 
 /** Enable interfaces you want to use here by uncommenting lines */
-//#define SMEXT_ENABLE_FORWARDSYS
-//#define SMEXT_ENABLE_HANDLESYS
+#define SMEXT_ENABLE_FORWARDSYS
+#define SMEXT_ENABLE_HANDLESYS
 #define SMEXT_ENABLE_PLAYERHELPERS
 //#define SMEXT_ENABLE_DBMANAGER
 #define SMEXT_ENABLE_GAMECONF
 //#define SMEXT_ENABLE_MEMUTILS
-//#define SMEXT_ENABLE_GAMEHELPERS
+#define SMEXT_ENABLE_GAMEHELPERS
 //#define SMEXT_ENABLE_TIMERSYS
 //#define SMEXT_ENABLE_THREADER
 //#define SMEXT_ENABLE_LIBSYS
 //#define SMEXT_ENABLE_MENUS
 //#define SMEXT_ENABLE_ADTFACTORY
-//#define SMEXT_ENABLE_PLUGINSYS
+#define SMEXT_ENABLE_PLUGINSYS
 #define SMEXT_ENABLE_ADMINSYS
 //#define SMEXT_ENABLE_TEXTPARSERS
 //#define SMEXT_ENABLE_USERMSGS

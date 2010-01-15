@@ -32,6 +32,13 @@
 #include "iplayerinfo.h"
 #include "convar.h"
 
+#define OVERRIDE_CLASSNAME		(1 << 0)
+#define OVERRIDE_ITEM_DEF		(1 << 1)
+#define OVERRIDE_ITEM_LEVEL		(1 << 2)
+#define OVERRIDE_ITEM_QUALITY	(1 << 3)
+#define OVERRIDE_ATTRIBUTES		(1 << 4)
+
+
 class CBaseEntity;
 class CBasePlayer;
 class CPersistentItem;
@@ -95,6 +102,23 @@ public:
 // 1AC
 
 #pragma pack(pop)
+
+struct TScriptedItemOverride
+{
+	uint8 m_bFlags;									// Flags to what we should override.
+	char m_strWeaponClassname[256];					// Classname to override the GiveNamedItem call with.
+	uint32 m_iItemDefinitionIndex;					// New Item Def. Index.
+	uint8 m_iEntityQuality;							// New Item Quality Level.
+	uint8 m_iEntityLevel;							// New Item Level.
+	uint8 m_iCount;									// Count of Attributes.
+	CScriptCreatedAttribute m_Attributes[16];		// The actual attributes.
+};
+
+class TScriptedItemOverrideTypeHandler : public IHandleTypeDispatch
+{
+public:
+	void OnHandleDestroy(HandleType_t type, void *object);
+};
 
 /**
  * @brief Sample implementation of the SDK Extension.
@@ -178,5 +202,29 @@ bool KV_FindSection(KeyValues *found, KeyValues *source, const char *search);
 bool KV_FindSection(KeyValues *found, KeyValues *source, int search);
 bool KV_FindValue(int *found, KeyValues *source, const char *search);
 CScriptCreatedItem EditWeaponFromFile(CScriptCreatedItem *newitem, KeyValues *player_weapon);
+
+static cell_t CreateScriptedItemOverride(IPluginContext *pContext, const cell_t *params);
+static cell_t SetOverrideFlags(IPluginContext *pContext, const cell_t *params);
+static cell_t GetOverrideFlags(IPluginContext *pContext, const cell_t *params);
+static cell_t SetOverrideClassname(IPluginContext *pContext, const cell_t *params);
+static cell_t GetOverrideClassname(IPluginContext *pContext, const cell_t *params);
+static cell_t SetOverrideItemDefinitionIndex(IPluginContext *pContext, const cell_t *params);
+static cell_t GetOverrideItemDefinitionIndex(IPluginContext *pContext, const cell_t *params);
+static cell_t SetOverrideQuality(IPluginContext *pContext, const cell_t *params);
+static cell_t GetOverrideQuality(IPluginContext *pContext, const cell_t *params);
+static cell_t SetOverrideLevel(IPluginContext *pContext, const cell_t *params);
+static cell_t GetOverrideLevel(IPluginContext *pContext, const cell_t *params);
+static cell_t SetOverrideNumAttributes(IPluginContext *pContext, const cell_t *params);
+static cell_t GetOverrideNumAttributes(IPluginContext *pContext, const cell_t *params);
+static cell_t SetOverrideAttribute(IPluginContext *pContext, const cell_t *params);
+static cell_t GetOverrideAttributeId(IPluginContext *pContext, const cell_t *params);
+static cell_t GetOverrideAttributeValue(IPluginContext *pContext, const cell_t *params);
+
+TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext=NULL);
+
+extern HandleType_t g_ScriptedItemOverrideHandleType;
+extern TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
+extern sp_nativeinfo_t g_ExtensionNatives[];
+extern IForward * g_pForwardGiveItem;
 
 #endif // _INCLUDE_SOURCEMOD_EXTENSION_PROPER_H_
