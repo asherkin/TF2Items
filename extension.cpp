@@ -772,9 +772,9 @@ static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t 
 		{
 			return pContext->ThrowNativeError("Attribute index out of bounds: %d", params[2]);
 		}
-		return sp_ctof(pScriptedItemOverride->m_Attributes[params[2]].m_flValue);
+		return sp_ftoc(pScriptedItemOverride->m_Attributes[params[2]].m_flValue);
 	}
-	return sp_ctof(0.0f);
+	return sp_ftoc(0.0f);
 }
 
 CBaseEntity * GetCBaseEntityFromIndex(int p_iEntity, bool p_bOnlyPlayers)
