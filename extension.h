@@ -23,7 +23,7 @@
 
 /**
  * @file extension.h
- * @brief TF2 Items Sample extension code header.
+ * @brief TF2Items extension code header.
  */
 
 #include "smsdk_ext.h"
@@ -31,13 +31,13 @@
 #include "filesystem.h"
 #include "iplayerinfo.h"
 #include "convar.h"
+#include <IBinTools.h>
 
 #define OVERRIDE_CLASSNAME		(1 << 0)
 #define OVERRIDE_ITEM_DEF		(1 << 1)
 #define OVERRIDE_ITEM_LEVEL		(1 << 2)
 #define OVERRIDE_ITEM_QUALITY	(1 << 3)
 #define OVERRIDE_ATTRIBUTES		(1 << 4)
-
 
 class CBaseEntity;
 class CBasePlayer;
@@ -46,60 +46,57 @@ class CPersistentAttributeDefinition;
 
 #pragma pack(push, 1)
 
-class CScriptCreatedAttribute
+class CScriptCreatedAttribute		// Linux size: 0x18C
 {
-	void *vftable;
-
+	void * m_pVTable;
 public:
-	uint32 attribindex;
-	float attribvalue;
+	uint32 m_iAttributeDefinitionIndex;				// Win: Offset 4 / Linux: Offset 4
+	float m_flValue;								// Win: Offset 8 / Linux: Offset 8
 
-#ifdef _LINUX
-	char padding[0x180];
-#else
-	char padding[0xC0];
-#endif
+	#ifdef _LINUX
+		uint8 m_iPadding[0x180];
+	#else
+		uint8 m_iPadding[0xC0];
+	#endif
 };
 
-// 0xCC
-
-class CScriptCreatedItem
+/* CScriptCreatedAttribute()
+** -------------------------------------------------------------------------- */
+class CScriptCreatedItem			// Windows size: 0xDD8 / Linux size: 0x1AD0
 {
-	void *vftable;
-
 public:
+	void * m_pVTable;
+
 #ifndef _LINUX
-	CPersistentItem *pitem; // contains the item created from backend and static data
+	void * m_pPersistentItem;						// Present before in Windows?
 #endif
-
-	uint32 itemdefindex;
-	uint32 itemquality;
-	uint32 itemlevel;
+	uint32 m_iItemDefinitionIndex;					// Win: Offset 8 / Linux: Offset 4
+	uint8 m_iEntityQuality; uint8 m_iPadding1[3];	// Win: Offset 12 / Linux: Offset 8
+	uint8 m_iEntityLevel;							// Win: Offset 16 / Linux: Offset 12
 
 #ifdef _LINUX
-	char padding[0x1AA8];
+	uint8 m_iPadding2[0xB];
 #else
-	uint32 unknown4;
-	uint64 itemid;
-	uint32 unknown5;
-	uint32 unknown6;
-	uint16 unknown7;
-	uint16 position; // lower 16 bits of position
-	wchar name[256];
-	char iname[128];
+	uint8 m_iPadding2[0xF];
+#endif
+	
+	uint32 m_iGlobalIndexHigh;						// Win: Offset 32 / Linux: Offset 24
+	uint32 m_iGlobalIndexLow; 						// Win: Offset 36 / Linux: Offset 28
 
-	char padding[0xB14];
+#ifdef _LINUX
+    uint8 m_iPadding4[0x1A98];
+#else
+	uint8 m_iPadding4[0xD98];
 #endif
 
-	CScriptCreatedAttribute *attributes; // 0xDC0
-	uint32 allocatedAttributes; // 0xDC4
-	uint32 unknown8; // 0xDC8
-	uint32 attribcount; // 0xDCC
-	CScriptCreatedAttribute *attributes2; // 0xDD0
-	uint32 unknown9; // 0xDD4 = 1
+	CScriptCreatedAttribute * m_pAttributes;		// Win: Offset 3520 / Linux: Offset 6840
+	uint32 m_iAttributesLength;						// Win: Offset 3524 / Linux: Offset 6844
+	uint32 m_iPadding5;								// Win: Offset 3528 / Linux: Offset 6848
+	uint32 m_iAttributesCount;						// Win: Offset 3532 / Linux: Offset 6852
+	CScriptCreatedAttribute * m_pAttributes2;		// Win: Offset 3536 / Linux: Offset 6856
+	
+	bool m_bInitialized; uint8 m_iPadding6[3];		// Win: Offset 3540 / Linux: Offset 6860
 };
-
-// 1AC
 
 #pragma pack(pop)
 
@@ -146,7 +143,7 @@ public:
 	 * @brief This is called once all known extensions have been loaded.
 	 * Note: It is is a good idea to add natives here, if any are provided.
 	 */
-	//virtual void SDK_OnAllLoaded();
+	virtual void SDK_OnAllLoaded();
 
 	/**
 	 * @brief Called when the pause state is changed.
@@ -219,6 +216,7 @@ static cell_t TF2Items_GetNumAttributes(IPluginContext *pContext, const cell_t *
 static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *params);
 
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext=NULL);
 
@@ -226,5 +224,8 @@ extern HandleType_t g_ScriptedItemOverrideHandleType;
 extern TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
 extern sp_nativeinfo_t g_ExtensionNatives[];
 extern IForward * g_pForwardGiveItem;
+extern void * g_pScriptCreatedVTable;
+extern IBinTools *g_pBinTools;
+extern ICallWrapper * g_pGiveItemWrapper;
 
 #endif // _INCLUDE_SOURCEMOD_EXTENSION_PROPER_H_

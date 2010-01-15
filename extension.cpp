@@ -62,9 +62,13 @@ int GiveNamedItem_Hook = 0;
 int ClientPutInServer_Hook = 0;
 int LevelInit_Hook = 0;
 
-IForward * g_pForwardGiveItem;
+IForward * g_pForwardGiveItem = NULL;
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
 TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
+void * g_pScriptCreatedVTable = NULL;
+IBinTools *g_pBinTools = NULL;
+ICallWrapper * g_pGiveItemWrapper = NULL;
+int g_iGiveNamedItemOffset = 0;
 
 sp_nativeinfo_t g_ExtensionNatives[] =
 {
@@ -84,8 +88,85 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 	{ "TF2Items_SetAttribute",		TF2Items_SetAttribute },
 	{ "TF2Items_GetAttributeId",	TF2Items_GetAttributeId },
 	{ "TF2Items_GetAttributeValue",	TF2Items_GetAttributeValue },
+	{ "TF2Items_GiveNamedItem"	,	TF2Items_GiveNamedItem },
 	{ NULL,							NULL }
 };
+
+CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverride * p_hOverride, IPluginContext *pContext)
+{
+	if (g_pGiveItemWrapper == NULL)
+	{
+		PassInfo piParameters[5];
+		PassInfo piReturn;
+		piParameters[0].flags = PASSFLAG_BYVAL;
+		piParameters[0].size = sizeof(CBaseEntity*);
+		piParameters[0].type = PassType_Basic;
+
+		piParameters[1].flags = PASSFLAG_BYVAL;
+		piParameters[1].size = sizeof(char*);
+		piParameters[1].type = PassType_Basic;
+
+		piParameters[2].flags = PASSFLAG_BYVAL;
+		piParameters[2].size = sizeof(int);
+		piParameters[2].type = PassType_Basic;
+
+		piParameters[3].flags = PASSFLAG_BYVAL;
+		piParameters[3].size = sizeof(CScriptCreatedItem*);
+		piParameters[3].type = PassType_Basic;
+
+		piParameters[4].flags = PASSFLAG_BYVAL;
+		piParameters[4].size = sizeof(bool);
+		piParameters[4].type = PassType_Basic;
+
+		piReturn.flags = PASSFLAG_BYVAL;
+		piReturn.size = sizeof(CBaseEntity *);
+		piReturn.type = PassType_Basic;
+
+		if (!(g_pGiveItemWrapper = g_pBinTools->CreateVCall(g_iGiveNamedItemOffset, 0, 0, &piReturn, piParameters, 4)))
+		{
+			g_pSM->LogError(myself, "Failed to create call wrapper for GiveNamedItem.");
+			if (pContext != NULL) pContext->ThrowNativeError("Failed to create call wrapper for GiveNamedItem.");
+			return NULL;
+		}
+	}
+
+	// Check if the vtable for CScriptCreatedItem is known at this point.
+	if (g_pScriptCreatedVTable == NULL)
+	{
+		if (pContext != NULL) pContext->ThrowNativeError("The virtual table for CScriptCreatedItem is unknown at this point. Impossible to summon GiveNamedItem.");
+		else                  g_pSM->LogError(myself, "The virtual table for CScriptCreatedItem is unknown at this point. Impossible to summon GiveNamedItem.");
+		return NULL;
+	}
+
+	// Create new script created item object and prepare it.
+	CScriptCreatedItem hScriptCreatedItem;
+	memset(&hScriptCreatedItem, 0, sizeof(CScriptCreatedItem));
+	
+	char * strWeaponClassname = p_hOverride->m_strWeaponClassname;
+	hScriptCreatedItem.m_pVTable = g_pScriptCreatedVTable;
+	hScriptCreatedItem.m_iItemDefinitionIndex = p_hOverride->m_iItemDefinitionIndex;
+	hScriptCreatedItem.m_iEntityLevel = p_hOverride->m_iEntityLevel;
+	hScriptCreatedItem.m_iEntityQuality = p_hOverride->m_iEntityQuality;
+	hScriptCreatedItem.m_pAttributes = hScriptCreatedItem.m_pAttributes2 = p_hOverride->m_Attributes;
+	hScriptCreatedItem.m_iAttributesCount = hScriptCreatedItem.m_iAttributesLength = p_hOverride->m_iCount;
+	hScriptCreatedItem.m_bInitialized = true;
+	if (hScriptCreatedItem.m_iEntityLevel == 0) hScriptCreatedItem.m_iEntityLevel = 9;
+
+	// Prepare arguments for the call.
+	uint8 acParameters[sizeof(CBaseEntity*)+sizeof(char*)+sizeof(int)+sizeof(CScriptCreatedItem*)+sizeof(bool)];
+	uint8 * acCurrentParameter = acParameters;
+	CBaseEntity * hReturn;
+
+	*(CBaseEntity**)		acCurrentParameter = p_hPlayer;				acCurrentParameter += sizeof(CBaseEntity*);
+	*(char**)				acCurrentParameter = strWeaponClassname;	acCurrentParameter += sizeof(char*);
+	*(int*)					acCurrentParameter = 0;						acCurrentParameter += sizeof(int);
+	*(CScriptCreatedItem**)	acCurrentParameter = &hScriptCreatedItem;	acCurrentParameter += sizeof(CScriptCreatedItem*);
+	*(bool*)				acCurrentParameter = 0;						acCurrentParameter += sizeof(bool);
+
+	// Done. Do the call!
+	g_pGiveItemWrapper->Execute(acParameters, &hReturn);
+	return hReturn;
+}
 
 CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *cscript, bool b) {
 
@@ -103,16 +184,21 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 		RETURN_META_VALUE(MRES_IGNORED, NULL);
 	}
 
+	// Retrieve the pointer to the CScriptCreatedItem vtable
+	if (g_pScriptCreatedVTable == NULL) g_pScriptCreatedVTable = cscript->m_pVTable;
+
+	// Retrieve client index and auth string.
 	edict_t *playerEdict = gameents->BaseEntityToEdict((CBaseEntity *)player);
 	IGamePlayer * pPlayer = playerhelpers->GetGamePlayer(playerEdict);
 	int client = gamehelpers->IndexOfEdict(playerEdict);
 	const char *steamID = pPlayer->GetAuthString();
 
+	// Summon forward
 	cell_t cellResults = 0;
 	cell_t cellOverrideHandle = 0;
 	g_pForwardGiveItem->PushCell(client);
 	g_pForwardGiveItem->PushString(item);
-	g_pForwardGiveItem->PushCell(cscript->itemdefindex);
+	g_pForwardGiveItem->PushCell(cscript->m_iItemDefinitionIndex);
 	g_pForwardGiveItem->PushCellByRef(&cellOverrideHandle);
 	g_pForwardGiveItem->Execute(&cellResults);
 
@@ -130,14 +216,14 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				player_weapon = new KeyValues("weapon_invalid");
 
 				if (KV_FindSection(player_weapons, g_pCustomWeapons, steamID)) {
-					if (KV_FindSection(player_weapon, player_weapons, cscript->itemdefindex)) {
+					if (KV_FindSection(player_weapon, player_weapons, cscript->m_iItemDefinitionIndex)) {
 						CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
 						RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
 					} else if (KV_FindSection(player_weapon, player_weapons, "*")) {
 						CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
 						RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
 					} else if (KV_FindSection(player_weapons, g_pCustomWeapons, "*")) {
-						if (KV_FindSection(player_weapon, player_weapons, cscript->itemdefindex)) {
+						if (KV_FindSection(player_weapon, player_weapons, cscript->m_iItemDefinitionIndex)) {
 							CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
 							RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
 						} else if (KV_FindSection(player_weapon, player_weapons, "*")) {
@@ -150,7 +236,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 						RETURN_META_VALUE(MRES_IGNORED, NULL);
 					}
 				} else if (KV_FindSection(player_weapons, g_pCustomWeapons, "*")) {
-					if (KV_FindSection(player_weapon, player_weapons, cscript->itemdefindex)) {
+					if (KV_FindSection(player_weapon, player_weapons, cscript->m_iItemDefinitionIndex)) {
 						CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
 						RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
 					} else if (KV_FindSection(player_weapon, player_weapons, "*")) {
@@ -178,18 +264,18 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 
 				// Override based on the flags passed to this object.
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.itemdefindex = pScriptedItemOverride->m_iItemDefinitionIndex;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.itemlevel = pScriptedItemOverride->m_iEntityLevel;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.itemquality = pScriptedItemOverride->m_iEntityQuality;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
 					// Even if we don't want to override the item quality, do if it's set to
 					// 0.
-					if (newitem.itemquality == 0) newitem.itemquality = 9;
+					if (newitem.m_iEntityQuality == 0) newitem.m_iEntityQuality = 9;
 
 					// Setup the attributes.
-					newitem.attributes = newitem.attributes2 = pScriptedItemOverride->m_Attributes;
-					newitem.attribcount = newitem.allocatedAttributes = pScriptedItemOverride->m_iCount;
+					newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
+					newitem.m_iAttributesCount = newitem.m_iAttributesLength = pScriptedItemOverride->m_iCount;
 				}
 
 				// Done
@@ -204,45 +290,46 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
 }
 
-CScriptCreatedItem EditWeaponFromFile(CScriptCreatedItem *cscript, KeyValues *player_weapon) {
+CScriptCreatedItem EditWeaponFromFile(CScriptCreatedItem *cscript, KeyValues *player_weapon)
+{
 	CScriptCreatedItem newitem;
 	memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
 
 	int itemlevel;
 	if (KV_FindValue(&itemlevel, player_weapon, "level")) {
-		newitem.itemlevel = itemlevel;
+		newitem.m_iEntityLevel = itemlevel;
 	}
 
 	int itemquality;
 	if (KV_FindValue(&itemquality, player_weapon, "quality")) {
-		newitem.itemquality = itemquality;
+		newitem.m_iEntityQuality = itemquality;
 	}
 
 	int attrib_count;
 	KeyValues *weapon_attribs = new KeyValues("weapon_invalid");
 	if (KV_FindValue(&attrib_count, player_weapon, "attrib_count") && KV_FindSection(weapon_attribs, player_weapon, "attributes")) {
 
-		if (newitem.itemquality == 0) {
-			newitem.itemquality = 9;
+		if (newitem.m_iEntityQuality == 0) {
+			newitem.m_iEntityQuality = 9;
 		}
 
 		#ifdef TF2ITEMS_DEBUG_ITEMS
 			META_CONPRINTF("Attribute Count: %d\n", attrib_count);
 		#endif // TF2ITEMS_DEBUG_ITEMS
 
-		newitem.attributes = (CScriptCreatedAttribute *)malloc(sizeof(CScriptCreatedAttribute) * attrib_count);
+		newitem.m_pAttributes = (CScriptCreatedAttribute *)malloc(sizeof(CScriptCreatedAttribute) * attrib_count);
 		CScriptCreatedAttribute qq;
 
 		int searchindex = 0;
 		KeyValues *weapon_attrib;
 		for ( weapon_attrib = weapon_attribs->GetFirstValue(); weapon_attrib; weapon_attrib = weapon_attrib->GetNextValue() ) {
-			qq.attribindex = atoi(weapon_attrib->GetName());
-			qq.attribvalue = weapon_attrib->GetFloat();
-			memcpy(newitem.attributes + searchindex, &qq, sizeof(qq));
+			qq.m_iAttributeDefinitionIndex = atoi(weapon_attrib->GetName());
+			qq.m_flValue = weapon_attrib->GetFloat();
+			memcpy(newitem.m_pAttributes + searchindex, &qq, sizeof(qq));
 
 			#ifdef TF2ITEMS_DEBUG_ITEMS
-				META_CONPRINTF("Attribute %d Index: %d\n", searchindex, qq.attribindex);
-				META_CONPRINTF("Attribute %d Value: %f\n", searchindex, qq.attribvalue);
+				META_CONPRINTF("Attribute %d Index: %d\n", searchindex, qq.m_iAttributeDefinitionIndex);
+				META_CONPRINTF("Attribute %d Value: %f\n", searchindex, qq.m_flValue);
 			#endif // TF2ITEMS_DEBUG_ITEMS
 
 			searchindex = searchindex + 1;
@@ -252,9 +339,9 @@ CScriptCreatedItem EditWeaponFromFile(CScriptCreatedItem *cscript, KeyValues *pl
 			META_CONPRINTF("Found Attribute Count: %d\n", searchindex);
 		#endif // TF2ITEMS_DEBUG_ITEMS
 
-		newitem.attributes2 = newitem.attributes;
-		newitem.allocatedAttributes = attrib_count;
-		newitem.attribcount = attrib_count;
+		newitem.m_pAttributes2 = newitem.m_pAttributes;
+		newitem.m_iAttributesCount = attrib_count;
+		newitem.m_iAttributesLength = attrib_count;
 	}
 	#ifdef TF2ITEMS_DEBUG_ITEMS
 		else {
@@ -342,14 +429,12 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		return false;
 	}
 
-	int offset;
-
-	if (!g_pGameConf->GetOffset("GiveNamedItem", &offset))
+	if (!g_pGameConf->GetOffset("GiveNamedItem", &g_iGiveNamedItemOffset))
 	{
 		snprintf(error, maxlen, "Could not find offset for GiveNamedItem");
 		return false;
 	} else {
-		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, offset, 0, 0);
+		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, g_iGiveNamedItemOffset, 0, 0);
 	}
 
 	/*
@@ -417,16 +502,25 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		}
 	}
 
+	// Only work if we have bintools running
+	sharesys->AddDependency(myself, "bintools.ext", true, true);
+
 	// Register natives for Pawn
 	sharesys->AddNatives(myself, g_ExtensionNatives);
+	sharesys->RegisterLibrary(myself, "TF2Items");
 
 	// Create handles
-	g_ScriptedItemOverrideHandleType = g_pHandleSys->CreateType("ScriptedItemOverride", &g_ScriptedItemOverrideHandler,  0,   NULL, NULL,  myself->GetIdentity(),  NULL);
+	g_ScriptedItemOverrideHandleType = g_pHandleSys->CreateType("TF2ItemType", &g_ScriptedItemOverrideHandler,  0,   NULL, NULL,  myself->GetIdentity(),  NULL);
 
 	// Create forwards
 	g_pForwardGiveItem = g_pForwards->CreateForward("TF2Items_OnGiveNamedItem", ET_Single, 4, NULL, Param_Cell, Param_String, Param_Cell, Param_CellByRef);
 
 	return true;
+}
+
+void TF2Items::SDK_OnAllLoaded()
+{
+	SM_GET_LATE_IFACE(BINTOOLS, g_pBinTools);
 }
 
 bool KV_FindSection(KeyValues *found, KeyValues *source, const char *search) {
@@ -465,7 +559,8 @@ bool KV_FindValue(int *found, KeyValues *source, const char *search) {
 	return false;
 }
 
-bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool late) {
+bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool late)
+{
 
 	GET_V_IFACE_ANY(GetServerFactory, gameclients, IServerGameClients, INTERFACEVERSION_SERVERGAMECLIENTS);
 	GET_V_IFACE_ANY(GetServerFactory, gameents, IServerGameEnts, INTERFACEVERSION_SERVERGAMEENTS);
@@ -510,6 +605,7 @@ bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool
 
 void TF2Items::SDK_OnUnload() {
 	gameconfs->CloseGameConfigFile(g_pGameConf);
+	if (g_pGiveItemWrapper != NULL) g_pGiveItemWrapper->Destroy();
 }
 
 bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
@@ -701,8 +797,8 @@ static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *para
 			pContext->ThrowNativeError("Attribute index out of bounds: %d", params[2]);
 			return 0;
 		}
-		pScriptedItemOverride->m_Attributes[params[2]].attribindex = params[3];
-		pScriptedItemOverride->m_Attributes[params[2]].attribvalue = sp_ctof(params[4]);
+		pScriptedItemOverride->m_Attributes[params[2]].m_iAttributeDefinitionIndex = params[3];
+		pScriptedItemOverride->m_Attributes[params[2]].m_flValue = sp_ctof(params[4]);
 		return 1;
 	}
 
@@ -719,7 +815,7 @@ static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *pa
 			pContext->ThrowNativeError("Attribute index out of bounds: %d", params[2]);
 			return 0;
 		}
-		return pScriptedItemOverride->m_Attributes[params[2]].attribindex;
+		return pScriptedItemOverride->m_Attributes[params[2]].m_iAttributeDefinitionIndex;
 	}
 	return -1;
 }
@@ -733,9 +829,53 @@ static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t 
 		{
 			return pContext->ThrowNativeError("Attribute index out of bounds: %d", params[2]);
 		}
-		return sp_ctof(pScriptedItemOverride->m_Attributes[params[2]].attribvalue);
+		return sp_ctof(pScriptedItemOverride->m_Attributes[params[2]].m_flValue);
 	}
 	return sp_ctof(0.0f);
+}
+
+CBaseEntity * GetCBaseEntityFromIndex(int p_iEntity, bool p_bOnlyPlayers)
+{
+	edict_t *edtEdict = engine->PEntityOfEntIndex(p_iEntity);
+	if (!edtEdict || edtEdict->IsFree()) return NULL;
+	
+	if (p_iEntity > 0 && p_iEntity <= playerhelpers->GetMaxClients())
+	{
+		IGamePlayer *pPlayer = playerhelpers->GetGamePlayer(edtEdict);
+		if (!pPlayer || !pPlayer->IsConnected()) return NULL;
+	}
+	else if (p_bOnlyPlayers) return NULL;
+
+	IServerUnknown *pUnk;
+	if ((pUnk=edtEdict->GetUnknown()) == NULL) return NULL;
+	return pUnk->GetBaseEntity();
+}
+
+int GetIndexFromCBaseEntity(CBaseEntity * p_hEntity)
+{
+	if (p_hEntity == NULL) return -1;
+
+	edict_t * edtEdict = gameents->BaseEntityToEdict(p_hEntity);
+	if (!edtEdict || edtEdict->IsFree()) return -1;
+
+	return gamehelpers->IndexOfEdict(edtEdict);
+}
+
+static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *params)
+{
+	// Retrieve player from it's index.
+	CBaseEntity *pEntity;
+	if (!(pEntity = GetCBaseEntityFromIndex(params[1], true)))
+		return pContext->ThrowNativeError("Client index %d is not valid", params[1]);
+
+	// Retrieve the item override handle
+	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[2], pContext);
+	if (pScriptedItemOverride == NULL)
+		return -1;
+
+	// Summon the native and retrieve it's results
+	CBaseEntity * hResults = Native_GiveNamedItem(pEntity, pScriptedItemOverride, pContext);
+	return GetIndexFromCBaseEntity(hResults);
 }
 
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext)
@@ -752,8 +892,8 @@ TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPl
 	TScriptedItemOverride * pScriptedItemOverride;
 	if ((hndlError = g_pHandleSys->ReadHandle(hndlScriptedItemOverride, g_ScriptedItemOverrideHandleType, &hndlSec, (void **)&pScriptedItemOverride)) != HandleError_None)
 	{
-		if (pContext == NULL)	g_pSM->LogError(myself, "Invalid ScriptedItemOverride handle %x (error %d)", hndlScriptedItemOverride, hndlError);
-		else					pContext->ThrowNativeError("Invalid ScriptedItemOverride handle %x (error %d)", hndlScriptedItemOverride, hndlError);
+		if (pContext == NULL)	g_pSM->LogError(myself, "Invalid TF2ItemType handle %x (error %d)", hndlScriptedItemOverride, hndlError);
+		else					pContext->ThrowNativeError("Invalid TF2ItemType handle %x (error %d)", hndlScriptedItemOverride, hndlError);
 		return NULL;
 	}
 
