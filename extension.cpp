@@ -123,10 +123,6 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 		META_LOG(g_PLAPI, "GiveNamedItem called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
-	if (!TF2ItemsEnabled.GetBool()) {
-		RETURN_META_VALUE(MRES_IGNORED, NULL);
-	}
-
 	CBasePlayer *player = META_IFACEPTR(CBasePlayer);
 
 	if (cscript == NULL) {
@@ -158,6 +154,10 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	switch(cellResults) {
 		case Pl_Continue:
 			{
+				if (!TF2ItemsEnabled.GetBool()) {
+					RETURN_META_VALUE(MRES_IGNORED, NULL);
+				}
+			
 				if (strcmp(g_pCustomWeapons->GetName(), "weapon_invalid") == 0)
 					RETURN_META_VALUE(MRES_IGNORED, NULL);
 			
