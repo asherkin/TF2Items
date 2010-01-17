@@ -18,59 +18,30 @@ public Plugin:myinfo = {
     url         = PLUGIN_CONTACT
 };
 
-/* OnPluginStart()
-**
-** When the plugin is loaded.
-** -------------------------------------------------------------------------- */
-public OnPluginStart()
-{   
-    g_hKickass = TF2Items_CreateItem(OVERRIDE_ATTRIBUTES);
-    TF2Items_SetNumAttributes(g_hKickass, 8);
-    TF2Items_SetAttribute(g_hKickass, 0, 134, 2.0);
-    TF2Items_SetAttribute(g_hKickass, 1,   2, 100.0);
-    TF2Items_SetAttribute(g_hKickass, 2,   4, 10.0);
-    TF2Items_SetAttribute(g_hKickass, 3,   6, 0.25);
-    TF2Items_SetAttribute(g_hKickass, 4,  16, 500.0);
-    TF2Items_SetAttribute(g_hKickass, 5,  26, 250.0);
-    TF2Items_SetAttribute(g_hKickass, 6,  31, 10.0);
-    TF2Items_SetAttribute(g_hKickass, 7, 107, 3.0);
-}
-
 /* TF2Items_OnGiveNamedItem()
 **
 ** When an item is about to be given to a client.
 ** -------------------------------------------------------------------------- */
 public Action:TF2Items_OnGiveNamedItem(iClient, String:strClassName[], iItemDefinitionIndex, &Handle:hItemOverride)
 {
-    PrintToChatAll("GiveNamedItem(%i, %s)", iClient, strClassName);
-    if (StrEqual(strClassName, "tf_wearable_item"))
-    {
-        // Set the hAttributes to the attribute you want
-        hItemOverride = g_hKickass;
-    
-        return Plugin_Changed;             // Return Plugin_Changed to override the weapon attributes.
-    }
-    return Plugin_Continue;       // Return Plugin_Continue to leave them intact
+  PrintToChatAll("GiveNamedItem(%i, %s)", iClient, strClassName)
+  if (StrEqual(strClassName, "tf_weapon_syringegun_medic"))
+  {
+    new Handle:hTest = TF2Items_CreateItem(OVERRIDE_ATTRIBUTES|OVERRIDE_ITEM_QUALITY)
+    TF2Items_SetNumAttributes(hTest, 2)
+    TF2Items_SetAttribute(hTest, 0,  17, 0.1)
+    TF2Items_SetAttribute(hTest, 1,   4, 2.0)
+    TF2Items_SetQuality(hTest, 6)
+    hItemOverride = hTest
+    return Plugin_Changed
+  }
+  else
+  {
+    new Handle:hTest = TF2Items_CreateItem(OVERRIDE_ITEM_QUALITY)
+    TF2Items_SetQuality(hTest, 6)
+    hItemOverride = hTest
+    return Plugin_Changed
+  }
+  return Plugin_Continue       // Return Plugin_Continue to leave them intact
 }
     
-/*
-	A snipit on how to use TF2Items_GiveNamedItem
-	---------------------------------------------
-
-	new Handle:hTest = TF2Items_CreateItem(OVERRIDE_ALL);
-	TF2Items_SetClassname(hTest, "tf_wearable_item");
-	TF2Items_SetItemIndex(hTest, 49);
-	TF2Items_SetLevel(hTest, 100);
-	TF2Items_SetQuality(hTest, 8);
-	TF2Items_SetNumAttributes(hTest, 8);
-	TF2Items_SetAttribute(hTest, 0, 134, 2.0);
-	TF2Items_SetAttribute(hTest, 1,   2, 100.0);
-	TF2Items_SetAttribute(hTest, 2,   4, 10.0);
-	TF2Items_SetAttribute(hTest, 3,   6, 0.25);
-	TF2Items_SetAttribute(hTest, 4,  16, 500.0);
-	TF2Items_SetAttribute(hTest, 5,  26, 250.0);
-	TF2Items_SetAttribute(hTest, 6,  31, 10.0);
-	TF2Items_SetAttribute(hTest, 7, 107, 3.0);
-	
-
-*/
