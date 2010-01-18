@@ -57,7 +57,6 @@ ConVar *pTagsVar = NULL;
 IGameConfig *g_pGameConf = NULL;
 KeyValues *g_pCustomWeapons = new KeyValues("weapon_invalid");
 
-bool g_bHooked = false;
 int GiveNamedItem_Hook = 0;
 int ClientPutInServer_Hook = 0;
 int LevelInit_Hook = 0;
@@ -306,7 +305,7 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 		META_LOG(g_PLAPI, "ClientPutInServer called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
-	if(!g_bHooked && pEntity->m_pNetworkable) {
+	if(GiveNamedItem_Hook == 0 && pEntity->m_pNetworkable) {
 		CBaseEntity *baseentity = pEntity->m_pNetworkable->GetBaseEntity();
 		if(!baseentity)
 			return;
@@ -316,9 +315,11 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 		GiveNamedItem_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem), false);
 		if (ClientPutInServer_Hook != 0) {
 			SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
+			ClientPutInServer_Hook = 0;
+			#ifdef TF2ITEMS_DEBUG_HOOKING
+				META_LOG(g_PLAPI, "ClientPutInServer unhooked.");
+			#endif // TF2ITEMS_DEBUG_HOOKING
 		}
-
-		g_bHooked = true;
 
 		#ifdef TF2ITEMS_DEBUG_HOOKING
 			META_LOG(g_PLAPI, "GiveNamedItem hooked.");
@@ -326,6 +327,7 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 
 	} else if (ClientPutInServer_Hook != 0) {
 		SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
+		ClientPutInServer_Hook = 0;
 		#ifdef TF2ITEMS_DEBUG_HOOKING
 			META_LOG(g_PLAPI, "ClientPutInServer unhooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
@@ -428,11 +430,10 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 			#ifdef TF2ITEMS_DEBUG_HOOKING
 				META_LOG(g_PLAPI, "GiveNamedItem hooked.");
 			#endif // TF2ITEMS_DEBUG_HOOKING
-			g_bHooked = true;
 		}
 	}
 
-	if (g_bHooked == false) {
+	if (GiveNamedItem_Hook == 0) {
 		#ifdef TF2ITEMS_DEBUG_HOOKING
 			META_LOG(g_PLAPI, "Is a NOT late load or no players found, attempting to hook ClientPutInServer.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
@@ -546,6 +547,12 @@ bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool
 }
 
 void TF2Items::SDK_OnUnload() {
+
+	#ifdef TF2ITEMS_DEBUG_HOOKING
+		META_LOG(g_PLAPI, "SDK_OnUnload called.");
+	#endif // TF2ITEMS_DEBUG_HOOKING
+
+	g_pCustomWeapons->deleteThis();
 	gameconfs->CloseGameConfigFile(g_pGameConf);
 	g_pHandleSys->RemoveType(g_ScriptedItemOverrideHandleType, myself->GetIdentity());
 	g_pForwards->ReleaseForward(g_pForwardGiveItem);
@@ -553,26 +560,48 @@ void TF2Items::SDK_OnUnload() {
 
 bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
 
+	#ifdef TF2ITEMS_DEBUG_HOOKING
+		META_LOG(g_PLAPI, "SDK_OnMetamodUnload called.");
+	#endif // TF2ITEMS_DEBUG_HOOKING
+
 	if (ClientPutInServer_Hook != 0) {
 		SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
+		ClientPutInServer_Hook = 0;
 		#ifdef TF2ITEMS_DEBUG_HOOKING
 			META_LOG(g_PLAPI, "ClientPutInServer unhooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
+	#ifdef TF2ITEMS_DEBUG_HOOKING
+		else {
+			META_LOG(g_PLAPI, "ClientPutInServer did not need to be unhooked.");
+		}
+	#endif // TF2ITEMS_DEBUG_HOOKING
 
 	if (GiveNamedItem_Hook != 0) {
 		SH_REMOVE_HOOK_ID(GiveNamedItem_Hook);
+		GiveNamedItem_Hook = 0;
 		#ifdef TF2ITEMS_DEBUG_HOOKING
 			META_LOG(g_PLAPI, "GiveNamedItem unhooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
+	#ifdef TF2ITEMS_DEBUG_HOOKING
+		else {
+			META_LOG(g_PLAPI, "GiveNamedItem did not need to be unhooked.");
+		}
+	#endif // TF2ITEMS_DEBUG_HOOKING
 
 	if (LevelInit_Hook != 0) {
 		SH_REMOVE_HOOK_ID(LevelInit_Hook);
+		LevelInit_Hook = 0;
 		#ifdef TF2ITEMS_DEBUG_HOOKING
 			META_LOG(g_PLAPI, "LevelInit unhooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
+	#ifdef TF2ITEMS_DEBUG_HOOKING
+		else {
+			META_LOG(g_PLAPI, "LevelInit did not need to be unhooked.");
+		}
+	#endif // TF2ITEMS_DEBUG_HOOKING
 
 	return true;
 }
