@@ -50,7 +50,7 @@ IServerGameClients *gameclients = NULL;
 IServerGameEnts *gameents = NULL;
 IBaseFileSystem *filesystem = NULL;
 
-ConVar TF2ItemsVersion("tf2items_version", "1.2.0", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
+ConVar TF2ItemsVersion("tf2items_version", "1.2.1", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
 ConVar TF2ItemsEnabled("sm_tf2items_enabled", "1", 0);
 ConVar *pTagsVar = NULL;
 
