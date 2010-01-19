@@ -427,11 +427,11 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 
 			// Done, hook the BasePlayer
 			GiveNamedItem_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, pBasePlayer, SH_STATIC(Hook_GiveNamedItem), false);
-			#ifdef TF2ITEMS_DEBUG_HOOKING
-				META_LOG(g_PLAPI, "GiveNamedItem hooked.");
-			#endif // TF2ITEMS_DEBUG_HOOKING
 			
 			if (GiveNamedItem_Hook != 0) {
+				#ifdef TF2ITEMS_DEBUG_HOOKING
+					META_LOG(g_PLAPI, "GiveNamedItem hooked.");
+				#endif // TF2ITEMS_DEBUG_HOOKING
 				break;
 			}
 		}
