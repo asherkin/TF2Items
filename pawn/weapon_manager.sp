@@ -10,7 +10,7 @@
 #define PLUGIN_VERSION		"1.3.0"
 #define PLUGIN_CONTACT		"http://limetech.org/"
 
-#define DEBUG
+//#define DEBUG
 
 // ====[ VARIABLES ]===========================================================
 new Handle:g_hPlayerInfo;
@@ -123,7 +123,7 @@ ParseItems()
 	DestroyItems();
 
 	// Create key values object and parse file.
-	BuildPath(Path_SM, strBuffer, sizeof(strBuffer), "data/customweps_pawn.txt");
+	BuildPath(Path_SM, strBuffer, sizeof(strBuffer), "data/customweps.txt");
 	new Handle:hKeyValues = CreateKeyValues("TF2Items");
 	if (FileToKeyValues(hKeyValues, strBuffer) == false)
 	{

@@ -1,4 +1,4 @@
-if defined _tf2items_included
+#if defined _tf2items_included
 #endinput
 #endif
 #define _tf2items_included
