@@ -26,6 +26,10 @@
 		{
 			"value"	"8"
 		}
+		"selfmade"
+		{
+			"value"	"9"
+		}
 	}
 	"items"
 	{
@@ -2628,7 +2632,275 @@
 					"value" "0.25"
 				}
 			}
+		}
+		
+		"134"
+		{
+			"name"	"Propaganda Contest First Place"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_PropagandaContest_FirstPlace"
+			"item_description"	"#TF_PropagandaContest_FirstPlace_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/hat_first"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player_per_class"	
+			{
+				"scout"		"models/player/items/scout/hat_first.mdl"
+				"sniper"	"models/player/items/sniper/hat_first.mdl"
+				"soldier"	"models/player/items/soldier/hat_first.mdl"
+				"demoman"	"models/player/items/demo/hat_first.mdl"
+				"medic"		"models/player/items/medic/hat_first.mdl"
+				"heavy"		"models/player/items/heavy/hat_first.mdl"
+				"spy"		"models/player/items/spy/hat_first.mdl"
+				"engineer"	"models/player/items/engineer/hat_first.mdl"
+				"pyro"		"models/player/items/pyro/hat_first.mdl"
+			}
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
 		}	
+		
+		"135"
+		{
+			"name"	"Towering Pillar of Hats"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_ToweringPillar_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/hat_first_nr"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player_per_class"	
+			{
+				"scout"		"models/player/items/scout/hat_first_nr.mdl"
+				"sniper"	"models/player/items/sniper/hat_first_nr.mdl"
+				"soldier"	"models/player/items/soldier/hat_first_nr.mdl"
+				"demoman"	"models/player/items/demo/hat_first_nr.mdl"
+				"medic"		"models/player/items/medic/hat_first_nr.mdl"
+				"heavy"		"models/player/items/heavy/hat_first_nr.mdl"
+				"spy"		"models/player/items/spy/hat_first_nr.mdl"
+				"engineer"	"models/player/items/engineer/hat_first_nr.mdl"
+				"pyro"		"models/player/items/pyro/hat_first_nr.mdl"
+			}
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		
+		"136"
+		{
+			"name"	"Propaganda Contest Second Place"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_PropagandaContest_SecondPlace"
+			"item_description"	"#TF_PropagandaContest_SecondPlace_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/hat_second"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player_per_class"	
+			{
+				"scout"		"models/player/items/scout/hat_second.mdl"
+				"sniper"	"models/player/items/sniper/hat_second.mdl"
+				"soldier"	"models/player/items/soldier/hat_second.mdl"
+				"demoman"	"models/player/items/demo/hat_second.mdl"
+				"medic"		"models/player/items/medic/hat_second.mdl"
+				"heavy"		"models/player/items/heavy/hat_second.mdl"
+				"spy"		"models/player/items/spy/hat_second.mdl"
+				"engineer"	"models/player/items/engineer/hat_second.mdl"
+				"pyro"		"models/player/items/pyro/hat_second.mdl"
+			}
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		
+		"137"
+		{
+			"name"	"Noble Amassment of Hats"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_NobleAmassment_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/hat_second_nr"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player_per_class"	
+			{
+				"scout"		"models/player/items/scout/hat_second_nr.mdl"
+				"sniper"	"models/player/items/sniper/hat_second_nr.mdl"
+				"soldier"	"models/player/items/soldier/hat_second_nr.mdl"
+				"demoman"	"models/player/items/demo/hat_second_nr.mdl"
+				"medic"		"models/player/items/medic/hat_second_nr.mdl"
+				"heavy"		"models/player/items/heavy/hat_second_nr.mdl"
+				"spy"		"models/player/items/spy/hat_second_nr.mdl"
+				"engineer"	"models/player/items/engineer/hat_second_nr.mdl"
+				"pyro"		"models/player/items/pyro/hat_second_nr.mdl"
+			}
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}	
+		
+		"138"
+		{
+			"name"	"Propaganda Contest Third Place"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_PropagandaContest_ThirdPlace"
+			"item_description"	"#TF_PropagandaContest_ThirdPlace_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/hat_third"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player_per_class"	
+			{
+				"scout"		"models/player/items/scout/hat_third.mdl"
+				"sniper"	"models/player/items/sniper/hat_third.mdl"
+				"soldier"	"models/player/items/soldier/hat_third.mdl"
+				"demoman"	"models/player/items/demo/hat_third.mdl"
+				"medic"		"models/player/items/medic/hat_third.mdl"
+				"heavy"		"models/player/items/heavy/hat_third.mdl"
+				"spy"		"models/player/items/spy/hat_third.mdl"
+				"engineer"	"models/player/items/engineer/hat_third.mdl"
+				"pyro"		"models/player/items/pyro/hat_third.mdl"
+			}
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		
+		"139"
+		{
+			"name"	"Modest Pile of Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_ModestPile_Hat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/hat_third_nr"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player_per_class"	
+			{
+				"scout"		"models/player/items/scout/hat_third_nr.mdl"
+				"sniper"	"models/player/items/sniper/hat_third_nr.mdl"
+				"soldier"	"models/player/items/soldier/hat_third_nr.mdl"
+				"demoman"	"models/player/items/demo/hat_third_nr.mdl"
+				"medic"		"models/player/items/medic/hat_third_nr.mdl"
+				"heavy"		"models/player/items/heavy/hat_third_nr.mdl"
+				"spy"		"models/player/items/spy/hat_third_nr.mdl"
+				"engineer"	"models/player/items/engineer/hat_third_nr.mdl"
+				"pyro"		"models/player/items/pyro/hat_third_nr.mdl"
+			}
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+			
 		"5000"
 		{
 			"name"	"Craft Bar Level 1"
