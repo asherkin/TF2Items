@@ -514,12 +514,12 @@ bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool
 	GET_V_IFACE_ANY(GetFileSystemFactory, filesystem, IBaseFileSystem, BASEFILESYSTEM_INTERFACE_VERSION);
 	GET_V_IFACE_CURRENT(GetEngineFactory, icvar, ICvar, CVAR_INTERFACE_VERSION);
 
-	if (!gameclients)
+	if (!gameents)
 	{
 		snprintf(error, maxlen, "Could not find interface %s", INTERFACEVERSION_SERVERGAMEENTS);
 		return false;
 	}
-	if (!gameents)
+	if (!gameclients)
 	{
 		snprintf(error, maxlen, "Could not find interface %s", INTERFACEVERSION_SERVERGAMECLIENTS);
 		return false;
