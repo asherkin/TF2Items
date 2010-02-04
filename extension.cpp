@@ -284,7 +284,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 	g_ScriptedItemOverrideHandleType = g_pHandleSys->CreateType("TF2ItemType", &g_ScriptedItemOverrideHandler,  0,   NULL, NULL,  myself->GetIdentity(),  NULL);
 
 	// Create forwards
-	g_pForwardGiveItem = g_pForwards->CreateForward("TF2Items_OnGiveNamedItem", ET_Single, 4, NULL, Param_Cell, Param_String, Param_Cell, Param_CellByRef);
+	g_pForwardGiveItem = g_pForwards->CreateForward("TF2Items_OnGiveNamedItem", ET_Hook, 4, NULL, Param_Cell, Param_String, Param_Cell, Param_CellByRef);
 
 	g_pSM->LogMessage(myself, "Starting plugin.");
 	g_pSM->LogMessage(myself, "GiveNamedItem offset is: %d.", iOffset);

@@ -212,6 +212,7 @@ public Extension:__ext_tf2items =
 	#else
 		required = 0,
 	#endif
+}
 	
 /**
 * I'll just leave this here...
