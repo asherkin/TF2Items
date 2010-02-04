@@ -46,13 +46,10 @@ SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, i
 ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
 IServerGameEnts *gameents = NULL;
-IBaseFileSystem *filesystem = NULL;
 
 ConVar TF2ItemsVersion("tf2items_version", "1.2.2", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
-ConVar TF2ItemsEnabled("sm_tf2items_enabled", "1", 0);
 
 IGameConfig *g_pGameConf = NULL;
-KeyValues *g_pCustomWeapons = new KeyValues("weapon_invalid");
 
 int GiveNamedItem_Hook = 0;
 int ClientPutInServer_Hook = 0;
@@ -131,7 +128,6 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	edict_t *playerEdict = gameents->BaseEntityToEdict((CBaseEntity *)player);
 	IGamePlayer * pPlayer = playerhelpers->GetGamePlayer(playerEdict);
 	int client = gamehelpers->IndexOfEdict(playerEdict);
-	const char *steamID = pPlayer->GetAuthString();
 
 	// Summon forward
 	cell_t cellResults = 0;
@@ -142,58 +138,8 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	g_pForwardGiveItem->PushCellByRef(&cellOverrideHandle);
 	g_pForwardGiveItem->Execute(&cellResults);
 
-	KeyValues *player_weapons;
-	KeyValues *player_weapon;
-
 	// Determine what to do
 	switch(cellResults) {
-		case Pl_Continue:
-			{
-				if (!TF2ItemsEnabled.GetBool()) {
-					RETURN_META_VALUE(MRES_IGNORED, NULL);
-				}
-			
-				if (strcmp(g_pCustomWeapons->GetName(), "weapon_invalid") == 0)
-					RETURN_META_VALUE(MRES_IGNORED, NULL);
-			
-				player_weapons = new KeyValues("weapon_invalid");
-				player_weapon = new KeyValues("weapon_invalid");
-
-				if (KV_FindSection(player_weapons, g_pCustomWeapons, steamID)) {
-					if (KV_FindSection(player_weapon, player_weapons, cscript->m_iItemDefinitionIndex)) {
-						CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
-						RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
-					} else if (KV_FindSection(player_weapon, player_weapons, "*")) {
-						CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
-						RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
-					} else if (KV_FindSection(player_weapons, g_pCustomWeapons, "*")) {
-						if (KV_FindSection(player_weapon, player_weapons, cscript->m_iItemDefinitionIndex)) {
-							CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
-							RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
-						} else if (KV_FindSection(player_weapon, player_weapons, "*")) {
-							CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
-							RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
-						} else {
-							RETURN_META_VALUE(MRES_IGNORED, NULL);
-						}
-					} else {
-						RETURN_META_VALUE(MRES_IGNORED, NULL);
-					}
-				} else if (KV_FindSection(player_weapons, g_pCustomWeapons, "*")) {
-					if (KV_FindSection(player_weapon, player_weapons, cscript->m_iItemDefinitionIndex)) {
-						CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
-						RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
-					} else if (KV_FindSection(player_weapon, player_weapons, "*")) {
-						CScriptCreatedItem newitem = EditWeaponFromFile(cscript, player_weapon);
-						RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (item, a, &newitem, b));
-					} else {
-						RETURN_META_VALUE(MRES_IGNORED, NULL);
-					}
-				} else {
-					RETURN_META_VALUE(MRES_IGNORED, NULL);
-				}
-			}
-			break;
 		case Pl_Changed:
 			{
 				TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(cellOverrideHandle);
@@ -226,73 +172,9 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, a, &newitem, b));
 			}
 			break;
-		case Pl_Stop:
-			RETURN_META_VALUE(MRES_IGNORED, NULL);
-			break;
 	}
 	
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
-}
-
-CScriptCreatedItem EditWeaponFromFile(CScriptCreatedItem *cscript, KeyValues *player_weapon)
-{
-	CScriptCreatedItem newitem;
-	memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
-
-	int itemlevel;
-	if (KV_FindValue(&itemlevel, player_weapon, "level")) {
-		newitem.m_iEntityLevel = itemlevel;
-	}
-
-	int itemquality;
-	if (KV_FindValue(&itemquality, player_weapon, "quality")) {
-		newitem.m_iEntityQuality = itemquality;
-	}
-
-	int attrib_count;
-	KeyValues *weapon_attribs = new KeyValues("weapon_invalid");
-	if (KV_FindValue(&attrib_count, player_weapon, "attrib_count") && KV_FindSection(weapon_attribs, player_weapon, "attributes")) {
-
-		if (newitem.m_iEntityQuality == 0) {
-			newitem.m_iEntityQuality = 9;
-		}
-
-		#ifdef TF2ITEMS_DEBUG_ITEMS
-			META_CONPRINTF("Attribute Count: %d\n", attrib_count);
-		#endif // TF2ITEMS_DEBUG_ITEMS
-
-		newitem.m_pAttributes = (CScriptCreatedAttribute *)malloc(sizeof(CScriptCreatedAttribute) * attrib_count);
-		CScriptCreatedAttribute qq;
-
-		int searchindex = 0;
-		KeyValues *weapon_attrib;
-		for ( weapon_attrib = weapon_attribs->GetFirstValue(); weapon_attrib; weapon_attrib = weapon_attrib->GetNextValue() ) {
-			qq.m_iAttributeDefinitionIndex = atoi(weapon_attrib->GetName());
-			qq.m_flValue = weapon_attrib->GetFloat();
-			memcpy(newitem.m_pAttributes + searchindex, &qq, sizeof(qq));
-
-			#ifdef TF2ITEMS_DEBUG_ITEMS
-				META_CONPRINTF("Attribute %d Index: %d\n", searchindex, qq.m_iAttributeDefinitionIndex);
-				META_CONPRINTF("Attribute %d Value: %f\n", searchindex, qq.m_flValue);
-			#endif // TF2ITEMS_DEBUG_ITEMS
-
-			searchindex = searchindex + 1;
-		}
-
-		#ifdef TF2ITEMS_DEBUG_ITEMS
-			META_CONPRINTF("Found Attribute Count: %d\n", searchindex);
-		#endif // TF2ITEMS_DEBUG_ITEMS
-
-		newitem.m_pAttributes2 = newitem.m_pAttributes;
-		newitem.m_iAttributesCount = attrib_count;
-		newitem.m_iAttributesLength = attrib_count;
-	}
-	#ifdef TF2ITEMS_DEBUG_ITEMS
-		else {
-			META_LOG(g_PLAPI, "Error in attribute structure, missing attrib_count or no attributes specified.");
-		}
-	#endif // TF2ITEMS_DEBUG_ITEMS
-	return newitem;
 }
 
 void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
@@ -395,16 +277,6 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
 
-	char m_File[255] = "";
-	g_pSM->BuildPath(Path_SM, m_File, sizeof(m_File), "data/customweps.txt");
-
-	if (g_pCustomWeapons->LoadFromFile(filesystem, m_File)) {
-		if (strcmp(g_pCustomWeapons->GetName(), "custom_weapons_v2") != 0) {
-			snprintf(error, maxlen, "customweps.txt structure corrupt or incorrect version\n");
-			return false;
-		}
-	}
-
 	// Register natives for Pawn
 	sharesys->AddNatives(myself, g_ExtensionNatives);
 	sharesys->RegisterLibrary(myself, "TF2Items");
@@ -418,48 +290,11 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 	return true;
 }
 
-bool KV_FindSection(KeyValues *found, KeyValues *source, const char *search) {
-	KeyValues *pKey;
-	for ( pKey = source->GetFirstTrueSubKey(); pKey; pKey = pKey->GetNextTrueSubKey() ) {
-		if (strcmp(pKey->GetName(), search) == 0) {
-			*found = *pKey;
-			return true;
-		}
-	}
-	return false;
-}
-
-bool KV_FindSection(KeyValues *found, KeyValues *source, int search) {
-	KeyValues *pKey;
-	for ( pKey = source->GetFirstTrueSubKey(); pKey; pKey = pKey->GetNextTrueSubKey() ) {
-		char buf[16];
-		sprintf(buf,"%d",search);
-		const char* weaponidchar = buf;
-		if (strcmp(pKey->GetName(), weaponidchar) == 0) {
-			*found = *pKey;
-			return true;
-		}
-	}
-	return false;
-}
-
-bool KV_FindValue(int *found, KeyValues *source, const char *search) {
-	KeyValues *pKey;
-	for ( pKey = source->GetFirstValue(); pKey; pKey = pKey->GetNextValue() ) {
-		if (strcmp(pKey->GetName(), search) == 0) {
-			*found = pKey->GetInt();
-			return true;
-		}
-	}
-	return false;
-}
-
 bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool late)
 {
 
 	GET_V_IFACE_ANY(GetServerFactory, gameclients, IServerGameClients, INTERFACEVERSION_SERVERGAMECLIENTS);
 	GET_V_IFACE_ANY(GetServerFactory, gameents, IServerGameEnts, INTERFACEVERSION_SERVERGAMEENTS);
-	GET_V_IFACE_ANY(GetFileSystemFactory, filesystem, IBaseFileSystem, BASEFILESYSTEM_INTERFACE_VERSION);
 	GET_V_IFACE_CURRENT(GetEngineFactory, icvar, ICvar, CVAR_INTERFACE_VERSION);
 
 	if (!gameents)
@@ -470,11 +305,6 @@ bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool
 	if (!gameclients)
 	{
 		snprintf(error, maxlen, "Could not find interface %s", INTERFACEVERSION_SERVERGAMECLIENTS);
-		return false;
-	}
-	if (!filesystem)
-	{
-		snprintf(error, maxlen, "Could not find interface %s", BASEFILESYSTEM_INTERFACE_VERSION);
 		return false;
 	}
 	if (!icvar)
@@ -498,7 +328,6 @@ void TF2Items::SDK_OnUnload() {
 		META_LOG(g_PLAPI, "SDK_OnUnload called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
-	g_pCustomWeapons->deleteThis();
 	gameconfs->CloseGameConfigFile(g_pGameConf);
 	g_pHandleSys->RemoveType(g_ScriptedItemOverrideHandleType, myself->GetIdentity());
 	g_pForwards->ReleaseForward(g_pForwardGiveItem);

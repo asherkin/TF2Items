@@ -28,7 +28,6 @@
 
 #include "smsdk_ext.h"
 
-#include "filesystem.h"
 #include "iplayerinfo.h"
 #include "convar.h"
 
@@ -187,11 +186,6 @@ public:
 public: //IConCommandBaseAccessor
 	bool RegisterConCommandBase(ConCommandBase *pCommand);
 };
-
-bool KV_FindSection(KeyValues *found, KeyValues *source, const char *search);
-bool KV_FindSection(KeyValues *found, KeyValues *source, int search);
-bool KV_FindValue(int *found, KeyValues *source, const char *search);
-CScriptCreatedItem EditWeaponFromFile(CScriptCreatedItem *newitem, KeyValues *player_weapon);
 
 static cell_t TF2Items_CreateItem(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_SetFlags(IPluginContext *pContext, const cell_t *params);
