@@ -33,7 +33,6 @@
  *	Debugging options:
  *	==================
  */
-//#define TF2ITEMS_DEBUG_ITEMS
 //#define TF2ITEMS_DEBUG_HOOKING
 
 TF2Items g_TF2Items;
@@ -112,7 +111,7 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *cscript, bool b) {
 
 	#ifdef TF2ITEMS_DEBUG_HOOKING
-		META_LOG(g_PLAPI, "GiveNamedItem called.");
+		 g_pSM->LogMessage(myself, "GiveNamedItem called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
 	CBasePlayer *player = META_IFACEPTR(CBasePlayer);
@@ -180,7 +179,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 
 	#ifdef TF2ITEMS_DEBUG_HOOKING
-		META_LOG(g_PLAPI, "ClientPutInServer called.");
+		 g_pSM->LogMessage(myself, "ClientPutInServer called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
 	if(GiveNamedItem_Hook == 0 && pEntity->m_pNetworkable) {
@@ -195,19 +194,19 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 			SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
 			ClientPutInServer_Hook = 0;
 			#ifdef TF2ITEMS_DEBUG_HOOKING
-				META_LOG(g_PLAPI, "ClientPutInServer unhooked.");
+				 g_pSM->LogMessage(myself, "ClientPutInServer unhooked.");
 			#endif // TF2ITEMS_DEBUG_HOOKING
 		}
 
 		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "GiveNamedItem hooked.");
+			 g_pSM->LogMessage(myself, "GiveNamedItem hooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 
 	} else if (ClientPutInServer_Hook != 0) {
 		SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
 		ClientPutInServer_Hook = 0;
 		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "ClientPutInServer unhooked.");
+			 g_pSM->LogMessage(myself, "ClientPutInServer unhooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
 }
@@ -237,7 +236,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean
 	if (late) {
 		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "Is a late load, attempting to hook GiveNamedItem.");
+			 g_pSM->LogMessage(myself, "Is a late load, attempting to hook GiveNamedItem.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 		int iMaxClients = playerhelpers->GetMaxClients();
 		for (int iClient = 1; iClient <= iMaxClients; iClient++) {
@@ -260,7 +259,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 			
 			if (GiveNamedItem_Hook != 0) {
 				#ifdef TF2ITEMS_DEBUG_HOOKING
-					META_LOG(g_PLAPI, "GiveNamedItem hooked.");
+					 g_pSM->LogMessage(myself, "GiveNamedItem hooked.");
 				#endif // TF2ITEMS_DEBUG_HOOKING
 				break;
 			}
@@ -269,11 +268,11 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 
 	if (GiveNamedItem_Hook == 0) {
 		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "Is a NOT late load or no players found, attempting to hook ClientPutInServer.");
+			 g_pSM->LogMessage(myself, "Is a NOT late load or no players found, attempting to hook ClientPutInServer.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 		ClientPutInServer_Hook = SH_ADD_HOOK_STATICFUNC(IServerGameClients, ClientPutInServer, gameclients, Hook_ClientPutInServer, true);
 		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "ClientPutInServer hooked.");
+			 g_pSM->LogMessage(myself, "ClientPutInServer hooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
 
@@ -286,6 +285,9 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 
 	// Create forwards
 	g_pForwardGiveItem = g_pForwards->CreateForward("TF2Items_OnGiveNamedItem", ET_Single, 4, NULL, Param_Cell, Param_String, Param_Cell, Param_CellByRef);
+
+	g_pSM->LogMessage(myself, "Starting plugin.");
+	g_pSM->LogMessage(myself, "GiveNamedItem offset is: %d.", iOffset);
 
 	return true;
 }
@@ -317,15 +319,13 @@ bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool
 
 	ConVar_Register(0, this);
 
-	META_LOG(g_PLAPI, "Starting plugin.");
-
 	return true;
 }
 
 void TF2Items::SDK_OnUnload() {
 
 	#ifdef TF2ITEMS_DEBUG_HOOKING
-		META_LOG(g_PLAPI, "SDK_OnUnload called.");
+		 g_pSM->LogMessage(myself, "SDK_OnUnload called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
 	gameconfs->CloseGameConfigFile(g_pGameConf);
@@ -336,19 +336,19 @@ void TF2Items::SDK_OnUnload() {
 bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
 
 	#ifdef TF2ITEMS_DEBUG_HOOKING
-		META_LOG(g_PLAPI, "SDK_OnMetamodUnload called.");
+		 g_pSM->LogMessage(myself, "SDK_OnMetamodUnload called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
 	if (ClientPutInServer_Hook != 0) {
 		SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
 		ClientPutInServer_Hook = 0;
 		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "ClientPutInServer unhooked.");
+			 g_pSM->LogMessage(myself, "ClientPutInServer unhooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
 	#ifdef TF2ITEMS_DEBUG_HOOKING
 		else {
-			META_LOG(g_PLAPI, "ClientPutInServer did not need to be unhooked.");
+			 g_pSM->LogMessage(myself, "ClientPutInServer did not need to be unhooked.");
 		}
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
@@ -356,12 +356,12 @@ bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
 		SH_REMOVE_HOOK_ID(GiveNamedItem_Hook);
 		GiveNamedItem_Hook = 0;
 		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "GiveNamedItem unhooked.");
+			 g_pSM->LogMessage(myself, "GiveNamedItem unhooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
 	#ifdef TF2ITEMS_DEBUG_HOOKING
 		else {
-			META_LOG(g_PLAPI, "GiveNamedItem did not need to be unhooked.");
+			 g_pSM->LogMessage(myself, "GiveNamedItem did not need to be unhooked.");
 		}
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
