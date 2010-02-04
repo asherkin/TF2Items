@@ -37,7 +37,7 @@
 /* Basic information exposed publicly */
 #define SMEXT_CONF_NAME			"TF2Items"
 #define SMEXT_CONF_DESCRIPTION	"TF2 Item Modifier"
-#define SMEXT_CONF_VERSION		"1.2.2"
+#define SMEXT_CONF_VERSION		"1.2.2-dev"
 #define SMEXT_CONF_AUTHOR		"Asherkin & AzuiSleet & Damizean"
 #define SMEXT_CONF_URL			"http://limetech.org/"
 #define SMEXT_CONF_LOGTAG		"TF2ITEMS"
@@ -69,7 +69,7 @@
 //#define SMEXT_ENABLE_MENUS
 //#define SMEXT_ENABLE_ADTFACTORY
 #define SMEXT_ENABLE_PLUGINSYS
-#define SMEXT_ENABLE_ADMINSYS
+//#define SMEXT_ENABLE_ADMINSYS
 //#define SMEXT_ENABLE_TEXTPARSERS
 //#define SMEXT_ENABLE_USERMSGS
 //#define SMEXT_ENABLE_TRANSLATOR

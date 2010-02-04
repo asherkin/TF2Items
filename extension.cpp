@@ -24,7 +24,6 @@
  *	Damizean				-	Fixed padding for CScriptCreatedItem in Linux. Wrote the SourcePawn Interface.
  *	Wazz					-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *.
  *	MatthiasVance			-	Reminded me to comment out '#define INFINITE_PROBLEMS 1'.
- *	yakbot					-	Providing endless fun in #sourcemod while coding.
  *	voogru & Drunken_F00l	-	Inspiring the creation of this.
  */
 
@@ -42,7 +41,6 @@ TF2Items g_TF2Items;
 SMEXT_LINK(&g_TF2Items);
 
 SH_DECL_HOOK2_void(IServerGameClients, ClientPutInServer, SH_NOATTRIB, 0, edict_t *, char const *);
-SH_DECL_HOOK6(IServerGameDLL, LevelInit, SH_NOATTRIB, 0, bool, const char *, const char *, const char *, const char *, bool, bool);
 SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CScriptCreatedItem *, bool);
 
 ICvar *icvar = NULL;
@@ -52,14 +50,12 @@ IBaseFileSystem *filesystem = NULL;
 
 ConVar TF2ItemsVersion("tf2items_version", "1.2.2", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
 ConVar TF2ItemsEnabled("sm_tf2items_enabled", "1", 0);
-ConVar *pTagsVar = NULL;
 
 IGameConfig *g_pGameConf = NULL;
 KeyValues *g_pCustomWeapons = new KeyValues("weapon_invalid");
 
 int GiveNamedItem_Hook = 0;
 int ClientPutInServer_Hook = 0;
-int LevelInit_Hook = 0;
 
 IForward * g_pForwardGiveItem = NULL;
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
@@ -334,40 +330,6 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 	}
 }
 
-void AddTag() {
-	if (pTagsVar == NULL) {
-		return;
-	}
-
-	const char *curTags = pTagsVar->GetString();
-	const char *ourTag = "customweapons";
-
-	if (strstr(curTags, ourTag) != NULL) {
-		/* Already tagged */
-		return;
-	}
-
-	/* New tags buffer (+2 for , and null char) */
-	int newLen = strlen(curTags) + strlen(ourTag) + 2;
-	char *newTags = new char[newLen];
-
-	g_pSM->Format(newTags, newLen, "%s,%s", curTags, ourTag);
-
-	pTagsVar->SetValue(newTags);
-
-	delete [] newTags;
-}
-
-bool LevelInitHook(char const *pMapName, char const *pMapEntities, char const *pOldLevel, char const *pLandmarkName, bool loadGame, bool background) {
-	#ifdef TF2ITEMS_DEBUG_HOOKING
-		META_LOG(g_PLAPI, "LevelInit called.");
-	#endif // TF2ITEMS_DEBUG_HOOKING
-	if (TF2ItemsEnabled.GetBool()) {
-		AddTag();
-	}
-	return true;
-}
-
 bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 
 	char conf_error[255] = "";
@@ -388,20 +350,6 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 	} else {
 		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, iOffset, 0, 0);
 	}
-
-	/*
-	#ifndef _LINUX
-		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, 449, 0, 0); // Windows
-		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "GiveNamedItem offset set. (Windows)");
-		#endif // TF2ITEMS_DEBUG_HOOKING
-	#else
-		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, 456, 0, 0); // Linux
-		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "GiveNamedItem offset set. (Linux)");
-		#endif // TF2ITEMS_DEBUG_HOOKING
-	#endif
-	*/	
 
 	// If it's a late load, there might be the chance there are players already on the server. Just
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean
@@ -536,12 +484,6 @@ bool TF2Items::SDK_OnMetamodLoad(ISmmAPI *ismm, char *error, size_t maxlen, bool
 	}
 
 	g_pCVar = icvar;
-	pTagsVar = icvar->FindVar("sv_tags");
-
-	LevelInit_Hook = SH_ADD_HOOK(IServerGameDLL, LevelInit, gamedll, SH_STATIC(LevelInitHook), true);
-	#ifdef TF2ITEMS_DEBUG_HOOKING
-		META_LOG(g_PLAPI, "LevelInit hooked.");
-	#endif // TF2ITEMS_DEBUG_HOOKING
 
 	ConVar_Register(0, this);
 
@@ -591,19 +533,6 @@ bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
 	#ifdef TF2ITEMS_DEBUG_HOOKING
 		else {
 			META_LOG(g_PLAPI, "GiveNamedItem did not need to be unhooked.");
-		}
-	#endif // TF2ITEMS_DEBUG_HOOKING
-
-	if (LevelInit_Hook != 0) {
-		SH_REMOVE_HOOK_ID(LevelInit_Hook);
-		LevelInit_Hook = 0;
-		#ifdef TF2ITEMS_DEBUG_HOOKING
-			META_LOG(g_PLAPI, "LevelInit unhooked.");
-		#endif // TF2ITEMS_DEBUG_HOOKING
-	}
-	#ifdef TF2ITEMS_DEBUG_HOOKING
-		else {
-			META_LOG(g_PLAPI, "LevelInit did not need to be unhooked.");
 		}
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
