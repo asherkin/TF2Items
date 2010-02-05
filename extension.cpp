@@ -46,7 +46,7 @@ ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
 IServerGameEnts *gameents = NULL;
 
-ConVar TF2ItemsVersion("tf2items_version", "1.2.2", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
+ConVar TF2ItemsVersion("tf2items_version", "1.3.0", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
 
 IGameConfig *g_pGameConf = NULL;
 

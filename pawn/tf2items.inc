@@ -18,7 +18,7 @@
  * with GiveNamedItem. Remember to free the object with CloseHandle()
  *
  * @param iFlags		Flags used to specify what to override.
- * @return			Handle to the TFItems object.
+ * @return				Handle to the TFItems object.
  */
 native Handle:TF2Items_CreateItem(iFlags);
 
@@ -26,7 +26,7 @@ native Handle:TF2Items_CreateItem(iFlags);
  * Sets the flags to determine what the item will override on the GiveNamedItem.
  * Use the OVERRIDE_ defines to set what you will be changing.
  *
- * @param hItem		Handle to the TF2Items object that we'll be operating with.
+ * @param hItem			Handle to the TF2Items object that we'll be operating with.
  * @param iFlags		Flags used to specify what to override.
  * @noreturn
  */
@@ -56,7 +56,7 @@ native TF2Items_SetItemIndex(Handle:hItem, iItemDefIndex);
  * Sets the item's quality value, wich determines what color will be used for
  * the item name. Valid values are from 0 to 9.
  * 
- * @param hItem				Handle to the TF2Items object that we'll be operating with.
+ * @param hItem					Handle to the TF2Items object that we'll be operating with.
  * @param iEntityQuality		New item quality.
  * @noreturn
  */
@@ -75,7 +75,7 @@ native TF2Items_SetLevel(Handle:hItem, iEntityLevel);
  * Sets the number of attributes that will be used on the item. The maximum
  * number of attributes that can be allocated ranges from 0 to 15.
  * 
- * @param hItem				Handle to the TF2Items object that we'll be operating with.
+ * @param hItem					Handle to the TF2Items object that we'll be operating with.
  * @param iNumAttributes		Number of attributes.
  * @noreturn
  */
@@ -85,10 +85,10 @@ native TF2Items_SetNumAttributes(Handle:hItem, iNumAttributes);
  * Setups the given attribute index to use the attribute and values specified
  * with iAttribDefIndex and flValue. Remember the iSlotIndex ranges from 0 to 15.
  * 
- * @param hItem				Handle to the TF2Items object that we'll be operating with.
+ * @param hItem					Handle to the TF2Items object that we'll be operating with.
  * @param iSlotIndex			The attribute slot index, ranges from 0 to 15.
- * @param iAttribDefIndex	The attribute definition index, as it appears on game_items.txt.
- * @param flValue			The value assigned to the attribute (how much health, damage, etc.).
+ * @param iAttribDefIndex		The attribute definition index, as it appears on game_items.txt.
+ * @param flValue				The value assigned to the attribute (how much health, damage, etc.).
  * @noreturn
  */
 native TF2Items_SetAttribute(Handle:hItem, iSlotIndex, iAttribDefIndex, Float:flValue);

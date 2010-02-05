@@ -6,16 +6,16 @@
 #include <tf2items>
 
 // ====[ CONSTANTS ]===================================================
-#define PLUGIN_NAME			  "[TF2Items] Manager"
-#define PLUGIN_AUTHOR			"Damizean & Asherkin"
-#define PLUGIN_VERSION		   "1.1.0"
-#define PLUGIN_CONTACT		   "http://limetech.org/"
+#define PLUGIN_NAME		"[TF2Items] Manager"
+#define PLUGIN_AUTHOR		"Damizean & Asherkin"
+#define PLUGIN_VERSION		"1.1.0"
+#define PLUGIN_CONTACT		"http://limetech.org/"
 
-#define ARRAY_SIZE			   2
-#define ARRAY_ITEM			   0
-#define ARRAY_FLAGS			  1
+#define ARRAY_SIZE			2
+#define ARRAY_ITEM			0
+#define ARRAY_FLAGS		1
 
-#define DEBUG
+//#define DEBUG
 
 // ====[ VARIABLES ]===================================================
 new Handle:g_hPlayerInfo;
@@ -26,11 +26,11 @@ new Handle:g_hCvarEnabled;
 // ====[ PLUGIN ]======================================================
 public Plugin:myinfo =
 {
-	name		= PLUGIN_NAME,
-	author	  = PLUGIN_AUTHOR,
-	description = PLUGIN_NAME,
-	version	 = PLUGIN_VERSION,
-	url		 = PLUGIN_CONTACT
+	name			= PLUGIN_NAME,
+	author			= PLUGIN_AUTHOR,
+	description	= PLUGIN_NAME,
+	version		= PLUGIN_VERSION,
+	url				= PLUGIN_CONTACT
 };
 
 // ====[ FUNCTIONS ]===================================================
@@ -59,10 +59,12 @@ public OnPluginStart()
 public Action:TF2Items_OnGiveNamedItem(iClient, String:strClassName[], iItemDefinitionIndex, &Handle:hItemOverride)
 {
 	// If disabled, use the default values.
-	if (GetConVarBool(g_hCvarEnabled) == false) return Plugin_Continue;
+	if (GetConVarBool(g_hCvarEnabled) == false)
+		return Plugin_Continue;
 	
 	// If another plugin already tryied to override the item, let him go ahead.
-	if (hItemOverride != INVALID_HANDLE) return Plugin_Continue; // Plugin_Changed
+	if (hItemOverride != INVALID_HANDLE)
+		return Plugin_Continue; // Plugin_Changed
 	
 	// Find item. If any is found, override the attributes with these.
 	new Handle:hItem = FindItem(iClient, iItemDefinitionIndex);
@@ -78,7 +80,7 @@ public Action:TF2Items_OnGiveNamedItem(iClient, String:strClassName[], iItemDefi
 
 /*
  * ------------------------------------------------------------------
- *	______										  __	
+ *    ______                                          __    
  *   / ____/___  ____ ___  ____ ___  ____ _____  ____/ /____
  *  / /   / __ \/ __ `__ \/ __ `__ \/ __ `/ __ \/ __  / ___/
  * / /___/ /_/ / / / / / / / / / / / /_/ / / / / /_/ (__  ) 
@@ -93,8 +95,10 @@ public Action:TF2Items_OnGiveNamedItem(iClient, String:strClassName[], iItemDefi
 public Action:CmdReload(iClient, iAction)
 {
 	// Fire a message telling about the operation.
-	if (iClient) ReplyToCommand(iClient, "Reloading items list");
-	else		 LogMessage("Reloading items list");
+	if (iClient)
+		ReplyToCommand(iClient, "Reloading items list");
+	else
+		LogMessage("Reloading items list");
 	
 	// Call the ParseItems function.
 	ParseItems();
@@ -103,12 +107,12 @@ public Action:CmdReload(iClient, iAction)
 
 /*
  * ------------------------------------------------------------------
- *	 __  ___												  __ 
- *	/  |/  /___ _____  ____ _____ ____  ____ ___  ___  ____  / /_
+ *     __  ___                                                  __ 
+ *    /  |/  /___ _____  ____ _____ ____  ____ ___  ___  ____  / /_
  *   / /|_/ / __ `/ __ \/ __ `/ __ `/ _ \/ __ `__ \/ _ \/ __ \/ __/
  *  / /  / / /_/ / / / / /_/ / /_/ /  __/ / / / / /  __/ / / / /_  
  * /_/  /_/\__,_/_/ /_/\__,_/\__, /\___/_/ /_/ /_/\___/_/ /_/\__/  
- *						  /____/								 
+ *                          /____/                                 
  * ------------------------------------------------------------------
  */
 
@@ -119,7 +123,8 @@ public Action:CmdReload(iClient, iAction)
 Handle:FindItem(iClient, iItemDefinitionIndex)
 {
 	// Check if the player is valid
-	if (!IsValidClient(iClient)) return INVALID_HANDLE;
+	if (!IsValidClient(iClient))
+		return INVALID_HANDLE;
 	
 	// Retrieve the STEAM auth string
 	new String:strAuth[64];
@@ -132,7 +137,8 @@ Handle:FindItem(iClient, iItemDefinitionIndex)
 	// Check for each.
 	new Handle:hOutput;
 	hOutput = FindItemOnArray(iClient, hItemArray, iItemDefinitionIndex);
-	if (hOutput == INVALID_HANDLE) hOutput = FindItemOnArray(iClient, g_hGlobalSettings, iItemDefinitionIndex);
+	if (hOutput == INVALID_HANDLE)
+		hOutput = FindItemOnArray(iClient, g_hGlobalSettings, iItemDefinitionIndex);
 	
 	// Done
 	return hOutput;
@@ -145,7 +151,9 @@ Handle:FindItem(iClient, iItemDefinitionIndex)
 Handle:FindItemOnArray(iClient, Handle:hArray, iItemDefinitionIndex)
 {
 	// Check if the array is valid.
-	if (hArray == INVALID_HANDLE) return INVALID_HANDLE;
+	if (hArray == INVALID_HANDLE)
+		return INVALID_HANDLE;
+		
 	new Handle:hWildcardItem = INVALID_HANDLE;
 	
 	// Iterate through each item entry and close the handle.
@@ -154,7 +162,8 @@ Handle:FindItemOnArray(iClient, Handle:hArray, iItemDefinitionIndex)
 		// Retrieve item
 		new Handle:hItem = GetArrayCell(hArray, iItem, ARRAY_ITEM);
 		new iItemFlags = GetArrayCell(hArray, iItem, ARRAY_FLAGS);
-		if (hItem == INVALID_HANDLE) continue;
+		if (hItem == INVALID_HANDLE)
+			continue;
 		
 		// Is a wildcard item? If so, store it.
 		if (TF2Items_GetItemIndex(hItem) == -1 && hWildcardItem == INVALID_HANDLE)
@@ -178,11 +187,14 @@ Handle:FindItemOnArray(iClient, Handle:hArray, iItemDefinitionIndex)
  * -------------------------------------------------------------------------- */
 bool:CheckItemUsage(iClient, iFlags)
 {
-	if (iFlags == 0) return true;
+	if (iFlags == 0)
+		return true;
 	
 	new iClientFlags = GetUserFlagBits(iClient);
-	if (iClientFlags & ADMFLAG_ROOT) return true;
-	else return (iClientFlags & iFlags) != 0;
+	if (iClientFlags & ADMFLAG_ROOT)
+		return true;
+	else 
+		return (iClientFlags & iFlags) != 0;
 }
 
 /* ParseItems()
@@ -198,27 +210,23 @@ ParseItems()
 	DestroyItems();
 	
 	// Create key values object and parse file.
-	BuildPath(Path_SM, strBuffer, sizeof(strBuffer), "data/customweps.txt");
+	BuildPath(Path_SM, strBuffer, sizeof(strBuffer), "configs/tf2items.weapons.txt");
 	new Handle:hKeyValues = CreateKeyValues("TF2Items");
 	if (FileToKeyValues(hKeyValues, strBuffer) == false)
-	{
 		SetFailState("Error, can't read file containing the item list : %s", strBuffer);
-	}
 	
 	// Check the version
 	KvGetSectionName(hKeyValues, strBuffer, sizeof(strBuffer));
 	if (StrEqual("custom_weapons_v3", strBuffer) == false)
-	{
-		SetFailState("customweps.txt structure corrupt or incorrect version: \"%s\"", strBuffer);
-	}
+		SetFailState("tf2items.weapons.txt structure corrupt or incorrect version: \"%s\"", strBuffer);
 	
 	// Create the array and trie to store & access the item information.
 	g_hPlayerArray = CreateArray();
 	g_hPlayerInfo = CreateTrie();
 	
 	#if defined DEBUG
-	LogMessage("Parsing items");
-	LogMessage("{");
+		LogMessage("Parsing items");
+		LogMessage("{");
 	#endif 
 	
 	// Jump into the first subkey and go on.
@@ -235,9 +243,9 @@ ParseItems()
 			PushArrayCell(g_hPlayerArray, hEntry);
 			
 			#if defined DEBUG
-			LogMessage("  Entry", strBuffer);
-			LogMessage("  {");
-			LogMessage("    Used by:");
+				LogMessage("  Entry", strBuffer);
+				LogMessage("  {");
+				LogMessage("    Used by:");
 			#endif
 			
 			// Iterate through each player auth strings and make an
@@ -248,19 +256,19 @@ ParseItems()
 				SetTrieValue(g_hPlayerInfo, strSplit[iAuth], hEntry);
 				
 				#if defined DEBUG
-				LogMessage("    \"%s\"", strSplit[iAuth]);
+					LogMessage("    \"%s\"", strSplit[iAuth]);
 				#endif
 			}
 			
 			#if defined DEBUG
-			LogMessage("");
+				LogMessage("");
 			#endif
 			
 			// Read all the item entries
 			ParseItemsEntry(hKeyValues, hEntry);
 			
 			#if defined DEBUG
-			LogMessage("  }");
+				LogMessage("  }");
 			#endif
 		}
 		while (KvGotoNextKey(hKeyValues));
@@ -275,7 +283,7 @@ ParseItems()
 	
 	// Done.
 	#if defined DEBUG
-	LogMessage("}");
+		LogMessage("}");
 	#endif
 }
 
@@ -299,12 +307,14 @@ ParseItemsEntry(Handle:hKeyValues, Handle:hEntry)
 			
 			// Retrieve item definition index and store.
 			KvGetSectionName(hKeyValues, strBuffer, sizeof(strBuffer));
-			if (strBuffer[0] == '*') TF2Items_SetItemIndex(hItem, -1);
-			else					 TF2Items_SetItemIndex(hItem, StringToInt(strBuffer));
+			if (strBuffer[0] == '*')
+				TF2Items_SetItemIndex(hItem, -1);
+			else
+				TF2Items_SetItemIndex(hItem, StringToInt(strBuffer));
 			
 			#if defined DEBUG
-			LogMessage("    Item: %i", TF2Items_GetItemIndex(hItem));
-			LogMessage("    {");
+				LogMessage("    Item: %i", TF2Items_GetItemIndex(hItem));
+				LogMessage("    {");
 			#endif
 			
 			// Retrieve entity level
@@ -316,8 +326,8 @@ ParseItemsEntry(Handle:hKeyValues, Handle:hEntry)
 			}
 			
 			#if defined DEBUG
-			if (iItemFlags & OVERRIDE_ITEM_LEVEL)
-				LogMessage("      Level: %i", TF2Items_GetLevel(hItem));
+				if (iItemFlags & OVERRIDE_ITEM_LEVEL)
+					LogMessage("      Level: %i", TF2Items_GetLevel(hItem));
 			#endif
 			
 			// Retrieve entity quality
@@ -329,8 +339,8 @@ ParseItemsEntry(Handle:hKeyValues, Handle:hEntry)
 			}
 			
 			#if defined DEBUG
-			if (iItemFlags & OVERRIDE_ITEM_QUALITY)
-				LogMessage("      Quality: %i", TF2Items_GetQuality(hItem));
+				if (iItemFlags & OVERRIDE_ITEM_QUALITY)
+					LogMessage("      Quality: %i", TF2Items_GetQuality(hItem));
 			#endif
 			
 			// Read all the attributes
@@ -342,8 +352,7 @@ ParseItemsEntry(Handle:hKeyValues, Handle:hEntry)
 				
 				// Try to read the attribute
 				KvGetString(hKeyValues, strBuffer, strBuffer2, sizeof(strBuffer2));
-					
-			
+				
 				// If not found, break.
 				if (strBuffer2[0] == '\0') break;
 				
@@ -356,10 +365,11 @@ ParseItemsEntry(Handle:hKeyValues, Handle:hEntry)
 				TF2Items_SetAttribute(hItem, iAttributeCount, iAttributeIndex, fAttributeValue);
 				
 				#if defined DEBUG
-				LogMessage("      Attribute[%i] : %i / %f",
-				iAttributeCount,
-				TF2Items_GetAttributeId(hItem, iAttributeCount),
-				TF2Items_GetAttributeValue(hItem, iAttributeCount));
+					LogMessage("      Attribute[%i] : %i / %f",
+						iAttributeCount,
+						TF2Items_GetAttributeId(hItem, iAttributeCount),
+						TF2Items_GetAttributeValue(hItem, iAttributeCount)
+					);
 				#endif
 				
 				// Increase attribute count and continue.
@@ -384,9 +394,9 @@ ParseItemsEntry(Handle:hKeyValues, Handle:hEntry)
 			SetArrayCell(hEntry, GetArraySize(hEntry)-1, iFlags, ARRAY_FLAGS);
 			
 			#if defined DEBUG
-			LogMessage("      Flags: %05b", TF2Items_GetFlags(hItem));
-			LogMessage("      Admin: %s", ((iFlags == 0)? "(none)":strBuffer));
-			LogMessage("    }");
+				LogMessage("      Flags: %05b", TF2Items_GetFlags(hItem));
+				LogMessage("      Admin: %s", ((iFlags == 0)? "(none)":strBuffer));
+				LogMessage("    }");
 			#endif
 		}
 		while (KvGotoNextKey(hKeyValues));
@@ -408,14 +418,16 @@ DestroyItems()
 		{
 			// Retrieve the item array.
 			new Handle:hItemArray = GetArrayCell(g_hPlayerArray, iEntry);
-			if (hItemArray == INVALID_HANDLE) continue;
+			if (hItemArray == INVALID_HANDLE)
+				continue;
 			
 			// Iterate through each item entry and close the handle.
 			for (new iItem = 0; iItem < GetArraySize(hItemArray); iItem++)
 			{
 				// Retrieve item
 				new Handle:hItem = GetArrayCell(hItemArray, iItem);
-				if (hItem == INVALID_HANDLE) continue;
+				if (hItem == INVALID_HANDLE)
+					continue;
 				
 				// Close handle
 				CloseHandle(hItem);
@@ -444,7 +456,9 @@ DestroyItems()
  * -------------------------------------------------------------------------- */
 bool:IsValidClient(iClient)
 {
-	if (iClient < 1 || iClient > MaxClients) return false;
-	if (!IsClientConnected(iClient)) return false;
+	if (iClient < 1 || iClient > MaxClients)
+		return false;
+	if (!IsClientConnected(iClient))
+		return false;
 	return IsClientInGame(iClient);
 }

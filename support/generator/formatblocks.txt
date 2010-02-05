@@ -33,7 +33,7 @@ $]$	}
 
 custom_weapons_v3
 --------------------------------------------------------------------------
-"$itemindex$"
+"$itemindex$"	// $classname$
 {
 	"quality"	"$quality$"
 	"level"		"$level$"

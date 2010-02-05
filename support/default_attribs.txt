@@ -1,0 +1,186 @@
+"35"	// tf_weapon_medigun
+{
+	"quality"	"3"
+	"level"		"8"
+	"1"		"18 ; 1.0"
+	"2"		"10 ; 1.25"
+}
+
+"36"	// tf_weapon_syringegun_medic
+{
+	"quality"	"3"
+	"level"		"5"
+	"1"		"16 ; 3.0"
+	"2"		"129 ; -2.0"
+}
+
+"37"	// tf_weapon_bonesaw
+{
+	"quality"	"3"
+	"level"		"10"
+	"1"		"17 ; 0.25"
+	"2"		"5 ; 1.2"
+}
+
+"38"	// tf_weapon_fireaxe
+{
+	"quality"	"3"
+	"level"		"10"
+	"1"		"20 ; 1.0"
+	"2"		"21 ; 0.5"
+	"3"		"22 ; 1.0"
+}
+
+"39"	// tf_weapon_flaregun
+{
+	"quality"	"3"
+	"level"		"10"
+	"1"		"25 ; 0.5"
+}
+
+"40"	// tf_weapon_flamethrower
+{
+	"quality"	"3"
+	"level"		"10"
+	"1"		"23 ; 1.0"
+	"2"		"24 ; 1.0"
+	"3"		"28 ; 0.0"
+}
+
+"41"	// tf_weapon_minigun
+{
+	"quality"	"3"
+	"level"		"5"
+	"1"		"32 ; 1.0"
+	"2"		"1 ; 0.75"
+}
+
+"42"	// tf_weapon_lunchbox
+{
+	"quality"	"3"
+	"level"		"1"
+}
+
+"43"	// tf_weapon_fists
+{
+	"quality"	"3"
+	"level"		"7"
+	"1"		"31 ; 5.0"
+	"2"		"5 ; 1.2"
+}
+
+"44"	// tf_weapon_bat_wood
+{
+	"quality"	"3"
+	"level"		"15"
+	"1"		"38 ; 1.0"
+	"2"		"125 ; -15.0"
+}
+
+"45"	// tf_weapon_scattergun
+{
+	"quality"	"3"
+	"level"		"10"
+	"1"		"44 ; 1.0"
+	"2"		"6 ; 0.5"
+	"3"		"45 ; 1.2"
+	"4"		"1 ; 0.9"
+	"5"		"3 ; 0.4"
+	"6"		"43 ; 1.0"
+}
+
+"46"	// tf_weapon_lunchbox_drink
+{
+	"quality"	"3"
+	"level"		"5"
+}
+
+"56"	// tf_weapon_compound_bow
+{
+	"quality"	"3"
+	"level"		"10"
+	"1"		"37 ; 0.5"
+}
+
+"58"	// tf_weapon_jar
+{
+	"quality"	"3"
+	"level"		"5"
+	"1"		"56 ; 1.0"
+}
+
+"59"	// tf_weapon_invis
+{
+	"quality"	"3"
+	"level"		"5"
+	"1"		"33 ; 1.0"
+	"2"		"34 ; 1.6"
+	"3"		"35 ; 1.8"
+}
+
+"60"	// tf_weapon_invis
+{
+	"quality"	"3"
+	"level"		"5"
+	"1"		"48 ; 2.0"
+	"2"		"35 ; 2.0"
+}
+
+"61"	// tf_weapon_revolver
+{
+	"quality"	"3"
+	"level"		"5"
+	"1"		"51 ; 1.0"
+	"2"		"1 ; 0.85"
+	"3"		"5 ; 1.2"
+}
+
+"127"	// tf_weapon_rocketlauncher_directhit
+{
+	"quality"	"3"
+	"level"		"1"
+	"1"		"100 ; 0.3"
+	"2"		"103 ; 1.8"
+	"3"		"2 ; 1.25"
+	"4"		"114 ; 1.0"
+}
+
+"128"	// tf_weapon_shovel
+{
+	"quality"	"3"
+	"level"		"10"
+	"1"		"115 ; 1.0"
+}
+
+"129"	// tf_weapon_buff_item
+{
+	"quality"	"3"
+	"level"		"5"
+}
+
+"130"	// tf_weapon_pipebomblauncher
+{
+	"quality"	"3"
+	"level"		"5"
+	"1"		"119 ; 1.0"
+	"2"		"121 ; 1.0"
+	"3"		"78 ; 1.5"
+	"4"		"88 ; 6.0"
+	"5"		"120 ; 0.4"
+}
+
+"131"	// tf_wearable_item_demoshield
+{
+	"quality"	"3"
+	"level"		"10"
+	"1"		"60 ; 0.5"
+	"2"		"64 ; 0.5"
+}
+
+"132"	// tf_weapon_sword
+{
+	"quality"	"3"
+	"level"		"5"
+	"1"		"15 ; 0.0"
+	"2"		"125 ; -25.0"
+}
