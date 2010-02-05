@@ -56,7 +56,6 @@ int ClientPutInServer_Hook = 0;
 IForward * g_pForwardGiveItem = NULL;
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
 TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
-void * g_pScriptCreatedVTable = NULL;
 
 sp_nativeinfo_t g_ExtensionNatives[] =
 {
@@ -80,22 +79,13 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 	{ NULL,							NULL }
 };
 
-CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverride * p_hOverride, IPluginContext *pContext)
-{
-	// Check if the vtable for CScriptCreatedItem is known at this point.
-	if (g_pScriptCreatedVTable == NULL)
-	{
-		if (pContext != NULL) pContext->ThrowNativeError("The virtual table for CScriptCreatedItem is unknown at this point. Impossible to summon GiveNamedItem.");
-		else                  g_pSM->LogError(myself, "The virtual table for CScriptCreatedItem is unknown at this point. Impossible to summon GiveNamedItem.");
-		return NULL;
-	}
+CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverride * p_hOverride, IPluginContext *pContext) {
 
 	// Create new script created item object and prepare it.
 	CScriptCreatedItem hScriptCreatedItem;
 	memset(&hScriptCreatedItem, 0, sizeof(CScriptCreatedItem));
 	
 	char * strWeaponClassname = p_hOverride->m_strWeaponClassname;
-	hScriptCreatedItem.m_pVTable = g_pScriptCreatedVTable;
 	hScriptCreatedItem.m_iItemDefinitionIndex = p_hOverride->m_iItemDefinitionIndex;
 	hScriptCreatedItem.m_iEntityLevel = p_hOverride->m_iEntityLevel;
 	hScriptCreatedItem.m_iEntityQuality = p_hOverride->m_iEntityQuality;
@@ -119,9 +109,6 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	if (cscript == NULL) {
 		RETURN_META_VALUE(MRES_IGNORED, NULL);
 	}
-
-	// Retrieve the pointer to the CScriptCreatedItem vtable
-	if (g_pScriptCreatedVTable == NULL) g_pScriptCreatedVTable = cscript->m_pVTable;
 
 	// Retrieve client index and auth string.
 	edict_t *playerEdict = gameents->BaseEntityToEdict((CBaseEntity *)player);
@@ -286,8 +273,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 	// Create forwards
 	g_pForwardGiveItem = g_pForwards->CreateForward("TF2Items_OnGiveNamedItem", ET_Hook, 4, NULL, Param_Cell, Param_String, Param_Cell, Param_CellByRef);
 
-	g_pSM->LogMessage(myself, "Starting plugin.");
-	g_pSM->LogMessage(myself, "GiveNamedItem offset is: %d.", iOffset);
+	g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
 
 	return true;
 }

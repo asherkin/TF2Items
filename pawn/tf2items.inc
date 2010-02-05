@@ -176,10 +176,6 @@ native Float:TF2Items_GetAttributeValue(Handle:hItem, iSlotIndex);
  * so please make sure you fill out everything: Classname, item definition index,
  * quality, level and attributes.
  * 
- * IMPORTANT: This function is only enabled after the VTable for the
- * CScriptCreatedItem is known. This means, it'll be usable immediately after
- * the first client gets in-game and the game generates at least one item.
- * 
  * @param iClient	Client that the item will be generated for.
  * @param hItem		Handle to the TF2Items object that we'll be operating with.
  * @return			Entity index of the newly created item.

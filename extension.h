@@ -66,7 +66,7 @@ public:
 	void * m_pVTable;
 
 #ifndef _LINUX
-	void * m_pPersistentItem;						// Present before in Windows?
+	void * m_pPersistentItem;						// Present before in Linux?
 #endif
 	uint32 m_iItemDefinitionIndex;					// Win: Offset 8 / Linux: Offset 4
 	uint8 m_iEntityQuality; uint8 m_iPadding1[3];	// Win: Offset 12 / Linux: Offset 8
@@ -211,6 +211,5 @@ extern HandleType_t g_ScriptedItemOverrideHandleType;
 extern TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
 extern sp_nativeinfo_t g_ExtensionNatives[];
 extern IForward * g_pForwardGiveItem;
-extern void * g_pScriptCreatedVTable;
 
 #endif // _INCLUDE_SOURCEMOD_EXTENSION_PROPER_H_
