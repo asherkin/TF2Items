@@ -34,6 +34,7 @@
  *	==================
  */
 //#define TF2ITEMS_DEBUG_HOOKING
+//#define TF2ITEMS_DEBUG_ITEMS
 
 TF2Items g_TF2Items;
 
@@ -115,6 +116,13 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	IGamePlayer * pPlayer = playerhelpers->GetGamePlayer(playerEdict);
 	int client = gamehelpers->IndexOfEdict(playerEdict);
 
+#ifdef TF2ITEMS_DEBUG_ITEMS
+	g_pSM->LogMessage(myself, "---------------------------------------");
+	g_pSM->LogMessage(myself, ">>> ItemDefinitionIndex = %d", cscript->m_iItemDefinitionIndex);
+	g_pSM->LogMessage(myself, ">>> ClassName = %s", item);
+	g_pSM->LogMessage(myself, "---------------------------------------");
+#endif
+
 	// Summon forward
 	cell_t cellResults = 0;
 	cell_t cellOverrideHandle = 0;
@@ -145,8 +153,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
-					// Even if we don't want to override the item quality, do if it's set to
-					// 0.
+					// Even if we don't want to override the item quality, do if it's set to 0.
 					if (newitem.m_iEntityQuality == 0) newitem.m_iEntityQuality = 9;
 
 					// Setup the attributes.
