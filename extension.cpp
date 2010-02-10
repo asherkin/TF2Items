@@ -154,7 +154,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
 					// Even if we don't want to override the item quality, do if it's set to 0.
-					if (newitem.m_iEntityQuality == 0) newitem.m_iEntityQuality = 9;
+					if (newitem.m_iEntityQuality == 0 && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 9;
 
 					// Setup the attributes.
 					newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
