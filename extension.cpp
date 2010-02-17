@@ -42,6 +42,7 @@ SMEXT_LINK(&g_TF2Items);
 
 SH_DECL_HOOK2_void(IServerGameClients, ClientPutInServer, SH_NOATTRIB, 0, edict_t *, char const *);
 SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CScriptCreatedItem *, bool);
+//SH_DECL_MANUALHOOK2(MHook_GiveNamedItemBackup, 385, 0, 0, CBaseEntity *, char const *, int);
 
 ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
@@ -93,10 +94,28 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 	hScriptCreatedItem.m_pAttributes = hScriptCreatedItem.m_pAttributes2 = p_hOverride->m_Attributes;
 	hScriptCreatedItem.m_iAttributesCount = hScriptCreatedItem.m_iAttributesLength = p_hOverride->m_iCount;
 	hScriptCreatedItem.m_bInitialized = true;
-	if (hScriptCreatedItem.m_iEntityLevel == 0) hScriptCreatedItem.m_iEntityLevel = 9;
+	if (hScriptCreatedItem.m_iEntityQuality == 0 && hScriptCreatedItem.m_iAttributesCount > 0) hScriptCreatedItem.m_iEntityQuality = 9;
 
 	// Call the function.
-	return SH_MCALL(p_hPlayer, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, 0);
+	CBaseEntity *tempItem = NULL;
+	tempItem = SH_MCALL(p_hPlayer, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, 0);
+
+	if (tempItem == NULL) {
+		pContext->ThrowNativeError("Item is NULL. You have hit Bug 18.");
+		//g_pSM->LogError(myself, "Item is NULL.");
+		//tempItem = SH_MCALL(p_hPlayer, MHook_GiveNamedItem)(strWeaponClassname, 0, NULL, 0);
+	}
+
+	//if (tempItem == NULL) {
+	//	g_pSM->LogError(myself, "Item is still NULL.");
+	//	tempItem = SH_MCALL(p_hPlayer, MHook_GiveNamedItemBackup)(strWeaponClassname, 0);
+	//}
+
+	//if (tempItem == NULL) {
+	//	g_pSM->LogError(myself, "Item is fucked.");
+	//}
+
+	return tempItem;
 }
 
 CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *cscript, bool b) {

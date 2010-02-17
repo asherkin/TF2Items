@@ -1269,6 +1269,7 @@
 		{
 			"name"	"Demo Hat 1"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Demo_Hat_1"
@@ -1288,6 +1289,7 @@
 		{
 			"name"	"Engineer Hat 1"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Engineer_Hat_1"
@@ -1307,6 +1309,7 @@
 		{
 			"name"	"Heavy Hat 1"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Heavy_Hat_1"
@@ -1326,6 +1329,7 @@
 		{
 			"name"	"Medic Hat 1"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Medic_Hat_1"
@@ -1345,6 +1349,7 @@
 		{
 			"name"	"Pyro Hat 1"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Pyro_Hat_1"
@@ -1364,6 +1369,7 @@
 		{
 			"name"	"Scout Hat 1"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Scout_Hat_1"
@@ -1383,6 +1389,7 @@
 		{
 			"name"	"Sniper Hat 1"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Sniper_Hat_1"
@@ -1402,6 +1409,7 @@
 		{
 			"name"	"Soldier Hat 1"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Soldier_Hat_1"
@@ -1421,6 +1429,7 @@
 		{
 			"name"	"Spy Hat 1"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Spy_Hat_1"
@@ -1655,6 +1664,7 @@
 		{
 			"name"	"Engineer Cowboy Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Engineer_Cowboy_Hat"
@@ -1678,6 +1688,7 @@
 		{
 			"name"	"Engineer Train Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Engineer_Train_Hat"
@@ -1701,6 +1712,7 @@
 		{
 			"name"	"Heavy Ushanka Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Heavy_Ushanka_Hat"
@@ -1720,6 +1732,7 @@
 		{
 			"name"	"Heavy Stocking Cap"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Heavy_Stocking_cap"
@@ -1739,6 +1752,7 @@
 		{
 			"name"	"Soldier Pot Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Soldier_Pot_Hat"
@@ -1762,6 +1776,7 @@
 		{
 			"name"	"Soldier Viking Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Soldier_Viking_Hat"
@@ -1785,6 +1800,7 @@
 		{
 			"name"	"Demo Scott Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Demo_Scott_Hat"
@@ -1804,6 +1820,7 @@
 		{
 			"name"	"Medic Tyrolean Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Medic_Tyrolean_Hat"
@@ -1823,6 +1840,7 @@
 		{
 			"name"	"Pyro Chicken Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Pyro_Chicken_Hat"
@@ -1842,6 +1860,7 @@
 		{
 			"name"	"Spy Camera Beard"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"weapon"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Spy_Camera_Beard"
@@ -1861,6 +1880,7 @@
 		{
 			"name"	"Medic Mirror Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Medic_Mirror_Hat"
@@ -1880,6 +1900,7 @@
 		{
 			"name"	"Pyro Fireman Helmet"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Pyro_Fireman_Helmet"
@@ -1899,6 +1920,7 @@
 		{
 			"name"	"Scout Bonk Helmet"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Scout_Bonk_Helmet"
@@ -1923,6 +1945,7 @@
 		{
 			"name"	"Scout Newsboy Cap"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Scout_Newsboy_Cap"
@@ -1947,6 +1970,7 @@
 		{
 			"name"	"Spy Derby Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Spy_Derby_Hat"
@@ -1966,6 +1990,7 @@
 		{
 			"name"	"Sniper Straw Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Sniper_Straw_Hat"
@@ -1989,6 +2014,7 @@
 		{
 			"name"	"Sniper Jarate Headband"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Sniper_Jarate_Headband"
@@ -2037,6 +2063,7 @@
 			"name"	"Halloween Hat"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"item_type_name""#TF_Wearable_Holiday_Hat"
 			"item_name"	"#TF_Halloween_Hat"
 			"item_slot"	"head"
@@ -2083,6 +2110,7 @@
 			"name"	"Domination Hat"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"item_type_name""#TF_Wearable_Hat"
 			"item_name"	"#TF_Domination_Hat"
 			"item_description"	"#TF_Domination_Hat_Desc"
@@ -2174,6 +2202,7 @@
 		{
 			"name"	"Demo Top Hat"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Demo_Top_Hat"
@@ -2275,6 +2304,7 @@
 			"name"	"Honest Halo"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"item_type_name"	"#TF_Wearable_HonestyHalo"
 			"item_name"	"#TF_HonestyHalo"
 			"item_slot"	"head"
@@ -2316,6 +2346,7 @@
 			"name"	"L4D Hat"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"loadondemand" "1"
 			"item_type_name"	"#TF_Wearable_L4DHat"
 			"item_name"	"#TF_L4DHat"
 			"item_slot"	"head"

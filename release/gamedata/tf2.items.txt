@@ -9,6 +9,16 @@
 				"windows"	"450"
 				"linux"	"457"
 			}
+			"EquipWearable"
+			{
+				"windows"	"411"
+				"linux"	"412"
+			}
+			"RemoveWearable"
+			{
+				"windows"	"412"
+				"linux"	"413"
+			}
 		}
 	}
 }
