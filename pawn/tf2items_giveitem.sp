@@ -53,11 +53,11 @@ public Action:TF2Items_OnGiveNamedItem(client, String:strClassName[], iItemDefin
 	GetTrieValue(g_hItemInfoTrie, formatBuffer, weaponSlot);
 	
 	if (g_hItems[client][weaponSlot] == -1) {
-		PrintToChat(client, "No weapon for slot %d.", weaponSlot);
+		//PrintToChat(client, "No weapon for slot %d.", weaponSlot);
 		return Plugin_Continue;
 	}
 	
-	PrintToChat(client, "Weapon in-queue for slot %d.", weaponSlot);
+	//PrintToChat(client, "Weapon in-queue for slot %d.", weaponSlot);
 	hItemOverride = PrepareItemHandle(g_hItems[client][weaponSlot]);
 	g_hItems[client][weaponSlot] = -1;
 	
@@ -113,7 +113,10 @@ public Action:Command_Weapon(client, args)
 	new entity = TF2Items_GiveNamedItem(client, hWeapon);
 	CloseHandle(hWeapon);
 	
-	EquipPlayerWeapon(client, entity);
+	if (IsValidEntity(entity))
+		EquipPlayerWeapon(client, entity);
+	else
+		g_hItems[client][weaponSlot] = weaponIndex;
 	
 	return Plugin_Handled;
 }
