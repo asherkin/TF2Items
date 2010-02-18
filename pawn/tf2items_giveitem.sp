@@ -73,13 +73,13 @@ public Action:Command_WeaponEx(client, args)
 	new weaponLookupIndex = 0;
  
 	if (args != 2) {
-		ReplyToCommand(client, "[SM] Usage: sm_giveweapon_ex <player> <itemindex>")
+		ReplyToCommand(client, "[SM] Usage: sm_giveweapon_ex <player> <itemindex>");
 		return Plugin_Handled;
 	}
 	
 	/* Get the arguments */
 	GetCmdArg(1, arg1, sizeof(arg1));
-	GetCmdArg(2, arg2, sizeof(arg2))
+	GetCmdArg(2, arg2, sizeof(arg2));
 	weaponLookupIndex = StringToInt(arg2);
  
 	/**
@@ -135,13 +135,13 @@ public Action:Command_Weapon(client, args)
 	new weaponLookupIndex = 0;
  
 	if (args != 2) {
-		ReplyToCommand(client, "[SM] Usage: sm_giveweapon <player> <itemindex>")
+		ReplyToCommand(client, "[SM] Usage: sm_giveweapon <player> <itemindex>");
 		return Plugin_Handled;
 	}
 	
 	/* Get the arguments */
 	GetCmdArg(1, arg1, sizeof(arg1));
-	GetCmdArg(2, arg2, sizeof(arg2))
+	GetCmdArg(2, arg2, sizeof(arg2));
 	weaponLookupIndex = StringToInt(arg2);
  
 	/**
@@ -645,13 +645,4 @@ CreateItemInfoTrie()
 	SetTrieValue(g_hItemInfoTrie, "132_quality", 3);
 	SetTrieValue(g_hItemInfoTrie, "132_level", 5);
 	SetTrieString(g_hItemInfoTrie, "132_attribs", "15 ; 0.0 ; 125 ; -25.0");
-}
-
-bool:IsValidClient(client)
-{
-	if (client < 1 || client > MaxClients)
-		return false;
-	if (!IsClientConnected(client))
-		return false;
-	return IsClientInGame(client);
 }
