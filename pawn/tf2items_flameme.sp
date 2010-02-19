@@ -39,6 +39,9 @@ public OnClientDisconnect_Post(client) {
 
 public Action:TF2Items_OnGiveNamedItem(client, String:strClassName[], iItemDefinitionIndex, &Handle:hItemOverride)
 {
+	if (hItemOverride != INVALID_HANDLE || !g_hItems[client])
+		return Plugin_Continue;
+
 	new String:formatBuffer[32];	
 	new String:weaponAttribs[64];
 	

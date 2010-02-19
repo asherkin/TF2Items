@@ -112,7 +112,13 @@ public Action:Command_WeaponEx(client, args)
 		new weaponSlot;
 		new String:formatBuffer[32];
 		Format(formatBuffer, 32, "%d_%s", weaponLookupIndex, "slot");
-		GetTrieValue(g_hItemInfoTrie, formatBuffer, weaponSlot);
+		new bool:isValidItem = GetTrieValue(g_hItemInfoTrie, formatBuffer, weaponSlot);
+		
+		if (!isValidItem)
+		{
+			ReplyToCommand(client, "[SM] Invalid Weapon Index");
+			return Plugin_Handled;
+		}
 		
 		g_hItems[client][weaponSlot] = weaponLookupIndex;
 		
@@ -174,7 +180,13 @@ public Action:Command_Weapon(client, args)
 		new weaponSlot;
 		new String:formatBuffer[32];
 		Format(formatBuffer, 32, "%d_%s", weaponLookupIndex, "slot");
-		GetTrieValue(g_hItemInfoTrie, formatBuffer, weaponSlot);
+		new bool:isValidItem = GetTrieValue(g_hItemInfoTrie, formatBuffer, weaponSlot);
+		
+		if (!isValidItem)
+		{
+			ReplyToCommand(client, "[SM] Invalid Weapon Index");
+			return Plugin_Handled;
+		}
 		
 		new index = -1;
 		while ((index = GetPlayerWeaponSlot(client, weaponSlot)) != -1)
