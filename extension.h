@@ -28,8 +28,8 @@
 
 #include "smsdk_ext.h"
 
-#include "iplayerinfo.h"
-#include "convar.h"
+//#include "iplayerinfo.h"
+//#include "convar.h"
 
 #define OVERRIDE_CLASSNAME		(1 << 0)
 #define OVERRIDE_ITEM_DEF		(1 << 1)
@@ -37,10 +37,10 @@
 #define OVERRIDE_ITEM_QUALITY	(1 << 3)
 #define OVERRIDE_ATTRIBUTES		(1 << 4)
 
-class CBaseEntity;
+//class CBaseEntity;
 class CBasePlayer;
-class CPersistentItem;
-class CPersistentAttributeDefinition;
+//class CPersistentItem;
+//class CPersistentAttributeDefinition;
 
 #pragma pack(push, 1)
 

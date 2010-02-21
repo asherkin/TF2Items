@@ -101,7 +101,7 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 	tempItem = SH_MCALL(p_hPlayer, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, 0);
 
 	if (tempItem == NULL) {
-		pContext->ThrowNativeError("Item is NULL. You have hit Bug 18.");
+		pContext->ThrowNativeError("Item is NULL. You may have hit Bug 18.");
 		//g_pSM->LogError(myself, "Item is NULL.");
 		//tempItem = SH_MCALL(p_hPlayer, MHook_GiveNamedItem)(strWeaponClassname, 0, NULL, 0);
 	}
@@ -183,7 +183,6 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				// Done
 				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, a, &newitem, b));
 			}
-			break;
 	}
 	
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
