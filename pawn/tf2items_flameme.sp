@@ -39,7 +39,7 @@ public OnClientDisconnect_Post(client) {
 
 public Action:TF2Items_OnGiveNamedItem(client, String:strClassName[], iItemDefinitionIndex, &Handle:hItemOverride)
 {
-	if (hItemOverride != INVALID_HANDLE || !g_hItems[client])
+	if (hItemOverride != INVALID_HANDLE || !g_hItems[client] || StrEqual(strClassName, "tf_wearable_item", false))
 		return Plugin_Continue;
 
 	new String:formatBuffer[32];	

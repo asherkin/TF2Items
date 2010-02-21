@@ -21,7 +21,7 @@
  *	Atributions & Thanks:
  *	=====================
  *	AzuiSleet				-	Reversed CScriptCreatedItem and realesed it publicly, along with writing most of the item editing code below.
- *	Damizean				-	Fixed padding for CScriptCreatedItem in Linux. Wrote the SourcePawn Interface.
+ *	Damizean				-	Fixed padding for CScriptCreatedItem in Linux. Wrote the SourcePawn Interface and the SourceMod item manager.
  *	Wazz					-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *.
  *	MatthiasVance			-	Reminded me to comment out '#define INFINITE_PROBLEMS 1'.
  *	voogru & Drunken_F00l	-	Inspiring the creation of this.
