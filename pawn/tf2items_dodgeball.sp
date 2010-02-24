@@ -25,15 +25,20 @@ public OnPluginStart() {
 	HookEvent("post_inventory_application", Event_PostInventoryApplication);
 	HookEvent("player_spawn", Event_PlayerSpawn);
 	HookEvent("teamplay_round_start", Event_TeamplayRoundStart);
+	HookEvent("player_changeclass", Event_PlayerChangeClass, EventHookMode_Pre);
 }
 
 public OnClientPutInServer(client) {
 	FakeClientCommandEx(client, "jointeam 0");
 }
 
+public Action:Event_PlayerChangeClass(Handle:event, const String:name[], bool:dontBroadcast)
+{
+	SetEventInt(event, "class", 3);
+	return Plugin_Changed;
+}
+
 public Event_TeamplayRoundStart(Handle:event, const String:name[], bool:dontBroadcast) {
-	new client_id = GetEventInt(event, "userid");
-	new client = GetClientOfUserId(client_id);
 	new bool:full = GetEventBool(event, "full_reset");
 	
 	if (!full)
@@ -106,13 +111,4 @@ public Action:TF2Items_OnGiveNamedItem(client, String:strClassName[], iItemDefin
 	
 	hItemOverride = hWeapon;
 	return Plugin_Changed;
-}
-
-public Action:TF2_CalcIsAttackCritical(client, weapon, String:weaponname[], &bool:result)
-{
-	if (StrEqual(weaponname, "tf_weapon_rocketlauncher")) {
-		result = true;
-		return Plugin_Handled;
-	}
-	return Plugin_Continue;
 }
