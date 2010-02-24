@@ -24,10 +24,37 @@ public OnPluginStart() {
 	LoadTranslations("common.phrases");
 	HookEvent("post_inventory_application", Event_PostInventoryApplication);
 	HookEvent("player_spawn", Event_PlayerSpawn);
+	HookEvent("teamplay_round_start", Event_TeamplayRoundStart);
 }
 
 public OnClientPutInServer(client) {
 	FakeClientCommandEx(client, "jointeam 0");
+}
+
+public Event_TeamplayRoundStart(Handle:event, const String:name[], bool:dontBroadcast) {
+	new client_id = GetEventInt(event, "userid");
+	new client = GetClientOfUserId(client_id);
+	new bool:full = GetEventBool(event, "full_reset");
+	
+	if (!full)
+		return;
+		
+	new index = -1;
+	while ((index = FindEntityByClassname(index, "obj_sentrygun")) != -1) {
+		SetEntData(index, FindSendPropOffs("CObjectSentrygun","m_iAmmoShells"), 0, 4, true);
+		SetEntData(index, FindSendPropOffs("CObjectSentrygun","m_iAmmoRockets"), 100, 4, true);
+	}
+	
+	CreateTimer(60.0, SentryRefill, _, TIMER_REPEAT | TIMER_FLAG_NO_MAPCHANGE);
+}
+
+public Action:SentryRefill(Handle:timer)
+{
+	new index = -1;
+	while ((index = FindEntityByClassname(index, "obj_sentrygun")) != -1) {
+		SetEntData(index, FindSendPropOffs("CObjectSentrygun","m_iAmmoRockets"), 100, 4, true);
+	}
+	return Plugin_Continue;
 }
 
 public Event_PostInventoryApplication(Handle:event, const String:name[], bool:dontBroadcast) {
@@ -79,4 +106,13 @@ public Action:TF2Items_OnGiveNamedItem(client, String:strClassName[], iItemDefin
 	
 	hItemOverride = hWeapon;
 	return Plugin_Changed;
+}
+
+public Action:TF2_CalcIsAttackCritical(client, weapon, String:weaponname[], &bool:result)
+{
+	if (StrEqual(weaponname, "tf_weapon_rocketlauncher")) {
+		result = true;
+		return Plugin_Handled;
+	}
+	return Plugin_Continue;
 }
