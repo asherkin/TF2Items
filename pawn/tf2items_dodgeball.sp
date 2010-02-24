@@ -4,6 +4,8 @@
 #define REQUIRE_EXTENSIONS
 #include <tf2items>
 #include <sdktools>
+#include <tf2>
+#include <tf2_stocks>
 
 #define PLUGIN_NAME		"[TF2Items] Dogdeball Flamethrower"
 #define PLUGIN_AUTHOR		"Asherkin"
@@ -20,10 +22,40 @@ public Plugin:myinfo = {
 
 public OnPluginStart() {
 	LoadTranslations("common.phrases");
+	HookEvent("post_inventory_application", Event_PostInventoryApplication);
+	HookEvent("player_spawn", Event_PlayerSpawn);
 }
 
-public Action:TF2Items_OnGiveNamedItem(client, String:strClassName[], iItemDefinitionIndex, &Handle:hItemOverride)
+public OnClientPutInServer(client) {
+	FakeClientCommandEx(client, "jointeam 0");
+}
+
+public Event_PostInventoryApplication(Handle:event, const String:name[], bool:dontBroadcast) {
+	new client_id = GetEventInt(event, "userid");
+	new client = GetClientOfUserId(client_id);
+	CreateTimer(0.1, RemoveWeapons, client);
+}
+
+public Action:RemoveWeapons(Handle:timer, any:client)
 {
+	for (new slot = 1;  slot <= 5;  slot++) {
+		TF2_RemoveWeaponSlot(client, slot);
+	}
+	return Plugin_Stop;
+}
+
+public Event_PlayerSpawn(Handle:event, const String:name[], bool:dontBroadcast) {
+	new client_id = GetEventInt(event, "userid");
+	new client = GetClientOfUserId(client_id);
+	new TFClassType:class = TF2_GetPlayerClass(client);
+	
+	if (!(class == TFClassType:TFClass_Pyro || class == TFClassType:TFClass_Unknown)) {
+		TF2_SetPlayerClass(client, TFClassType:TFClass_Pyro, false, true);
+		TF2_RespawnPlayer(client);
+	}
+}
+
+public Action:TF2Items_OnGiveNamedItem(client, String:strClassName[], iItemDefinitionIndex, &Handle:hItemOverride) {
 	if (hItemOverride != INVALID_HANDLE || !(iItemDefinitionIndex == 21 || iItemDefinitionIndex == 40))
 		return Plugin_Continue;
 	
