@@ -48,11 +48,12 @@ ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
 IServerGameEnts *gameents = NULL;
 
-ConVar TF2ItemsVersion("tf2items_version", "1.3.0", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
+ConVar TF2ItemsVersion("tf2items_version", "1.3.1", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
 
 IGameConfig *g_pGameConf = NULL;
 
-int GiveNamedItem_Hook = 0;
+int GiveNamedItem_player_Hook = 0;
+int GiveNamedItem_bot_Hook = 0;
 int ClientPutInServer_Hook = 0;
 
 IForward * g_pForwardGiveItem = NULL;
@@ -124,6 +125,11 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 		 g_pSM->LogMessage(myself, "GiveNamedItem called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
+	#ifdef TF2ITEMS_DEBUG_ITEMS
+		 g_pSM->LogMessage(myself, "---------------------------------------");
+		 g_pSM->LogMessage(myself, ">>> Start of GiveNamedItem call.");
+	#endif
+
 	CBasePlayer *player = META_IFACEPTR(CBasePlayer);
 
 	if (cscript == NULL) {
@@ -137,6 +143,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 
 #ifdef TF2ITEMS_DEBUG_ITEMS
 	g_pSM->LogMessage(myself, "---------------------------------------");
+	g_pSM->LogMessage(myself, ">>> Client = %s", pPlayer->GetName());
 	g_pSM->LogMessage(myself, ">>> ItemDefinitionIndex = %d", cscript->m_iItemDefinitionIndex);
 	g_pSM->LogMessage(myself, ">>> ClassName = %s", item);
 	g_pSM->LogMessage(myself, "---------------------------------------");
@@ -194,32 +201,48 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 		 g_pSM->LogMessage(myself, "ClientPutInServer called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
-	if(GiveNamedItem_Hook == 0 && pEntity->m_pNetworkable) {
+	if(pEntity->m_pNetworkable) {
 		CBaseEntity *baseentity = pEntity->m_pNetworkable->GetBaseEntity();
 		if(!baseentity)
 			return;
 
 		CBasePlayer *player = (CBasePlayer *)baseentity;
 
-		GiveNamedItem_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem), false);
-		if (ClientPutInServer_Hook != 0) {
+		#ifdef TF2ITEMS_DEBUG_ITEMS
+			g_pSM->LogMessage(myself, "---------------------------------------");
+			g_pSM->LogMessage(myself, ">>> Start of ClientPutInServer call.");
+			g_pSM->LogMessage(myself, "---------------------------------------");
+			g_pSM->LogMessage(myself, ">>> Client = %s", playername);
+			g_pSM->LogMessage(myself, ">>> ClassName = %s", pEntity->GetClassName());
+			g_pSM->LogMessage(myself, "---------------------------------------");
+		#endif
+
+		if (strcmp(pEntity->GetClassName(), "tf_bot") == 0)
+		{
+			if(GiveNamedItem_bot_Hook == 0)
+			{
+				GiveNamedItem_bot_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem), false);
+				#ifdef TF2ITEMS_DEBUG_HOOKING
+					g_pSM->LogMessage(myself, "GiveNamedItem hooked.");
+				#endif // TF2ITEMS_DEBUG_HOOKING
+			}
+		} else {
+			if(GiveNamedItem_player_Hook == 0)
+			{
+				GiveNamedItem_player_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem), false);
+				#ifdef TF2ITEMS_DEBUG_HOOKING
+					g_pSM->LogMessage(myself, "GiveNamedItem hooked.");
+				#endif // TF2ITEMS_DEBUG_HOOKING
+			}
+		}
+
+		if (GiveNamedItem_player_Hook != 0 && GiveNamedItem_bot_Hook != 0 && ClientPutInServer_Hook != 0) {
 			SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
 			ClientPutInServer_Hook = 0;
 			#ifdef TF2ITEMS_DEBUG_HOOKING
-				 g_pSM->LogMessage(myself, "ClientPutInServer unhooked.");
+				g_pSM->LogMessage(myself, "ClientPutInServer unhooked.");
 			#endif // TF2ITEMS_DEBUG_HOOKING
 		}
-
-		#ifdef TF2ITEMS_DEBUG_HOOKING
-			 g_pSM->LogMessage(myself, "GiveNamedItem hooked.");
-		#endif // TF2ITEMS_DEBUG_HOOKING
-
-	} else if (ClientPutInServer_Hook != 0) {
-		SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
-		ClientPutInServer_Hook = 0;
-		#ifdef TF2ITEMS_DEBUG_HOOKING
-			 g_pSM->LogMessage(myself, "ClientPutInServer unhooked.");
-		#endif // TF2ITEMS_DEBUG_HOOKING
 	}
 }
 
@@ -255,7 +278,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 			IGamePlayer * pPlayer = playerhelpers->GetGamePlayer(iClient);
 			if (pPlayer == NULL) continue;
 			if (pPlayer->IsConnected() == false) continue;
-			if (pPlayer->IsFakeClient() == true) continue;
+			//if (pPlayer->IsFakeClient() == true) continue;
 			if (pPlayer->IsInGame() == false) continue;
 
 			// Retrieve the edict
@@ -267,9 +290,9 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 			if (pBasePlayer == NULL) continue;
 
 			// Done, hook the BasePlayer
-			GiveNamedItem_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, pBasePlayer, SH_STATIC(Hook_GiveNamedItem), false);
+			GiveNamedItem_player_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, pBasePlayer, SH_STATIC(Hook_GiveNamedItem), false);
 			
-			if (GiveNamedItem_Hook != 0) {
+			if (GiveNamedItem_player_Hook != 0) {
 				#ifdef TF2ITEMS_DEBUG_HOOKING
 					 g_pSM->LogMessage(myself, "GiveNamedItem hooked.");
 				#endif // TF2ITEMS_DEBUG_HOOKING
@@ -278,7 +301,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		}
 	}
 
-	if (GiveNamedItem_Hook == 0) {
+	if (GiveNamedItem_player_Hook == 0) {
 		#ifdef TF2ITEMS_DEBUG_HOOKING
 			 g_pSM->LogMessage(myself, "Is a NOT late load or no players found, attempting to hook ClientPutInServer.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
@@ -363,9 +386,9 @@ bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
 		}
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
-	if (GiveNamedItem_Hook != 0) {
-		SH_REMOVE_HOOK_ID(GiveNamedItem_Hook);
-		GiveNamedItem_Hook = 0;
+	if (GiveNamedItem_player_Hook != 0) {
+		SH_REMOVE_HOOK_ID(GiveNamedItem_player_Hook);
+		GiveNamedItem_player_Hook = 0;
 		#ifdef TF2ITEMS_DEBUG_HOOKING
 			 g_pSM->LogMessage(myself, "GiveNamedItem unhooked.");
 		#endif // TF2ITEMS_DEBUG_HOOKING
