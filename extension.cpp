@@ -49,6 +49,7 @@ IServerGameClients *gameclients = NULL;
 IServerGameEnts *gameents = NULL;
 
 ConVar TF2ItemsVersion("tf2items_version", "1.3.1", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
+ConVar HookTFBot("tf2items_bothook", "1", FCVAR_NONE, "Hook inteligent TF2 bots.");
 
 IGameConfig *g_pGameConf = NULL;
 
@@ -217,13 +218,13 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 			g_pSM->LogMessage(myself, "---------------------------------------");
 		#endif
 
-		if (strcmp(pEntity->GetClassName(), "tf_bot") == 0)
+		if (HookTFBot.GetBool() && strcmp(pEntity->GetClassName(), "tf_bot") == 0)
 		{
 			if(GiveNamedItem_bot_Hook == 0)
 			{
 				GiveNamedItem_bot_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem), false);
 				#ifdef TF2ITEMS_DEBUG_HOOKING
-					g_pSM->LogMessage(myself, "GiveNamedItem hooked.");
+					g_pSM->LogMessage(myself, "GiveNamedItem hooked (bot).");
 				#endif // TF2ITEMS_DEBUG_HOOKING
 			}
 		} else {
@@ -231,12 +232,19 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 			{
 				GiveNamedItem_player_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem), false);
 				#ifdef TF2ITEMS_DEBUG_HOOKING
-					g_pSM->LogMessage(myself, "GiveNamedItem hooked.");
+					g_pSM->LogMessage(myself, "GiveNamedItem hooked (player).");
+				#endif // TF2ITEMS_DEBUG_HOOKING
+			}
+			if (!HookTFBot.GetBool() && ClientPutInServer_Hook != 0) {
+				SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
+				ClientPutInServer_Hook = 0;
+				#ifdef TF2ITEMS_DEBUG_HOOKING
+					g_pSM->LogMessage(myself, "ClientPutInServer unhooked.");
 				#endif // TF2ITEMS_DEBUG_HOOKING
 			}
 		}
 
-		if (GiveNamedItem_player_Hook != 0 && GiveNamedItem_bot_Hook != 0 && ClientPutInServer_Hook != 0) {
+		if (ClientPutInServer_Hook != 0 && GiveNamedItem_player_Hook != 0 && GiveNamedItem_bot_Hook != 0) {
 			SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
 			ClientPutInServer_Hook = 0;
 			#ifdef TF2ITEMS_DEBUG_HOOKING
