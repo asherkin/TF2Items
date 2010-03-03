@@ -1,7 +1,7 @@
 /*
  * ================================================================================
  * TF2 Items Extension
- * Copyright (C) 2009-2010 AzuiSleet, Asher Baker (Asherkin).  All rights reserved.
+ * Copyright (C) 2009-2010 AzuiSleet, Asher Baker (asherkin).  All rights reserved.
  * ================================================================================
  *
  * This program is free software; you can redistribute it and/or modify it under

@@ -1,6 +1,6 @@
 # (C)2004-2009 SourceMod Development Team
 # Makefile written by David "BAILOPAN" Anderson
-# Modified by Asher Baker (Asherkin) for the "tf2items" project
+# Modified by Asher Baker (asherkin) for the "tf2items" project
 
 SMSDK = ../sourcemod
 SRCDS_BASE = /home/hlds/tf2
