@@ -644,13 +644,6 @@ CreateItemInfoTrie()
 	SetTrieValue(g_hItemInfoTrie, "130_level", 5);
 	SetTrieString(g_hItemInfoTrie, "130_attribs", "119 ; 1.0 ; 121 ; 1.0 ; 78 ; 1.5 ; 88 ; 6.0 ; 120 ; 0.4");
 
-	SetTrieString(g_hItemInfoTrie, "131_classname", "tf_wearable_item_demoshield");
-	SetTrieValue(g_hItemInfoTrie, "131_index", 131);
-	SetTrieValue(g_hItemInfoTrie, "131_slot", 0);
-	SetTrieValue(g_hItemInfoTrie, "131_quality", 3);
-	SetTrieValue(g_hItemInfoTrie, "131_level", 10);
-	SetTrieString(g_hItemInfoTrie, "131_attribs", "60 ; 0.5 ; 64 ; 0.5");
-
 	SetTrieString(g_hItemInfoTrie, "132_classname", "tf_weapon_sword");
 	SetTrieValue(g_hItemInfoTrie, "132_index", 132);
 	SetTrieValue(g_hItemInfoTrie, "132_slot", 2);
