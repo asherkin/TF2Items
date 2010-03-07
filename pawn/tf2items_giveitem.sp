@@ -220,7 +220,7 @@ public Action:Command_Weapon(client, args)
 Handle:PrepareItemHandle(weaponLookupIndex)
 {
 	new String:formatBuffer[32];	
-	new String:weaponClassname[32];
+	new String:weaponClassname[64];
 	new weaponIndex;
 	new weaponSlot;
 	new weaponQuality;
@@ -228,7 +228,7 @@ Handle:PrepareItemHandle(weaponLookupIndex)
 	new String:weaponAttribs[64];
 	
 	Format(formatBuffer, 32, "%d_%s", weaponLookupIndex, "classname");
-	GetTrieString(g_hItemInfoTrie, formatBuffer, weaponClassname, 32);
+	GetTrieString(g_hItemInfoTrie, formatBuffer, weaponClassname, 64);
 	
 	Format(formatBuffer, 32, "%d_%s", weaponLookupIndex, "index");
 	GetTrieValue(g_hItemInfoTrie, formatBuffer, weaponIndex);
