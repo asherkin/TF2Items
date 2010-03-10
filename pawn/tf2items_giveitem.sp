@@ -30,7 +30,7 @@ public OnPluginStart() {
 	CreateItemInfoTrie();
 }
 
-public bool:OnClientConnect(client, String:rejectmsg[], maxlen) {
+public OnClientPutInServer(client) {
 	for (new i = 0; i < 6; i++) {
 		if (g_hItems[client][i] != -1) {
 			g_hItems[client][i] = -1;
@@ -120,7 +120,7 @@ public Action:Command_WeaponEx(client, args)
 			return Plugin_Handled;
 		}
 		
-		g_hItems[client][weaponSlot] = weaponLookupIndex;
+		g_hItems[target_list[i]][weaponSlot] = weaponLookupIndex;
 		
 		LogAction(client, target_list[i], "\"%L\" gave a weapon to \"%L\"", client, target_list[i]);
 	}
@@ -189,21 +189,24 @@ public Action:Command_Weapon(client, args)
 		}
 		
 		new index = -1;
-		while ((index = GetPlayerWeaponSlot(client, weaponSlot)) != -1)
+		while ((index = GetPlayerWeaponSlot(target_list[i], weaponSlot)) != -1)
 		{
-			RemovePlayerItem(client, index);
+			RemovePlayerItem(target_list[i], index);
 			RemoveEdict(index);
 		}
 		
 		new Handle:hWeapon = PrepareItemHandle(weaponLookupIndex);
 		
-		new entity = TF2Items_GiveNamedItem(client, hWeapon);
+		new entity = TF2Items_GiveNamedItem(target_list[i], hWeapon);
 		CloseHandle(hWeapon);
 		
 		if (IsValidEntity(entity))
-			EquipPlayerWeapon(client, entity);
-		else
-			g_hItems[client][weaponSlot] = weaponLookupIndex;
+		{
+			EquipPlayerWeapon(target_list[i], entity);
+		} else {
+			PrintToChat(target_list[i], "[SM] Respawn or touch a locker to recieve your new weapon.");
+			g_hItems[target_list[i]][weaponSlot] = weaponLookupIndex;
+		}
 		
 		LogAction(client, target_list[i], "\"%L\" gave a weapon to \"%L\"", client, target_list[i]);
 	}
