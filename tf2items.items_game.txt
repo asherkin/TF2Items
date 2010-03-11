@@ -4,8 +4,7 @@
 	slot = 2;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "1" = {
@@ -14,8 +13,7 @@
 	slot = 2;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "2" = {
@@ -24,8 +22,7 @@
 	slot = 2;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "3" = {
@@ -34,8 +31,7 @@
 	slot = 2;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "4" = {
@@ -44,8 +40,7 @@
 	slot = 2;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "5" = {
@@ -54,8 +49,7 @@
 	slot = 2;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "6" = {
@@ -64,8 +58,7 @@
 	slot = 2;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "7" = {
@@ -74,8 +67,7 @@
 	slot = 2;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "8" = {
@@ -84,8 +76,7 @@
 	slot = 2;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "9" = {
@@ -94,8 +85,7 @@
 	slot = 0;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "10" = {
@@ -104,8 +94,7 @@
 	slot = 1;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "11" = {
@@ -114,8 +103,7 @@
 	slot = 1;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "12" = {
@@ -124,8 +112,7 @@
 	slot = 1;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "13" = {
@@ -134,8 +121,7 @@
 	slot = 0;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "14" = {
@@ -144,8 +130,7 @@
 	slot = 0;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "15" = {
@@ -154,8 +139,7 @@
 	slot = 0;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "16" = {
@@ -164,8 +148,7 @@
 	slot = 1;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "17" = {
@@ -174,8 +157,7 @@
 	slot = 0;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "18" = {
@@ -184,8 +166,7 @@
 	slot = 0;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "19" = {
@@ -194,8 +175,7 @@
 	slot = 1;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "20" = {
@@ -204,8 +184,7 @@
 	slot = 0;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "21" = {
@@ -214,8 +193,7 @@
 	slot = 0;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "22" = {
@@ -224,8 +202,7 @@
 	slot = 1;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "23" = {
@@ -234,8 +211,7 @@
 	slot = 1;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "24" = {
@@ -244,8 +220,7 @@
 	slot = 1;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "25" = {
@@ -254,8 +229,7 @@
 	slot = 3;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "26" = {
@@ -264,8 +238,7 @@
 	slot = 4;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "27" = {
@@ -274,8 +247,7 @@
 	slot = 3;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "28" = {
@@ -284,8 +256,7 @@
 	slot = 5;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "29" = {
@@ -294,8 +265,7 @@
 	slot = 1;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "30" = {
@@ -304,8 +274,7 @@
 	slot = 4;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "31" = {
@@ -314,8 +283,7 @@
 	slot = 1;
 	quality = 0;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "35" = {
@@ -409,8 +377,7 @@
 	slot = 1;
 	quality = 3;
 	level = 1;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "43" = {
@@ -459,8 +426,7 @@
 	slot = 1;
 	quality = 3;
 	level = 5;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "56" = {
@@ -554,8 +520,7 @@
 	slot = 1;
 	quality = 3;
 	level = 5;
-	attributes = (
-	);
+	attributes = ();
 };
 
 "130" = {
