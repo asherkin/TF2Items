@@ -1,0 +1,586 @@
+"0" = {
+	index = 0;
+	classname = "tf_weapon_bat";
+	slot = 2;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"1" = {
+	index = 1;
+	classname = "tf_weapon_bottle";
+	slot = 2;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"2" = {
+	index = 2;
+	classname = "tf_weapon_fireaxe";
+	slot = 2;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"3" = {
+	index = 3;
+	classname = "tf_weapon_club";
+	slot = 2;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"4" = {
+	index = 4;
+	classname = "tf_weapon_knife";
+	slot = 2;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"5" = {
+	index = 5;
+	classname = "tf_weapon_fists";
+	slot = 2;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"6" = {
+	index = 6;
+	classname = "tf_weapon_shovel";
+	slot = 2;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"7" = {
+	index = 7;
+	classname = "tf_weapon_wrench";
+	slot = 2;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"8" = {
+	index = 8;
+	classname = "tf_weapon_bonesaw";
+	slot = 2;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"9" = {
+	index = 9;
+	classname = "tf_weapon_shotgun_0";
+	slot = 0;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"10" = {
+	index = 10;
+	classname = "tf_weapon_shotgun_soldier";
+	slot = 1;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"11" = {
+	index = 11;
+	classname = "tf_weapon_shotgun_hwg";
+	slot = 1;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"12" = {
+	index = 12;
+	classname = "tf_weapon_shotgun_pyro";
+	slot = 1;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"13" = {
+	index = 13;
+	classname = "tf_weapon_scattergun";
+	slot = 0;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"14" = {
+	index = 14;
+	classname = "tf_weapon_sniperrifle";
+	slot = 0;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"15" = {
+	index = 15;
+	classname = "tf_weapon_minigun";
+	slot = 0;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"16" = {
+	index = 16;
+	classname = "tf_weapon_smg";
+	slot = 1;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"17" = {
+	index = 17;
+	classname = "tf_weapon_syringegun_medic";
+	slot = 0;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"18" = {
+	index = 18;
+	classname = "tf_weapon_rocketlauncher";
+	slot = 0;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"19" = {
+	index = 19;
+	classname = "tf_weapon_grenadelauncher";
+	slot = 1;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"20" = {
+	index = 20;
+	classname = "tf_weapon_pipebomblauncher";
+	slot = 0;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"21" = {
+	index = 21;
+	classname = "tf_weapon_flamethrower";
+	slot = 0;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"22" = {
+	index = 22;
+	classname = "tf_weapon_pistol";
+	slot = 1;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"23" = {
+	index = 23;
+	classname = "tf_weapon_pistol_scout";
+	slot = 1;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"24" = {
+	index = 24;
+	classname = "tf_weapon_revolver";
+	slot = 1;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"25" = {
+	index = 25;
+	classname = "tf_weapon_pda_engineer_build";
+	slot = 3;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"26" = {
+	index = 26;
+	classname = "tf_weapon_pda_engineer_destroy";
+	slot = 4;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"27" = {
+	index = 27;
+	classname = "tf_weapon_pda_spy";
+	slot = 3;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"28" = {
+	index = 28;
+	classname = "tf_weapon_builder";
+	slot = 5;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"29" = {
+	index = 29;
+	classname = "tf_weapon_medigun";
+	slot = 1;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"30" = {
+	index = 30;
+	classname = "tf_weapon_invis";
+	slot = 4;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"31" = {
+	index = 31;
+	classname = "tf_weapon_flaregun";
+	slot = 1;
+	quality = 0;
+	level = 1;
+	attributes = (
+	);
+};
+
+"35" = {
+	index = 35;
+	classname = "tf_weapon_medigun";
+	slot = 1;
+	quality = 3;
+	level = 8;
+	attributes = (
+		{ index = 18; value = 1.0; },
+		{ index = 10; value = 1.25; }
+	);
+};
+
+"36" = {
+	index = 36;
+	classname = "tf_weapon_syringegun_medic";
+	slot = 0;
+	quality = 3;
+	level = 5;
+	attributes = (
+		{ index = 16; value = 3.0; },
+		{ index = 129; value = -2.0; }
+	);
+};
+
+"37" = {
+	index = 37;
+	classname = "tf_weapon_bonesaw";
+	slot = 2;
+	quality = 3;
+	level = 10;
+	attributes = (
+		{ index = 17; value = 0.25; },
+		{ index = 5; value = 1.2; }
+	);
+};
+
+"38" = {
+	index = 38;
+	classname = "tf_weapon_fireaxe";
+	slot = 2;
+	quality = 3;
+	level = 10;
+	attributes = (
+		{ index = 20; value = 1.0; },
+		{ index = 21; value = 0.5; },
+		{ index = 22; value = 1.0; }
+	);
+};
+
+"39" = {
+	index = 39;
+	classname = "tf_weapon_flaregun";
+	slot = 1;
+	quality = 3;
+	level = 10;
+	attributes = (
+		{ index = 25; value = 0.5; }
+	);
+};
+
+"40" = {
+	index = 40;
+	classname = "tf_weapon_flamethrower";
+	slot = 0;
+	quality = 3;
+	level = 10;
+	attributes = (
+		{ index = 23; value = 1.0; },
+		{ index = 24; value = 1.0; },
+		{ index = 28; value = 0.0; }
+	);
+};
+
+"41" = {
+	index = 41;
+	classname = "tf_weapon_minigun";
+	slot = 0;
+	quality = 3;
+	level = 5;
+	attributes = (
+		{ index = 32; value = 1.0; },
+		{ index = 1; value = 0.75; }
+	);
+};
+
+"42" = {
+	index = 42;
+	classname = "tf_weapon_lunchbox";
+	slot = 1;
+	quality = 3;
+	level = 1;
+	attributes = (
+	);
+};
+
+"43" = {
+	index = 43;
+	classname = "tf_weapon_fists";
+	slot = 2;
+	quality = 3;
+	level = 7;
+	attributes = (
+		{ index = 31; value = 5.0; },
+		{ index = 5; value = 1.2; }
+	);
+};
+
+"44" = {
+	index = 44;
+	classname = "tf_weapon_bat_wood";
+	slot = 2;
+	quality = 3;
+	level = 15;
+	attributes = (
+		{ index = 38; value = 1.0; },
+		{ index = 125; value = -15.0; }
+	);
+};
+
+"45" = {
+	index = 45;
+	classname = "tf_weapon_scattergun";
+	slot = 0;
+	quality = 3;
+	level = 10;
+	attributes = (
+		{ index = 44; value = 1.0; },
+		{ index = 6; value = 0.5; },
+		{ index = 45; value = 1.2; },
+		{ index = 1; value = 0.9; },
+		{ index = 3; value = 0.4; },
+		{ index = 43; value = 1.0; }
+	);
+};
+
+"46" = {
+	index = 46;
+	classname = "tf_weapon_lunchbox_drink";
+	slot = 1;
+	quality = 3;
+	level = 5;
+	attributes = (
+	);
+};
+
+"56" = {
+	index = 56;
+	classname = "tf_weapon_compound_bow";
+	slot = 0;
+	quality = 3;
+	level = 10;
+	attributes = (
+		{ index = 37; value = 0.5; }
+	);
+};
+
+"58" = {
+	index = 58;
+	classname = "tf_weapon_jar";
+	slot = 1;
+	quality = 3;
+	level = 5;
+	attributes = (
+		{ index = 56; value = 1.0; }
+	);
+};
+
+"59" = {
+	index = 59;
+	classname = "tf_weapon_invis";
+	slot = 4;
+	quality = 3;
+	level = 5;
+	attributes = (
+		{ index = 33; value = 1.0; },
+		{ index = 34; value = 1.6; },
+		{ index = 35; value = 1.8; }
+	);
+};
+
+"60" = {
+	index = 60;
+	classname = "tf_weapon_invis";
+	slot = 4;
+	quality = 3;
+	level = 5;
+	attributes = (
+		{ index = 48; value = 2.0; },
+		{ index = 35; value = 2.0; }
+	);
+};
+
+"61" = {
+	index = 61;
+	classname = "tf_weapon_revolver";
+	slot = 1;
+	quality = 3;
+	level = 5;
+	attributes = (
+		{ index = 51; value = 1.0; },
+		{ index = 1; value = 0.85; },
+		{ index = 5; value = 1.2; }
+	);
+};
+
+"127" = {
+	index = 127;
+	classname = "tf_weapon_rocketlauncher_directhit";
+	slot = 0;
+	quality = 3;
+	level = 1;
+	attributes = (
+		{ index = 100; value = 0.3; },
+		{ index = 103; value = 1.8; },
+		{ index = 2; value = 1.25; },
+		{ index = 114; value = 1.0; }
+	);
+};
+
+"128" = {
+	index = 128;
+	classname = "tf_weapon_shovel";
+	slot = 2;
+	quality = 3;
+	level = 10;
+	attributes = (
+		{ index = 115; value = 1.0; }
+	);
+};
+
+"129" = {
+	index = 129;
+	classname = "tf_weapon_buff_item";
+	slot = 1;
+	quality = 3;
+	level = 5;
+	attributes = (
+	);
+};
+
+"130" = {
+	index = 130;
+	classname = "tf_weapon_pipebomblauncher";
+	slot = 0;
+	quality = 3;
+	level = 5;
+	attributes = (
+		{ index = 119; value = 1.0; },
+		{ index = 121; value = 1.0; },
+		{ index = 78; value = 1.5; },
+		{ index = 88; value = 6.0; },
+		{ index = 120; value = 0.4; }
+	);
+};
+
+"132" = {
+	index = 132;
+	classname = "tf_weapon_sword";
+	slot = 2;
+	quality = 3;
+	level = 5;
+	attributes = (
+		{ index = 15; value = 0.0; },
+		{ index = 125; value = -25.0; }
+	);
+};
