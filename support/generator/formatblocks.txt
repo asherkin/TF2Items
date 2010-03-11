@@ -41,3 +41,20 @@ $[$	"$listindex1$"	"$attribindex$ ; $attribvalue$"
 $]$}
 
 --------------------------------------------------------------------------
+
+
+tf2items_giveweapon using Config Ext.
+--------------------------------------------------------------------------
+"$itemindex$" = {
+	index = $itemindex$;
+	classname = "$classname$";
+	slot = $itemslot$;
+	quality = $quality$;
+	level = $level$;
+	attributes = (
+$[$		{ index = $attribindex$; value = $attribvalue$; },
+$]$	);
+};
+
+
+--------------------------------------------------------------------------
