@@ -120,6 +120,7 @@ public Action:Command_WeaponEx(client, args)
 			return Plugin_Handled;
 		}
 		
+		PrintToChat(target_list[i], "[SM] Respawn or touch a locker to recieve your new weapon.");
 		g_hItems[target_list[i]][weaponSlot] = weaponLookupIndex;
 		
 		LogAction(client, target_list[i], "\"%L\" gave a weapon to \"%L\"", client, target_list[i]);
