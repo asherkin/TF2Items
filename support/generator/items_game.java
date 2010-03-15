@@ -252,12 +252,12 @@ public class custom_weps extends JPanel implements ActionListener {
 
 		String content = textAreaLeft.getText().toLowerCase().replaceAll("[\r\n\t ]", "");
 		
-		creatQualityVector(content);
-		creatAttribVector(content);
-		creatItemVector(content);
+		createQualityVector(content);
+		createAttribVector(content);
+		createItemVector(content);
 	}
 	
-	private void creatAttribVector(String content) {
+	private void createAttribVector(String content) {
 		attribNames.add("padding");
 		
 		int matchStart = 0;
@@ -288,7 +288,7 @@ public class custom_weps extends JPanel implements ActionListener {
 		}
 	}
 	
-	private void creatQualityVector(String content) {
+	private void createQualityVector(String content) {
 		int matchStart = 0;
 		int matchEnd = 0;
 		int searchIndex = 0;
@@ -324,7 +324,7 @@ public class custom_weps extends JPanel implements ActionListener {
 		}
 	}
 
-	private void creatItemVector(String content) {
+	private void createItemVector(String content) {
 		int matchStart = 0;
 		int matchEnd = 0;
 		int searchIndex = 0;
