@@ -20,7 +20,7 @@
 /*
  *	Atributions & Thanks:
  *	=====================
- *	AzuiSleet				-	Reversed CScriptCreatedItem and realesed it publicly, along with writing most of the item editing code below.
+ *	AzuiSleet				-	Reversed CScriptCreatedItem and released it publicly, along with writing most of the item editing code below.
  *	Damizean				-	Fixed padding for CScriptCreatedItem in Linux. Wrote the SourcePawn Interface and the SourceMod item manager.
  *	Wazz					-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *.
  *	MatthiasVance			-	Reminded me to comment out '#define INFINITE_PROBLEMS 1'.
@@ -42,14 +42,16 @@ SMEXT_LINK(&g_TF2Items);
 
 SH_DECL_HOOK2_void(IServerGameClients, ClientPutInServer, SH_NOATTRIB, 0, edict_t *, char const *);
 SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CScriptCreatedItem *, bool);
-//SH_DECL_MANUALHOOK2(MHook_GiveNamedItemBackup, 385, 0, 0, CBaseEntity *, char const *, int);
+
+SH_DECL_MANUALHOOK1_void(MCall_EquipWearable, 0, 0, 0, CBaseEntity *);
+SH_DECL_MANUALHOOK1_void(MCall_RemoveWearable, 0, 0, 0, CBaseEntity *);
 
 ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
 IServerGameEnts *gameents = NULL;
 
 ConVar TF2ItemsVersion("tf2items_version", "1.3.1", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
-ConVar HookTFBot("tf2items_bothook", "1", FCVAR_NONE, "Hook inteligent TF2 bots.");
+ConVar HookTFBot("tf2items_bothook", "1", FCVAR_NONE, "Hook intelligent TF2 bots.");
 
 IGameConfig *g_pGameConf = NULL;
 
@@ -80,6 +82,8 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 	{ "TF2Items_GetAttributeId",	TF2Items_GetAttributeId },
 	{ "TF2Items_GetAttributeValue",	TF2Items_GetAttributeValue },
 	{ "TF2Items_GiveNamedItem"	,	TF2Items_GiveNamedItem },
+	{ "TF2Items_EquipWearable"	,	TF2Items_EquipWearable },
+	{ "TF2Items_RemoveWearable"	,	TF2Items_RemoveWearable },
 	{ NULL,							NULL }
 };
 
@@ -273,6 +277,27 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		return false;
 	} else {
 		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, iOffset, 0, 0);
+		g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
+	}
+
+	iOffset = 0;
+	if (!g_pGameConf->GetOffset("EquipWearable", &iOffset))
+	{
+		snprintf(error, maxlen, "Could not find offset for EquipWearable");
+		return false;
+	} else {
+		SH_MANUALHOOK_RECONFIGURE(MCall_EquipWearable, iOffset, 0, 0);
+		g_pSM->LogMessage(myself, "\"EquipWearable\" offset = %d", iOffset);
+	}
+
+	iOffset = 0;
+	if (!g_pGameConf->GetOffset("RemoveWearable", &iOffset))
+	{
+		snprintf(error, maxlen, "Could not find offset for RemoveWearable");
+		return false;
+	} else {
+		SH_MANUALHOOK_RECONFIGURE(MCall_RemoveWearable, iOffset, 0, 0);
+		g_pSM->LogMessage(myself, "\"RemoveWearable\" offset = %d", iOffset);
 	}
 
 	// If it's a late load, there might be the chance there are players already on the server. Just
@@ -328,8 +353,6 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 
 	// Create forwards
 	g_pForwardGiveItem = g_pForwards->CreateForward("TF2Items_OnGiveNamedItem", ET_Hook, 4, NULL, Param_Cell, Param_String, Param_Cell, Param_CellByRef);
-
-	g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
 
 	return true;
 }
@@ -675,4 +698,34 @@ TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPl
 
 	// Done
 	return pScriptedItemOverride;
+}
+
+static cell_t TF2Items_EquipWearable(IPluginContext *pContext, const cell_t *params)
+{
+	// Retrieve player from it's index.
+	CBaseEntity *pPlayerEntity;
+	if (!(pPlayerEntity = GetCBaseEntityFromIndex(params[1], true)))
+		return pContext->ThrowNativeError("Client index %d is not valid", params[1]);
+
+	CBaseEntity *pHatEntity;
+	if (!(pHatEntity = GetCBaseEntityFromIndex(params[2], false)))
+		return pContext->ThrowNativeError("Wearable entity index %d is not valid", params[2]);
+
+	SH_MCALL(pPlayerEntity, MCall_EquipWearable)(pHatEntity);
+	return 0;
+}
+
+static cell_t TF2Items_RemoveWearable(IPluginContext *pContext, const cell_t *params)
+{
+	// Retrieve player from it's index.
+	CBaseEntity *pPlayerEntity;
+	if (!(pPlayerEntity = GetCBaseEntityFromIndex(params[1], true)))
+		return pContext->ThrowNativeError("Client index %d is not valid", params[1]);
+
+	CBaseEntity *pHatEntity;
+	if (!(pHatEntity = GetCBaseEntityFromIndex(params[2], false)))
+		return pContext->ThrowNativeError("Wearable entity index %d is not valid", params[2]);
+
+	SH_MCALL(pPlayerEntity, MCall_RemoveWearable)(pHatEntity);
+	return 0;
 }

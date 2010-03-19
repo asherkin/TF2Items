@@ -205,6 +205,9 @@ static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *pa
 static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *params);
 
+static cell_t TF2Items_EquipWearable(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_RemoveWearable(IPluginContext *pContext, const cell_t *params);
+
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext=NULL);
 
 extern HandleType_t g_ScriptedItemOverrideHandleType;
