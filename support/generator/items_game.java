@@ -33,13 +33,13 @@ class scriptAttribute {
 	}
 
 	public int getIndex() {
-		return index;
+		return this.index;
 	}
 	public void setIndex(int index) {
 		this.index = index;
 	}
 	public float getValue() {
-		return value;
+		return this.value;
 	}
 	public void setValue(float value) {
 		this.value = value;
@@ -49,7 +49,7 @@ class scriptAttribute {
 class scriptItem {
 	private int index;
 	private String classname;
-	private String slot;
+	private int slot;
 	private int quality;
 	private int level;
 	private Vector<scriptAttribute> attributes;
@@ -57,13 +57,13 @@ class scriptItem {
 	public scriptItem() {
 		this.index = 0;
 		this.classname = "";
-		this.slot = "";
+		this.slot = 0;
 		this.quality = 0;
 		this.level = 0;
 		this.attributes = new Vector<scriptAttribute>(16);
 	}
 
-	public scriptItem(int index, String classname, String slot, int quality,
+	public scriptItem(int index, String classname, int slot, int quality,
 			int level) {
 		this.index = index;
 		this.classname = classname;
@@ -73,7 +73,7 @@ class scriptItem {
 		this.attributes = new Vector<scriptAttribute>(16);
 	}
 
-	public scriptItem(int index, String classname, String slot, int quality,
+	public scriptItem(int index, String classname, int slot, int quality,
 			int level, Vector<scriptAttribute> attributes) {
 		this.index = index;
 		this.classname = classname;
@@ -84,37 +84,37 @@ class scriptItem {
 	}
 
 	public int getIndex() {
-		return index;
+		return this.index;
 	}
 	public void setIndex(int index) {
 		this.index = index;
 	}
 	public String getClassname() {
-		return classname;
+		return this.classname;
 	}
 	public void setClassname(String classname) {
 		this.classname = classname;
 	}
-	public String getSlot() {
-		return slot;
+	public int getSlot() {
+		return this.slot;
 	}
-	public void setSlot(String string) {
-		this.slot = string;
+	public void setSlot(int slot) {
+		this.slot = slot;
 	}
 	public int getQuality() {
-		return quality;
+		return this.quality;
 	}
-	public void setQuality(int i) {
-		this.quality = i;
+	public void setQuality(int quality) {
+		this.quality = quality;
 	}
 	public int getLevel() {
-		return level;
+		return this.level;
 	}
 	public void setLevel(int level) {
 		this.level = level;
 	}
 	public Vector<scriptAttribute> getAttributes() {
-		return attributes;
+		return this.attributes;
 	}
 	public void setAttributes(Vector<scriptAttribute> attributes) {
 		this.attributes = attributes;
@@ -128,6 +128,7 @@ public class custom_weps extends JPanel implements ActionListener {
 
 	static Vector<String> attribNames = new Vector<String>(100);
 	static Vector<String> qualityNames = new Vector<String>(100);
+	static Vector<String> slotNames = new Vector<String>(100);
 
 	static JFrame frame;
 	
@@ -171,7 +172,7 @@ public class custom_weps extends JPanel implements ActionListener {
 		startButton.setActionCommand("start");
 		startButton.addActionListener(this);
 
-		textAreaLeft = new JTextArea("\n1. Paste items_game.txt here.\n2. Edit formatting rule above according to your needs.\n3. Click Start Conversion.\n\n$itemindex$    <| Definition Index\n$classname$    <| Classname\n$itemslot$     <| Slot    WARNING: This is a string.\n$quality$      <| Quality\n$level$        <| Level\n\n$attribcount$  <| Attribute Count\n\n$[$            <| Attribute block.\n$attribindex$  <| Contents will be repeated\n$attribvalue$  <| for each attribute.\n$]$            <|\n\nEach format item can be repeated multiple times,\nbut the items in the attributes block only work\ninside it and vice versa.");
+		textAreaLeft = new JTextArea("\n1. Paste items_game.txt here.\n2. Edit formatting rule above according to your needs.\n3. Click Start Conversion.\n\n$itemindex$    <| Definition Index\n$classname$    <| Classname\n$itemslot$     <| Slot\n$quality$      <| Quality\n$level$        <| Level\n\n$attribcount$  <| Attribute Count\n\n$[$            <| Attribute block.\n$attribindex$  <| Contents will be repeated\n$attribvalue$  <| for each attribute.\n$]$            <|\n\nEach format item can be repeated multiple times,\nbut the items in the attributes block only work\ninside it and vice versa.");
 		textAreaLeft.setFont(fixedWidth);
 		textAreaRight = new JTextArea();
 		textAreaRight.setFont(fixedWidth);
@@ -249,15 +250,29 @@ public class custom_weps extends JPanel implements ActionListener {
 	public void convertItems() {
 		itemsFound.removeAllElements();
 		attribNames.removeAllElements();
+		qualityNames.removeAllElements();
+		slotNames.removeAllElements();
 
 		String content = textAreaLeft.getText().toLowerCase().replaceAll("[\r\n\t ]", "");
 		
-		createQualityVector(content);
-		createAttribVector(content);
-		createItemVector(content);
+		creatSlotVector();
+		creatQualityVector(content);
+		creatAttribVector(content);
+		creatItemVector(content);
 	}
 	
-	private void createAttribVector(String content) {
+	private void creatSlotVector() {
+		slotNames.add("primary");
+		slotNames.add("secondary");
+		slotNames.add("melee");
+		slotNames.add("pda");
+		slotNames.add("pda2");
+		slotNames.add("building");
+		slotNames.add("head");
+		slotNames.add("misc");
+	}
+	
+	private void creatAttribVector(String content) {
 		attribNames.add("padding");
 		
 		int matchStart = 0;
@@ -288,7 +303,7 @@ public class custom_weps extends JPanel implements ActionListener {
 		}
 	}
 	
-	private void createQualityVector(String content) {
+	private void creatQualityVector(String content) {
 		int matchStart = 0;
 		int matchEnd = 0;
 		int searchIndex = 0;
@@ -324,7 +339,7 @@ public class custom_weps extends JPanel implements ActionListener {
 		}
 	}
 
-	private void createItemVector(String content) {
+	private void creatItemVector(String content) {
 		int matchStart = 0;
 		int matchEnd = 0;
 		int searchIndex = 0;
@@ -411,7 +426,7 @@ public class custom_weps extends JPanel implements ActionListener {
 		
 		searchIndex = matchEnd;
 		
-		tempItem.setSlot(content.substring(matchStart, matchEnd));
+		tempItem.setSlot(slotNames.indexOf(content.substring(matchStart, matchEnd)));
 		
 		if ((matchStart = content.indexOf("\"item_quality\"", searchIndex)) == -1)
 			return null;
