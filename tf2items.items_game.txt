@@ -1,4 +1,4 @@
-"0" = {
+0 = {
 	index = 0;
 	classname = "tf_weapon_bat";
 	slot = 2;
@@ -7,7 +7,7 @@
 	attributes = ();
 };
 
-"1" = {
+1 = {
 	index = 1;
 	classname = "tf_weapon_bottle";
 	slot = 2;
@@ -16,7 +16,7 @@
 	attributes = ();
 };
 
-"2" = {
+2 = {
 	index = 2;
 	classname = "tf_weapon_fireaxe";
 	slot = 2;
@@ -25,7 +25,7 @@
 	attributes = ();
 };
 
-"3" = {
+3 = {
 	index = 3;
 	classname = "tf_weapon_club";
 	slot = 2;
@@ -34,7 +34,7 @@
 	attributes = ();
 };
 
-"4" = {
+4 = {
 	index = 4;
 	classname = "tf_weapon_knife";
 	slot = 2;
@@ -43,7 +43,7 @@
 	attributes = ();
 };
 
-"5" = {
+5 = {
 	index = 5;
 	classname = "tf_weapon_fists";
 	slot = 2;
@@ -52,7 +52,7 @@
 	attributes = ();
 };
 
-"6" = {
+6 = {
 	index = 6;
 	classname = "tf_weapon_shovel";
 	slot = 2;
@@ -61,7 +61,7 @@
 	attributes = ();
 };
 
-"7" = {
+7 = {
 	index = 7;
 	classname = "tf_weapon_wrench";
 	slot = 2;
@@ -70,7 +70,7 @@
 	attributes = ();
 };
 
-"8" = {
+8 = {
 	index = 8;
 	classname = "tf_weapon_bonesaw";
 	slot = 2;
@@ -79,7 +79,7 @@
 	attributes = ();
 };
 
-"9" = {
+9 = {
 	index = 9;
 	classname = "tf_weapon_shotgun_primary";
 	slot = 0;
@@ -88,7 +88,7 @@
 	attributes = ();
 };
 
-"10" = {
+10 = {
 	index = 10;
 	classname = "tf_weapon_shotgun_soldier";
 	slot = 1;
@@ -97,7 +97,7 @@
 	attributes = ();
 };
 
-"11" = {
+11 = {
 	index = 11;
 	classname = "tf_weapon_shotgun_hwg";
 	slot = 1;
@@ -106,7 +106,7 @@
 	attributes = ();
 };
 
-"12" = {
+12 = {
 	index = 12;
 	classname = "tf_weapon_shotgun_pyro";
 	slot = 1;
@@ -115,7 +115,7 @@
 	attributes = ();
 };
 
-"13" = {
+13 = {
 	index = 13;
 	classname = "tf_weapon_scattergun";
 	slot = 0;
@@ -124,7 +124,7 @@
 	attributes = ();
 };
 
-"14" = {
+14 = {
 	index = 14;
 	classname = "tf_weapon_sniperrifle";
 	slot = 0;
@@ -133,7 +133,7 @@
 	attributes = ();
 };
 
-"15" = {
+15 = {
 	index = 15;
 	classname = "tf_weapon_minigun";
 	slot = 0;
@@ -142,7 +142,7 @@
 	attributes = ();
 };
 
-"16" = {
+16 = {
 	index = 16;
 	classname = "tf_weapon_smg";
 	slot = 1;
@@ -151,7 +151,7 @@
 	attributes = ();
 };
 
-"17" = {
+17 = {
 	index = 17;
 	classname = "tf_weapon_syringegun_medic";
 	slot = 0;
@@ -160,7 +160,7 @@
 	attributes = ();
 };
 
-"18" = {
+18 = {
 	index = 18;
 	classname = "tf_weapon_rocketlauncher";
 	slot = 0;
@@ -169,7 +169,7 @@
 	attributes = ();
 };
 
-"19" = {
+19 = {
 	index = 19;
 	classname = "tf_weapon_grenadelauncher";
 	slot = 1;
@@ -178,7 +178,7 @@
 	attributes = ();
 };
 
-"20" = {
+20 = {
 	index = 20;
 	classname = "tf_weapon_pipebomblauncher";
 	slot = 0;
@@ -187,7 +187,7 @@
 	attributes = ();
 };
 
-"21" = {
+21 = {
 	index = 21;
 	classname = "tf_weapon_flamethrower";
 	slot = 0;
@@ -196,7 +196,7 @@
 	attributes = ();
 };
 
-"22" = {
+22 = {
 	index = 22;
 	classname = "tf_weapon_pistol";
 	slot = 1;
@@ -205,7 +205,7 @@
 	attributes = ();
 };
 
-"23" = {
+23 = {
 	index = 23;
 	classname = "tf_weapon_pistol_scout";
 	slot = 1;
@@ -214,7 +214,7 @@
 	attributes = ();
 };
 
-"24" = {
+24 = {
 	index = 24;
 	classname = "tf_weapon_revolver";
 	slot = 1;
@@ -223,7 +223,7 @@
 	attributes = ();
 };
 
-"25" = {
+25 = {
 	index = 25;
 	classname = "tf_weapon_pda_engineer_build";
 	slot = 3;
@@ -232,7 +232,7 @@
 	attributes = ();
 };
 
-"26" = {
+26 = {
 	index = 26;
 	classname = "tf_weapon_pda_engineer_destroy";
 	slot = 4;
@@ -241,7 +241,7 @@
 	attributes = ();
 };
 
-"27" = {
+27 = {
 	index = 27;
 	classname = "tf_weapon_pda_spy";
 	slot = 3;
@@ -250,7 +250,7 @@
 	attributes = ();
 };
 
-"28" = {
+28 = {
 	index = 28;
 	classname = "tf_weapon_builder";
 	slot = 5;
@@ -259,7 +259,7 @@
 	attributes = ();
 };
 
-"29" = {
+29 = {
 	index = 29;
 	classname = "tf_weapon_medigun";
 	slot = 1;
@@ -268,7 +268,7 @@
 	attributes = ();
 };
 
-"30" = {
+30 = {
 	index = 30;
 	classname = "tf_weapon_invis";
 	slot = 4;
@@ -277,7 +277,7 @@
 	attributes = ();
 };
 
-"31" = {
+31 = {
 	index = 31;
 	classname = "tf_weapon_flaregun";
 	slot = 1;
@@ -286,7 +286,7 @@
 	attributes = ();
 };
 
-"35" = {
+35 = {
 	index = 35;
 	classname = "tf_weapon_medigun";
 	slot = 1;
@@ -298,7 +298,7 @@
 	);
 };
 
-"36" = {
+36 = {
 	index = 36;
 	classname = "tf_weapon_syringegun_medic";
 	slot = 0;
@@ -310,7 +310,7 @@
 	);
 };
 
-"37" = {
+37 = {
 	index = 37;
 	classname = "tf_weapon_bonesaw";
 	slot = 2;
@@ -322,7 +322,7 @@
 	);
 };
 
-"38" = {
+38 = {
 	index = 38;
 	classname = "tf_weapon_fireaxe";
 	slot = 2;
@@ -335,7 +335,7 @@
 	);
 };
 
-"39" = {
+39 = {
 	index = 39;
 	classname = "tf_weapon_flaregun";
 	slot = 1;
@@ -346,7 +346,7 @@
 	);
 };
 
-"40" = {
+40 = {
 	index = 40;
 	classname = "tf_weapon_flamethrower";
 	slot = 0;
@@ -359,7 +359,7 @@
 	);
 };
 
-"41" = {
+41 = {
 	index = 41;
 	classname = "tf_weapon_minigun";
 	slot = 0;
@@ -371,7 +371,7 @@
 	);
 };
 
-"42" = {
+42 = {
 	index = 42;
 	classname = "tf_weapon_lunchbox";
 	slot = 1;
@@ -380,7 +380,7 @@
 	attributes = ();
 };
 
-"43" = {
+43 = {
 	index = 43;
 	classname = "tf_weapon_fists";
 	slot = 2;
@@ -392,7 +392,7 @@
 	);
 };
 
-"44" = {
+44 = {
 	index = 44;
 	classname = "tf_weapon_bat_wood";
 	slot = 2;
@@ -404,7 +404,7 @@
 	);
 };
 
-"45" = {
+45 = {
 	index = 45;
 	classname = "tf_weapon_scattergun";
 	slot = 0;
@@ -420,7 +420,7 @@
 	);
 };
 
-"46" = {
+46 = {
 	index = 46;
 	classname = "tf_weapon_lunchbox_drink";
 	slot = 1;
@@ -429,7 +429,7 @@
 	attributes = ();
 };
 
-"56" = {
+56 = {
 	index = 56;
 	classname = "tf_weapon_compound_bow";
 	slot = 0;
@@ -440,7 +440,7 @@
 	);
 };
 
-"57" = {
+57 = {
 	index = 57;
 	classname = "tf_wearable_item";
 	slot = 1;
@@ -451,7 +451,7 @@
 	);
 };
 
-"58" = {
+58 = {
 	index = 58;
 	classname = "tf_weapon_jar";
 	slot = 1;
@@ -462,7 +462,7 @@
 	);
 };
 
-"59" = {
+59 = {
 	index = 59;
 	classname = "tf_weapon_invis";
 	slot = 4;
@@ -475,7 +475,7 @@
 	);
 };
 
-"60" = {
+60 = {
 	index = 60;
 	classname = "tf_weapon_invis";
 	slot = 4;
@@ -487,7 +487,7 @@
 	);
 };
 
-"61" = {
+61 = {
 	index = 61;
 	classname = "tf_weapon_revolver";
 	slot = 1;
@@ -500,7 +500,7 @@
 	);
 };
 
-"115" = {
+115 = {
 	index = 115;
 	classname = "tf_wearable_item";
 	slot = 6;
@@ -509,7 +509,7 @@
 	attributes = ();
 };
 
-"116" = {
+116 = {
 	index = 116;
 	classname = "tf_wearable_item";
 	slot = 6;
@@ -518,7 +518,7 @@
 	attributes = ();
 };
 
-"121" = {
+121 = {
 	index = 121;
 	classname = "tf_wearable_item";
 	slot = 7;
@@ -527,7 +527,7 @@
 	attributes = ();
 };
 
-"122" = {
+122 = {
 	index = 122;
 	classname = "tf_wearable_item";
 	slot = 7;
@@ -536,7 +536,7 @@
 	attributes = ();
 };
 
-"123" = {
+123 = {
 	index = 123;
 	classname = "tf_wearable_item";
 	slot = 7;
@@ -545,7 +545,7 @@
 	attributes = ();
 };
 
-"124" = {
+124 = {
 	index = 124;
 	classname = "tf_wearable_item";
 	slot = 7;
@@ -554,7 +554,7 @@
 	attributes = ();
 };
 
-"125" = {
+125 = {
 	index = 125;
 	classname = "tf_wearable_item";
 	slot = 6;
@@ -565,7 +565,7 @@
 	);
 };
 
-"126" = {
+126 = {
 	index = 126;
 	classname = "tf_wearable_item";
 	slot = 6;
@@ -574,7 +574,7 @@
 	attributes = ();
 };
 
-"127" = {
+127 = {
 	index = 127;
 	classname = "tf_weapon_rocketlauncher_directhit";
 	slot = 0;
@@ -588,7 +588,7 @@
 	);
 };
 
-"128" = {
+128 = {
 	index = 128;
 	classname = "tf_weapon_shovel";
 	slot = 2;
@@ -599,7 +599,7 @@
 	);
 };
 
-"129" = {
+129 = {
 	index = 129;
 	classname = "tf_weapon_buff_item";
 	slot = 1;
@@ -608,7 +608,7 @@
 	attributes = ();
 };
 
-"130" = {
+130 = {
 	index = 130;
 	classname = "tf_weapon_pipebomblauncher";
 	slot = 0;
@@ -623,7 +623,7 @@
 	);
 };
 
-"131" = {
+131 = {
 	index = 131;
 	classname = "tf_wearable_item_demoshield";
 	slot = 0;
@@ -635,7 +635,7 @@
 	);
 };
 
-"132" = {
+132 = {
 	index = 132;
 	classname = "tf_weapon_sword";
 	slot = 2;
@@ -647,7 +647,7 @@
 	);
 };
 
-"133" = {
+133 = {
 	index = 133;
 	classname = "tf_wearable_item";
 	slot = 1;
@@ -658,7 +658,7 @@
 	);
 };
 
-"153" = {
+153 = {
 	index = 153;
 	classname = "tf_weapon_fireaxe";
 	slot = 2;
@@ -670,7 +670,7 @@
 	);
 };
 
-"154" = {
+154 = {
 	index = 154;
 	classname = "tf_weapon_shovel";
 	slot = 2;
@@ -682,7 +682,7 @@
 	);
 };
 
-"159" = {
+159 = {
 	index = 159;
 	classname = "tf_weapon_lunchbox";
 	slot = 1;
