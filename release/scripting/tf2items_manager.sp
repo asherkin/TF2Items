@@ -43,7 +43,7 @@ public OnPluginStart()
 {
 	// Create convars
 	CreateConVar("tf2items_manager_version", PLUGIN_VERSION, PLUGIN_NAME, FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY);
-	g_hCvarEnabled = CreateConVar("tf2items_manager", "1", "Enables/disables the manager (0 - Disabled / 1 - Enabled");
+	g_hCvarEnabled = CreateConVar("tf2items_manager", "1", "Enables/disables the manager (0 - Disabled / 1 - Enabled", FCVAR_REPLICATED|FCVAR_NOTIFY);
 	
 	// Register console commands
 	RegAdminCmd("tf2items_manager_reload", CmdReload, ADMFLAG_GENERIC);
