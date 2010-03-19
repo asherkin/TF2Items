@@ -2932,6 +2932,322 @@
 			}
 		}
 			
+		"144"
+		{
+			"name"	"Medic Mask"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_MedicMask"
+			"item_slot"	"misc"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/medic/medic_mask"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/medic/medic_mask.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+		}
+		"145"
+		{
+			"name"	"Heavy Hair"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_HeavyHair"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/heavy/hounddog"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/heavy/hounddog.mdl"
+			"drop_type"	"none"
+			"propername"	"1"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+		}
+		"146"
+		{
+			"name"	"Demoman Hallmark"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_DemomanHallmark"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/hallmark"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/demo/hallmark.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"147"
+		{
+			"name"	"Spy Noble Hair"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_SpyNobleHair"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/spy/noblehair"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/spy/noblehair.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"148"
+		{
+			"name"	"Engineer Welding Mask"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_EngineerWeldingMask"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/engineer/weldingmask"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/engineer/weldingmask.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				
+				"animation"
+				{
+					"activity"		"ACT_IDLE"
+					"playback"		"on_spawn"
+				}
+				"animation"
+				{
+					"activity"		"ACT_RUN"
+					"playback"		"start_building"
+				}
+				"animation"
+				{
+					"activity"		"ACT_IDLE"
+					"playback"		"stop_building"
+				}
+			}
+		}
+		"150"
+		{
+			"name"	"Scout Beanie"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_ScoutBeanie"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/scout/beanie"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/scout/beanie.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		"151"
+		{
+			"name"	"Pyro Brain Sucker"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_PyroBrainSucker"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/pyro/pyro_brainsucker"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/pyro/pyro_brainsucker.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"152"
+		{
+			"name"	"Soldier Samurai Hat"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_SoldierSamurai"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/soldier/soldier_samurai"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/soldier/soldier_samurai.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"153"
+		{
+			"name"	"Unique Sledgehammer"
+			"item_class"	"tf_weapon_fireaxe"
+			"craft_class"	"weapon"
+			"item_logname"	"sledgehammer"
+			"item_iconname"	"sledgehammer"
+			"item_type_name"	"#TF_Weapon_SledgeHammer"
+			"item_name"	"#TF_Unique_SledgeHammer"
+			"item_slot"	"melee"
+			"image_inventory"	"backpack/weapons/c_models/c_sledgehammer/c_sledgehammer"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_sledgehammer/c_sledgehammer.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"propername"	"1"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+			"attributes"
+			{
+				"dmg bonus vs buildings"
+				{
+					"attribute_class"	"mult_dmg_vs_buildings"
+					"value"	"2.0"
+				}
+				"dmg penalty vs players"
+				{
+					"attribute_class"	"mult_dmg_vs_players"
+					"value"	"0.75"
+				}
+			}
+		}
+		"154"
+		{
+			"name"	"Unique Makeshift Club"
+			"item_class"	"tf_weapon_shovel"
+			"craft_class"	"weapon"
+			"item_logname"	"paintrain"
+			"item_iconname"	"paintrain"
+			"item_type_name"	"#TF_Weapon_MakeshiftClub"
+			"item_name"	"#TF_Unique_Makeshiftclub"
+			"item_slot"	"melee"
+			"image_inventory"	"backpack/weapons/c_models/c_paintrain/c_paintrain"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_paintrain/c_paintrain.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"propername"	"1"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+				"soldier"	"1"
+			}
+			"attributes"
+			{
+				"increase player capture value"
+				{
+					"attribute_class"	"add_player_capturevalue"
+					"value"	"1"
+				}
+				"dmg taken from bullets increased"
+				{
+					"attribute_class"	"mult_dmgtaken_from_bullets"
+					"value"	"1.1"
+				}
+			}
+		}
+		"158"
+		{
+			"name"	"Sniper Pith Helmet"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_SniperPithHelmet"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/sniper/pith_helmet"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/sniper/pith_helmet.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"159"
+		{
+			"name"	"Unique Lunchbox Chocolate"
+			"item_class"	"tf_weapon_lunchbox"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_LunchBox"
+			"item_name"	"#TF_Unique_Lunchbox_Chocolate"
+			"item_slot"	"secondary"
+			"anim_slot"	"ITEM1"
+			"image_inventory"	"backpack/weapons/c_models/c_chocolate/c_chocolate"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_chocolate/c_chocolate.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"propername"	"1"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+			"attributes"
+			{
+				"lunchbox adds maxhealth bonus"
+				{
+					"attribute_class"	"set_weapon_mode"
+					"value"	"1"
+				}
+			}
+		}								
 		"5000"
 		{
 			"name"	"Craft Bar Level 1"
@@ -4911,6 +5227,66 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+		}
+		"137"
+		{
+			"name"	"dmg bonus vs buildings"
+			"attribute_class"	"mult_dmg_vs_buildings"
+			"attribute_name"	"Minor damage bonus Vs Buildings"
+			"min_value"	"1.05"
+			"max_value"	"1.1"
+			"description_string"	"#Attrib_DmgVsBuilding_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"138"
+		{
+			"name"	"dmg penalty vs players"
+			"attribute_class"	"mult_dmg_vs_players"
+			"attribute_name"	"Minor damage penalty Vs players"
+			"min_value"	"0.95"
+			"max_value"	"0.85"
+			"description_string"	"#Attrib_DmgVsPlayer_Decreased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+		}
+		"139"
+		{
+			"name"	"lunchbox adds maxhealth bonus"
+			"attribute_class"	"set_weapon_mode"
+			"attribute_name"	"Lunchbox adds max health bonus"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_LunchboxAddsMaxHealth"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"140"
+		{
+			"name"	"hidden maxhealth non buffed"
+			"attribute_class"	"add_maxhealth_nonbuffed"
+			"attribute_name"	"Max health buff that doesn't affect buffed max"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_MaxHealth_Positive"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"positive"
+		}
+		"141"
+		{
+			"name"	"selfmade description"
+			"attribute_class"	"desc_selfmade_description"
+			"attribute_name"	"Text description of selfmade"
+			"min_value"	"0"
+			"max_value"	"0"
+			"description_string"	"#Attrib_Selfmade_Description"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"neutral"
 		}
 	}
 }
