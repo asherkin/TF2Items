@@ -10,9 +10,6 @@
 #define PLUGIN_VERSION		"3.0.0"
 #define PLUGIN_CONTACT		"http://limetech.org/"
 
-new Handle:g_hSdkEquipWearable;
-new Handle:g_hSdkRemoveWearable;
-
 public Plugin:myinfo = {
 	name			= PLUGIN_NAME,
 	author			= PLUGIN_AUTHOR,
@@ -22,24 +19,6 @@ public Plugin:myinfo = {
 };
 
 public OnPluginStart() {
-	new Handle:hGameConf = LoadGameConfigFile("tf2.items");
-	if (hGameConf != INVALID_HANDLE)
-	{
-		StartPrepSDKCall(SDKCall_Player);
-		PrepSDKCall_SetFromConf(hGameConf,SDKConf_Virtual,"EquipWearable");
-		PrepSDKCall_AddParameter(SDKType_CBaseEntity, SDKPass_Pointer);
-		g_hSdkEquipWearable = EndPrepSDKCall();
-       
-		StartPrepSDKCall(SDKCall_Player);
-		PrepSDKCall_SetFromConf(hGameConf,SDKConf_Virtual,"RemoveWearable");
-		PrepSDKCall_AddParameter(SDKType_CBaseEntity, SDKPass_Pointer);
-		g_hSdkRemoveWearable = EndPrepSDKCall();
-       
-		CloseHandle(hGameConf);
-	} else {
-		SetFailState("Couldn't load SDK functions.");
-	}
-
 	RegAdminCmd("sm_giveweapon", Command_Weapon, ADMFLAG_CHEATS, "sm_giveweapon");
 	RegAdminCmd("sm_givehat", Command_Hat, ADMFLAG_CHEATS, "sm_givehat");
 }
@@ -117,7 +96,7 @@ public Action:Command_Hat(client, args)
 	while ((index = FindEntityByClassname(index, "tf_wearable_item")) != -1) {
 		if (GetEntPropEnt(index, Prop_Send, "m_hOwnerEntity") == client)
 		{
-			SDKCall(g_hSdkRemoveWearable, client, index);
+			TF2Items_RemoveWearable(client, index);
 			RemoveEdict(index);
 			break;
 		}
@@ -126,14 +105,14 @@ public Action:Command_Hat(client, args)
 	new Handle:hTest = TF2Items_CreateItem(OVERRIDE_CLASSNAME | OVERRIDE_ITEM_DEF | OVERRIDE_ITEM_LEVEL | OVERRIDE_ITEM_QUALITY | OVERRIDE_ATTRIBUTES);
 
 	TF2Items_SetClassname(hTest, "tf_wearable_item");
-	TF2Items_SetItemIndex(hTest, 102);
+	TF2Items_SetItemIndex(hTest, 151);
 	TF2Items_SetLevel(hTest, 100);
 	TF2Items_SetQuality(hTest, 3);
 	TF2Items_SetNumAttributes(hTest, 0);
 	new entity = TF2Items_GiveNamedItem(client, hTest);
 	CloseHandle(hTest);
 	
-	SDKCall(g_hSdkEquipWearable, client, entity);
+	TF2Items_EquipWearable(client, entity);
 	return Plugin_Handled;
 }
 

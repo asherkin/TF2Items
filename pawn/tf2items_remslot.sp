@@ -6,7 +6,7 @@
 
 #define PLUGIN_NAME		"[TF2Items] Remove Slot"
 #define PLUGIN_AUTHOR		"Asherkin"
-#define PLUGIN_VERSION		"3.0.0"
+#define PLUGIN_VERSION		"3.1.0"
 #define PLUGIN_CONTACT		"http://limetech.org/"
 
 public Plugin:myinfo = {

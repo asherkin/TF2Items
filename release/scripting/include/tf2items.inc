@@ -182,6 +182,9 @@ native Float:TF2Items_GetAttributeValue(Handle:hItem, iSlotIndex);
  */
 native TF2Items_GiveNamedItem(iClient, Handle:hItem);
 
+native TF2Items_EquipWearable(iClient, iWearable);
+native TF2Items_RemoveWearable(iClient, iWearable);
+
 // ====[ FORWARDS ]============================================================
 /**
  * Called when an item is about to be given to a client. Return Plugin_Changed
