@@ -22,11 +22,11 @@
 #define _INCLUDE_SOURCEMOD_EXTENSION_PROPER_H_
 
 /**
- * @file extension.h
+ * @file extension.hpp
  * @brief TF2Items extension code header.
  */
 
-#include "smsdk_ext.h"
+#include "smsdk_ext.hpp"
 
 //#include "iplayerinfo.h"
 //#include "convar.h"

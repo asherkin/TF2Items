@@ -201,7 +201,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\extension.h"
+				RelativePath="..\extension.hpp"
 				>
 			</File>
 		</Filter>
@@ -210,7 +210,7 @@
 			UniqueIdentifier="{31958233-BB2D-4e41-A8F9-CE8A4684F436}"
 			>
 			<File
-				RelativePath="..\sdk\smsdk_config.h"
+				RelativePath="..\sdk\smsdk_config.hpp"
 				>
 			</File>
 			<File
@@ -218,7 +218,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\sdk\smsdk_ext.h"
+				RelativePath="..\sdk\smsdk_ext.hpp"
 				>
 			</File>
 		</Filter>

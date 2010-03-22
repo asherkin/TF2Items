@@ -33,11 +33,11 @@
 #define _INCLUDE_SOURCEMOD_EXTENSION_BASESDK_H_
 
 /**
- * @file smsdk_ext.h
+ * @file smsdk_ext.hpp
  * @brief Contains wrappers for making Extensions easier to write.
  */
 
-#include "smsdk_config.h"
+#include "smsdk_config.hpp"
 #include <IExtensionSys.h>
 #include <IHandleSys.h>
 #include <sp_vm_api.h>

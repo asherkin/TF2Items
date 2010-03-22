@@ -27,7 +27,7 @@
  *	voogru & Drunken_F00l	-	Inspiring the creation of this.
  */
 
-#include "extension.h"
+#include "extension.hpp"
 
 /*
  *	Debugging options:

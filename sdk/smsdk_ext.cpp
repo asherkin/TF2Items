@@ -31,7 +31,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "smsdk_ext.h"
+#include "smsdk_ext.hpp"
 
 /**
  * @file smsdk_ext.cpp
