@@ -23,6 +23,7 @@
  *	AzuiSleet				-	Reversed CScriptCreatedItem and released it publicly, along with writing most of the item editing code below.
  *	Damizean				-	Fixed padding for CScriptCreatedItem in Linux. Wrote the SourcePawn Interface and the SourceMod item manager.
  *	Wazz					-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *.
+ *	Psychonic				-	"How did you write the wearable natives asherkin?" "I got all the code from psychonic, then disregarded it and wrote it from scratch."
  *	MatthiasVance			-	Reminded me to comment out '#define INFINITE_PROBLEMS 1'.
  *	voogru & Drunken_F00l	-	Inspiring the creation of this.
  */
@@ -141,7 +142,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 		RETURN_META_VALUE(MRES_IGNORED, NULL);
 	}
 
-	// Retrieve client index and auth string.
+	// Retrieve client index.
 	edict_t *playerEdict = gameents->BaseEntityToEdict((CBaseEntity *)player);
 	IGamePlayer * pPlayer = playerhelpers->GetGamePlayer(playerEdict);
 	int client = gamehelpers->IndexOfEdict(playerEdict);
@@ -151,6 +152,8 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	g_pSM->LogMessage(myself, ">>> Client = %s", pPlayer->GetName());
 	g_pSM->LogMessage(myself, ">>> ItemDefinitionIndex = %d", cscript->m_iItemDefinitionIndex);
 	g_pSM->LogMessage(myself, ">>> ClassName = %s", item);
+	g_pSM->LogMessage(myself, ">>> a = %d", a);
+	g_pSM->LogMessage(myself, ">>> b = %s", b?"true":"false");
 	g_pSM->LogMessage(myself, "---------------------------------------");
 #endif
 
@@ -185,7 +188,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
 					// Even if we don't want to override the item quality, do if it's set to 0.
-					if (newitem.m_iEntityQuality == 0 && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 9;
+					if (newitem.m_iEntityQuality == 0 && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
 
 					// Setup the attributes.
 					newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
@@ -213,7 +216,7 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 
 		CBasePlayer *player = (CBasePlayer *)baseentity;
 
-		#ifdef TF2ITEMS_DEBUG_ITEMS
+		#ifdef TF2ITEMS_DEBUG_HOOKING
 			g_pSM->LogMessage(myself, "---------------------------------------");
 			g_pSM->LogMessage(myself, ">>> Start of ClientPutInServer call.");
 			g_pSM->LogMessage(myself, "---------------------------------------");
