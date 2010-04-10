@@ -64,5 +64,9 @@
 			"admin-flags"	"z"
 			"quality"		"6"
 		}
+		"*"
+		{
+			"quality"		"3"
+		}
 	}
 }
