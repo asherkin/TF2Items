@@ -149,7 +149,7 @@ all: check
 		ln -sf $(HL2LIB)/vstdlib_$(LIB_SUFFIX).so; \
 		ln -sf $(HL2LIB)/tier0_$(LIB_SUFFIX).so; \
 	fi
-	$(MAKE) -f Makefile extension
+	$(MAKE) -f MakefileCI extension
 
 check:
 	if [ "$(USEMETA)" = "true" ] && [ "$(ENGSET)" = "false" ]; then \
@@ -162,7 +162,7 @@ extension: check $(OBJ_LINUX)
 	$(CPP) $(INCLUDE) $(OBJ_LINUX) $(LINK) -o $(BIN_DIR)/$(BINARY)
 
 debug:
-	$(MAKE) -f Makefile all DEBUG=true
+	$(MAKE) -f MakefileCI all DEBUG=true
 
 default: all
 
