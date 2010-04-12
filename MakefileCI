@@ -3,9 +3,9 @@
 # Modified by Asher Baker (asherkin) for the "tf2items" project
 # !!! THIS VERSION IS FOR THE TF2ITEMS AUTOBUILDER !!!
 
-SMSDK = ../sourcemod-1.2
+SMSDK = ../sourcemod
 HL2SDK_OB_VALVE = ../hl2sdk-ob-valve
-MMSOURCE18 = ../mmsource-1.7
+MMSOURCE18 = ../mmsource
 
 #####################################
 ### EDIT BELOW FOR OTHER PROJECTS ###
