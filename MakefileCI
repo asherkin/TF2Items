@@ -45,8 +45,6 @@ else
 	CFLAGS += $(C_OPT_FLAGS)
 endif
 
-BIN_DIR := $(BIN_DIR).$(ENGINE)
-
 OS := $(shell uname -s)
 ifeq "$(OS)" "Darwin"
 	LINK += -dynamiclib
