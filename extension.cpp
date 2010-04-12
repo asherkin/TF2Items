@@ -37,7 +37,7 @@
 //#define TF2ITEMS_DEBUG_HOOKING
 //#define TF2ITEMS_DEBUG_ITEMS
 
-//TF2Items g_TF2Items;
+TF2Items g_TF2Items;
 
 SMEXT_LINK(&g_TF2Items);
 
