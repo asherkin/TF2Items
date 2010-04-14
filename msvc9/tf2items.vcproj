@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/D SE_EPISODEONE=1 /D SE_DARKMESSIAH=2 /D SE_ORANGEBOX=3 /D SE_ORANGEBOXVALVE=4 /D SE_LEFT4DEAD=5 /D SE_LEFT4DEAD2=6"
 				Optimization="0"
-				AdditionalIncludeDirectories="..;..\sdk;D:\smexts\sourcemod\public\;D:\smexts\sourcemod\public\sourcepawn\;&quot;$(HL2SDKOBVALVE)\game\shared\&quot;;&quot;$(HL2SDKOBVALVE)\game\server\&quot;;&quot;$(HL2SDKOBVALVE)\public&quot;;&quot;$(HL2SDKOBVALVE)\public\engine&quot;;&quot;$(HL2SDKOBVALVE)\public\game\server&quot;;&quot;$(HL2SDKOBVALVE)\public\tier0&quot;;&quot;$(HL2SDKOBVALVE)\public\tier1&quot;;&quot;$(MMSOURCE18)\core&quot;;&quot;$(MMSOURCE18)\core\sourcehook&quot;"
+				AdditionalIncludeDirectories="..;..\sdk;&quot;$(SOURCEMOD12)\public\&quot;;&quot;$(SOURCEMOD12)\public\sourcepawn\&quot;;&quot;$(HL2SDKOBVALVE)\game\shared\&quot;;&quot;$(HL2SDKOBVALVE)\game\server\&quot;;&quot;$(HL2SDKOBVALVE)\public&quot;;&quot;$(HL2SDKOBVALVE)\public\engine&quot;;&quot;$(HL2SDKOBVALVE)\public\game\server&quot;;&quot;$(HL2SDKOBVALVE)\public\tier0&quot;;&quot;$(HL2SDKOBVALVE)\public\tier1&quot;;&quot;$(MMSOURCE17)\core&quot;;&quot;$(MMSOURCE17)\core\sourcehook&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SDK_EXPORTS;_CRT_SECURE_NO_DEPRECATE;SOURCEMOD_BUILD;SOURCE_ENGINE=4"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
