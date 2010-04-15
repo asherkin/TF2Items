@@ -1861,7 +1861,7 @@
 			"name"	"Spy Camera Beard"
 			"item_class"	"tf_wearable_item"
 			"loadondemand" "1"
-			"craft_class"	"weapon"
+			"craft_class"	"hat"
 			"item_type_name"	"#TF_Wearable_Hat"
 			"item_name"	"#TF_Spy_Camera_Beard"
 			"item_slot"	"misc"
@@ -2638,7 +2638,7 @@
 		{
 			"name"			"The Gunboats"
 			"item_class"		"tf_wearable_item"
-			"craft_class"		"boots"
+			"craft_class"		"weapon"
 			"item_type_name" 	"#TF_Wearable_Boots"
 			"item_name"		"#TF_Unique_Blast_Boots"
 			"item_slot"		"secondary"
@@ -2663,8 +2663,7 @@
 					"value" "0.25"
 				}
 			}
-		}
-		
+		}		
 		"134"
 		{
 			"name"	"Propaganda Contest First Place"
@@ -2708,8 +2707,7 @@
 				"hide_player_bodygroup_name"	"hat"
 				"hide_player_bodygroup_name"	"headphones"
 			}
-		}	
-		
+		}
 		"135"
 		{
 			"name"	"Towering Pillar of Hats"
@@ -2752,8 +2750,7 @@
 				"hide_player_bodygroup_name"	"hat"
 				"hide_player_bodygroup_name"	"headphones"
 			}
-		}
-		
+		}		
 		"136"
 		{
 			"name"	"Propaganda Contest Second Place"
@@ -2797,8 +2794,7 @@
 				"hide_player_bodygroup_name"	"hat"
 				"hide_player_bodygroup_name"	"headphones"
 			}
-		}
-		
+		}		
 		"137"
 		{
 			"name"	"Noble Amassment of Hats"
@@ -2841,8 +2837,7 @@
 				"hide_player_bodygroup_name"	"hat"
 				"hide_player_bodygroup_name"	"headphones"
 			}
-		}	
-		
+		}		
 		"138"
 		{
 			"name"	"Propaganda Contest Third Place"
@@ -2887,7 +2882,6 @@
 				"hide_player_bodygroup_name"	"headphones"
 			}
 		}
-		
 		"139"
 		{
 			"name"	"Modest Pile of Hat"
@@ -2937,6 +2931,7 @@
 			"name"	"Medic Mask"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
 			"item_type_name" "#TF_Wearable_Hat"
 			"item_name"	"#TF_MedicMask"
 			"item_slot"	"misc"
@@ -2956,6 +2951,7 @@
 			"name"	"Heavy Hair"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
 			"item_type_name" "#TF_Wearable_Hat"
 			"item_name"	"#TF_HeavyHair"
 			"item_slot"	"head"
@@ -2976,6 +2972,7 @@
 			"name"	"Demoman Hallmark"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
 			"item_type_name" "#TF_Wearable_Hat"
 			"item_name"	"#TF_DemomanHallmark"
 			"item_slot"	"head"
@@ -2999,6 +2996,7 @@
 			"name"	"Spy Noble Hair"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
 			"item_type_name" "#TF_Wearable_Hat"
 			"item_name"	"#TF_SpyNobleHair"
 			"item_slot"	"head"
@@ -3022,6 +3020,7 @@
 			"name"	"Engineer Welding Mask"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
 			"item_type_name" "#TF_Wearable_Hat"
 			"item_name"	"#TF_EngineerWeldingMask"
 			"item_slot"	"head"
@@ -3060,6 +3059,7 @@
 		{
 			"name"	"Scout Beanie"
 			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
 			"item_type_name" "#TF_Wearable_Hat"
 			"item_name"	"#TF_ScoutBeanie"
 			"item_slot"	"head"
@@ -3083,6 +3083,7 @@
 		{
 			"name"	"Pyro Brain Sucker"
 			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
 			"item_type_name" "#TF_Wearable_Hat"
 			"item_name"	"#TF_PyroBrainSucker"
 			"item_slot"	"head"
@@ -3101,6 +3102,7 @@
 		{
 			"name"	"Soldier Samurai Hat"
 			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
 			"item_type_name" "#TF_Wearable_Hat"
 			"item_name"	"#TF_SoldierSamurai"
 			"item_slot"	"head"
@@ -3199,6 +3201,7 @@
 			"name"	"Sniper Pith Helmet"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
 			"item_type_name" "#TF_Wearable_Hat"
 			"item_name"	"#TF_SniperPithHelmet"
 			"item_slot"	"head"
@@ -3247,7 +3250,95 @@
 					"value"	"1"
 				}
 			}
-		}								
+		}							
+		"160"
+		{
+			"name"	"TTG Max Pistol"
+			"item_class"	"tf_weapon_pistol"
+			"item_type_name"	"#TF_Weapon_Pistol"
+			"item_name"	"#TF_TTG_MaxGun"
+			"item_description"	"#TF_TTG_MaxGun_Desc"
+			"item_slot"	"secondary"
+			"image_inventory"	"backpack/weapons/c_models/c_ttg_max_gun/c_ttg_max_gun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_ttg_max_gun/c_ttg_max_gun.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"propername"	"1"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+		}
+		"161"
+		{
+			"name"	"TTG Sam Revolver"
+			"item_class"	"tf_weapon_revolver"
+			"item_type_name"	"#TF_Weapon_Revolver"
+			"item_name"	"#TF_TTG_SamRevolver"
+			"item_description"	"#TF_TTG_SamRevolver_Desc"
+			"item_slot"	"secondary"
+			"item_quality"	"unique"
+			"propername"	"1"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"image_inventory"	"backpack/weapons/c_models/c_ttg_sam_gun/c_ttg_sam_gun"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_ttg_sam_gun/c_ttg_sam_gun.mdl"
+			"attach_to_hands" "1"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+		}
+		"162"
+		{
+			"name"	"TTG Max Hat"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_TTG_MaxsHat"
+			"item_description"	"#TF_TTG_MaxsHat_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/medic/medic_ttg_max"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player_per_class"	
+			{
+				"scout"		"models/player/items/scout/scout_ttg_max.mdl"
+				"sniper"	"models/player/items/sniper/sniper_ttg_max.mdl"
+				"soldier"	"models/player/items/soldier/soldier_ttg_max.mdl"
+				"demoman"	"models/player/items/demo/demo_ttg_max.mdl"
+				"medic"		"models/player/items/medic/medic_ttg_max.mdl"
+				"heavy"		"models/player/items/heavy/heavy_ttg_max.mdl"
+				"spy"		"models/player/items/spy/spy_ttg_max.mdl"
+				"engineer"	"models/player/items/engineer/engineer_ttg_max.mdl"
+				"pyro"		"models/player/items/pyro/pyro_ttg_max.mdl"
+			}
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
 		"5000"
 		{
 			"name"	"Craft Bar Level 1"
