@@ -95,7 +95,7 @@ ifeq "$(ENGINE)" "left4dead2"
 endif
 
 ifeq "$(USEMETA)" "true"
-	LINK_HL2 = $(HL2LIB)/tier1_i486.a vstdlib$(LIB_SUFFIX) tier0$(LIB_SUFFIX)
+	LINK_HL2 = $(HL2LIB)/tier1_i486.a $(LIB_PREFIX)vstdlib$(LIB_SUFFIX) $(LIB_PREFIX)tier0$(LIB_SUFFIX)
 
 	LINK += $(LINK_HL2)
 
@@ -133,10 +133,10 @@ endif
 OS := $(shell uname -s)
 ifeq "$(OS)" "Darwin"
 	LINK += -dynamiclib
-	BINARY +=.dylib
+	FULL_BINARY = $(BINARY).dylib
 else
 	LINK += -static-libgcc -shared
-	BINARY +=.so
+	FULL_BINARY = $(BINARY).so
 endif
 
 GCC_VERSION := $(shell $(CPP) -dumpversion >&1 | cut -b1)
@@ -166,7 +166,7 @@ check:
 	fi
 
 extension: check $(OBJ_LINUX)
-	$(CPP) $(INCLUDE) $(OBJ_LINUX) $(LINK) -o $(BIN_DIR)/$(BINARY)
+	$(CPP) $(INCLUDE) $(OBJ_LINUX) $(LINK) -o $(BIN_DIR)/$(FULL_BINARY)
 
 debug:
 	$(MAKE) -f Makefile all DEBUG=true
@@ -176,4 +176,4 @@ default: all
 clean: check
 	rm -rf $(BIN_DIR)/*.o
 	rm -rf $(BIN_DIR)/sdk/*.o
-	rm -rf $(BIN_DIR)/$(BINARY)
+	rm -rf $(BIN_DIR)/$(FULL_BINARY)
