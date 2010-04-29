@@ -129,10 +129,10 @@ endif
 OS := $(shell uname -s)
 ifeq "$(OS)" "Darwin"
 	LINK += -dynamiclib
-	BINARY = $(BINARY).dylib
+	BINARY += .dylib
 else
 	LINK += -static-libgcc -shared
-	BINARY = $(BINARY).so
+	BINARY += .so
 endif
 
 GCC_VERSION := $(shell $(CPP) -dumpversion >&1 | cut -b1)
