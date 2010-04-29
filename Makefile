@@ -1,15 +1,15 @@
-# (C)2004-2009 SourceMod Development Team
+# (C)2004-2010 SourceMod Development Team
 # Makefile written by David "BAILOPAN" Anderson
 # Modified by Asher Baker (asherkin) for the "tf2items" project
 
-SMSDK = ../sdks/sourcemod-1.2
+SMSDK = ../sdks/sourcemod-1.3
 SRCDS_BASE = /home/hlds/tf2
 HL2SDK_ORIG = ../sdks/hl2sdk
 HL2SDK_OB = ../sdks/hl2sdk-ob
 HL2SDK_OB_VALVE = ../sdks/hl2sdk-ob-valve
 HL2SDK_L4D = ../sdks/hl2sdk-l4d
 HL2SDK_L4D2 = ../sdks/hl2sdk-l4d2
-MMSOURCE18 = ../sdks/mmsource-1.7
+MMSOURCE18 = ../sdks/mmsource-1.8
 
 #####################################
 ### EDIT BELOW FOR OTHER PROJECTS ###
@@ -21,6 +21,7 @@ PROJECT = tf2items
 USEMETA = true
 
 OBJECTS = sdk/smsdk_ext.cpp extension.cpp
+BINARY = $(PROJECT).ext.2.ep2v
 
 ENGINE = orangeboxvalve
 
@@ -43,7 +44,7 @@ ifeq "$(ENGINE)" "original"
 	METAMOD = $(MMSOURCE18)/core-legacy
 	INCLUDE += -I$(HL2SDK)/public/dlls
 	SRCDS = $(SRCDS_BASE)
-	LIB_SUFFIX = i486
+	LIB_SUFFIX = _i486.so
 	override ENGSET = true
 endif
 ifeq "$(ENGINE)" "orangebox"
@@ -54,7 +55,7 @@ ifeq "$(ENGINE)" "orangebox"
 	METAMOD = $(MMSOURCE18)/core
 	INCLUDE += -I$(HL2SDK)/public/game/server
 	SRCDS = $(SRCDS_BASE)/orangebox
-	LIB_SUFFIX = i486
+	LIB_SUFFIX = _i486.so
 	override ENGSET = true
 endif
 ifeq "$(ENGINE)" "orangeboxvalve"
@@ -65,7 +66,8 @@ ifeq "$(ENGINE)" "orangeboxvalve"
 	METAMOD = $(MMSOURCE18)/core
 	INCLUDE += -I$(HL2SDK)/public/game/server
 	SRCDS = $(SRCDS_BASE)/orangebox
-	LIB_SUFFIX = i486
+	LIB_PREFIX = lib
+	LIB_SUFFIX = .so
 	override ENGSET = true
 endif
 ifeq "$(ENGINE)" "left4dead"
@@ -76,7 +78,7 @@ ifeq "$(ENGINE)" "left4dead"
 	METAMOD = $(MMSOURCE18)/core
 	INCLUDE += -I$(HL2SDK)/public/game/server
 	SRCDS = $(SRCDS_BASE)/l4d
-	LIB_SUFFIX = i486
+	LIB_SUFFIX = _i486.so
 	override ENGSET = true
 endif
 ifeq "$(ENGINE)" "left4dead2"
@@ -87,7 +89,8 @@ ifeq "$(ENGINE)" "left4dead2"
 	METAMOD = $(MMSOURCE18)/core
 	INCLUDE += -I$(HL2SDK)/public/game/server
 	SRCDS = $(SRCDS_BASE)/left4dead2
-	LIB_SUFFIX = linux
+	LIB_PREFIX = lib
+	LIB_SUFFIX = .so
 	override ENGSET = true
 endif
 
@@ -130,10 +133,10 @@ endif
 OS := $(shell uname -s)
 ifeq "$(OS)" "Darwin"
 	LINK += -dynamiclib
-	BINARY = $(PROJECT).ext.2.ep2v.dylib
+	BINARY = $(BINARY).dylib
 else
 	LINK += -static-libgcc -shared
-	BINARY = $(PROJECT).ext.2.ep2v.so
+	BINARY = $(BINARY).so
 endif
 
 GCC_VERSION := $(shell $(CPP) -dumpversion >&1 | cut -b1)
@@ -150,8 +153,8 @@ $(BIN_DIR)/%.o: %.cpp
 all: check
 	mkdir -p $(BIN_DIR)/sdk
 	if [ "$(USEMETA)" = "true" ]; then \
-		ln -sf $(HL2LIB)/vstdlib_$(LIB_SUFFIX).so; \
-		ln -sf $(HL2LIB)/tier0_$(LIB_SUFFIX).so; \
+		ln -sf $(HL2LIB)/$(LIB_PREFIX)vstdlib$(LIB_SUFFIX)
+		ln -sf $(HL2LIB)/$(LIB_PREFIX)tier0$(LIB_SUFFIX)
 	fi
 	$(MAKE) -f Makefile extension
 
