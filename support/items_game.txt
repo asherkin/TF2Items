@@ -53,6 +53,8 @@
 			{
 				"scout"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
 		}
 		"1"
 		{
@@ -74,6 +76,8 @@
 			{
 				"demoman"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_bottle_pickup.wav"
+			"drop_sound"		"ui/item_bottle_drop.wav"
 		}
 		"2"
 		{
@@ -95,6 +99,8 @@
 			{
 				"pyro"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 		}
 		"3"
 		{
@@ -116,6 +122,8 @@
 			{
 				"sniper"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
 		}
 		"4"
 		{
@@ -179,6 +187,8 @@
 			{
 				"soldier"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 		}
 		"7"
 		{
@@ -200,6 +210,8 @@
 			{
 				"engineer"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
 		}
 		"8"
 		{
@@ -221,6 +233,8 @@
 			{
 				"medic"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
 		}
 		"9"
 		{
@@ -242,6 +256,8 @@
 			{
 				"engineer"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"10"
 		{
@@ -263,6 +279,8 @@
 			{
 				"soldier"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"11"
 		{
@@ -284,6 +302,8 @@
 			{
 				"heavy"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"12"
 		{
@@ -305,6 +325,8 @@
 			{
 				"pyro"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"13"
 		{
@@ -326,6 +348,8 @@
 			{
 				"scout"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"14"
 		{
@@ -347,6 +371,8 @@
 			{
 				"sniper"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"15"
 		{
@@ -368,6 +394,8 @@
 			{
 				"heavy"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"16"
 		{
@@ -389,6 +417,8 @@
 			{
 				"sniper"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"17"
 		{
@@ -410,6 +440,8 @@
 			{
 				"medic"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"18"
 		{
@@ -431,6 +463,8 @@
 			{
 				"soldier"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"19"
 		{
@@ -452,6 +486,8 @@
 			{
 				"demoman"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"20"
 		{
@@ -478,6 +514,8 @@
 			{
 				"skin" "0"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"21"
 		{
@@ -499,6 +537,8 @@
 			{
 				"pyro"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"22"
 		{
@@ -520,6 +560,8 @@
 			{
 				"engineer"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"23"
 		{
@@ -541,6 +583,8 @@
 			{
 				"scout"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"24"
 		{
@@ -562,6 +606,8 @@
 			{
 				"spy"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"25"
 		{
@@ -583,6 +629,8 @@
 			{
 				"engineer"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
 		}
 		"26"
 		{
@@ -604,6 +652,8 @@
 			{
 				"engineer"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
 		}
 		"27"
 		{
@@ -646,6 +696,8 @@
 			{
 				"engineer"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
 		}
 		"29"
 		{
@@ -667,6 +719,8 @@
 			{
 				"medic"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"30"
 		{
@@ -689,6 +743,8 @@
 			{
 				"spy"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_watch_pickup.wav"
+			"drop_sound"		"ui/item_watch_drop.wav"
 		}
 		"31"
 		{
@@ -709,6 +765,8 @@
 			{
 				"pyro"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"32"
 		{
@@ -726,6 +784,8 @@
 			{
 				"medic"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
 		}
 		"33"
 		{
@@ -743,6 +803,8 @@
 			{
 				"medic"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"34"
 		{
@@ -760,6 +822,8 @@
 			{
 				"medic"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"35"
 		{
@@ -817,6 +881,8 @@
 					"system"	"medicgun_beam_attrib_overheal_blue"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"36"
 		{
@@ -853,6 +919,8 @@
 					"value"	"-2"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"37"
 		{
@@ -895,6 +963,8 @@
 				"sound_taunt"	"Taunt.MedicViolinUber"
 				"custom_sound1"	"Weapon_UberSaw.HitFlesh"
 			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
 		}
 		"38"
 		{
@@ -937,6 +1007,8 @@
 					"value"	"1"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 		}
 		"39"
 		{
@@ -968,6 +1040,8 @@
 					"value"	"0.5"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"40"
 		{
@@ -1019,6 +1093,8 @@
 					"model"	"models/weapons/c_models/c_backburner/c_backburner.mdl"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"41"
 		{
@@ -1075,6 +1151,8 @@
  					"model" "models/weapons/c_models/c_v_ludmila/c_v_ludmila.mdl"
  				}
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"42"
 		{
@@ -1098,6 +1176,8 @@
 			{
 				"heavy"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_sandwich_drop.wav"
+			"drop_sound"		"ui/item_sandwich_pickup.wav"
 		}
 		"43"
 		{
@@ -1143,6 +1223,8 @@
 				"sound_melee_hit_world"	"Weapon_BoxingGloves.HitWorld"
 				"sound_burst"	"Weapon_BoxingGloves.MissCrit"
 			}
+			"mouse_pressed_sound" 	"ui/item_boxing_gloves_pickup.wav"
+			"drop_sound" 		"ui/item_boxing_gloves_drop.wav"
 		}
 		"44"
 		{
@@ -1179,6 +1261,8 @@
 					"value" "-15"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 		}
 		"45"
 		{
@@ -1242,6 +1326,8 @@
 				"muzzle_flash"	"muzzle_bignasty"
 				"tracer_effect"	"bullet_bignasty_tracer01"
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"46"
 		{
@@ -1477,6 +1563,8 @@
 					"value"	"0.5"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 		}
 		"57"
 		{
@@ -1507,6 +1595,8 @@
 					"value" "1"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 		}	
 		"58"
 		{
@@ -1537,6 +1627,8 @@
 					"value"	"1"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_bottle_pickup.wav"
+			"drop_sound"		"ui/item_bottle_drop.wav"
 		}	
 		"59"
 		{
@@ -1577,6 +1669,8 @@
 					"value"	"1.8"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_watch_pickup.wav"
+			"drop_sound"		"ui/item_watch_drop.wav"
 		}
 		"60"
 		{
@@ -1612,6 +1706,8 @@
 					"value"	"2.0"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_watch_pickup.wav"
+			"drop_sound"		"ui/item_watch_drop.wav"
 		}
 		"61"
 		{
@@ -1659,6 +1755,8 @@
 				"sound_single_shot" "Weapon_Ambassador.Single"
 				"sound_burst" "Weapon_Ambassador.SingleCrit"
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"94"
 		{
@@ -1915,6 +2013,8 @@
 			{
 				"pyro"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 		}
 		"106"
 		{
@@ -2431,6 +2531,8 @@
 					"value" "1"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"128"
 		{
@@ -2468,6 +2570,8 @@
 				"sound_melee_hit"	"Weapon_PickAxe.HitFlesh"
 				"sound_melee_burst"	"Weapon_PickAxe.SwingCrit"
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 		}
 		"129"
 		{
@@ -2477,6 +2581,7 @@
 			"item_type_name"	"#TF_Weapon_Battle_Banner"
 			"item_name"	"#TF_Unique_Achievement_SoldierBuff"
 			"item_slot"	"secondary"
+			"anim_slot"	"melee"
 			"item_quality"	"unique"
 			"propername"	"1"
 			"min_ilevel"	"5"
@@ -2486,10 +2591,13 @@
 			"image_inventory_size_h"		"82"
 			"model_player"	"models/weapons/c_models/c_bugle/c_bugle.mdl"
 			"attach_to_hands" "1"
+			"extra_wearable" "models/weapons/c_models/c_buffpack/c_buffpack.mdl"
 			"used_by_classes"
 			{
 				"soldier"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_pack_pickup.wav"
+			"drop_sound"		"ui/item_pack_drop.wav"
 		}
 		"130"
 		{
@@ -2551,12 +2659,14 @@
  					"model" "models/weapons/v_models/v_stickybomb_defender.mdl"
  				}
 			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 		}
 		"131"
 		{
 			"name"			"Unique Achievement Shield"
 			"item_class"		"tf_wearable_item_demoshield"
-			"craft_class"		"weapon"
+			"craft_class"	"weapon"
 			"item_type_name" 	"#TF_Wearable_Shield"
 			"item_name"		"#TF_Unique_Achievement_Shield"
 			"item_description"	"#TF_Unique_Achievement_Shield_Desc"
@@ -2570,6 +2680,7 @@
 			"image_inventory_size_w"		"128"
 			"image_inventory_size_h"		"82"
 			"model_player"	"models/weapons/c_models/c_targe/c_targe.mdl"
+			"act_as_wearable" "1"
 			"drop_type"	"drop"
 			"used_by_classes"
 			{
@@ -2585,9 +2696,11 @@
 				"dmg taken from blast reduced"
 				{
 					"attribute_class"	"mult_dmgtaken_from_explosions"
-					"value"			"0.5"
+					"value"			"0.6"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 		}	
 		"132"
 		{
@@ -2633,12 +2746,14 @@
 					"value" "-25"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
 		}
 		"133"
 		{
 			"name"			"The Gunboats"
 			"item_class"		"tf_wearable_item"
-			"craft_class"		"weapon"
+			"craft_class"	"weapon"
 			"item_type_name" 	"#TF_Wearable_Boots"
 			"item_name"		"#TF_Unique_Blast_Boots"
 			"item_slot"		"secondary"
@@ -2651,6 +2766,7 @@
 			"image_inventory_size_w"		"128"
 			"image_inventory_size_h"		"82"
 			"model_player"		"models/weapons/c_models/c_rocketboots_soldier.mdl"
+			"act_as_wearable" "1"
 			"used_by_classes"
 			{
 				"soldier"	"1"
@@ -3157,6 +3273,8 @@
 					"value"	"0.75"
 				}
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 		}
 		"154"
 		{
@@ -3215,6 +3333,8 @@
 			{
 				"sniper"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 			"visuals"
 			{
 				"hide_player_bodygroup_name"	"hat"
@@ -3242,6 +3362,8 @@
 			{
 				"heavy"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_sandwich_drop.wav"
+			"drop_sound"	"ui/item_sandwich_pickup.wav"
 			"attributes"
 			{
 				"lunchbox adds maxhealth bonus"
@@ -3272,6 +3394,8 @@
 			{
 				"scout"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"161"
 		{
@@ -3294,6 +3418,8 @@
 			{
 				"spy"	"1"
 			}
+			"mouse_pressed_sound"	"ui/item_light_gun_pickup.wav"
+			"drop_sound"		"ui/item_light_gun_drop.wav"
 		}
 		"162"
 		{
@@ -3333,10 +3459,43 @@
 				"engineer" "1"
 				"pyro" "1"
 			}
+			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
+			"drop_sound"		"ui/item_wood_weapon_drop.wav"
 			"visuals"
 			{
 				"hide_player_bodygroup_name"	"hat"
 				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		"163"
+		{
+			"name"	"Unique EnergyDrink CritCola"
+			"item_class"	"tf_weapon_lunchbox_drink"
+			"craft_class"	"weapon"
+			"item_type_name"	"#TF_Weapon_LunchBox"
+			"item_name"	"#TF_Unique_EnergyDrink_CritCola"
+			"item_description"	"#TF_Unique_EnergyDrink_CritCola_Desc"
+			"anim_slot"	"ITEM1"
+			"item_slot"	"secondary"
+			"image_inventory"	"backpack/weapons/c_models/c_energy_drink/c_critcola"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_energy_drink/c_energy_drink.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+			"attributes"
+			{
+				"lunchbox adds minicrits"
+				{
+					"attribute_class"	"set_weapon_mode"
+					"value"	"2"
+				}
 			}
 		}
 		"5000"
@@ -5377,6 +5536,18 @@
 			"description_string"	"#Attrib_Selfmade_Description"
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
+			"effect_type"	"neutral"
+		}
+		"144"
+		{
+			"name"	"lunchbox adds minicrits"
+			"attribute_class"	"set_weapon_mode"
+			"attribute_name"	"Lunchbox adds minicrits"
+			"min_value"	"2"
+			"max_value"	"2"
+			"description_string"	"#Attrib_LunchboxAddsMaxHealth"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
 			"effect_type"	"neutral"
 		}
 	}
