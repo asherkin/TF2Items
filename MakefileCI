@@ -91,7 +91,7 @@ ifeq "$(ENGINE)" "left4dead2"
 endif
 
 ifeq "$(USEMETA)" "true"
-	LINK_HL2 = $(HL2LIB)/tier1_i486.a vstdlib_$(LIB_SUFFIX).so tier0_$(LIB_SUFFIX).so
+	LINK_HL2 = $(HL2LIB)/tier1_i486.a vstdlib$(LIB_SUFFIX) tier0$(LIB_SUFFIX)
 
 	LINK += $(LINK_HL2)
 
@@ -129,10 +129,10 @@ endif
 OS := $(shell uname -s)
 ifeq "$(OS)" "Darwin"
 	LINK += -dynamiclib
-	BINARY += .dylib
+	BINARY +=.dylib
 else
 	LINK += -static-libgcc -shared
-	BINARY += .so
+	BINARY +=.so
 endif
 
 GCC_VERSION := $(shell $(CPP) -dumpversion >&1 | cut -b1)
