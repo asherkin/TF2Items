@@ -81,6 +81,8 @@ public:
 	uint32 m_iGlobalIndexHigh;						// Win: Offset 32 / Linux: Offset 24
 	uint32 m_iGlobalIndexLow; 						// Win: Offset 36 / Linux: Offset 28
 
+	uint32 m_iAccountID;
+
 #ifdef _LINUX
     uint8 m_iPadding4[0x1A98];
 #else
