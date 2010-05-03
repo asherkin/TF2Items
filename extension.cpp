@@ -183,8 +183,8 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				// Override based on the flags passed to this object.
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
-				//if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
-				//if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
 					// Even if we don't want to override the item quality, do if it's set to 0.
