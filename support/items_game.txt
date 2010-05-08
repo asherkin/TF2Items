@@ -3277,6 +3277,11 @@
 					"attribute_class"	"mult_dmg_vs_players"
 					"value"	"0.75"
 				}
+				"damage applies to sappers"
+				{
+					"attribute_class"	"set_dmg_apply_to_sapper"
+					"value"	"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_wood_weapon_pickup.wav"
 			"drop_sound"		"ui/item_wood_weapon_drop.wav"
@@ -3627,6 +3632,47 @@
 			"visuals"
 			{
 				"skin" "2"
+				"use_per_class_bodygroups" "1"
+			}
+		}
+		"170"
+		{
+			"name"	"Employee Badge Plat"
+			"item_class"	"tf_wearable_item"
+			"item_type_name"	"#TF_Wearable_Badge"
+			"item_name"	"#TF_Employee_Badge_Plat"
+			"item_slot"	"misc"
+			"image_inventory"	"backpack/player/items/all_class/id_badge_platinum"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"model_player"	"models/player/items/all_class/id_badge.mdl"
+			"min_ilevel"	"20"
+			"max_ilevel"	"20"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"attributes"
+			{
+				"custom employee number"
+				{
+					"attribute_class"	"set_employee_number"
+					"force_gc_to_generate" "1"
+					"use_custom_logic"	"employee_number"
+				}
+			}
+			"visuals"
+			{
+				"skin" "3"
 				"use_per_class_bodygroups" "1"
 			}
 		}
@@ -5693,6 +5739,18 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"1"
 			"effect_type"	"neutral"
+		}
+		"146"
+		{
+			"name"	"damage applies to sappers"
+			"attribute_class"	"set_dmg_apply_to_sapper"
+			"attribute_name"	"Damage applies to sappers"
+			"min_value"	"1"
+			"max_value"	"1"
+			"description_string"	"#Attrib_DmgAppliesToSappers"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
 		}
 	}
 }
