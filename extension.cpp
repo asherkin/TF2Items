@@ -61,6 +61,8 @@ int GiveNamedItem_player_Hook = 0;
 int GiveNamedItem_bot_Hook = 0;
 int ClientPutInServer_Hook = 0;
 
+int g_iEntityQualityOffset = 0;
+
 IForward * g_pForwardGiveItem = NULL;
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
 TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
@@ -99,11 +101,8 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 	hScriptCreatedItem.m_iItemDefinitionIndex = p_hOverride->m_iItemDefinitionIndex;
 	hScriptCreatedItem.m_iEntityLevel = p_hOverride->m_iEntityLevel;
 	hScriptCreatedItem.m_iEntityQuality = p_hOverride->m_iEntityQuality;
-	//hScriptCreatedItem.m_pAttributes = hScriptCreatedItem.m_pAttributes2 = p_hOverride->m_Attributes;
-	//hScriptCreatedItem.m_iAttributesCount = hScriptCreatedItem.m_iAttributesLength = p_hOverride->m_iCount;
 	hScriptCreatedItem.m_Attributes.CopyArray(p_hOverride->m_Attributes, p_hOverride->m_iCount);
-//	hScriptCreatedItem.m_bInitialized = true;
-	//if (hScriptCreatedItem.m_iEntityQuality == 0 && hScriptCreatedItem.m_iAttributesCount > 0) hScriptCreatedItem.m_iEntityQuality = 9;
+	hScriptCreatedItem.m_bInitialized = true;
 
 	// Call the function.
 	CBaseEntity *tempItem = NULL;
@@ -112,6 +111,11 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 	if (tempItem == NULL) {
 		pContext->ThrowNativeError("Item is NULL. You may have hit Bug 18.");
 	}
+
+	if (p_hOverride->m_iEntityQuality == 0 && p_hOverride->m_iCount > 0) p_hOverride->m_iEntityQuality = 3;
+
+	int *iEntityQuality = (int *)((char *)tempItem + (g_iEntityQualityOffset));
+	*iEntityQuality = p_hOverride->m_iEntityQuality;
 
 	return tempItem;
 }
@@ -204,22 +208,21 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int a, CScriptCreatedIt
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) cscript->m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) cscript->m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
-				//if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) cscript->m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
 					// Even if we don't want to override the item quality, do if it's set to 0.
-					//if (newitem.m_iEntityQuality == 0 && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
-
+					if (cscript->m_iEntityQuality == 0 && !(pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) && pScriptedItemOverride->m_iCount > 0) cscript->m_iEntityQuality = 3;
 					cscript->m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
 				}
 
 				// Done
 				CBaseEntity *retitem = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, a, cscript, b);
 
-				sm_sendprop_info_t info;
-				gamehelpers->FindSendPropInfo("CBaseAttributableItem", "m_iEntityQuality", &info);
-				int *m_iEntityQuality = (int *)((char *)retitem + (info.actual_offset));
-				*m_iEntityQuality = /*pScriptedItemOverride->m_iEntityQuality*/ 8;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY)
+				{
+					int *iEntityQuality = (int *)((char *)retitem + (g_iEntityQualityOffset));
+					*iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
+				}
 
 				RETURN_META_VALUE(MRES_SUPERCEDE, retitem);
 			}
@@ -327,6 +330,10 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		SH_MANUALHOOK_RECONFIGURE(MCall_RemoveWearable, iOffset, 0, 0);
 		g_pSM->LogMessage(myself, "\"RemoveWearable\" offset = %d", iOffset);
 	}
+
+	sm_sendprop_info_t info;
+	gamehelpers->FindSendPropInfo("CBaseAttributableItem", "m_iEntityQuality", &info);
+	g_iEntityQualityOffset = info.actual_offset;
 
 	// If it's a late load, there might be the chance there are players already on the server. Just
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean
