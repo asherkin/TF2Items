@@ -36,7 +36,7 @@
  *	==================
  */
 //#define TF2ITEMS_DEBUG_HOOKING
-#define TF2ITEMS_DEBUG_ITEMS
+//#define TF2ITEMS_DEBUG_ITEMS
 
 TF2Items g_TF2Items;
 
@@ -200,7 +200,23 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int a, CScriptCreatedIt
 				// Execute the new attributes set and we're done!
 				char * finalitem = (char*) szClassname;
 				CScriptCreatedItem newitem;
-				memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
+				//memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
+				
+				newitem.m_iItemDefinitionIndex = cscript->m_iItemDefinitionIndex;
+				newitem.m_iEntityQuality = cscript->m_iEntityQuality;
+				newitem.m_iEntityLevel = cscript->m_iEntityLevel;
+				newitem.m_iGlobalIndex = cscript->m_iGlobalIndex;	
+				newitem.m_iGlobalIndexHigh = cscript->m_iGlobalIndexHigh;
+				newitem.m_iGlobalIndexLow = cscript->m_iGlobalIndexLow;
+				newitem.m_iAccountID = cscript->m_iAccountID;
+				newitem.m_iPosition = cscript->m_iPosition;
+				memcpy(newitem.m_szWideName, cscript->m_szWideName, sizeof(wchar_t[128]));
+				memcpy(newitem.m_szName, cscript->m_szName, sizeof(char[128]));
+				memcpy(newitem.m_szBlob, cscript->m_szBlob, sizeof(char[20]));
+				memcpy(newitem.m_szBlob2, cscript->m_szBlob2, sizeof(wchar_t[1536]));
+				newitem.m_Attributes = cscript->m_Attributes;
+				newitem.m_bInitialized = cscript->m_bInitialized;
+
 
 				// Override based on the flags passed to this object.
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
@@ -215,6 +231,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int a, CScriptCreatedIt
 					// Setup the attributes.
 					//newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
 					//newitem.m_iAttributesCount = newitem.m_iAttributesLength = pScriptedItemOverride->m_iCount;
+
 					newitem.m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
 				}
 
