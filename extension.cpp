@@ -199,44 +199,29 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int a, CScriptCreatedIt
 
 				// Execute the new attributes set and we're done!
 				char * finalitem = (char*) szClassname;
-				CScriptCreatedItem newitem;
-				//memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
-				
-				newitem.m_iItemDefinitionIndex = cscript->m_iItemDefinitionIndex;
-				newitem.m_iEntityQuality = cscript->m_iEntityQuality;
-				newitem.m_iEntityLevel = cscript->m_iEntityLevel;
-				newitem.m_iGlobalIndex = cscript->m_iGlobalIndex;	
-				newitem.m_iGlobalIndexHigh = cscript->m_iGlobalIndexHigh;
-				newitem.m_iGlobalIndexLow = cscript->m_iGlobalIndexLow;
-				newitem.m_iAccountID = cscript->m_iAccountID;
-				newitem.m_iPosition = cscript->m_iPosition;
-				memcpy(newitem.m_szWideName, cscript->m_szWideName, sizeof(wchar_t[128]));
-				memcpy(newitem.m_szName, cscript->m_szName, sizeof(char[128]));
-				memcpy(newitem.m_szBlob, cscript->m_szBlob, sizeof(char[20]));
-				memcpy(newitem.m_szBlob2, cscript->m_szBlob2, sizeof(wchar_t[1536]));
-				newitem.m_Attributes = cscript->m_Attributes;
-				newitem.m_bInitialized = cscript->m_bInitialized;
-
 
 				// Override based on the flags passed to this object.
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) cscript->m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) cscript->m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
+				//if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) cscript->m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
 					// Even if we don't want to override the item quality, do if it's set to 0.
 					//if (newitem.m_iEntityQuality == 0 && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
 
-					// Setup the attributes.
-					//newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
-					//newitem.m_iAttributesCount = newitem.m_iAttributesLength = pScriptedItemOverride->m_iCount;
-
-					newitem.m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
+					cscript->m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
 				}
 
 				// Done
-				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, a, &newitem, b));
+				CBaseEntity *retitem = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, a, cscript, b);
+
+				sm_sendprop_info_t info;
+				gamehelpers->FindSendPropInfo("CBaseAttributableItem", "m_iEntityQuality", &info);
+				int *m_iEntityQuality = (int *)((char *)retitem + (info.actual_offset));
+				*m_iEntityQuality = /*pScriptedItemOverride->m_iEntityQuality*/ 8;
+
+				RETURN_META_VALUE(MRES_SUPERCEDE, retitem);
 			}
 	}
 	
