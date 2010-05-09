@@ -18,14 +18,15 @@
  */
 
 /*
- *	Atributions & Thanks:
+ *	Attributions & Thanks:
  *	=====================
  *	AzuiSleet				-	Reversed CScriptCreatedItem and released it publicly, along with writing most of the item editing code below.
  *	Damizean				-	Fixed padding for CScriptCreatedItem in Linux. Wrote the SourcePawn Interface and the SourceMod item manager.
- *	Wazz					-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *.
+ *	Voogru					-	Inspiring the creation of this. Helped with fixing and improving the CScriptCreatedItem class used after the 119 update.
+ *	Wazz					-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *. Helped with improving the CScriptCreatedItem class.
  *	Psychonic				-	"How did you write the wearable natives asherkin?" "I got all the code from psychonic, then disregarded it and wrote it from scratch."
  *	MatthiasVance			-	Reminded me to comment out '#define INFINITE_PROBLEMS 1'.
- *	voogru & Drunken_F00l	-	Inspiring the creation of this.
+ *	Drunken_F00l			-	Inspiring the creation of this.
  */
 
 #include "extension.hpp"
@@ -35,7 +36,7 @@
  *	==================
  */
 //#define TF2ITEMS_DEBUG_HOOKING
-//#define TF2ITEMS_DEBUG_ITEMS
+#define TF2ITEMS_DEBUG_ITEMS
 
 TF2Items g_TF2Items;
 
@@ -98,9 +99,10 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 	hScriptCreatedItem.m_iItemDefinitionIndex = p_hOverride->m_iItemDefinitionIndex;
 	hScriptCreatedItem.m_iEntityLevel = p_hOverride->m_iEntityLevel;
 	hScriptCreatedItem.m_iEntityQuality = p_hOverride->m_iEntityQuality;
-	hScriptCreatedItem.m_pAttributes = hScriptCreatedItem.m_pAttributes2 = p_hOverride->m_Attributes;
-	hScriptCreatedItem.m_iAttributesCount = hScriptCreatedItem.m_iAttributesLength = p_hOverride->m_iCount;
-	hScriptCreatedItem.m_bInitialized = true;
+	//hScriptCreatedItem.m_pAttributes = hScriptCreatedItem.m_pAttributes2 = p_hOverride->m_Attributes;
+	//hScriptCreatedItem.m_iAttributesCount = hScriptCreatedItem.m_iAttributesLength = p_hOverride->m_iCount;
+	hScriptCreatedItem.m_Attributes.CopyArray(p_hOverride->m_Attributes, p_hOverride->m_iCount);
+//	hScriptCreatedItem.m_bInitialized = true;
 	//if (hScriptCreatedItem.m_iEntityQuality == 0 && hScriptCreatedItem.m_iAttributesCount > 0) hScriptCreatedItem.m_iEntityQuality = 9;
 
 	// Call the function.
@@ -109,23 +111,12 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 
 	if (tempItem == NULL) {
 		pContext->ThrowNativeError("Item is NULL. You may have hit Bug 18.");
-		//g_pSM->LogError(myself, "Item is NULL.");
-		//tempItem = SH_MCALL(p_hPlayer, MHook_GiveNamedItem)(strWeaponClassname, 0, NULL, 0);
 	}
-
-	//if (tempItem == NULL) {
-	//	g_pSM->LogError(myself, "Item is still NULL.");
-	//	tempItem = SH_MCALL(p_hPlayer, MHook_GiveNamedItemBackup)(strWeaponClassname, 0);
-	//}
-
-	//if (tempItem == NULL) {
-	//	g_pSM->LogError(myself, "Item is fucked.");
-	//}
 
 	return tempItem;
 }
 
-CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *cscript, bool b) {
+CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int a, CScriptCreatedItem *cscript, bool b) {
 
 	#ifdef TF2ITEMS_DEBUG_HOOKING
 		 g_pSM->LogMessage(myself, "GiveNamedItem called.");
@@ -148,12 +139,43 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	int client = gamehelpers->IndexOfEdict(playerEdict);
 
 #ifdef TF2ITEMS_DEBUG_ITEMS
+
+	/*
+	if (cscript->m_iItemDefinitionIndex == 153) {
+	FILE *fp = fopen("debug_item_153.txt", "wb");
+	fwrite(cscript, 3552, 1, fp);
+	fclose(fp);
+	}
+	*/
+
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	g_pSM->LogMessage(myself, ">>> Client = %s", pPlayer->GetName());
-	g_pSM->LogMessage(myself, ">>> ItemDefinitionIndex = %d", cscript->m_iItemDefinitionIndex);
-	g_pSM->LogMessage(myself, ">>> ClassName = %s", item);
+	g_pSM->LogMessage(myself, ">>> szClassname = %s", szClassname);
 	g_pSM->LogMessage(myself, ">>> a = %d", a);
 	g_pSM->LogMessage(myself, ">>> b = %s", b?"true":"false");
+	g_pSM->LogMessage(myself, "---------------------------------------");
+	g_pSM->LogMessage(myself, ">>> m_iItemDefinitionIndex = %u", cscript->m_iItemDefinitionIndex);
+	g_pSM->LogMessage(myself, ">>> m_iEntityQuality = %u", cscript->m_iEntityQuality);
+	g_pSM->LogMessage(myself, ">>> m_iEntityLevel = %u", cscript->m_iEntityLevel);
+	g_pSM->LogMessage(myself, ">>> m_iGlobalIndex = %lu", cscript->m_iGlobalIndex);
+	g_pSM->LogMessage(myself, ">>> m_iGlobalIndexHigh = %u", cscript->m_iGlobalIndexHigh);
+	g_pSM->LogMessage(myself, ">>> m_iGlobalIndexLow = %u", cscript->m_iGlobalIndexLow);
+	g_pSM->LogMessage(myself, ">>> m_iAccountID = %u", cscript->m_iAccountID);
+	g_pSM->LogMessage(myself, ">>> m_iPosition = %u", cscript->m_iPosition);
+	g_pSM->LogMessage(myself, ">>> m_szWideName = %ls", cscript->m_szWideName);
+	g_pSM->LogMessage(myself, ">>> m_szName = %s", cscript->m_szName);
+	g_pSM->LogMessage(myself, ">>> m_bInitialized = %s", cscript->m_bInitialized?"true":"false");
+	g_pSM->LogMessage(myself, "---------------------------------------");
+	for (int i = 0; i < ((cscript->m_Attributes.Count() > 16)?0:cscript->m_Attributes.Count()); i++)
+	{
+		g_pSM->LogMessage(myself, ">>> m_iAttributeDefinitionIndex = %u", cscript->m_Attributes.Element(i).m_iAttributeDefinitionIndex);
+		g_pSM->LogMessage(myself, ">>> m_flValue = %f", cscript->m_Attributes.Element(i).m_flValue);
+		g_pSM->LogMessage(myself, ">>> m_szDescription = %ls", cscript->m_Attributes.Element(i).m_szDescription);
+		g_pSM->LogMessage(myself, "---------------------------------------");
+	}
+	g_pSM->LogMessage(myself, ">>> Size of CScriptCreatedItem = %d", sizeof(CScriptCreatedItem));
+	g_pSM->LogMessage(myself, ">>> Size of CScriptCreatedAttribute = %d", sizeof(CScriptCreatedAttribute));
+	g_pSM->LogMessage(myself, ">>> No. of Attributes = %d", cscript->m_Attributes.Count());
 	g_pSM->LogMessage(myself, "---------------------------------------");
 #endif
 
@@ -161,7 +183,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 	cell_t cellResults = 0;
 	cell_t cellOverrideHandle = 0;
 	g_pForwardGiveItem->PushCell(client);
-	g_pForwardGiveItem->PushString(item);
+	g_pForwardGiveItem->PushString(szClassname);
 	g_pForwardGiveItem->PushCell(cscript->m_iItemDefinitionIndex);
 	g_pForwardGiveItem->PushCellByRef(&cellOverrideHandle);
 	g_pForwardGiveItem->Execute(&cellResults);
@@ -176,7 +198,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 				}
 
 				// Execute the new attributes set and we're done!
-				char * finalitem = (char*) item;
+				char * finalitem = (char*) szClassname;
 				CScriptCreatedItem newitem;
 				memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
 
@@ -191,8 +213,9 @@ CBaseEntity *Hook_GiveNamedItem(char const *item, int a, CScriptCreatedItem *csc
 					//if (newitem.m_iEntityQuality == 0 && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
 
 					// Setup the attributes.
-					newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
-					newitem.m_iAttributesCount = newitem.m_iAttributesLength = pScriptedItemOverride->m_iCount;
+					//newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
+					//newitem.m_iAttributesCount = newitem.m_iAttributesLength = pScriptedItemOverride->m_iCount;
+					newitem.m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
 				}
 
 				// Done

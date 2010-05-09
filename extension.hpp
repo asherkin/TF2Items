@@ -42,63 +42,52 @@ class CBasePlayer;
 //class CPersistentItem;
 //class CPersistentAttributeDefinition;
 
-#pragma pack(push, 1)
-
-class CScriptCreatedAttribute		// Linux size: 0x18C
-{
-	void * m_pVTable;
-public:
-	uint32 m_iAttributeDefinitionIndex;				// Win: Offset 4 / Linux: Offset 4
-	float m_flValue;								// Win: Offset 8 / Linux: Offset 8
-
-	#ifdef _LINUX
-		uint8 m_iPadding[0x180];
-	#else
-		uint8 m_iPadding[0xC0];
-	#endif
-};
-
-/* CScriptCreatedAttribute()
-** -------------------------------------------------------------------------- */
-class CScriptCreatedItem			// Windows size: 0xDD8 / Linux size: 0x1AD0
+class CScriptCreatedAttribute							// Win Length = 204 / Lin Length = 396
 {
 public:
-	void * m_pVTable;
+	void * m_pVTable;									// Length = 4 / Win = 0 / Lin = 0
 
-#ifndef _LINUX
-	void * m_pPersistentItem;						// Present before in Linux?
-#endif
-	uint32 m_iItemDefinitionIndex;					// Win: Offset 8 / Linux: Offset 4
-	uint8 m_iEntityQuality; uint8 m_iPadding1[3];	// Win: Offset 12 / Linux: Offset 8
-	uint8 m_iEntityLevel;							// Win: Offset 16 / Linux: Offset 12
-
-#ifdef _LINUX
-	uint8 m_iPadding2[0xB];
-#else
-	uint8 m_iPadding2[0xF];
-#endif
-	
-	uint32 m_iGlobalIndexHigh;						// Win: Offset 32 / Linux: Offset 24
-	uint32 m_iGlobalIndexLow; 						// Win: Offset 36 / Linux: Offset 28
-
-	uint32 m_iAccountID;
-
-#ifdef _LINUX
-    uint8 m_iPadding4[0x1A98];
-#else
-	uint8 m_iPadding4[0xD98];
-#endif
-
-	CScriptCreatedAttribute * m_pAttributes;		// Win: Offset 3520 / Linux: Offset 6840
-	uint32 m_iAttributesLength;						// Win: Offset 3524 / Linux: Offset 6844
-	uint32 m_iPadding5;								// Win: Offset 3528 / Linux: Offset 6848
-	uint32 m_iAttributesCount;						// Win: Offset 3532 / Linux: Offset 6852
-	CScriptCreatedAttribute * m_pAttributes2;		// Win: Offset 3536 / Linux: Offset 6856
-	
-	bool m_bInitialized; uint8 m_iPadding6[3];		// Win: Offset 3540 / Linux: Offset 6860
+	uint32 m_iAttributeDefinitionIndex;					// Length = 4 / Win = 4 / Lin = 4
+	float m_flValue;									// Length = 4 / Win = 8 / Lin = 8
+	wchar_t m_szDescription[96];						// Win Length = 192 / Lin Length = 384 / Win = 12 / Lin = 12
 };
 
-#pragma pack(pop)
+class CScriptCreatedItem								// Win Length = 3552 / Lin Length = 6868
+{
+public:
+	void * m_pVTable;									// Length = 4 / Win = 0 / Lin = 0
+
+#ifdef _WIN32
+	char m_Padding[4];									// Length = 4 / Win = 4 / Lin = N/A
+#endif
+
+	uint32 m_iItemDefinitionIndex;						// Length = 4 / Win = 8 / Lin = 4
+	uint32 m_iEntityQuality;							// Length = 4 / Win = 12 / Lin = 8
+	uint32 m_iEntityLevel;								// Length = 4 / Win = 16 / Lin = 12
+
+#ifdef _WIN32
+	char m_Padding2[4];									// Length = 4 / Win = 20 / Lin = N/A
+#endif
+
+	uint64 m_iGlobalIndex;								// Length = 8 / Win = 24 / Lin = 16
+	uint32 m_iGlobalIndexHigh;							// Length = 4 / Win = 32 / Lin = 24
+	uint32 m_iGlobalIndexLow;							// Length = 4 / Win = 36 / Lin = 28
+	uint32 m_iAccountID;								// Length = 4 / Win = 40 / Lin = 32
+	uint32 m_iPosition;									// Length = 4 / Win = 44 / Lin = 36
+	wchar_t m_szWideName[128];							// Win Length = 256 / Lin Length = 512 / Win = 48 / Lin = 40
+	char m_szName[128];									// Length = 128 / Win = 304 / Lin = 552
+
+	char m_szBlob[20];									// Length = 20 / Win = 432 / Lin = 680
+	wchar_t m_szBlob2[1536];							// Win Length = 3072 / Lin Length = 6144 / Win = 452 / Lin = 700
+
+	CUtlVector<CScriptCreatedAttribute> m_Attributes;	// Length = 20 / Win = 3524 / Lin = 6844
+
+	bool m_bInitialized;								// Length = 4 / Win = 3544 / Lin = 6864
+
+#ifdef _WIN32
+	char m_Padding3[4];									// Length = 4 / Win = 3548 / Lin = N/A
+#endif									
+};
 
 struct TScriptedItemOverride
 {
