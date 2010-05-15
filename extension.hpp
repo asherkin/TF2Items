@@ -36,6 +36,7 @@
 #define OVERRIDE_ITEM_LEVEL		(1 << 2)
 #define OVERRIDE_ITEM_QUALITY	(1 << 3)
 #define OVERRIDE_ATTRIBUTES		(1 << 4)
+#define PRESERVE_ATTRIBUTES		(1 << 5)
 
 //class CBaseEntity;
 class CBasePlayer;

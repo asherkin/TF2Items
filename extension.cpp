@@ -211,8 +211,12 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int a, CScriptCreatedIt
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
 					// Even if we don't want to override the item quality, do if it's set to 0.
-					if (cscript->m_iEntityQuality == 0 && !(pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) && pScriptedItemOverride->m_iCount > 0) cscript->m_iEntityQuality = 3;
-					cscript->m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
+					if (cscript->m_iEntityQuality == 0 && !(pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) && pScriptedItemOverride->m_iCount > 0) pScriptedItemOverride->m_iEntityQuality = 3;
+
+					if (!(pScriptedItemOverride->m_bFlags & PRESERVE_ATTRIBUTES))
+						cscript->m_Attributes.RemoveAll();
+
+					cscript->m_Attributes.AddMultipleToTail(pScriptedItemOverride->m_iCount, pScriptedItemOverride->m_Attributes);
 				}
 
 				// Done
