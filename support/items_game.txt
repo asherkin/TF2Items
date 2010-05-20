@@ -1085,7 +1085,7 @@
 				"damage bonus"
 				{
 					"attribute_class"	"mult_dmg"
-					"value"	"1.2"
+					"value"	"1.15"
 				}
 			}
 			"visuals"
