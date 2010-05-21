@@ -3502,6 +3502,10 @@
 			"visuals"
 			{
 				"skin" "2"			
+				"custom_particlesystem"
+				{
+					"system"	"energydrink_cola_splash"
+				}
 			}
 			"attributes"
 			{
@@ -3674,6 +3678,333 @@
 			{
 				"skin" "3"
 				"use_per_class_bodygroups" "1"
+			}
+		}
+		"171"
+		{
+			"name"	"Unique Tribalman Kukri"
+			"item_class"	"tf_weapon_club"
+			"craft_class"	"weapon"
+			"item_logname"	"tribalkukri"
+			"item_iconname"	"tribalkukri"
+			"item_type_name"	"#TF_Weapon_Club"
+			"item_name"	"#TF_Unique_TribalmanKukri"
+			"item_slot"	"melee"
+			"image_inventory"	"backpack/weapons/c_models/c_wood_machete/c_wood_machete"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_wood_machete/c_wood_machete.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"propername"	"1"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
+			"attributes"
+			{
+				"bleeding duration"
+				{
+					"attribute_class"	"bleeding_duration"
+					"value" "8"
+				}
+				"damage penalty"
+				{
+					"attribute_class"	"mult_dmg"
+					"value"	"0.65"
+				}
+			}
+		}
+		"172"
+		{
+			"name"	"Unique Scotsmans Battleaxe"
+			"item_class"	"tf_weapon_sword"
+			"craft_class"	"weapon"
+			"item_logname"	"battleaxe"
+			"item_iconname"	"battleaxe"
+			"item_type_name"	"#TF_Weapon_Axe"
+			"item_name"	"#TF_Unique_BattleAxe"
+			"item_slot"	"melee"
+			"image_inventory"	"backpack/weapons/c_models/c_battleaxe/c_battleaxe"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_battleaxe/c_battleaxe.mdl"
+			"attach_to_hands"	"1"
+			"item_quality"	"unique"
+			"propername"	"1"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+			"attributes"
+			{
+				"damage bonus"
+				{
+					"attribute_class"	"mult_dmg"
+					"value"	"1.2"
+				}
+				"move speed penalty"
+				{
+					"attribute_class"	"mult_player_movespeed"
+					"value"	"0.85"
+				}
+			}
+		}
+		"174"
+		{
+			"name"	"Scout Whoopee Cap"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_ScoutWhoopee"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/scout/scout_whoopee"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/scout/scout_whoopee.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
+		"175"
+		{
+			"name"	"Pyro Monocle"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_PyroMonocle"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/pyro/pyro_monocle"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/pyro/pyro_monocle.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"177"
+		{
+			"name"	"Medic Goggles"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_MedicGoggles"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"item_description"	"#TF_MedicGoggles_Desc"
+			"image_inventory"	"backpack/player/items/medic/medic_goggles"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/medic/medic_goggles.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"178"
+		{
+			"name"	"Engineer Earmuffs"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_EngineerEarmuffs"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/engineer/engy_earphones"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/engineer/engy_earphones.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"engineer"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"179"
+		{
+			"name"	"Demoman Tricorne"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_DemomanTricorne"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/demo_tricorne"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/demo/demo_tricorne.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"180"
+		{
+			"name"	"Spy Beret"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_SpyBeret"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/spy/spy_beret"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/spy/spy_beret.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"spy"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"181"
+		{
+			"name"	"Sniper Fishing Hat"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_SniperFishingHat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/sniper/sniper_fishinghat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/sniper/sniper_fishinghat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"sniper"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"182"
+		{
+			"name"	"Pyro Helm"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_PyroHelm"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/pyro/pyro_pyrolean"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/pyro/pyro_pyrolean.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"pyro"	"1"
+			}
+		}
+		"183"
+		{
+			"name"	"Soldier Drill Hat"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_SoldierDrillHat"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/soldier/soldier_sargehat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/soldier/soldier_sargehat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"soldier"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"184"
+		{
+			"name"	"Medic Gatsby"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_MedicGatsby"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/medic/medic_gatsby"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/medic/medic_gatsby.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"medic"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+		}
+		"185"
+		{
+			"name"	"Heavy Do-rag"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_HeavyDorag"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/heavy/heavy_bandana"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/heavy/heavy_bandana.mdl"
+			"drop_type"	"none"
+			"propername"	"1"
+			"used_by_classes"
+			{
+				"heavy"	"1"
 			}
 		}
 		"5000"
@@ -5748,6 +6079,18 @@
 			"min_value"	"1"
 			"max_value"	"1"
 			"description_string"	"#Attrib_DmgAppliesToSappers"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+		}
+		"149"
+		{
+			"name"	"bleeding duration"
+			"attribute_class"	"bleeding_duration"
+			"attribute_name"	"Bleeding Duration"
+			"min_value"	"1"
+			"max_value"	"4"
+			"description_string"	"#Attrib_BleedingDuration"
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
