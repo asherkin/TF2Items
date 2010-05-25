@@ -52,7 +52,7 @@ ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
 IServerGameEnts *gameents = NULL;
 
-ConVar TF2ItemsVersion("tf2items_version", "1.3.1", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
+ConVar TF2ItemsVersion("tf2items_version", "1.3.2", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
 ConVar HookTFBot("tf2items_bothook", "1", FCVAR_NONE, "Hook intelligent TF2 bots.");
 
 IGameConfig *g_pGameConf = NULL;

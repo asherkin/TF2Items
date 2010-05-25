@@ -7,7 +7,7 @@
 
 #define PLUGIN_NAME		"[TF2Items] Give Weapon"
 #define PLUGIN_AUTHOR		"Asherkin"
-#define PLUGIN_VERSION		"3.1.0"
+#define PLUGIN_VERSION		"3.1.2"
 #define PLUGIN_CONTACT		"http://limetech.org/"
 
 new g_hItems[MAXPLAYERS+1][6];

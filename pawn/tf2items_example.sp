@@ -7,7 +7,7 @@
 
 #define PLUGIN_NAME		"[TF2Items] Sample Plugin"
 #define PLUGIN_AUTHOR		"Asherkin & Damizean"
-#define PLUGIN_VERSION		"3.0.0"
+#define PLUGIN_VERSION		"3.1.2"
 #define PLUGIN_CONTACT		"http://limetech.org/"
 
 public Plugin:myinfo = {
