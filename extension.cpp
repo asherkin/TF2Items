@@ -120,7 +120,7 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 	return tempItem;
 }
 
-CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int a, CScriptCreatedItem *cscript, bool b) {
+CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCreatedItem *cscript, bool b) {
 
 	#ifdef TF2ITEMS_DEBUG_HOOKING
 		 g_pSM->LogMessage(myself, "GiveNamedItem called.");
@@ -155,7 +155,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int a, CScriptCreatedIt
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	g_pSM->LogMessage(myself, ">>> Client = %s", pPlayer->GetName());
 	g_pSM->LogMessage(myself, ">>> szClassname = %s", szClassname);
-	g_pSM->LogMessage(myself, ">>> a = %d", a);
+	g_pSM->LogMessage(myself, ">>> iSubType = %d", iSubType);
 	g_pSM->LogMessage(myself, ">>> b = %s", b?"true":"false");
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	g_pSM->LogMessage(myself, ">>> m_iItemDefinitionIndex = %u", cscript->m_iItemDefinitionIndex);
@@ -568,7 +568,7 @@ static cell_t TF2Items_SetQuality(IPluginContext *pContext, const cell_t *params
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < 0 || params[2] > 9) return pContext->ThrowNativeError("Quality index %d is out of bounds.", params[2]);
+		if (params[2] < 0 || params[2] > 10) return pContext->ThrowNativeError("Quality out of bounds: %i [0 ... 10]", params[2]);
 		pScriptedItemOverride->m_iEntityQuality = params[2];
 	}
 	return 0;
@@ -589,6 +589,7 @@ static cell_t TF2Items_SetLevel(IPluginContext *pContext, const cell_t *params)
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
 	{
+		if (params[2] < 0 || params[2] > 127) { pContext->ThrowNativeError("Level out of bounds: %i [0 ... 127]", params[2]); return 0; }
 		pScriptedItemOverride->m_iEntityLevel = params[2];
 	}
 	return 0;
@@ -630,11 +631,7 @@ static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *para
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < 0 || params[2] > 15)
-		{
-			pContext->ThrowNativeError("Attribute index out of bounds: %d", params[2]);
-			return 0;
-		}
+		if (params[2] < 0 || params[2] > 15) { pContext->ThrowNativeError("Attribute index out of bounds: %i [0 ... 15]", params[2]); return 0; }
 		pScriptedItemOverride->m_Attributes[params[2]].m_iAttributeDefinitionIndex = params[3];
 		pScriptedItemOverride->m_Attributes[params[2]].m_flValue = sp_ctof(params[4]);
 		return 1;
@@ -648,11 +645,7 @@ static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *pa
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < 0 || params[2] > 15)
-		{
-			pContext->ThrowNativeError("Attribute index out of bounds: %d", params[2]);
-			return 0;
-		}
+		if (params[2] < 0 || params[2] > 15) { pContext->ThrowNativeError("Attribute index out of bounds: %i [0 ... 15]", params[2]); return 0; }
 		return pScriptedItemOverride->m_Attributes[params[2]].m_iAttributeDefinitionIndex;
 	}
 	return -1;
@@ -663,10 +656,7 @@ static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t 
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < 0 || params[2] > 15)
-		{
-			return pContext->ThrowNativeError("Attribute index out of bounds: %d", params[2]);
-		}
+		if (params[2] < 0 || params[2] > 15) { pContext->ThrowNativeError("Attribute index out of bounds: %i [0 ... 15]", params[2]); return 0; }
 		return sp_ftoc(pScriptedItemOverride->m_Attributes[params[2]].m_flValue);
 	}
 	return sp_ftoc(0.0f);
