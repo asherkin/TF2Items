@@ -38,6 +38,8 @@
 //#define TF2ITEMS_DEBUG_HOOKING
 //#define TF2ITEMS_DEBUG_ITEMS
 
+//#define USE_NEW_ATTRIBS // Use a CUtlVector for the attibutes
+
 TF2Items g_TF2Items;
 
 SMEXT_LINK(&g_TF2Items);
@@ -61,7 +63,9 @@ int GiveNamedItem_player_Hook = 0;
 int GiveNamedItem_bot_Hook = 0;
 int ClientPutInServer_Hook = 0;
 
+#ifdef USE_NEW_ATTRIBS
 int g_iEntityQualityOffset = 0;
+#endif
 
 IForward * g_pForwardGiveItem = NULL;
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
@@ -101,8 +105,17 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 	hScriptCreatedItem.m_iItemDefinitionIndex = p_hOverride->m_iItemDefinitionIndex;
 	hScriptCreatedItem.m_iEntityLevel = p_hOverride->m_iEntityLevel;
 	hScriptCreatedItem.m_iEntityQuality = p_hOverride->m_iEntityQuality;
+#ifdef USE_NEW_ATTRIBS
 	hScriptCreatedItem.m_Attributes.CopyArray(p_hOverride->m_Attributes, p_hOverride->m_iCount);
+#else
+	hScriptCreatedItem.m_pAttributes = hScriptCreatedItem.m_pAttributes2 = p_hOverride->m_Attributes;
+	hScriptCreatedItem.m_iAttributesCount = hScriptCreatedItem.m_iAttributesLength = p_hOverride->m_iCount;
+#endif
 	hScriptCreatedItem.m_bInitialized = true;
+
+#ifndef USE_NEW_ATTRIBS
+	if (hScriptCreatedItem.m_iEntityQuality == 0 && hScriptCreatedItem.m_iAttributesCount > 0) hScriptCreatedItem.m_iEntityQuality = 3;
+#endif
 
 	// Call the function.
 	CBaseEntity *tempItem = NULL;
@@ -112,10 +125,12 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 		pContext->ThrowNativeError("Item is NULL. You may have hit Bug 18.");
 	}
 
+#ifdef USE_NEW_ATTRIBS
 	if (p_hOverride->m_iEntityQuality == 0 && p_hOverride->m_iCount > 0) p_hOverride->m_iEntityQuality = 3;
 
 	int *iEntityQuality = (int *)((char *)tempItem + (g_iEntityQualityOffset));
 	*iEntityQuality = p_hOverride->m_iEntityQuality;
+#endif
 
 	return tempItem;
 }
@@ -205,6 +220,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				char * finalitem = (char*) szClassname;
 
 				// Override based on the flags passed to this object.
+#ifdef USE_NEW_ATTRIBS
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) cscript->m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) cscript->m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
@@ -220,7 +236,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				}
 
 				// Done
-				CBaseEntity *retitem = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, a, cscript, b);
+				CBaseEntity *retitem = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, cscript, b);
 
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY)
 				{
@@ -229,6 +245,27 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				}
 
 				RETURN_META_VALUE(MRES_SUPERCEDE, retitem);
+#else
+				CScriptCreatedItem newitem;
+				memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
+
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
+				{
+					// Even if we don't want to override the item quality, do if it's set to 0.
+					if (newitem.m_iEntityQuality == 0 && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
+
+					// Setup the attributes.
+					newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
+					newitem.m_iAttributesCount = newitem.m_iAttributesLength = pScriptedItemOverride->m_iCount;
+				}
+
+				// Done
+				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, iSubType, &newitem, b));
+#endif
 			}
 	}
 	
@@ -335,9 +372,11 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		g_pSM->LogMessage(myself, "\"RemoveWearable\" offset = %d", iOffset);
 	}
 
+#ifdef USE_NEW_ATTRIBS
 	sm_sendprop_info_t info;
 	gamehelpers->FindSendPropInfo("CBaseAttributableItem", "m_iEntityQuality", &info);
 	g_iEntityQualityOffset = info.actual_offset;
+#endif
 
 	// If it's a late load, there might be the chance there are players already on the server. Just
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean

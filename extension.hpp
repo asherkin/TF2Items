@@ -36,7 +36,9 @@
 #define OVERRIDE_ITEM_LEVEL		(1 << 2)
 #define OVERRIDE_ITEM_QUALITY	(1 << 3)
 #define OVERRIDE_ATTRIBUTES		(1 << 4)
+#ifdef USE_NEW_ATTRIBS
 #define PRESERVE_ATTRIBUTES		(1 << 5)
+#endif
 
 //class CBaseEntity;
 class CBasePlayer;
@@ -81,7 +83,15 @@ public:
 	char m_szBlob[20];									// Length = 20 / Win = 432 / Lin = 680
 	wchar_t m_szBlob2[1536];							// Win Length = 3072 / Lin Length = 6144 / Win = 452 / Lin = 700
 
+#ifdef USE_NEW_ATTRIBS
 	CUtlVector<CScriptCreatedAttribute> m_Attributes;	// Length = 20 / Win = 3524 / Lin = 6844
+#else
+	CScriptCreatedAttribute * m_pAttributes;			// Win: Offset 3524 / Linux: Offset 6844
+	uint32 m_iAttributesLength;							// Win: Offset 3528 / Linux: Offset 6848
+	uint32 m_iPadding5;									// Win: Offset 3532 / Linux: Offset 6852
+	uint32 m_iAttributesCount;							// Win: Offset 3536 / Linux: Offset 6856
+	CScriptCreatedAttribute * m_pAttributes2;			// Win: Offset 3540 / Linux: Offset 6860
+#endif
 
 	bool m_bInitialized;								// Length = 4 / Win = 3544 / Lin = 6864
 
