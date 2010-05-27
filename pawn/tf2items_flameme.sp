@@ -7,7 +7,7 @@
 
 #define PLUGIN_NAME		"[TF2Items] Flame Me"
 #define PLUGIN_AUTHOR		"Asherkin"
-#define PLUGIN_VERSION		"3.1.2"
+#define PLUGIN_VERSION		"3.1.2.1"
 #define PLUGIN_CONTACT		"http://limetech.org/"
 
 new bool:g_hItems[MAXPLAYERS+1];

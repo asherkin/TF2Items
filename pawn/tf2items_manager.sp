@@ -8,7 +8,7 @@
 // ====[ CONSTANTS ]===================================================
 #define PLUGIN_NAME		"[TF2Items] Manager"
 #define PLUGIN_AUTHOR		"Damizean & Asherkin"
-#define PLUGIN_VERSION		"3.1.2"
+#define PLUGIN_VERSION		"3.1.2.1"
 #define PLUGIN_CONTACT		"http://limetech.org/"
 
 #define ARRAY_SIZE			2
