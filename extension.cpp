@@ -29,8 +29,6 @@
  *	Drunken_F00l			-	Inspiring the creation of this.
  */
 
-#include "extension.hpp"
-
 /*
  *	Debugging options:
  *	==================
@@ -39,6 +37,8 @@
 //#define TF2ITEMS_DEBUG_ITEMS
 
 //#define USE_NEW_ATTRIBS // Use a CUtlVector for the attibutes
+
+#include "extension.hpp"
 
 TF2Items g_TF2Items;
 
@@ -54,7 +54,7 @@ ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
 IServerGameEnts *gameents = NULL;
 
-ConVar TF2ItemsVersion("tf2items_version", "1.3.2.1", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
+ConVar TF2ItemsVersion("tf2items_version", SMEXT_CONF_VERSION, FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY, "TF2 Items Version");
 ConVar HookTFBot("tf2items_bothook", "1", FCVAR_NONE, "Hook intelligent TF2 bots.");
 
 IGameConfig *g_pGameConf = NULL;
@@ -527,7 +527,14 @@ static cell_t TF2Items_CreateItem(IPluginContext *pContext, const cell_t *params
 	TScriptedItemOverride * pScriptedItemOverride = new TScriptedItemOverride;
 	pScriptedItemOverride->m_bFlags = params[1];
 
-	return g_pHandleSys->CreateHandle(g_ScriptedItemOverrideHandleType, pScriptedItemOverride, pContext->GetIdentity(), myself->GetIdentity(), NULL);
+	HandleError hndlError;
+	Handle_t retHandle = g_pHandleSys->CreateHandle(g_ScriptedItemOverrideHandleType, pScriptedItemOverride, pContext->GetIdentity(), myself->GetIdentity(), &hndlError);
+	if (!retHandle)
+	{
+		return pContext->ThrowNativeError("TF2ItemType handle not created (error %d)", hndlError);
+	} else {
+		return retHandle;
+	}
 }
 
 static cell_t TF2Items_SetFlags(IPluginContext *pContext, const cell_t *params)
