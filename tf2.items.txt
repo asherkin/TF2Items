@@ -6,8 +6,8 @@
 		{
 			"GiveNamedItem"
 			{
-				"windows"	"450"
-				"linux"	"457"
+				"windows"	"452"
+				"linux"	"459"
 			}
 			"EquipWearable"
 			{
