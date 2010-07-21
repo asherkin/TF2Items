@@ -45,6 +45,32 @@ class CBasePlayer;
 //class CPersistentItem;
 //class CPersistentAttributeDefinition;
 
+#ifdef USE_NEW_ATTRIBS
+template< class T, class I = int >
+class CUtlMemoryTF2Items : public CUtlMemory< T, I >
+{
+public:
+	CUtlMemoryTF2Items( int nGrowSize = 0, int nInitSize = 0 ) { CUtlMemory< T, I >( nGrowSize, nInitSize ); }
+    CUtlMemoryTF2Items( T* pMemory, int numElements ) { CUtlMemory< T, I >( pMemory, numElements ); }
+    CUtlMemoryTF2Items( const T* pMemory, int numElements ) { CUtlMemory< T, I >( pMemory, numElements ); }
+    //~CUtlMemoryTF2Items() { ~CUtlMemory< T, I >(); }
+    
+	void Purge()
+	{
+		if ( !CUtlMemory< T, I >::IsExternallyAllocated() )
+		{
+			if (CUtlMemory< T, I >::m_pMemory)
+			{
+				UTLMEMORY_TRACK_FREE();
+				//free( (void*)m_pMemory );
+				CUtlMemory< T, I >::m_pMemory = 0;
+			}
+			CUtlMemory< T, I >::m_nAllocationCount = 0;
+		}
+	}
+};
+#endif
+
 class CScriptCreatedAttribute							// Win Length = 204 / Lin Length = 396
 {
 public:
@@ -84,7 +110,7 @@ public:
 	wchar_t m_szBlob2[1536];							// Win Length = 3072 / Lin Length = 6144 / Win = 452 / Lin = 700
 
 #ifdef USE_NEW_ATTRIBS
-	CUtlVector<CScriptCreatedAttribute> m_Attributes;	// Length = 20 / Win = 3524 / Lin = 6844
+	CUtlVector<CScriptCreatedAttribute, CUtlMemoryTF2Items<CScriptCreatedAttribute> > m_Attributes;	// Length = 20 / Win = 3524 / Lin = 6844
 #else
 	CScriptCreatedAttribute * m_pAttributes;			// Win: Offset 3524 / Linux: Offset 6844
 	uint32 m_iAttributesLength;							// Win: Offset 3528 / Linux: Offset 6848
