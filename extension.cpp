@@ -61,10 +61,6 @@ int GiveNamedItem_player_Hook = 0;
 int GiveNamedItem_bot_Hook = 0;
 int ClientPutInServer_Hook = 0;
 
-#ifdef USE_NEW_ATTRIBS
-int g_iEntityQualityOffset = 0;
-#endif
-
 IForward * g_pForwardGiveItem = NULL;
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
 TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
@@ -87,53 +83,8 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 	{ "TF2Items_SetAttribute",		TF2Items_SetAttribute },
 	{ "TF2Items_GetAttributeId",	TF2Items_GetAttributeId },
 	{ "TF2Items_GetAttributeValue",	TF2Items_GetAttributeValue },
-	{ "TF2Items_GiveNamedItem"	,	TF2Items_GiveNamedItem },
 	{ NULL,							NULL }
 };
-
-CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverride * p_hOverride, IPluginContext *pContext) {
-
-	// Create new script created item object and prepare it.
-	CScriptCreatedItem hScriptCreatedItem;
-	memset(&hScriptCreatedItem, 0, sizeof(CScriptCreatedItem));
-	
-	char * strWeaponClassname = p_hOverride->m_strWeaponClassname;
-	hScriptCreatedItem.m_iItemDefinitionIndex = p_hOverride->m_iItemDefinitionIndex;
-	hScriptCreatedItem.m_iEntityLevel = p_hOverride->m_iEntityLevel;
-	hScriptCreatedItem.m_iEntityQuality = p_hOverride->m_iEntityQuality;
-#ifdef USE_NEW_ATTRIBS
-	hScriptCreatedItem.m_Attributes.CopyArray(p_hOverride->m_Attributes, p_hOverride->m_iCount);
-#else
-	hScriptCreatedItem.m_pAttributes = hScriptCreatedItem.m_pAttributes2 = p_hOverride->m_Attributes;
-	hScriptCreatedItem.m_iAttributesCount = hScriptCreatedItem.m_iAttributesLength = p_hOverride->m_iCount;
-#endif
-	hScriptCreatedItem.m_bInitialized = true;
-
-#ifndef USE_NEW_ATTRIBS
-#ifndef NO_FORCE_QUALITY
-	if (hScriptCreatedItem.m_iEntityQuality == 0 && hScriptCreatedItem.m_iAttributesCount > 0) hScriptCreatedItem.m_iEntityQuality = 3;
-#endif
-#endif
-
-	// Call the function.
-	CBaseEntity *tempItem = NULL;
-	tempItem = SH_MCALL(p_hPlayer, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, 0);
-
-	if (tempItem == NULL) {
-		pContext->ThrowNativeError("Item is NULL. You may have hit Bug 18.");
-	}
-
-#ifdef USE_NEW_ATTRIBS
-#ifndef NO_FORCE_QUALITY
-	if (p_hOverride->m_iEntityQuality == 0 && p_hOverride->m_iCount > 0) p_hOverride->m_iEntityQuality = 3;
-#endif
-
-	int *iEntityQuality = (int *)((char *)tempItem + (g_iEntityQualityOffset));
-	*iEntityQuality = p_hOverride->m_iEntityQuality;
-#endif
-
-	return tempItem;
-}
 
 CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCreatedItem *cscript, bool b) {
 
@@ -275,7 +226,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 
 void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
 {
-	//#define copymember(a) newitem->##a = olditem->##a
+	//#define copymember(a) newitem->a = olditem->a
 	#define copymember(a) memcpy(&newitem->a, &olditem->a, sizeof(newitem->a));
 
 	copymember(m_pVTable);
@@ -391,12 +342,6 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, iOffset, 0, 0);
 		g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
 	}
-
-#ifdef USE_NEW_ATTRIBS
-	sm_sendprop_info_t info;
-	gamehelpers->FindSendPropInfo("CBaseAttributableItem", "m_iEntityQuality", &info);
-	g_iEntityQualityOffset = info.actual_offset;
-#endif
 
 	// If it's a late load, there might be the chance there are players already on the server. Just
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean
@@ -753,23 +698,6 @@ int GetIndexFromCBaseEntity(CBaseEntity * p_hEntity)
 	if (!edtEdict || edtEdict->IsFree()) return -1;
 
 	return gamehelpers->IndexOfEdict(edtEdict);
-}
-
-static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *params)
-{
-	// Retrieve player from it's index.
-	CBaseEntity *pEntity;
-	if (!(pEntity = GetCBaseEntityFromIndex(params[1], true)))
-		return pContext->ThrowNativeError("Client index %d is not valid", params[1]);
-
-	// Retrieve the item override handle
-	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[2], pContext);
-	if (pScriptedItemOverride == NULL)
-		return -1;
-
-	// Summon the native and retrieve it's results
-	CBaseEntity * hResults = Native_GiveNamedItem(pEntity, pScriptedItemOverride, pContext);
-	return GetIndexFromCBaseEntity(hResults);
 }
 
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext)

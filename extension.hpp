@@ -233,7 +233,6 @@ static cell_t TF2Items_GetNumAttributes(IPluginContext *pContext, const cell_t *
 static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *params);
 
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext=NULL);
 
