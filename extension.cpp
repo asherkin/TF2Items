@@ -34,7 +34,7 @@
  *	==================
  */
 //#define TF2ITEMS_DEBUG_HOOKING
-//#define TF2ITEMS_DEBUG_ITEMS
+#define TF2ITEMS_DEBUG_ITEMS
 
 #define USE_NEW_ATTRIBS // Use a CUtlVector for the attibutes
 #define NO_FORCE_QUALITY
@@ -110,13 +110,12 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 
 #ifdef TF2ITEMS_DEBUG_ITEMS
 
-	/*
-	if (cscript->m_iItemDefinitionIndex == 153) {
-	FILE *fp = fopen("debug_item_153.txt", "wb");
-	fwrite(cscript, 3552, 1, fp);
+	char *roflmelon = new char[32];
+	sprintf(roflmelon, "debug_item_%d_%d.txt", cscript->m_iAccountID, cscript->m_iItemDefinitionIndex);
+	FILE *fp = fopen(roflmelon, "wb");
+	fwrite(cscript, sizeof(CScriptCreatedItem), 1, fp);
 	fclose(fp);
-	}
-	*/
+	
 
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	g_pSM->LogMessage(myself, ">>> Client = %s", pPlayer->GetName());
