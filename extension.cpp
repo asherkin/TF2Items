@@ -37,6 +37,7 @@
 //#define TF2ITEMS_DEBUG_ITEMS
 
 #define USE_NEW_ATTRIBS // Use a CUtlVector for the attibutes
+#define NO_FORCE_QUALITY
 
 #include "extension.hpp"
 
@@ -114,7 +115,9 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 	hScriptCreatedItem.m_bInitialized = true;
 
 #ifndef USE_NEW_ATTRIBS
+#ifndef NO_FORCE_QUALITY
 	if (hScriptCreatedItem.m_iEntityQuality == 0 && hScriptCreatedItem.m_iAttributesCount > 0) hScriptCreatedItem.m_iEntityQuality = 3;
+#endif
 #endif
 
 	// Call the function.
@@ -126,7 +129,9 @@ CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverrid
 	}
 
 #ifdef USE_NEW_ATTRIBS
+#ifndef NO_FORCE_QUALITY
 	if (p_hOverride->m_iEntityQuality == 0 && p_hOverride->m_iCount > 0) p_hOverride->m_iEntityQuality = 3;
+#endif
 
 	int *iEntityQuality = (int *)((char *)tempItem + (g_iEntityQualityOffset));
 	*iEntityQuality = p_hOverride->m_iEntityQuality;
@@ -231,8 +236,10 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
+#ifndef NO_FORCE_QUALITY
 					// Even if we don't want to override the item quality, do if it's set to 0.
 					if (newitem.m_iEntityQuality == 0 && !(pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
+#endif
 
 					if (!(pScriptedItemOverride->m_bFlags & PRESERVE_ATTRIBUTES))
 						newitem.m_Attributes.RemoveAll();
@@ -252,8 +259,10 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
+#ifndef NO_FORCE_QUALITY
 					// Even if we don't want to override the item quality, do if it's set to 0.
 					if (newitem.m_iEntityQuality == 0 && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
+#endif
 
 					// Setup the attributes.
 					newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
