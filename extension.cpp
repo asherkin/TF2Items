@@ -48,9 +48,6 @@ SMEXT_LINK(&g_TF2Items);
 SH_DECL_HOOK2_void(IServerGameClients, ClientPutInServer, SH_NOATTRIB, 0, edict_t *, char const *);
 SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CScriptCreatedItem *, bool);
 
-SH_DECL_MANUALHOOK1_void(MCall_EquipWearable, 0, 0, 0, CBaseEntity *);
-SH_DECL_MANUALHOOK1_void(MCall_RemoveWearable, 0, 0, 0, CBaseEntity *);
-
 ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
 IServerGameEnts *gameents = NULL;
@@ -91,8 +88,6 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 	{ "TF2Items_GetAttributeId",	TF2Items_GetAttributeId },
 	{ "TF2Items_GetAttributeValue",	TF2Items_GetAttributeValue },
 	{ "TF2Items_GiveNamedItem"	,	TF2Items_GiveNamedItem },
-	{ "TF2Items_EquipWearable"	,	TF2Items_EquipWearable },
-	{ "TF2Items_RemoveWearable"	,	TF2Items_RemoveWearable },
 	{ NULL,							NULL }
 };
 
@@ -818,34 +813,4 @@ TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPl
 
 	// Done
 	return pScriptedItemOverride;
-}
-
-static cell_t TF2Items_EquipWearable(IPluginContext *pContext, const cell_t *params)
-{
-	// Retrieve player from it's index.
-	CBaseEntity *pPlayerEntity;
-	if (!(pPlayerEntity = GetCBaseEntityFromIndex(params[1], true)))
-		return pContext->ThrowNativeError("Client index %d is not valid", params[1]);
-
-	CBaseEntity *pHatEntity;
-	if (!(pHatEntity = GetCBaseEntityFromIndex(params[2], false)))
-		return pContext->ThrowNativeError("Wearable entity index %d is not valid", params[2]);
-
-	SH_MCALL(pPlayerEntity, MCall_EquipWearable)(pHatEntity);
-	return 0;
-}
-
-static cell_t TF2Items_RemoveWearable(IPluginContext *pContext, const cell_t *params)
-{
-	// Retrieve player from it's index.
-	CBaseEntity *pPlayerEntity;
-	if (!(pPlayerEntity = GetCBaseEntityFromIndex(params[1], true)))
-		return pContext->ThrowNativeError("Client index %d is not valid", params[1]);
-
-	CBaseEntity *pHatEntity;
-	if (!(pHatEntity = GetCBaseEntityFromIndex(params[2], false)))
-		return pContext->ThrowNativeError("Wearable entity index %d is not valid", params[2]);
-
-	SH_MCALL(pPlayerEntity, MCall_RemoveWearable)(pHatEntity);
-	return 0;
 }
