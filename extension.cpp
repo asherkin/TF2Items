@@ -392,26 +392,6 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
 	}
 
-	iOffset = 0;
-	if (!g_pGameConf->GetOffset("EquipWearable", &iOffset))
-	{
-		snprintf(error, maxlen, "Could not find offset for EquipWearable");
-		return false;
-	} else {
-		SH_MANUALHOOK_RECONFIGURE(MCall_EquipWearable, iOffset, 0, 0);
-		g_pSM->LogMessage(myself, "\"EquipWearable\" offset = %d", iOffset);
-	}
-
-	iOffset = 0;
-	if (!g_pGameConf->GetOffset("RemoveWearable", &iOffset))
-	{
-		snprintf(error, maxlen, "Could not find offset for RemoveWearable");
-		return false;
-	} else {
-		SH_MANUALHOOK_RECONFIGURE(MCall_RemoveWearable, iOffset, 0, 0);
-		g_pSM->LogMessage(myself, "\"RemoveWearable\" offset = %d", iOffset);
-	}
-
 #ifdef USE_NEW_ATTRIBS
 	sm_sendprop_info_t info;
 	gamehelpers->FindSendPropInfo("CBaseAttributableItem", "m_iEntityQuality", &info);
