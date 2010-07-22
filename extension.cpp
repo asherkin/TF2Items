@@ -221,30 +221,27 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 
 				// Override based on the flags passed to this object.
 #ifdef USE_NEW_ATTRIBS
+				CScriptCreatedItem newitem;
+				//memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
+				CSCICopy(cscript, &newitem);
+
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) cscript->m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) cscript->m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
 					// Even if we don't want to override the item quality, do if it's set to 0.
-					if (cscript->m_iEntityQuality == 0 && !(pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) && pScriptedItemOverride->m_iCount > 0) pScriptedItemOverride->m_iEntityQuality = 3;
+					if (newitem.m_iEntityQuality == 0 && !(pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
 
 					if (!(pScriptedItemOverride->m_bFlags & PRESERVE_ATTRIBUTES))
-						cscript->m_Attributes.RemoveAll();
+						newitem.m_Attributes.RemoveAll();
 
-					cscript->m_Attributes.AddMultipleToTail(pScriptedItemOverride->m_iCount, pScriptedItemOverride->m_Attributes);
+					newitem.m_Attributes.AddMultipleToTail(pScriptedItemOverride->m_iCount, pScriptedItemOverride->m_Attributes);
 				}
 
 				// Done
-				CBaseEntity *retitem = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, cscript, b);
-
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY)
-				{
-					int *iEntityQuality = (int *)((char *)retitem + (g_iEntityQualityOffset));
-					*iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
-				}
-
-				RETURN_META_VALUE(MRES_SUPERCEDE, retitem);
+				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, iSubType, &newitem, b));
 #else
 				CScriptCreatedItem newitem;
 				memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
@@ -270,6 +267,45 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 	}
 	
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
+}
+
+void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
+{
+	//#define copymember(a) newitem->##a = olditem->##a
+	#define copymember(a) memcpy(&newitem->a, &olditem->a, sizeof(CScriptCreatedItem::a));
+
+	copymember(m_pVTable);
+	
+#ifdef _WIN32
+	copymember(m_Padding[4]);
+#endif
+
+	copymember(m_iItemDefinitionIndex);
+	copymember(m_iEntityQuality);
+	copymember(m_iEntityLevel);
+
+#ifdef _WIN32
+	copymember(m_Padding2[4]);
+#endif
+
+	copymember(m_iGlobalIndex);
+	copymember(m_iGlobalIndexHigh);
+	copymember(m_iGlobalIndexLow);
+	copymember(m_iAccountID);
+	copymember(m_iPosition);
+	copymember(m_szWideName[128]);
+	copymember(m_szName[128]);
+
+	copymember(m_szBlob[20]);
+	copymember(m_szBlob2[1536]);
+
+	copymember(m_bInitialized);
+
+#ifdef _WIN32
+	copymember(m_Padding3[4]);
+#endif
+
+	newitem->m_Attributes = olditem->m_Attributes;
 }
 
 void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {

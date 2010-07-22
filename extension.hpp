@@ -63,6 +63,9 @@ public:
 			{
 				UTLMEMORY_TRACK_FREE();
 				//free( (void*)m_pMemory );
+#ifdef TF2ITEMS_DEBUG_ITEMS
+				META_CONPRINTF("CUtlMemory tried to be freed!\n");
+#endif
 				CUtlMemory< T, I >::m_pMemory = 0;
 			}
 			CUtlMemory< T, I >::m_nAllocationCount = 0;
@@ -123,7 +126,7 @@ public:
 
 #ifdef _WIN32
 	char m_Padding3[4];									// Length = 4 / Win = 3548 / Lin = N/A
-#endif									
+#endif
 };
 
 struct TScriptedItemOverride
@@ -214,6 +217,8 @@ public:
 public: //IConCommandBaseAccessor
 	bool RegisterConCommandBase(ConCommandBase *pCommand);
 };
+
+void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem);
 
 static cell_t TF2Items_CreateItem(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_SetFlags(IPluginContext *pContext, const cell_t *params);
