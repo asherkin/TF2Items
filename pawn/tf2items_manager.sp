@@ -343,6 +343,17 @@ ParseItemsEntry(Handle:hKeyValues, Handle:hEntry)
 					LogMessage("      Quality: %i", TF2Items_GetQuality(hItem));
 			#endif
 			
+			// Check for attribute preservation key
+			new iPreserve = KvGetNum(hKeyValues, "preserve_attributes", -1);
+			if (iPreserve == 1)
+			{
+				iItemFlags |= PRESERVE_ATTRIBUTES;
+			}
+			
+			#if defined DEBUG
+				LogMessage("      Preserve Attributes: %s", (iItemFlags & PRESERVE_ATTRIBUTES)?"true":"false");
+			#endif
+			
 			// Read all the attributes
 			new iAttributeCount = 0;
 			for (;;)

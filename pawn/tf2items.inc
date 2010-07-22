@@ -11,6 +11,8 @@
 #define OVERRIDE_ATTRIBUTES		(1 << 4)	// Item will override the attributes for the item with the given ones.
 #define OVERRIDE_ALL				(0b11111)	// Magically enables all the other flags.
 
+#define PRESERVE_ATTRIBUTES		(1 << 5)
+
 // ====[ NATIVES ]=============================================================
 /**
  * Creates a TF2Items object, wich can be used to override the parameters of an
