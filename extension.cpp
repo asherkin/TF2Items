@@ -276,7 +276,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
 {
 	//#define copymember(a) newitem->##a = olditem->##a
-	#define copymember(a) memcpy(&newitem->a, &olditem->a, sizeof(CScriptCreatedItem::a));
+	#define copymember(a) memcpy(&newitem->a, &olditem->a, sizeof(newitem->a));
 
 	copymember(m_pVTable);
 	
