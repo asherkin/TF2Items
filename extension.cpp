@@ -225,13 +225,15 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 
 void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
 {
+	memset(newitem, 0, sizeof(CScriptCreatedItem));
+	
 	//#define copymember(a) newitem->a = olditem->a
 	#define copymember(a) memcpy(&newitem->a, &olditem->a, sizeof(newitem->a));
 
 	copymember(m_pVTable);
 	
 #ifdef _WIN32
-	copymember(m_Padding[4]);
+	copymember(m_Padding);
 #endif
 
 	copymember(m_iItemDefinitionIndex);
@@ -239,7 +241,7 @@ void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
 	copymember(m_iEntityLevel);
 
 #ifdef _WIN32
-	copymember(m_Padding2[4]);
+	copymember(m_Padding2);
 #endif
 
 	copymember(m_iGlobalIndex);
@@ -247,19 +249,31 @@ void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
 	copymember(m_iGlobalIndexLow);
 	copymember(m_iAccountID);
 	copymember(m_iPosition);
-	copymember(m_szWideName[128]);
-	copymember(m_szName[128]);
+	copymember(m_szWideName);
+	copymember(m_szName);
 
-	copymember(m_szBlob[20]);
-	copymember(m_szBlob2[1536]);
+	copymember(m_szBlob);
+	copymember(m_szBlob2);
 
 	copymember(m_bInitialized);
 
 #ifdef _WIN32
-	copymember(m_Padding3[4]);
+	copymember(m_Padding3);
 #endif
 
 	newitem->m_Attributes = olditem->m_Attributes;
+	
+	/*
+	META_CONPRINTF("Copying attributes...\n");
+	int nCount = olditem->m_Attributes.Count();
+	META_CONPRINTF("Count: %d\n", nCount);
+	newitem->m_Attributes.SetSize( nCount );
+	for ( int i = 0; i < nCount; i++ )
+	{
+		META_CONPRINTF("Copying %d...\n", i+1);
+		newitem->m_Attributes[ i ] = olditem->m_Attributes[ i ];
+	}
+	*/
 }
 
 void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
