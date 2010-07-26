@@ -4352,6 +4352,40 @@
 				"heavy"	"1"
 			}
 		}
+		"189"
+		{
+			"name"	"Parasite Hat"
+			"item_class"	"tf_wearable_item"
+			"item_type_name"	"#TF_Wearable_Hat"
+			"item_name"	"#TF_Parasite_Hat"
+			"item_slot"	"head"
+			"image_inventory"	"backpack/player/items/all_class/parasite_hat"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"min_ilevel"	"20"
+			"max_ilevel"	"20"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/parasite_hat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+		}
 		"5000"
 		{
 			"name"	"Craft Bar Level 1"
