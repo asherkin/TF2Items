@@ -34,7 +34,7 @@
  *	==================
  */
 //#define TF2ITEMS_DEBUG_HOOKING
-#define TF2ITEMS_DEBUG_ITEMS
+//#define TF2ITEMS_DEBUG_ITEMS
 
 #define USE_NEW_ATTRIBS // Use a CUtlVector for the attibutes
 #define NO_FORCE_QUALITY
