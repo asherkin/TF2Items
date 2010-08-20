@@ -11,6 +11,8 @@
 #define OVERRIDE_ATTRIBUTES		(1 << 4)	// Item will override the attributes for the item with the given ones.
 #define OVERRIDE_ALL				(0b11111)	// Magically enables all the other flags.
 
+#define PRESERVE_ATTRIBUTES		(1 << 5)
+
 // ====[ NATIVES ]=============================================================
 /**
  * Creates a TF2Items object, wich can be used to override the parameters of an
@@ -162,28 +164,6 @@ native TF2Items_GetAttributeId(Handle:hItem, iSlotIndex);
  * @return			The attribute value to use.
  */
 native Float:TF2Items_GetAttributeValue(Handle:hItem, iSlotIndex); 
-
-/**
- * This native will perform a GiveNamedItem call for the specified client in
- * order to generate an object based on the specifications of the TF2Items
- * object passed to it.
- * 
- * Since the item generation requires all the information that can be passed by
- * the extensions natives, the flags will be ignored and all the given
- * information will be used.
- * 
- * Remember that if your values aren't correct, this call may end up in a crash,
- * so please make sure you fill out everything: Classname, item definition index,
- * quality, level and attributes.
- * 
- * @param iClient	Client that the item will be generated for.
- * @param hItem		Handle to the TF2Items object that we'll be operating with.
- * @return			Entity index of the newly created item.
- */
-native TF2Items_GiveNamedItem(iClient, Handle:hItem);
-
-native TF2Items_EquipWearable(iClient, iWearable);
-native TF2Items_RemoveWearable(iClient, iWearable);
 
 // ====[ FORWARDS ]============================================================
 /**

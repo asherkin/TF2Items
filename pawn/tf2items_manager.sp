@@ -8,7 +8,7 @@
 // ====[ CONSTANTS ]===================================================
 #define PLUGIN_NAME		"[TF2Items] Manager"
 #define PLUGIN_AUTHOR		"Damizean & Asherkin"
-#define PLUGIN_VERSION		"3.1.2.1"
+#define PLUGIN_VERSION		"1.4"
 #define PLUGIN_CONTACT		"http://limetech.org/"
 
 #define ARRAY_SIZE			2
@@ -341,6 +341,17 @@ ParseItemsEntry(Handle:hKeyValues, Handle:hEntry)
 			#if defined DEBUG
 				if (iItemFlags & OVERRIDE_ITEM_QUALITY)
 					LogMessage("      Quality: %i", TF2Items_GetQuality(hItem));
+			#endif
+			
+			// Check for attribute preservation key
+			new iPreserve = KvGetNum(hKeyValues, "preserve_attributes", -1);
+			if (iPreserve == 1)
+			{
+				iItemFlags |= PRESERVE_ATTRIBUTES;
+			}
+			
+			#if defined DEBUG
+				LogMessage("      Preserve Attributes: %s", (iItemFlags & PRESERVE_ATTRIBUTES)?"true":"false");
 			#endif
 			
 			// Read all the attributes

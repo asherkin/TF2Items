@@ -36,7 +36,8 @@
 //#define TF2ITEMS_DEBUG_HOOKING
 //#define TF2ITEMS_DEBUG_ITEMS
 
-//#define USE_NEW_ATTRIBS // Use a CUtlVector for the attibutes
+#define USE_NEW_ATTRIBS // Use a CUtlVector for the attibutes
+#define NO_FORCE_QUALITY
 
 #include "extension.hpp"
 
@@ -46,9 +47,6 @@ SMEXT_LINK(&g_TF2Items);
 
 SH_DECL_HOOK2_void(IServerGameClients, ClientPutInServer, SH_NOATTRIB, 0, edict_t *, char const *);
 SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CScriptCreatedItem *, bool);
-
-SH_DECL_MANUALHOOK1_void(MCall_EquipWearable, 0, 0, 0, CBaseEntity *);
-SH_DECL_MANUALHOOK1_void(MCall_RemoveWearable, 0, 0, 0, CBaseEntity *);
 
 ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
@@ -62,10 +60,6 @@ IGameConfig *g_pGameConf = NULL;
 int GiveNamedItem_player_Hook = 0;
 int GiveNamedItem_bot_Hook = 0;
 int ClientPutInServer_Hook = 0;
-
-#ifdef USE_NEW_ATTRIBS
-int g_iEntityQualityOffset = 0;
-#endif
 
 IForward * g_pForwardGiveItem = NULL;
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
@@ -89,51 +83,8 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 	{ "TF2Items_SetAttribute",		TF2Items_SetAttribute },
 	{ "TF2Items_GetAttributeId",	TF2Items_GetAttributeId },
 	{ "TF2Items_GetAttributeValue",	TF2Items_GetAttributeValue },
-	{ "TF2Items_GiveNamedItem"	,	TF2Items_GiveNamedItem },
-	{ "TF2Items_EquipWearable"	,	TF2Items_EquipWearable },
-	{ "TF2Items_RemoveWearable"	,	TF2Items_RemoveWearable },
 	{ NULL,							NULL }
 };
-
-CBaseEntity * Native_GiveNamedItem(CBaseEntity * p_hPlayer, TScriptedItemOverride * p_hOverride, IPluginContext *pContext) {
-
-	// Create new script created item object and prepare it.
-	CScriptCreatedItem hScriptCreatedItem;
-	memset(&hScriptCreatedItem, 0, sizeof(CScriptCreatedItem));
-	
-	char * strWeaponClassname = p_hOverride->m_strWeaponClassname;
-	hScriptCreatedItem.m_iItemDefinitionIndex = p_hOverride->m_iItemDefinitionIndex;
-	hScriptCreatedItem.m_iEntityLevel = p_hOverride->m_iEntityLevel;
-	hScriptCreatedItem.m_iEntityQuality = p_hOverride->m_iEntityQuality;
-#ifdef USE_NEW_ATTRIBS
-	hScriptCreatedItem.m_Attributes.CopyArray(p_hOverride->m_Attributes, p_hOverride->m_iCount);
-#else
-	hScriptCreatedItem.m_pAttributes = hScriptCreatedItem.m_pAttributes2 = p_hOverride->m_Attributes;
-	hScriptCreatedItem.m_iAttributesCount = hScriptCreatedItem.m_iAttributesLength = p_hOverride->m_iCount;
-#endif
-	hScriptCreatedItem.m_bInitialized = true;
-
-#ifndef USE_NEW_ATTRIBS
-	if (hScriptCreatedItem.m_iEntityQuality == 0 && hScriptCreatedItem.m_iAttributesCount > 0) hScriptCreatedItem.m_iEntityQuality = 3;
-#endif
-
-	// Call the function.
-	CBaseEntity *tempItem = NULL;
-	tempItem = SH_MCALL(p_hPlayer, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, 0);
-
-	if (tempItem == NULL) {
-		pContext->ThrowNativeError("Item is NULL. You may have hit Bug 18.");
-	}
-
-#ifdef USE_NEW_ATTRIBS
-	if (p_hOverride->m_iEntityQuality == 0 && p_hOverride->m_iCount > 0) p_hOverride->m_iEntityQuality = 3;
-
-	int *iEntityQuality = (int *)((char *)tempItem + (g_iEntityQualityOffset));
-	*iEntityQuality = p_hOverride->m_iEntityQuality;
-#endif
-
-	return tempItem;
-}
 
 CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCreatedItem *cscript, bool b) {
 
@@ -159,13 +110,12 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 
 #ifdef TF2ITEMS_DEBUG_ITEMS
 
-	/*
-	if (cscript->m_iItemDefinitionIndex == 153) {
-	FILE *fp = fopen("debug_item_153.txt", "wb");
-	fwrite(cscript, 3552, 1, fp);
+	char *roflmelon = new char[32];
+	sprintf(roflmelon, "debug_item_%d_%d.txt", cscript->m_iAccountID, cscript->m_iItemDefinitionIndex);
+	FILE *fp = fopen(roflmelon, "wb");
+	fwrite(cscript, sizeof(CScriptCreatedItem), 1, fp);
 	fclose(fp);
-	}
-	*/
+	
 
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	g_pSM->LogMessage(myself, ">>> Client = %s", pPlayer->GetName());
@@ -221,30 +171,29 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 
 				// Override based on the flags passed to this object.
 #ifdef USE_NEW_ATTRIBS
+				CScriptCreatedItem newitem;
+				//memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
+				CSCICopy(cscript, &newitem);
+
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) cscript->m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) cscript->m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
+				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
+#ifndef NO_FORCE_QUALITY
 					// Even if we don't want to override the item quality, do if it's set to 0.
-					if (cscript->m_iEntityQuality == 0 && !(pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) && pScriptedItemOverride->m_iCount > 0) pScriptedItemOverride->m_iEntityQuality = 3;
+					if (newitem.m_iEntityQuality == 0 && !(pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
+#endif
 
 					if (!(pScriptedItemOverride->m_bFlags & PRESERVE_ATTRIBUTES))
-						cscript->m_Attributes.RemoveAll();
+						newitem.m_Attributes.RemoveAll();
 
-					cscript->m_Attributes.AddMultipleToTail(pScriptedItemOverride->m_iCount, pScriptedItemOverride->m_Attributes);
+					newitem.m_Attributes.AddMultipleToTail(pScriptedItemOverride->m_iCount, pScriptedItemOverride->m_Attributes);
 				}
 
 				// Done
-				CBaseEntity *retitem = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, cscript, b);
-
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY)
-				{
-					int *iEntityQuality = (int *)((char *)retitem + (g_iEntityQualityOffset));
-					*iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
-				}
-
-				RETURN_META_VALUE(MRES_SUPERCEDE, retitem);
+				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, iSubType, &newitem, b));
 #else
 				CScriptCreatedItem newitem;
 				memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
@@ -255,8 +204,10 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
 				{
+#ifndef NO_FORCE_QUALITY
 					// Even if we don't want to override the item quality, do if it's set to 0.
 					if (newitem.m_iEntityQuality == 0 && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
+#endif
 
 					// Setup the attributes.
 					newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
@@ -270,6 +221,59 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 	}
 	
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
+}
+
+void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
+{
+	memset(newitem, 0, sizeof(CScriptCreatedItem));
+	
+	//#define copymember(a) newitem->a = olditem->a
+	#define copymember(a) memcpy(&newitem->a, &olditem->a, sizeof(newitem->a));
+
+	copymember(m_pVTable);
+	
+#ifdef _WIN32
+	copymember(m_Padding);
+#endif
+
+	copymember(m_iItemDefinitionIndex);
+	copymember(m_iEntityQuality);
+	copymember(m_iEntityLevel);
+
+#ifdef _WIN32
+	copymember(m_Padding2);
+#endif
+
+	copymember(m_iGlobalIndex);
+	copymember(m_iGlobalIndexHigh);
+	copymember(m_iGlobalIndexLow);
+	copymember(m_iAccountID);
+	copymember(m_iPosition);
+	copymember(m_szWideName);
+	copymember(m_szName);
+
+	copymember(m_szBlob);
+	copymember(m_szBlob2);
+
+	copymember(m_bInitialized);
+
+#ifdef _WIN32
+	copymember(m_Padding3);
+#endif
+
+	newitem->m_Attributes = olditem->m_Attributes;
+	
+	/*
+	META_CONPRINTF("Copying attributes...\n");
+	int nCount = olditem->m_Attributes.Count();
+	META_CONPRINTF("Count: %d\n", nCount);
+	newitem->m_Attributes.SetSize( nCount );
+	for ( int i = 0; i < nCount; i++ )
+	{
+		META_CONPRINTF("Copying %d...\n", i+1);
+		newitem->m_Attributes[ i ] = olditem->m_Attributes[ i ];
+	}
+	*/
 }
 
 void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
@@ -351,32 +355,6 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, iOffset, 0, 0);
 		g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
 	}
-
-	iOffset = 0;
-	if (!g_pGameConf->GetOffset("EquipWearable", &iOffset))
-	{
-		snprintf(error, maxlen, "Could not find offset for EquipWearable");
-		return false;
-	} else {
-		SH_MANUALHOOK_RECONFIGURE(MCall_EquipWearable, iOffset, 0, 0);
-		g_pSM->LogMessage(myself, "\"EquipWearable\" offset = %d", iOffset);
-	}
-
-	iOffset = 0;
-	if (!g_pGameConf->GetOffset("RemoveWearable", &iOffset))
-	{
-		snprintf(error, maxlen, "Could not find offset for RemoveWearable");
-		return false;
-	} else {
-		SH_MANUALHOOK_RECONFIGURE(MCall_RemoveWearable, iOffset, 0, 0);
-		g_pSM->LogMessage(myself, "\"RemoveWearable\" offset = %d", iOffset);
-	}
-
-#ifdef USE_NEW_ATTRIBS
-	sm_sendprop_info_t info;
-	gamehelpers->FindSendPropInfo("CBaseAttributableItem", "m_iEntityQuality", &info);
-	g_iEntityQualityOffset = info.actual_offset;
-#endif
 
 	// If it's a late load, there might be the chance there are players already on the server. Just
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean
@@ -735,23 +713,6 @@ int GetIndexFromCBaseEntity(CBaseEntity * p_hEntity)
 	return gamehelpers->IndexOfEdict(edtEdict);
 }
 
-static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *params)
-{
-	// Retrieve player from it's index.
-	CBaseEntity *pEntity;
-	if (!(pEntity = GetCBaseEntityFromIndex(params[1], true)))
-		return pContext->ThrowNativeError("Client index %d is not valid", params[1]);
-
-	// Retrieve the item override handle
-	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[2], pContext);
-	if (pScriptedItemOverride == NULL)
-		return -1;
-
-	// Summon the native and retrieve it's results
-	CBaseEntity * hResults = Native_GiveNamedItem(pEntity, pScriptedItemOverride, pContext);
-	return GetIndexFromCBaseEntity(hResults);
-}
-
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext)
 {
 	Handle_t hndlScriptedItemOverride = static_cast<Handle_t>(cellHandle);
@@ -773,34 +734,4 @@ TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPl
 
 	// Done
 	return pScriptedItemOverride;
-}
-
-static cell_t TF2Items_EquipWearable(IPluginContext *pContext, const cell_t *params)
-{
-	// Retrieve player from it's index.
-	CBaseEntity *pPlayerEntity;
-	if (!(pPlayerEntity = GetCBaseEntityFromIndex(params[1], true)))
-		return pContext->ThrowNativeError("Client index %d is not valid", params[1]);
-
-	CBaseEntity *pHatEntity;
-	if (!(pHatEntity = GetCBaseEntityFromIndex(params[2], false)))
-		return pContext->ThrowNativeError("Wearable entity index %d is not valid", params[2]);
-
-	SH_MCALL(pPlayerEntity, MCall_EquipWearable)(pHatEntity);
-	return 0;
-}
-
-static cell_t TF2Items_RemoveWearable(IPluginContext *pContext, const cell_t *params)
-{
-	// Retrieve player from it's index.
-	CBaseEntity *pPlayerEntity;
-	if (!(pPlayerEntity = GetCBaseEntityFromIndex(params[1], true)))
-		return pContext->ThrowNativeError("Client index %d is not valid", params[1]);
-
-	CBaseEntity *pHatEntity;
-	if (!(pHatEntity = GetCBaseEntityFromIndex(params[2], false)))
-		return pContext->ThrowNativeError("Wearable entity index %d is not valid", params[2]);
-
-	SH_MCALL(pPlayerEntity, MCall_RemoveWearable)(pHatEntity);
-	return 0;
 }
