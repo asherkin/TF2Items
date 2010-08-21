@@ -218,6 +218,10 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, iSubType, &newitem, b));
 #endif
 			}
+		case Pl_Stop:
+			{
+				RETURN_META_VALUE(MRES_SUPERCEDE, NULL);
+			}
 	}
 	
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
