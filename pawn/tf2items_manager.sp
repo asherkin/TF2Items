@@ -22,7 +22,7 @@ new Handle:g_hPlayerInfo;
 new Handle:g_hPlayerArray;
 new Handle:g_hGlobalSettings;
 new Handle:g_hCvarEnabled;
-new bool:g_bPlayerEnabled[MAXPLAYERS + 1] = { true, ... }
+new bool:g_bPlayerEnabled[MAXPLAYERS + 1] = { true, ... };
 new Handle:g_hCvarPlayerControlEnabled;
 
 // ====[ PLUGIN ]======================================================
