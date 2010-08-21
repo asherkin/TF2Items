@@ -8,7 +8,7 @@
 // ====[ CONSTANTS ]===================================================
 #define PLUGIN_NAME		"[TF2Items] Manager"
 #define PLUGIN_AUTHOR		"Damizean & Asherkin"
-#define PLUGIN_VERSION		"1.4"
+#define PLUGIN_VERSION		"1.4.1"
 #define PLUGIN_CONTACT		"http://limetech.org/"
 
 #define ARRAY_SIZE			2
@@ -22,6 +22,7 @@ new Handle:g_hPlayerInfo;
 new Handle:g_hPlayerArray;
 new Handle:g_hGlobalSettings;
 new Handle:g_hCvarEnabled;
+new bool:g_bPlayerEnabled[MAXPLAYERS + 1] = { true, ... }
 
 // ====[ PLUGIN ]======================================================
 public Plugin:myinfo =
@@ -48,6 +49,9 @@ public OnPluginStart()
 	// Register console commands
 	RegAdminCmd("tf2items_manager_reload", CmdReload, ADMFLAG_GENERIC);
 	
+	RegConsoleCmd("tf2items_enable", CmdEnable);
+	RegConsoleCmd("tf2items_disable", CmdDisable);
+	
 	// Parse the items list
 	ParseItems();
 }
@@ -59,7 +63,7 @@ public OnPluginStart()
 public Action:TF2Items_OnGiveNamedItem(iClient, String:strClassName[], iItemDefinitionIndex, &Handle:hItemOverride)
 {
 	// If disabled, use the default values.
-	if (GetConVarBool(g_hCvarEnabled) == false)
+	if (!GetConVarBool(g_hCvarEnabled) || !g_bPlayerEnabled[iClient])
 		return Plugin_Continue;
 	
 	// If another plugin already tryied to override the item, let him go ahead.
@@ -76,6 +80,19 @@ public Action:TF2Items_OnGiveNamedItem(iClient, String:strClassName[], iItemDefi
 	
 	// None found, use default values.
 	return Plugin_Continue;
+}
+
+// Fuck it, only one is needed.
+// Doing this for just-in-casenesses sake
+
+public OnClientConnected(client)
+{
+	g_bPlayerEnabled[client] = true;
+}
+
+public OnClientDisconnect(client)
+{
+	g_bPlayerEnabled[client] = true;
 }
 
 /*
@@ -102,6 +119,20 @@ public Action:CmdReload(iClient, iAction)
 	
 	// Call the ParseItems function.
 	ParseItems();
+	return Plugin_Handled;
+}
+
+public Action:CmdEnable(iClient, iAction)
+{
+	ReplyToCommand(iClient, "Re-enabling TF2Items for you.");
+	g_bPlayerEnabled[iClient] = true;
+	return Plugin_Handled;
+}
+
+public Action:CmdDisable(iClient, iAction)
+{
+	ReplyToCommand(iClient, "Disabling TF2Items for you.");
+	g_bPlayerEnabled[iClient] = false;
 	return Plugin_Handled;
 }
 
@@ -344,10 +375,14 @@ ParseItemsEntry(Handle:hKeyValues, Handle:hEntry)
 			#endif
 			
 			// Check for attribute preservation key
-			new iPreserve = KvGetNum(hKeyValues, "preserve_attributes", -1);
+			new iPreserve = KvGetNum(hKeyValues, "preserve-attributes", -1);
 			if (iPreserve == 1)
 			{
 				iItemFlags |= PRESERVE_ATTRIBUTES;
+			} else {
+				iPreserve = KvGetNum(hKeyValues, "preserve_attributes", -1);
+				if (iPreserve == 1)
+					iItemFlags |= PRESERVE_ATTRIBUTES;
 			}
 			
 			#if defined DEBUG
