@@ -167,9 +167,11 @@ native Float:TF2Items_GetAttributeValue(Handle:hItem, iSlotIndex);
 
 // ====[ FORWARDS ]============================================================
 /**
- * Called when an item is about to be given to a client. Return Plugin_Changed
- * to override the item to use the configuration of the hItem object.
+ * Called when an item is about to be given to a client.
+ * Return Plugin_Changed to override the item to use the configuration of the hItem object.
  * Return Plugin_Continue to keep them intact.
+ * Return Plugin_Handled to stop the item being given to the player.
+ * Make sure the client gets atleast one weapon.
  *
  * @param iClient				Client Index.
  * @param strClassName			The classname of the entity that will be generated.
