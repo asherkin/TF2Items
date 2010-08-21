@@ -23,6 +23,7 @@ new Handle:g_hPlayerArray;
 new Handle:g_hGlobalSettings;
 new Handle:g_hCvarEnabled;
 new bool:g_bPlayerEnabled[MAXPLAYERS + 1] = { true, ... }
+new Handle:g_hCvarPlayerControlEnabled;
 
 // ====[ PLUGIN ]======================================================
 public Plugin:myinfo =
@@ -45,6 +46,7 @@ public OnPluginStart()
 	// Create convars
 	CreateConVar("tf2items_manager_version", PLUGIN_VERSION, PLUGIN_NAME, FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY);
 	g_hCvarEnabled = CreateConVar("tf2items_manager", "1", "Enables/disables the manager (0 - Disabled / 1 - Enabled", FCVAR_REPLICATED|FCVAR_NOTIFY);
+	g_hCvarPlayerControlEnabled = CreateConVar("tf2items_manager_playercontrol", "1", "Enables/disables the player's ability to control the manager (0 - Disabled / 1 - Enabled");
 	
 	// Register console commands
 	RegAdminCmd("tf2items_manager_reload", CmdReload, ADMFLAG_GENERIC);
@@ -63,7 +65,7 @@ public OnPluginStart()
 public Action:TF2Items_OnGiveNamedItem(iClient, String:strClassName[], iItemDefinitionIndex, &Handle:hItemOverride)
 {
 	// If disabled, use the default values.
-	if (!GetConVarBool(g_hCvarEnabled) || !g_bPlayerEnabled[iClient])
+	if (!GetConVarBool(g_hCvarEnabled) || (GetConVarBool(g_hCvarPlayerControlEnabled) && !g_bPlayerEnabled[iClient]))
 		return Plugin_Continue;
 	
 	// If another plugin already tryied to override the item, let him go ahead.
@@ -124,6 +126,12 @@ public Action:CmdReload(iClient, iAction)
 
 public Action:CmdEnable(iClient, iAction)
 {
+	if (!GetConVarBool(g_hCvarPlayerControlEnabled))
+	{
+		ReplyToCommand(iClient, "The server administrator has disabled this command.");
+		return Plugin_Handled;
+	}
+
 	ReplyToCommand(iClient, "Re-enabling TF2Items for you.");
 	g_bPlayerEnabled[iClient] = true;
 	return Plugin_Handled;
@@ -131,6 +139,12 @@ public Action:CmdEnable(iClient, iAction)
 
 public Action:CmdDisable(iClient, iAction)
 {
+	if (!GetConVarBool(g_hCvarPlayerControlEnabled))
+	{
+		ReplyToCommand(iClient, "The server administrator has disabled this command.");
+		return Plugin_Handled;
+	}
+	
 	ReplyToCommand(iClient, "Disabling TF2Items for you.");
 	g_bPlayerEnabled[iClient] = false;
 	return Plugin_Handled;
