@@ -67,6 +67,7 @@ TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
 
 sp_nativeinfo_t g_ExtensionNatives[] =
 {
+	{ "TF2Items_GiveNamedItem",		TF2Items_GiveNamedItem },
 	{ "TF2Items_CreateItem",		TF2Items_CreateItem },
 	{ "TF2Items_SetFlags",			TF2Items_SetFlags },
 	{ "TF2Items_GetFlags",			TF2Items_GetFlags },
@@ -502,6 +503,49 @@ void TScriptedItemOverrideTypeHandler::OnHandleDestroy(HandleType_t type, void *
 {
 	TScriptedItemOverride * pScriptedItemOverride = (TScriptedItemOverride*) object;
 	if (pScriptedItemOverride != NULL) delete(pScriptedItemOverride);
+}
+
+static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *params)
+{
+	// Retrieve player from it's index.
+	CBaseEntity *pEntity;
+	if (!(pEntity = GetCBaseEntityFromIndex(params[1], true)))
+		return pContext->ThrowNativeError("Client index %d is not valid", params[1]);
+		
+	// Retrieve the item override handle
+	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[2], pContext);
+	if (pScriptedItemOverride == NULL)
+		return -1;
+		
+	// Create new script created item object and prepare it.
+	CScriptCreatedItem hScriptCreatedItem;
+	memset(&hScriptCreatedItem, 0, sizeof(CScriptCreatedItem));
+		
+	char * strWeaponClassname = pScriptedItemOverride->m_strWeaponClassname;
+	hScriptCreatedItem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
+	hScriptCreatedItem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
+	hScriptCreatedItem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
+	#ifdef USE_NEW_ATTRIBS
+		hScriptCreatedItem.m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
+	#else
+		hScriptCreatedItem.m_pAttributes = hScriptCreatedItem.m_pAttributes2 = p_hOverride->m_Attributes;
+		hScriptCreatedItem.m_iAttributesCount = hScriptCreatedItem.m_iAttributesLength = p_hOverride->m_iCount;
+	#endif
+	hScriptCreatedItem.m_bInitialized = true;
+		
+	#ifndef NO_FORCE_QUALITY
+		if (hScriptCreatedItem.m_iEntityQuality == 0 && hScriptCreatedItem.m_iAttributesCount > 0) hScriptCreatedItem.m_iEntityQuality = 3;
+	#endif
+
+	// Call the function.
+	CBaseEntity *tempItem = NULL;
+	tempItem = SH_MCALL(pEntity, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, 0);
+
+	if (tempItem == NULL) {
+		return pContext->ThrowNativeError("Item is NULL. You may have hit Bug 18.");
+	}
+
+	return GetIndexFromCBaseEntity(tempItem);
 }
 
 static cell_t TF2Items_CreateItem(IPluginContext *pContext, const cell_t *params)

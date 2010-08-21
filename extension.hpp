@@ -217,7 +217,9 @@ public: //IConCommandBaseAccessor
 
 void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem);
 
+static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_CreateItem(IPluginContext *pContext, const cell_t *params);
+
 static cell_t TF2Items_SetFlags(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_GetFlags(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_SetClassname(IPluginContext *pContext, const cell_t *params);
@@ -234,6 +236,8 @@ static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *para
 static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t *params);
 
+CBaseEntity * GetCBaseEntityFromIndex(int p_iEntity, bool p_bOnlyPlayers);
+int GetIndexFromCBaseEntity(CBaseEntity * p_hEntity);
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext=NULL);
 
 extern HandleType_t g_ScriptedItemOverrideHandleType;
