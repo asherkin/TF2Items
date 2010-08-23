@@ -7,7 +7,7 @@
 
 #define PLUGIN_NAME		"[TF2Items] Give Weapon"
 #define PLUGIN_AUTHOR		"Asherkin"
-#define PLUGIN_VERSION		"3.1.2.1"
+#define PLUGIN_VERSION		"1.4.1"
 #define PLUGIN_CONTACT		"http://limetech.org/"
 
 new g_hItems[MAXPLAYERS+1][6];
@@ -653,5 +653,82 @@ CreateItemInfoTrie()
 	SetTrieValue(g_hItemInfoTrie, "132_slot", 2);
 	SetTrieValue(g_hItemInfoTrie, "132_quality", 3);
 	SetTrieValue(g_hItemInfoTrie, "132_level", 5);
-	SetTrieString(g_hItemInfoTrie, "132_attribs", "15 ; 0.0 ; 125 ; -25.0");
+	SetTrieString(g_hItemInfoTrie, "132_attribs", "15 ; 0 ; 125 ; -25");
+
+	SetTrieString(g_hItemInfoTrie, "140_classname", "tf_weapon_laser_pointer");
+	SetTrieValue(g_hItemInfoTrie, "140_index", 140);
+	SetTrieValue(g_hItemInfoTrie, "140_slot", 1);
+	SetTrieValue(g_hItemInfoTrie, "140_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "140_level", 5);
+	SetTrieString(g_hItemInfoTrie, "140_attribs", "");
+
+	SetTrieString(g_hItemInfoTrie, "141_classname", "tf_weapon_sentry_revenge");
+	SetTrieValue(g_hItemInfoTrie, "141_index", 141);
+	SetTrieValue(g_hItemInfoTrie, "141_slot", 0);
+	SetTrieValue(g_hItemInfoTrie, "141_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "141_level", 5);
+	SetTrieString(g_hItemInfoTrie, "141_attribs", "136 ; 1 ; 15 ; 0 ; 3 ; 0.5");
+
+	SetTrieString(g_hItemInfoTrie, "142_classname", "tf_weapon_robot_arm");
+	SetTrieValue(g_hItemInfoTrie, "142_index", 142);
+	SetTrieValue(g_hItemInfoTrie, "142_slot", 2);
+	SetTrieValue(g_hItemInfoTrie, "142_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "142_level", 15);
+	SetTrieString(g_hItemInfoTrie, "142_attribs", "124 ; 1 ; 26 ; 25.0 ; 15 ; 0");
+
+	SetTrieString(g_hItemInfoTrie, "153_classname", "tf_weapon_fireaxe");
+	SetTrieValue(g_hItemInfoTrie, "153_index", 153);
+	SetTrieValue(g_hItemInfoTrie, "153_slot", 2);
+	SetTrieValue(g_hItemInfoTrie, "153_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "153_level", 5);
+	SetTrieString(g_hItemInfoTrie, "153_attribs", "137 ; 2.0 ; 138 ; 0.75 ; 146 ; 1");
+
+	SetTrieString(g_hItemInfoTrie, "154_classname", "tf_weapon_shovel");
+	SetTrieValue(g_hItemInfoTrie, "154_index", 154);
+	SetTrieValue(g_hItemInfoTrie, "154_slot", 2);
+	SetTrieValue(g_hItemInfoTrie, "154_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "154_level", 5);
+	SetTrieString(g_hItemInfoTrie, "154_attribs", "68 ; 1 ; 67 ; 1.1");
+
+	SetTrieString(g_hItemInfoTrie, "155_classname", "tf_weapon_wrench");
+	SetTrieValue(g_hItemInfoTrie, "155_index", 155);
+	SetTrieValue(g_hItemInfoTrie, "155_slot", 2);
+	SetTrieValue(g_hItemInfoTrie, "155_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "155_level", 20);
+	SetTrieString(g_hItemInfoTrie, "155_attribs", "15 ; 0 ; 149 ; 5 ; 61 ; 1.20");
+
+	SetTrieString(g_hItemInfoTrie, "159_classname", "tf_weapon_lunchbox");
+	SetTrieValue(g_hItemInfoTrie, "159_index", 159);
+	SetTrieValue(g_hItemInfoTrie, "159_slot", 1);
+	SetTrieValue(g_hItemInfoTrie, "159_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "159_level", 1);
+	SetTrieString(g_hItemInfoTrie, "159_attribs", "139 ; 1");
+
+	SetTrieString(g_hItemInfoTrie, "163_classname", "tf_weapon_lunchbox_drink");
+	SetTrieValue(g_hItemInfoTrie, "163_index", 163);
+	SetTrieValue(g_hItemInfoTrie, "163_slot", 1);
+	SetTrieValue(g_hItemInfoTrie, "163_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "163_level", 5);
+	SetTrieString(g_hItemInfoTrie, "163_attribs", "139 ; 1");
+
+	SetTrieString(g_hItemInfoTrie, "169_classname", "tf_weapon_wrench");
+	SetTrieValue(g_hItemInfoTrie, "169_index", 169);
+	SetTrieValue(g_hItemInfoTrie, "169_slot", 2);
+	SetTrieValue(g_hItemInfoTrie, "169_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "169_level", 25);
+	SetTrieString(g_hItemInfoTrie, "169_attribs", "150 ; 1");
+
+	SetTrieString(g_hItemInfoTrie, "171_classname", "tf_weapon_club");
+	SetTrieValue(g_hItemInfoTrie, "171_index", 171);
+	SetTrieValue(g_hItemInfoTrie, "171_slot", 2);
+	SetTrieValue(g_hItemInfoTrie, "171_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "171_level", 5);
+	SetTrieString(g_hItemInfoTrie, "171_attribs", "149 ; 6 ; 1 ; 0.5");
+
+	SetTrieString(g_hItemInfoTrie, "172_classname", "tf_weapon_sword");
+	SetTrieValue(g_hItemInfoTrie, "172_index", 172);
+	SetTrieValue(g_hItemInfoTrie, "172_slot", 2);
+	SetTrieValue(g_hItemInfoTrie, "172_quality", 3);
+	SetTrieValue(g_hItemInfoTrie, "172_level", 5);
+	SetTrieString(g_hItemInfoTrie, "172_attribs", "2 ; 1.2 ; 54 ; 0.85");
 }
