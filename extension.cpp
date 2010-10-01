@@ -262,10 +262,6 @@ void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
 
 	copymember(m_bInitialized);
 
-#ifdef _WIN32
-	copymember(m_Padding3);
-#endif
-
 	newitem->m_Attributes = olditem->m_Attributes;
 	
 	/*
