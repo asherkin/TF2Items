@@ -1,0 +1,18 @@
+File									Date				Size		D/L
+tf2items_release-53971aaee018.tar.gz	10/01/2010 07:00 pm	126.4 KB	24
+tf2items_release-360834f56952.tar.gz	08/21/2010 08:52 pm	120.1 KB	247
+tf2items_release-441a7fd24714.tar.gz	08/21/2010 06:11 pm	120.1 KB	8
+tf2items_release-74e5633ce58a.tar.gz	07/11/2010 07:40 pm	117.0 KB	320
+tf2items_release-40447fd83d84.tar.gz	05/27/2010 04:34 pm	117.0 KB	541
+tf2items_release-cf26093cb378.tar.gz	05/25/2010 08:14 pm	121.5 KB	62
+tf2items-release.r98.tar.gz				03/21/2010 09:24 pm	128.1 KB	470
+tf2items-release.r97.tar.gz				03/21/2010 09:05 pm	128.3 KB	3
+tf2items-release.r62.tar.gz				02/18/2010 02:45 am	132.6 KB	171
+tf2items-release.r61.tar.gz				02/17/2010 05:05 pm	132.6 KB	14
+tf2items-release.r45.tar.gz				01/20/2010 03:49 pm	140.7 KB	144
+tf2items-release.r41.tar.gz				01/20/2010 04:46 am	140.6 KB	6
+tf2items-release.r39.tar.gz				01/20/2010 04:27 am	140.6 KB	4
+tf2items-release.r35.tar.gz				01/19/2010 12:27 am	140.6 KB	20
+tf2items-release.r30.tar.gz				01/16/2010 05:32 am	140.9 KB	65
+tf2items-release.r17.tar.gz				01/12/2010 07:04 pm	133.3 KB	16
+tf2items-release.r3.tar.gz				01/10/2010 08:31 pm	112.1 KB	18
