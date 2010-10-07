@@ -6,8 +6,8 @@
 		{
 			"GiveNamedItem"
 			{
-				"windows"	"454"
-				"linux"	"461"
+				"windows"	"455"
+				"linux"	"462"
 			}
 		}
 	}
