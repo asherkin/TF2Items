@@ -317,10 +317,12 @@
 			"baseitem" "1"
 			"min_ilevel"	"1"
 			"max_ilevel"	"1"
+			"attach_to_hands"	"1"
 			"image_inventory"	"backpack/weapons/w_models/w_shotgun"
 			"image_inventory_size_w"		"128"
 			"image_inventory_size_h"		"82"
-			"model_player"	"models/weapons/w_models/w_shotgun.mdl"
+			"model_player"	"models/weapons/c_models/c_shotgun/c_shotgun.mdl"
+			"model_world"	"models/weapons/w_models/w_shotgun.mdl"
 			"used_by_classes"
 			{
 				"heavy"	"1"
@@ -340,10 +342,12 @@
 			"baseitem" "1"
 			"min_ilevel"	"1"
 			"max_ilevel"	"1"
+			"attach_to_hands"	"1"
 			"image_inventory"	"backpack/weapons/w_models/w_shotgun"
 			"image_inventory_size_w"		"128"
 			"image_inventory_size_h"		"82"
-			"model_player"	"models/weapons/w_models/w_shotgun.mdl"
+			"model_player"	"models/weapons/c_models/c_shotgun/c_shotgun.mdl"
+			"model_world"	"models/weapons/w_models/w_shotgun.mdl"
 			"used_by_classes"
 			{
 				"pyro"	"1"
@@ -575,11 +579,12 @@
 			"baseitem" "1"
 			"min_ilevel"	"1"
 			"max_ilevel"	"1"
+			"attach_to_hands"	"1"
 			"image_inventory"	"backpack/weapons/c_models/c_pistol"
 			"image_inventory_size_w"		"128"
 			"image_inventory_size_h"		"82"
-			"model_player"	"models/weapons/w_models/w_pistol.mdl"
-			"attach_to_hands"	"1"
+			"model_player"	"models/weapons/c_models/c_pistol/c_pistol.mdl"
+			"model_world"	"models/weapons/w_models/w_pistol.mdl"
 			"used_by_classes"
 			{
 				"engineer"	"1"
@@ -599,10 +604,12 @@
 			"baseitem" "1"
 			"min_ilevel"	"1"
 			"max_ilevel"	"1"
+			"attach_to_hands"	"1"
 			"image_inventory"	"backpack/weapons/c_models/c_pistol"
 			"image_inventory_size_w"		"128"
 			"image_inventory_size_h"		"82"
-			"model_player"	"models/weapons/w_models/w_pistol.mdl"
+			"model_player"	"models/weapons/c_models/c_pistol/c_pistol.mdl"
+			"model_world"	"models/weapons/w_models/w_pistol.mdl"
 			"used_by_classes"
 			{
 				"scout"	"1"
@@ -1319,7 +1326,7 @@
 				"nameable"		"1"
 			}
 			"show_in_armory"	"1"
-			"item_type_name"	"#TF_Weapon_Fists"
+			"item_type_name"	"#TF_Weapon_Gloves"
 			"item_name"	"#TF_Unique_Achievement_Fists"
 			"item_slot"	"melee"
 			"item_logname"	"gloves"
@@ -1363,6 +1370,7 @@
 				"attrib_vs_burning" "1"
 				"attrib_firerate" "1"
 			}
+			"hide_bodygroups_deployed_only"	"1"
 			"visuals"
 			{
 				"hide_player_bodygroup_name"	"hands"
@@ -2689,6 +2697,10 @@
 			"name"	"Mildly Disturbing Halloween Mask"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+			}
 			"loadondemand" "1"
 			"show_in_armory"	"1"
 			"item_type_name""#TF_Wearable_Holiday_Hat"
@@ -2727,6 +2739,14 @@
 				"engineer" "1"
 				"pyro" "1"
 			}
+			"attributes"
+			{
+				"cannot trade"
+				{
+					"attribute_class"	"cannot_trade"
+					"value"				"1"
+				}
+			}
 			"visuals"
 			{
 				"hide_player_bodygroup_name"	"hat"
@@ -2743,6 +2763,7 @@
 			"capabilities"
 			{
 				"paintable"		"1"
+				"nameable"		"1"
 			}
 			"loadondemand" "1"
 			"show_in_armory"	"1"
@@ -2892,6 +2913,10 @@
 		{
 			"name"	"Web Easteregg Medal"
 			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Medal"
 			"item_name"	"#TF_Soldier_Medal_Web_Sleuth"
@@ -3010,6 +3035,10 @@
 			"name"	"Honest Halo"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+			}
 			"loadondemand" "1"
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_HonestyHalo"
@@ -4083,6 +4112,10 @@
 					"attachment" "ear_L"
 				}
 			}
+			"capabilities"
+			{
+				"nameable"		"1"
+			}
 		}
 		"144"
 		{
@@ -4641,6 +4674,7 @@
 			"image_inventory_size_w"		"128"
 			"image_inventory_size_h"		"82"
 			"model_player"	"models/weapons/c_models/c_ttg_max_gun/c_ttg_max_gun.mdl"
+			"model_world"	"models/weapons/w_models/w_ttg_max_gun.mdl"
 			"attach_to_hands"	"1"
 			"item_quality"	"unique"
 			"propername"	"1"
@@ -4975,6 +5009,7 @@
 			"item_class"	"tf_weapon_wrench"
 			"capabilities"
 			{
+				"nameable"		"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Wrench"
@@ -5404,7 +5439,7 @@
 			"image_inventory"	"backpack/player/items/demo/demo_tricorne"
 			"image_inventory_size_w"		"128"
 			"image_inventory_size_h"		"82"
-			"model_player"	"models/player/items/demo/drinking_hat.mdl"
+			"model_player"	"models/player/items/demo/demo_tricorne.mdl"
 			"drop_type"	"drop"
 			"used_by_classes"
 			{
@@ -6715,6 +6750,39 @@
 			"drop_sound"		"ui/item_heavy_gun_drop.wav"
 			"item_set"	"polycount_pyro"
 		}
+		"216"
+		{
+			"name"	"Rimmed Raincatcher"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"paintable"		"1"
+			}
+			"show_in_armory"	"1"
+			"item_type_name" "#TF_Wearable_Hat"
+			"item_name"	"#TF_DemomanPirate"
+			"item_description"	"#TF_DemomanPirate_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"image_inventory"	"backpack/player/items/demo/drinking_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/demo/drinking_hat.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+			}
+			"mouse_pressed_sound"	"ui/item_hat_pickup.wav"
+			"drop_sound"		"ui/item_hat_drop.wav"
+		}
 		"219"
 		{
 			"name"	"The Milkman"
@@ -7383,6 +7451,11 @@
 					"attribute_class" "jarate_duration"
 					"value" "8"
 				}
+				"crit mod disabled"
+				{
+					"attribute_class"	"mult_crit_chance"
+					"value"	"0"
+				}
 			}
 		}
 		"231"
@@ -7641,7 +7714,7 @@
 				"nameable"		"1"
 			}
 			"show_in_armory"	"1"
-			"item_type_name"	"#TF_Weapon_Fists"
+			"item_type_name"	"#TF_Weapon_Gloves"
 			"item_name"	"#TF_Unique_Gloves_of_Running_Urgently"
 			"item_slot"	"melee"
 			"item_logname"	"gloves"
@@ -7675,11 +7748,16 @@
 					"attribute_class"	"provide_on_active"
 					"value" "1"
 				}
-				"health drain"
+				"active health degen"
 				{
-					"attribute_class"	"add_health_regen"
+					"attribute_class"	"active_item_health_regen"
 					"value" "-6"
 				}
+				"lunchbox adds minicrits"
+                {
+					"attribute_class"	"set_weapon_mode"
+					"value" "2"
+                }
 			}
 			"hide_bodygroups_deployed_only"	"1"
 			"visuals"
@@ -7814,7 +7892,7 @@
 			}
 			"visuals"
 			{
-				"skin" "0"
+				"skin" "2"
 				"use_per_class_bodygroups" "1"
 			}
 			"mouse_pressed_sound"	"ui/item_medal_pickup.wav"
@@ -7904,7 +7982,7 @@
 			}
 			"visuals"
 			{
-				"skin" "2"
+				"skin" "0"
 				"use_per_class_bodygroups" "1"
 			}
 			"mouse_pressed_sound"	"ui/item_medal_pickup.wav"
@@ -8081,7 +8159,7 @@
 		}
 		"250"
 		{
-			"name"	"Chieftan's Challenge"
+			"name"	"Chieftain's Challenge"
 			"hidden"	"0"
 			"item_class"	"tf_wearable_item"
 			"craft_class"	"hat"
@@ -8345,6 +8423,7 @@
 			"capabilities"
 			{
 				"paintable"		"1"
+				"nameable"		"1"
 			}
 			"loadondemand" "1"
 			"show_in_armory"	"1"
@@ -8403,6 +8482,10 @@
 		{
 			"name"	"Polycount Pin"
 			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Badge"
 			"item_name"	"#TF_Polycount_Pin"
@@ -8446,7 +8529,7 @@
 			"item_class"	"tf_wearable_item"
 			"capabilities"
 			{
-				"paintable"		"1"
+				"nameable"		"1"
 			}
 			"loadondemand" "1"
 			"show_in_armory"	"1"
@@ -8485,14 +8568,6 @@
 				"engineer" "1"
 				"pyro" "1"
 			}
-			"attributes"
-			{
-				"cannot trade"
-				{
-					"attribute_class"	"cannot_trade"
-					"value"				"1"
-				}
-			}
 			"visuals"
 			{
 				"hide_player_bodygroup_name"	"hat"
@@ -8506,7 +8581,6 @@
 		{
 			"name"	"Frying Pan"
 			"item_class"	"tf_weapon_shovel"
-			"craft_class"	"weapon"
 			"capabilities"
 			{
 				"nameable"		"1"
@@ -8531,14 +8605,6 @@
 				"soldier"	"1"
 				"demoman"	"1"
 			}
-			"attributes"
-			{
-				"cannot trade"
-				{
-					"attribute_class"	"cannot_trade"
-					"value"				"1"
-				}
-			}
 			"allowed_attributes"
 			{
 				"all_items"	"1"
@@ -8551,6 +8617,11 @@
 				"attrib_onhit_slow" "1"
 				"attrib_vs_burning" "1"
 				"attrib_firerate" "1"
+			}
+			"visuals"
+			{
+				"sound_melee_hit"		"FryingPan.HitFlesh"
+				"sound_melee_hit_world"	"FryingPan.HitWorld"
 			}
 			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
 			"drop_sound"		"ui/item_metal_weapon_drop.wav"
@@ -9049,6 +9120,23 @@
 			"min_ilevel"	"1"
 			"max_ilevel"	"1"
 			"slot_token_id"		"melee"
+		}
+		"5018"
+		{
+			"name"	"Slot Token - PDA2"
+			"item_class"	"slot_token"
+			"craft_class"	"craft_token"
+			"item_slot"	"pda2"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#CI_T_S_7"
+			"item_description"	"#TF_CraftItem_Token_S_Desc"
+			"image_inventory"	"backpack/crafting/token_pda"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"slot_token_id"		"pda2"
 		}
 		"5020"
 		{
@@ -9685,6 +9773,46 @@
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
 			"drop_sound"		"ui/item_paint_can_pickup.wav"
 		}
+		"5041"
+		{
+			"name"	"Supply Crate 2"
+			"item_class"	"supply_crate"
+			"craft_class"	"supply_crate"
+			"tool"
+			{
+				"type"	""
+				"usage"
+				{
+				}
+			}
+			"capabilities"
+			{
+				"decodable"		"1"
+			}
+			"armory_desc" "supply_crate"
+			"show_in_armory"	"1"
+			"show_in_armory" "1"
+			"item_type_name"	"#TF_LockedCrate"
+			"item_name"		"#TF_SupplyCrate"
+			"item_description"	"#TF_SupplyCrate_Desc"
+			"image_inventory"	"backpack/player/items/crafting/crate"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"attributes"
+			{
+				"set supply crate series"
+				{
+					"attribute_class"	"supply_crate_series"
+					"value" "2"
+					"force_gc_to_generate" "1"
+				}
+			}
+			"mouse_pressed_sound"	"ui/item_crate_pickup.wav"
+			"drop_sound"		"ui/item_crate_drop.wav"
+		}
 	}
 	"attributes"
 	{
@@ -9700,6 +9828,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"2"
 		{
@@ -9713,6 +9842,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"3"
 		{
@@ -9726,6 +9856,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"4"
 		{
@@ -9739,6 +9870,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"5"
 		{
@@ -9752,6 +9884,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"6"
 		{
@@ -9765,6 +9898,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"7"
 		{
@@ -9778,6 +9912,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"8"
 		{
@@ -9791,6 +9926,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"9"
 		{
@@ -9804,6 +9940,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"10"
 		{
@@ -9817,6 +9954,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"11"
 		{
@@ -9830,6 +9968,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"12"
 		{
@@ -9843,6 +9982,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"13"
 		{
@@ -9856,6 +9996,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"14"
 		{
@@ -9869,6 +10010,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"15"
 		{
@@ -9883,6 +10025,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"no_crits"
+			"stored_as_integer"	"0"
 		}
 		"16"
 		{
@@ -9897,6 +10040,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_hit"
+			"stored_as_integer"	"0"
 		}
 		"17"
 		{
@@ -9911,6 +10055,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_hit"
+			"stored_as_integer"	"0"
 		}
 		"18"
 		{
@@ -9924,6 +10069,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"19"
 		{
@@ -9938,6 +10084,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_hit"
+			"stored_as_integer"	"0"
 		}
 		"20"
 		{
@@ -9951,6 +10098,7 @@
 			"description_format"	"value_is_or"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"21"
 		{
@@ -9964,6 +10112,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"22"
 		{
@@ -9977,6 +10126,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"23"
 		{
@@ -9990,6 +10140,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"24"
 		{
@@ -10003,6 +10154,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"25"
 		{
@@ -10016,6 +10168,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"1"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"26"
 		{
@@ -10030,6 +10183,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"27"
 		{
@@ -10043,6 +10197,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"28"
 		{
@@ -10056,6 +10211,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"1"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"29"
 		{
@@ -10069,6 +10225,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"30"
 		{
@@ -10082,6 +10239,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"31"
 		{
@@ -10096,6 +10254,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_kill"
+			"stored_as_integer"	"0"
 		}
 		"32"
 		{
@@ -10110,6 +10269,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_hit"
+			"stored_as_integer"	"0"
 		}
 		"33"
 		{
@@ -10124,6 +10284,7 @@
 			"hidden"	"0"
 			"effect_type"	"neutral"
 			"armory_desc"	"cloak_type"
+			"stored_as_integer"	"0"
 		}
 		"34"
 		{
@@ -10137,6 +10298,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"35"
 		{
@@ -10150,6 +10312,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"36"
 		{
@@ -10163,6 +10326,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"37"
 		{
@@ -10176,6 +10340,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"1"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"38"
 		{
@@ -10189,6 +10354,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"39"
 		{
@@ -10202,6 +10368,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"40"
 		{
@@ -10215,6 +10382,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"41"
 		{
@@ -10228,6 +10396,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"42"
 		{
@@ -10241,6 +10410,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"43"
 		{
@@ -10254,6 +10424,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"1"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"44"
 		{
@@ -10267,6 +10438,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"45"
 		{
@@ -10280,6 +10452,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"46"
 		{
@@ -10293,6 +10466,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"47"
 		{
@@ -10306,6 +10480,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"48"
 		{
@@ -10320,6 +10495,7 @@
 			"hidden"	"0"
 			"effect_type"	"neutral"
 			"armory_desc"	"cloak_type"
+			"stored_as_integer"	"0"
 		}
 		"49"
 		{
@@ -10333,6 +10509,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"50"
 		{
@@ -10346,6 +10523,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"51"
 		{
@@ -10359,6 +10537,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"52"
 		{
@@ -10372,6 +10551,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"53"
 		{
@@ -10386,6 +10566,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"54"
 		{
@@ -10400,6 +10581,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"55"
 		{
@@ -10413,6 +10595,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"1"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"56"
 		{
@@ -10426,6 +10609,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"57"
 		{
@@ -10440,6 +10624,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"58"
 		{
@@ -10454,6 +10639,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"59"
 		{
@@ -10468,6 +10654,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"60"
 		{
@@ -10482,6 +10669,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"61"
 		{
@@ -10496,6 +10684,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"62"
 		{
@@ -10510,6 +10699,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"63"
 		{
@@ -10524,6 +10714,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"64"
 		{
@@ -10538,6 +10729,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"65"
 		{
@@ -10552,6 +10744,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"66"
 		{
@@ -10566,6 +10759,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"67"
 		{
@@ -10580,6 +10774,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"68"
 		{
@@ -10594,6 +10789,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"69"
 		{
@@ -10608,6 +10804,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"70"
 		{
@@ -10622,6 +10819,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"71"
 		{
@@ -10635,6 +10833,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"72"
 		{
@@ -10648,6 +10847,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"73"
 		{
@@ -10661,6 +10861,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"74"
 		{
@@ -10674,6 +10875,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"75"
 		{
@@ -10688,6 +10890,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"76"
 		{
@@ -10702,6 +10905,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"77"
 		{
@@ -10716,6 +10920,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"78"
 		{
@@ -10730,6 +10935,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"79"
 		{
@@ -10744,6 +10950,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"80"
 		{
@@ -10758,6 +10965,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"81"
 		{
@@ -10772,6 +10980,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"82"
 		{
@@ -10785,6 +10994,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"83"
 		{
@@ -10798,6 +11008,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"84"
 		{
@@ -10811,6 +11022,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"85"
 		{
@@ -10824,6 +11036,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"86"
 		{
@@ -10837,6 +11050,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"87"
 		{
@@ -10850,6 +11064,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"88"
 		{
@@ -10863,6 +11078,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"89"
 		{
@@ -10876,6 +11092,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"90"
 		{
@@ -10889,6 +11106,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"91"
 		{
@@ -10902,6 +11120,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"92"
 		{
@@ -10915,6 +11134,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"93"
 		{
@@ -10928,6 +11148,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"94"
 		{
@@ -10941,6 +11162,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"95"
 		{
@@ -10954,6 +11176,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"96"
 		{
@@ -10967,6 +11190,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"97"
 		{
@@ -10980,6 +11204,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"98"
 		{
@@ -10994,6 +11219,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_hit"
+			"stored_as_integer"	"0"
 		}
 		"99"
 		{
@@ -11007,6 +11233,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"100"
 		{
@@ -11020,6 +11247,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"101"
 		{
@@ -11033,6 +11261,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"102"
 		{
@@ -11046,6 +11275,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"103"
 		{
@@ -11059,6 +11289,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"104"
 		{
@@ -11072,6 +11303,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"105"
 		{
@@ -11085,6 +11317,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"106"
 		{
@@ -11098,6 +11331,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"107"
 		{
@@ -11112,6 +11346,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"108"
 		{
@@ -11126,6 +11361,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"109"
 		{
@@ -11140,6 +11376,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"110"
 		{
@@ -11154,6 +11391,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_hit"
+			"stored_as_integer"	"0"
 		}
 		"111"
 		{
@@ -11168,6 +11406,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_hit"
+			"stored_as_integer"	"0"
 		}
 		"112"
 		{
@@ -11182,6 +11421,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"113"
 		{
@@ -11196,6 +11436,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"114"
 		{
@@ -11208,6 +11449,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"115"
 		{
@@ -11221,6 +11463,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"116"
 		{
@@ -11234,6 +11477,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"1"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"117"
 		{
@@ -11247,6 +11491,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"118"
 		{
@@ -11260,6 +11505,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"119"
 		{
@@ -11273,6 +11519,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"120"
 		{
@@ -11286,6 +11533,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"121"
 		{
@@ -11299,6 +11547,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"122"
 		{
@@ -11312,6 +11561,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"1"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"123"
 		{
@@ -11326,6 +11576,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_active"
+			"stored_as_integer"	"0"
 		}
 		"124"
 		{
@@ -11339,6 +11590,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"125"
 		{
@@ -11353,6 +11605,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"126"
 		{
@@ -11366,6 +11619,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"127"
 		{
@@ -11379,6 +11633,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"128"
 		{
@@ -11393,6 +11648,7 @@
 			"hidden"	"0"
 			"effect_type"	"neutral"
 			"armory_desc"	"on_active"
+			"stored_as_integer"	"0"
 		}
 		"129"
 		{
@@ -11407,6 +11663,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"130"
 		{
@@ -11421,6 +11678,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"131"
 		{
@@ -11435,6 +11693,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"132"
 		{
@@ -11448,6 +11707,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"133"
 		{
@@ -11461,8 +11721,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"neutral"
-			"mouse_pressed_sound"	"ui/item_medal_pickup.wav"
-			"drop_sound"		"ui/item_medal_pickup.wav"
+			"stored_as_integer"	"1"
 		}
 		"134"
 		{
@@ -11476,6 +11735,7 @@
 			"description_format"	"value_is_particle_index"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"135"
 		{
@@ -11489,6 +11749,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"136"
 		{
@@ -11502,6 +11763,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"137"
 		{
@@ -11515,6 +11777,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"138"
 		{
@@ -11528,6 +11791,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"139"
 		{
@@ -11541,6 +11805,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"140"
 		{
@@ -11554,6 +11819,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"1"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"141"
 		{
@@ -11567,6 +11833,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"142"
 		{
@@ -11580,6 +11847,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"1"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"143"
 		{
@@ -11593,6 +11861,7 @@
 			"description_format"	"value_is_date"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"1"
 		}
 		"144"
 		{
@@ -11606,7 +11875,9 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"1"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
+
 		"146"
 		{
 			"name"	"damage applies to sappers"
@@ -11619,6 +11890,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"147"
 		{
@@ -11632,6 +11904,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"1"
 		}
 		"148"
 		{
@@ -11645,6 +11918,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"149"
 		{
@@ -11659,6 +11933,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_hit bleed"
+			"stored_as_integer"	"0"
 		}
 		"150"
 		{
@@ -11672,7 +11947,9 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
+
 		"153"
 		{
 			"name"	"cannot trade"
@@ -11685,6 +11962,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"1"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"154"
 		{
@@ -11697,6 +11975,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"155"
 		{
@@ -11709,6 +11988,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"156"
 		{
@@ -11721,6 +12001,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"157"
 		{
@@ -11733,6 +12014,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"158"
 		{
@@ -11745,6 +12027,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"159"
 		{
@@ -11757,6 +12040,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"160"
 		{
@@ -11769,6 +12053,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"161"
 		{
@@ -11782,6 +12067,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"162"
 		{
@@ -11795,6 +12081,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"163"
 		{
@@ -11808,6 +12095,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"164"
 		{
@@ -11821,6 +12109,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"165"
 		{
@@ -11834,6 +12123,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"166"
 		{
@@ -11846,6 +12136,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"167"
 		{
@@ -11858,6 +12149,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"168"
 		{
@@ -11870,6 +12162,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"169"
 		{
@@ -11882,6 +12175,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"170"
 		{
@@ -11895,6 +12189,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"171"
 		{
@@ -11908,6 +12203,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"172"
 		{
@@ -11921,6 +12217,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"1"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
 		"173"
 		{
@@ -11934,6 +12231,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"174"
 		{
@@ -11947,6 +12245,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"175"
 		{
@@ -11961,6 +12260,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_hit jarate"
+			"stored_as_integer"	"0"
 		}
 		"176"
 		{
@@ -11973,6 +12273,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"177"
 		{
@@ -11986,6 +12287,7 @@
 			"description_format"	"value_is_percentage"
 			"hidden"	"0"
 			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
 		"178"
 		{
@@ -11999,6 +12301,7 @@
 			"description_format"	"value_is_inverted_percentage"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"179"
 		{
@@ -12011,6 +12314,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"180"
 		{
@@ -12023,6 +12327,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"181"
 		{
@@ -12035,6 +12340,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"182"
 		{
@@ -12049,6 +12355,7 @@
 			"hidden"	"0"
 			"effect_type"	"positive"
 			"armory_desc"	"on_hit"
+			"stored_as_integer"	"0"
 		}
 		"183"
 		{
@@ -12063,6 +12370,7 @@
 			"hidden"	"0"
 			"effect_type"	"negative"
 			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
 		"184"
 		{
@@ -12076,6 +12384,7 @@
 			"description_format"	"value_is_account_id"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"1"
 		}
 		"185"
 		{
@@ -12089,6 +12398,7 @@
 			"description_format"	"value_is_date"
 			"hidden"	"0"
 			"effect_type"	"neutral"
+			"stored_as_integer"	"1"
 		}
 		"186"
 		{
@@ -12102,6 +12412,7 @@
 			"description_format"	"value_is_account_id"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"1"
 		}
 		"187"
 		{
@@ -12114,6 +12425,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"188"
 		{
@@ -12127,6 +12439,7 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"0"
 			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
 		"189"
 		{
@@ -12140,7 +12453,38 @@
 			"description_format"	"value_is_additive"
 			"hidden"	"1"
 			"effect_type"	"positive"
-		}	
+			"stored_as_integer"	"0"
+		}
+		"190"
+		{
+			"name"	"active health regen"
+			"attribute_class"	"active_item_health_regen"
+			"attribute_name"	"Minor health regen"
+			"min_value"	"0"
+			"max_value"	"0"
+			"group"	"only_on_unique"
+			"description_string"	"#Attrib_HealthRegen"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
+		}
+		"191"
+		{
+			"name"	"active health degen"
+			"attribute_class"	"active_item_health_regen"
+			"attribute_name"	"Minor health degen"
+			"min_value"	"0"
+			"max_value"	"0"
+			"group"	"only_on_unique"
+			"description_string"	"#Attrib_HealthDrain"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"0"
+		}
 	}
 	"item_sets"
 	{
