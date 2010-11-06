@@ -34,7 +34,7 @@ SH_DECL_HOOK2_void(IServerGameClients, ClientPutInServer, SH_NOATTRIB, 0, edict_
 SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CScriptCreatedItem *, bool);
 
 SH_DECL_MANUALHOOK1_void(MCall_DumpInventoryToConsole, 6, 0, 0, bool);
-SH_DECL_MANUALHOOK3_void(MCall_ItemHasBeenUpdated, 12, 0, 0, CScriptCreatedItem *, bool, bool);
+SH_DECL_MANUALHOOK3(MCall_ItemHasBeenUpdated, 12, 0, 0, int, CScriptCreatedItem *, bool, bool);
 
 ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
@@ -120,7 +120,11 @@ CON_COMMAND(equip_wep, "")
 		return;
 	}
 
+	#ifdef _WIN32
 	uint64 ullGlobalIndex = _atoi64(args.Arg(2));
+	#else
+	uint64 ullGlobalIndex = atoll(args.Arg(2));
+	#endif
 
 	for (int i = 0; i < pInventory->m_BackPack.Count(); i++)
 	{
@@ -128,7 +132,7 @@ CON_COMMAND(equip_wep, "")
 		if (pItem->m_iGlobalIndex == ullGlobalIndex)
 		{
 			META_CONPRINTF("Found a matching item! (%s)\n", pItem->m_szName);
-			SH_MCALL(pInventory, MCall_ItemHasBeenUpdated)(pItem, true, true);
+			SH_MCALL(pInventory, MCall_ItemHasBeenUpdated)(pItem, false, false);
 			break;
 		}
 	}
