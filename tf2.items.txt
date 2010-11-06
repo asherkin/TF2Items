@@ -7,7 +7,12 @@
 			"GiveNamedItem"
 			{
 				"windows"	"455"
-				"linux"	"462"
+				"linux"		"462"
+			}
+			"InventoryOffset"
+			{
+				"windows"	"4400"
+				"linux"		"4412"
 			}
 		}
 	}

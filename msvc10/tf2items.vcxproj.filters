@@ -12,6 +12,9 @@
     <Filter Include="SourceMod SDK">
       <UniqueIdentifier>{31958233-BB2D-4e41-A8F9-CE8A4684F436}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Item Class Headers">
+      <UniqueIdentifier>{d9cb20f3-b646-4363-9145-b5d59c2cbf2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\extension.cpp">
@@ -30,6 +33,18 @@
     </ClInclude>
     <ClInclude Include="..\sdk\smsdk_ext.hpp">
       <Filter>SourceMod SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CScriptCreatedItem.hpp">
+      <Filter>Item Class Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CScriptCreatedAttribute.hpp">
+      <Filter>Item Class Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CUtlMemoryTF2Items.hpp">
+      <Filter>Item Class Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPlayerInventory.hpp">
+      <Filter>Item Class Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

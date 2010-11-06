@@ -117,6 +117,10 @@
     <ClCompile Include="..\sdk\smsdk_ext.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\CPlayerInventory.hpp" />
+    <ClInclude Include="..\CScriptCreatedAttribute.hpp" />
+    <ClInclude Include="..\CScriptCreatedItem.hpp" />
+    <ClInclude Include="..\CUtlMemoryTF2Items.hpp" />
     <ClInclude Include="..\extension.hpp" />
     <ClInclude Include="..\sdk\smsdk_config.hpp" />
     <ClInclude Include="..\sdk\smsdk_ext.hpp" />

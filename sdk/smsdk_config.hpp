@@ -37,8 +37,8 @@
 /* Basic information exposed publicly */
 #define SMEXT_CONF_NAME			"TF2Items"
 #define SMEXT_CONF_DESCRIPTION	"TF2 Item Modifier"
-#define SMEXT_CONF_VERSION		"1.4.1"
-#define SMEXT_CONF_AUTHOR		"Asherkin & AzuiSleet & Damizean"
+#define SMEXT_CONF_VERSION		"2.0.0"
+#define SMEXT_CONF_AUTHOR		"Asherkin & AzuiSleet"
 #define SMEXT_CONF_URL			"http://limetech.org/"
 #define SMEXT_CONF_LOGTAG		"TF2ITEMS"
 #define SMEXT_CONF_LICENSE		"GPL"
@@ -56,8 +56,8 @@
 #define SMEXT_CONF_METAMOD		
 
 /** Enable interfaces you want to use here by uncommenting lines */
-#define SMEXT_ENABLE_FORWARDSYS
-#define SMEXT_ENABLE_HANDLESYS
+//#define SMEXT_ENABLE_FORWARDSYS
+//#define SMEXT_ENABLE_HANDLESYS
 #define SMEXT_ENABLE_PLAYERHELPERS
 //#define SMEXT_ENABLE_DBMANAGER
 #define SMEXT_ENABLE_GAMECONF

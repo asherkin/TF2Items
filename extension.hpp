@@ -28,118 +28,8 @@
 
 #include "smsdk_ext.hpp"
 
-//#include "iplayerinfo.h"
-//#include "convar.h"
-
-#define OVERRIDE_CLASSNAME		(1 << 0)
-#define OVERRIDE_ITEM_DEF		(1 << 1)
-#define OVERRIDE_ITEM_LEVEL		(1 << 2)
-#define OVERRIDE_ITEM_QUALITY	(1 << 3)
-#define OVERRIDE_ATTRIBUTES		(1 << 4)
-#ifdef USE_NEW_ATTRIBS
-#define PRESERVE_ATTRIBUTES		(1 << 5)
-#endif
-
-class CBasePlayer;
-
-#ifdef USE_NEW_ATTRIBS
-template< class T, class I = int >
-class CUtlMemoryTF2Items : public CUtlMemory< T, I >
-{
-public:
-	CUtlMemoryTF2Items( int nGrowSize = 0, int nInitSize = 0 ) { CUtlMemory< T, I >( nGrowSize, nInitSize ); }
-    CUtlMemoryTF2Items( T* pMemory, int numElements ) { CUtlMemory< T, I >( pMemory, numElements ); }
-    CUtlMemoryTF2Items( const T* pMemory, int numElements ) { CUtlMemory< T, I >( pMemory, numElements ); }
-    //~CUtlMemoryTF2Items() { ~CUtlMemory< T, I >(); }
-    
-	void Purge()
-	{
-		if ( !CUtlMemory< T, I >::IsExternallyAllocated() )
-		{
-			if (CUtlMemory< T, I >::m_pMemory)
-			{
-				UTLMEMORY_TRACK_FREE();
-				//free( (void*)m_pMemory );
-#ifdef TF2ITEMS_DEBUG_ITEMS
-				META_CONPRINTF("CUtlMemory tried to be freed!\n");
-#endif
-				CUtlMemory< T, I >::m_pMemory = 0;
-			}
-			CUtlMemory< T, I >::m_nAllocationCount = 0;
-		}
-	}
-};
-#endif
-
-class CScriptCreatedAttribute							// Win Length = 204 / Lin Length = 396
-{
-public:
-	void * m_pVTable;									// Length = 4 / Win = 0 / Lin = 0
-
-	uint32 m_iAttributeDefinitionIndex;					// Length = 4 / Win = 4 / Lin = 4
-	float m_flValue;									// Length = 4 / Win = 8 / Lin = 8
-	wchar_t m_szDescription[96];						// Win Length = 192 / Lin Length = 384 / Win = 12 / Lin = 12
-};
-
-class CScriptCreatedItem								// Win Length = 3552 / Lin Length = 6868
-{
-public:
-	void * m_pVTable;									// Length = 4 / Win = 0 / Lin = 0
-
-#ifdef _WIN32
-	char m_Padding[4];									// Length = 4 / Win = 4 / Lin = N/A
-#endif
-
-	uint32 m_iItemDefinitionIndex;						// Length = 4 / Win = 8 / Lin = 4
-	uint32 m_iEntityQuality;							// Length = 4 / Win = 12 / Lin = 8
-	uint32 m_iEntityLevel;								// Length = 4 / Win = 16 / Lin = 12
-
-#ifdef _WIN32
-	char m_Padding2[4];									// Length = 4 / Win = 20 / Lin = N/A
-#endif
-
-	uint64 m_iGlobalIndex;								// Length = 8 / Win = 24 / Lin = 16
-	uint32 m_iGlobalIndexHigh;							// Length = 4 / Win = 32 / Lin = 24
-	uint32 m_iGlobalIndexLow;							// Length = 4 / Win = 36 / Lin = 28
-	uint32 m_iAccountID;								// Length = 4 / Win = 40 / Lin = 32
-	uint32 m_iPosition;									// Length = 4 / Win = 44 / Lin = 36
-	wchar_t m_szWideName[128];							// Win Length = 256 / Lin Length = 512 / Win = 48 / Lin = 40
-	char m_szName[128];									// Length = 128 / Win = 304 / Lin = 552
-
-	char m_szBlob[20];									// Length = 20 / Win = 432 / Lin = 680
-	wchar_t m_szBlob2[1536];							// Win Length = 3072 / Lin Length = 6144 / Win = 452 / Lin = 700
-
-	void * m_pUnknown;									// Length = 4 / Win = 3524 / Lin = 6844
-
-#ifdef USE_NEW_ATTRIBS
-	CUtlVector<CScriptCreatedAttribute, CUtlMemoryTF2Items<CScriptCreatedAttribute> > m_Attributes;	// Length = 20 / Win = 3528 / Lin = 6848
-#else
-	CScriptCreatedAttribute * m_pAttributes;
-	uint32 m_iAttributesLength;
-	uint32 m_iPadding5;
-	uint32 m_iAttributesCount;
-	CScriptCreatedAttribute * m_pAttributes2;
-#endif
-
-	bool m_bInitialized;								// Length = 4 / Win = 3548 / Lin = 6868
-};
-
-struct TScriptedItemOverride
-{
-	uint8 m_bFlags;									// Flags to what we should override.
-	char m_strWeaponClassname[256];					// Classname to override the GiveNamedItem call with.
-	uint32 m_iItemDefinitionIndex;					// New Item Def. Index.
-	uint8 m_iEntityQuality;							// New Item Quality Level.
-	uint8 m_iEntityLevel;							// New Item Level.
-	uint8 m_iCount;									// Count of Attributes.
-	CScriptCreatedAttribute m_Attributes[16];		// The actual attributes.
-};
-
-class TScriptedItemOverrideTypeHandler : public IHandleTypeDispatch
-{
-public:
-	void OnHandleDestroy(HandleType_t type, void *object);
-};
+#include "CScriptCreatedItem.hpp"
+#include "CPlayerInventory.hpp"
 
 /**
  * @brief Sample implementation of the SDK Extension.
@@ -213,34 +103,8 @@ public: //IConCommandBaseAccessor
 	bool RegisterConCommandBase(ConCommandBase *pCommand);
 };
 
-void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem);
-
-static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_CreateItem(IPluginContext *pContext, const cell_t *params);
-
-static cell_t TF2Items_SetFlags(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_GetFlags(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_SetClassname(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_GetClassname(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_SetItemIndex(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_GetItemIndex(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_SetQuality(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_GetQuality(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_SetLevel(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_GetLevel(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_SetNumAttributes(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_GetNumAttributes(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *params);
-static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t *params);
-
 CBaseEntity * GetCBaseEntityFromIndex(int p_iEntity, bool p_bOnlyPlayers);
 int GetIndexFromCBaseEntity(CBaseEntity * p_hEntity);
-TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext=NULL);
-
-extern HandleType_t g_ScriptedItemOverrideHandleType;
-extern TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
-extern sp_nativeinfo_t g_ExtensionNatives[];
-extern IForward * g_pForwardGiveItem;
-
+void Dump_CScriptCreatedItem(CScriptCreatedItem *cscript);
+CPlayerInventory *GetInventory(CBaseEntity *pPlayer);
 #endif // _INCLUDE_SOURCEMOD_EXTENSION_PROPER_H_

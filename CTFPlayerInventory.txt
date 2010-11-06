@@ -1,0 +1,17 @@
+// Listing generated from "server.so" by linux_vtable_dump.ida
+// vtable block @ 0x00D52C40
+0	CPlayerInventory::SOCreated(CSteamID  const&,GCSDK::CSharedObject  const*)
+1	CTFPlayerInventory::SOUpdated(CSteamID  const&,GCSDK::CSharedObject  const*)
+2	CPlayerInventory::SODestroyed(CSteamID  const&,GCSDK::CSharedObject  const*)
+3	CPlayerInventory::SOCacheSubscribed(CSteamID  const&)
+4	CPlayerInventory::SOCacheUnsubscribed(CSteamID  const&)
+5	CPlayerInventory::ItemShouldBeIncluded(int)
+6	CTFPlayerInventory::DumpInventoryToConsole(bool)
+7	CTFPlayerInventory::ExtractInventorySortPosition(unsigned int)
+8	CTFPlayerInventory::IsPositionEquipped(unsigned int)
+9	CPlayerInventory::RemoveItem(unsigned long long)
+10	CPlayerInventory::OnItemChangedPosition(CScriptCreatedItem *,unsigned int)
+11	CTFPlayerInventory::ValidateInventoryPositions(void)
+12	CTFPlayerInventory::ItemHasBeenUpdated(CScriptCreatedItem *,bool,bool)
+13	CTFPlayerInventory::ItemIsBeingRemoved(CScriptCreatedItem *)
+14	CTFPlayerInventory::IsInClassLoadout(unsigned int,int)
