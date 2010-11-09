@@ -32,6 +32,7 @@ public:
 	char m_szBlob[20];									// Length = 20 / Win = 432 / Lin = 680
 	wchar_t m_szBlob2[1536];							// Win Length = 3072 / Lin Length = 6144 / Win = 452 / Lin = 700
 
+	// ok, not a pointer, WTF is this
 	void * m_pUnknown;									// Length = 4 / Win = 3524 / Lin = 6844
 
 	CUtlVector<CScriptCreatedAttribute, CUtlMemoryTF2Items<CScriptCreatedAttribute> > m_Attributes;	// Length = 20 / Win = 3528 / Lin = 6848

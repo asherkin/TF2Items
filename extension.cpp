@@ -17,6 +17,8 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// int CTFPlayerInventory::ItemHasBeenUpdated(CScriptCreatedItem *pItem, bool bAdd, bool b)
+
 /*
  *	Debugging options:
  *	==================
@@ -25,6 +27,8 @@
 //#define TF2ITEMS_DEBUG_ITEMS
 
 #include "extension.hpp"
+#include "rtti.h"
+#include "CDetour/detours.h"
 
 TF2Items g_TF2Items;
 
@@ -50,6 +54,63 @@ int g_TFInventoryOffset;
 int GiveNamedItem_player_Hook = 0;
 int GiveNamedItem_bot_Hook = 0;
 int ClientPutInServer_Hook = 0;
+
+CDetour *CTFPlayerInventory__ItemHasBeenUpdated_Detour = NULL;
+
+CON_COMMAND(rtti_test, "")
+{
+	if (args.ArgC() < 2)
+	{
+		META_CONPRINT("Usage: rtti_test <player index>\n");
+		return;
+	}
+
+	int iPlayerIndex = atoi(args.Arg(1));
+
+	if (iPlayerIndex < 1)
+	{
+		META_CONPRINTF("Error: Invalid player index! (%d)\n", iPlayerIndex);
+		return;
+	}
+
+	CBaseEntity *pPlayer = GetCBaseEntityFromIndex(iPlayerIndex, true);
+
+	if (!pPlayer)
+	{
+		META_CONPRINT("Error: CBasePlayer pointer is null.\n");
+		return;
+	}
+
+	/*CTFPlayerInventory*/ CPlayerInventory *pInventory = GetInventory(pPlayer);
+
+	if (!pInventory)
+	{
+		META_CONPRINT("Error: CPlayerInventory pointer is null.\n");
+		return;
+	}
+
+	META_CONPRINT("\n\npInventory:\n");
+	PrintTypeTree(pInventory);
+
+	META_CONPRINT("\n\npInventory->m_pCSharedObjectCache:\n");
+	PrintTypeTree(pInventory->m_pCSharedObjectCache);
+
+	if (!pInventory->m_BackPack.Count())
+		return;
+
+	CScriptCreatedItem *pItem = &pInventory->m_BackPack.Element(0);
+
+	if (!pItem)
+	{
+		META_CONPRINT("Error: CScriptCreatedItem pointer is null.\n");
+		return;
+	}
+
+	META_CONPRINT("\n\npItem:\n");
+	PrintTypeTree(pItem);
+
+	return;
+}
 
 CON_COMMAND(dump_inv, "")
 {
@@ -88,11 +149,12 @@ CON_COMMAND(dump_inv, "")
 	return;
 }
 
+// Don't run this.
 CON_COMMAND(equip_wep, "")
 {
 	if (args.ArgC() < 3)
 	{
-		META_CONPRINT("Usage: dump_inv <player index> <global id>\n");
+		META_CONPRINT("Usage: equip_wep <player index> <global id>\n");
 		return;
 	}
 
@@ -132,12 +194,80 @@ CON_COMMAND(equip_wep, "")
 		if (pItem->m_iGlobalIndex == ullGlobalIndex)
 		{
 			META_CONPRINTF("Found a matching item! (%s)\n", pItem->m_szName);
-			SH_MCALL(pInventory, MCall_ItemHasBeenUpdated)(pItem, false, false);
+			SH_MCALL(pInventory, MCall_ItemHasBeenUpdated)(pItem, true, false); // <-- bad
 			break;
 		}
 	}
 
 	return;
+}
+
+CON_COMMAND(info, "")
+{
+	if (args.ArgC() < 2)
+	{
+		META_CONPRINT("Usage: info <player index>\n");
+		return;
+	}
+
+	int iPlayerIndex = atoi(args.Arg(1));
+
+	if (iPlayerIndex < 1)
+	{
+		META_CONPRINTF("Error: Invalid player index! (%d)\n", iPlayerIndex);
+		return;
+	}
+
+	CBaseEntity *pPlayer = GetCBaseEntityFromIndex(iPlayerIndex, true);
+
+	if (!pPlayer)
+	{
+		META_CONPRINT("Error: CBasePlayer pointer is null.\n");
+		return;
+	}
+
+	/*CTFPlayerInventory*/ CPlayerInventory *pInventory = GetInventory(pPlayer);
+
+	if (!pInventory)
+	{
+		META_CONPRINT("Error: CPlayerInventory pointer is null.\n");
+		return;
+	}
+
+	CScriptCreatedItem *pItem = &pInventory->m_BackPack.Element(0);
+
+	META_CONPRINTF("pInventory = 0x%.8X, pItem = 0x%.8X\n", pInventory, pItem);
+
+	PrintTypeTree(pItem); // Make sure this is a CSCI, and because RTTI is cool
+
+	//SH_MCALL(pInventory, MCall_ItemHasBeenUpdated)(pItem, true, false); // Fuck SourceHook in this case, although it may just be a dodgey vtable offset.
+
+	typedef void (__fastcall * ItemHasBeenUpdatedFuncType)(CPlayerInventory *, void *, CScriptCreatedItem *pItem, bool a, bool b);
+	ItemHasBeenUpdatedFuncType ItemHasBeenUpdatedFunc;
+	ItemHasBeenUpdatedFunc = (ItemHasBeenUpdatedFuncType)CTFPlayerInventory__ItemHasBeenUpdated_Detour->detour_address;
+
+	ItemHasBeenUpdatedFunc(pInventory, NULL, pItem, false, false);
+
+	return;
+}
+
+DETOUR_DECL_MEMBER3(CTFPlayerInventory__ItemHasBeenUpdated, int, CScriptCreatedItem *, pItem, bool, a, bool, b) {
+	META_CONPRINTF("CTFPlayerInventory__ItemHasBeenUpdated called!\n");
+	META_CONPRINTF("this = 0x%.8X, pItem = 0x%.8X, a = %s, b = %s\n", this, pItem, (a?"true":"false"), (b?"true":"false"));
+	META_CONPRINTF("m_iItemDefinitionIndex = %d\n", pItem->m_iItemDefinitionIndex);
+	/*META_CONPRINTF("Scout: %d, ",		(0 != (pItem->m_iPosition & ( 1 << ( 0 + 16 )))));
+	META_CONPRINTF("Sniper: %d, ",		(0 != (pItem->m_iPosition & ( 1 << ( 1 + 16 )))));
+	META_CONPRINTF("Soldier: %d, ",		(0 != (pItem->m_iPosition & ( 1 << ( 2 + 16 )))));
+	META_CONPRINTF("Demoman: %d, ",		(0 != (pItem->m_iPosition & ( 1 << ( 3 + 16 )))));
+	META_CONPRINTF("Medic: %d, ",		(0 != (pItem->m_iPosition & ( 1 << ( 4 + 16 )))));
+	META_CONPRINTF("Heavy: %d, ",		(0 != (pItem->m_iPosition & ( 1 << ( 5 + 16 )))));
+	META_CONPRINTF("Pyro: %d, ",		(0 != (pItem->m_iPosition & ( 1 << ( 6 + 16 )))));
+	META_CONPRINTF("Spy: %d, ",			(0 != (pItem->m_iPosition & ( 1 << ( 7 + 16 )))));
+	META_CONPRINTF("Engineer: %d\n",	(0 != (pItem->m_iPosition & ( 1 << ( 8 + 16 )))));*/
+
+	pItem->m_iPosition &= ~0xFFF0000; // This will dequip all items.
+
+	return DETOUR_MEMBER_CALL(CTFPlayerInventory__ItemHasBeenUpdated)(pItem, a, b);
 }
 
 CPlayerInventory *GetInventory(CBaseEntity *pPlayer) {
@@ -312,6 +442,19 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		META_CONPRINTF("\"InventoryOffset\" offset = %d\n", g_TFInventoryOffset); 
 	}
 
+	CDetourManager::Init(g_pSM->GetScriptingEngine(), g_pGameConf);
+
+	CTFPlayerInventory__ItemHasBeenUpdated_Detour = DETOUR_CREATE_MEMBER(CTFPlayerInventory__ItemHasBeenUpdated, "CTFPlayerInventory__ItemHasBeenUpdated");
+
+	if (CTFPlayerInventory__ItemHasBeenUpdated_Detour != NULL)
+	{
+		CTFPlayerInventory__ItemHasBeenUpdated_Detour->EnableDetour();
+	} else {
+		snprintf(error, maxlen, "Detour was null.");
+		//g_pSM->LogError(myself, "Detour was null.");
+		return false;
+	}
+
 	// If it's a late load, there might be the chance there are players already on the server. Just
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean
 	if (late) {
@@ -402,9 +545,15 @@ void TF2Items::SDK_OnUnload() {
 
 bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
 
-	#ifdef TF2ITEMS_DEBUG_HOOKING
-		 g_pSM->LogMessage(myself, "SDK_OnMetamodUnload called.");
-	#endif // TF2ITEMS_DEBUG_HOOKING
+#ifdef TF2ITEMS_DEBUG_HOOKING
+	g_pSM->LogMessage(myself, "SDK_OnMetamodUnload called.");
+#endif // TF2ITEMS_DEBUG_HOOKING
+
+	if (CTFPlayerInventory__ItemHasBeenUpdated_Detour != NULL)
+	{
+		CTFPlayerInventory__ItemHasBeenUpdated_Detour->Destroy();
+		CTFPlayerInventory__ItemHasBeenUpdated_Detour = NULL;
+	}
 
 	if (ClientPutInServer_Hook != 0) {
 		SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
