@@ -17,7 +17,7 @@
 		}
 		"Signatures"
 		{
-			"CTFPlayerInventory__ItemHasBeenUpdated"
+			"ItemHasBeenUpdated"
 
 			{
 

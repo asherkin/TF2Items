@@ -55,7 +55,15 @@ int GiveNamedItem_player_Hook = 0;
 int GiveNamedItem_bot_Hook = 0;
 int ClientPutInServer_Hook = 0;
 
-CDetour *CTFPlayerInventory__ItemHasBeenUpdated_Detour = NULL;
+CDetour *ItemHasBeenUpdated_Detour = NULL;
+
+#ifndef WIN32
+typedef void (* ItemHasBeenUpdatedFuncType)(CPlayerInventory *, CScriptCreatedItem *pItem, bool a, bool b);
+#else
+typedef void (__fastcall * ItemHasBeenUpdatedFuncType)(CPlayerInventory *, void *, CScriptCreatedItem *pItem, bool a, bool b);
+#endif
+
+ItemHasBeenUpdatedFuncType ItemHasBeenUpdatedFunc;
 
 CON_COMMAND(rtti_test, "")
 {
@@ -242,17 +250,142 @@ CON_COMMAND(info, "")
 
 	//SH_MCALL(pInventory, MCall_ItemHasBeenUpdated)(pItem, true, false); // Fuck SourceHook in this case, although it may just be a dodgey vtable offset.
 
-	typedef void (__fastcall * ItemHasBeenUpdatedFuncType)(CPlayerInventory *, void *, CScriptCreatedItem *pItem, bool a, bool b);
-	ItemHasBeenUpdatedFuncType ItemHasBeenUpdatedFunc;
-	ItemHasBeenUpdatedFunc = (ItemHasBeenUpdatedFuncType)CTFPlayerInventory__ItemHasBeenUpdated_Detour->detour_address;
-
-	ItemHasBeenUpdatedFunc(pInventory, NULL, pItem, false, false);
+	ItemHasBeenUpdated(pInventory, pItem, false, false);
 
 	return;
 }
 
-DETOUR_DECL_MEMBER3(CTFPlayerInventory__ItemHasBeenUpdated, int, CScriptCreatedItem *, pItem, bool, a, bool, b) {
-	META_CONPRINTF("CTFPlayerInventory__ItemHasBeenUpdated called!\n");
+CON_COMMAND(default_weps, "")
+{
+	if (args.ArgC() < 2)
+	{
+		META_CONPRINT("Usage: default_weps <player index>\n");
+		return;
+	}
+
+	int iPlayerIndex = atoi(args.Arg(1));
+
+	if (iPlayerIndex < 1)
+	{
+		META_CONPRINTF("Error: Invalid player index! (%d)\n", iPlayerIndex);
+		return;
+	}
+
+	CBaseEntity *pPlayer = GetCBaseEntityFromIndex(iPlayerIndex, true);
+
+	if (!pPlayer)
+	{
+		META_CONPRINT("Error: CBasePlayer pointer is null.\n");
+		return;
+	}
+
+	/*CTFPlayerInventory*/ CPlayerInventory *pInventory = GetInventory(pPlayer);
+
+	if (!pInventory)
+	{
+		META_CONPRINT("Error: CPlayerInventory pointer is null.\n");
+		return;
+	}
+
+	for (int i = 0; i < pInventory->m_BackPack.Count(); i++)
+	{
+		CScriptCreatedItem *pItem = &pInventory->m_BackPack.Element(i);
+		pItem->m_iPosition &= ~0x0FFF0000;
+		ItemHasBeenUpdated_Detour->DisableDetour();
+		ItemHasBeenUpdated(pInventory, pItem, false, false);
+		ItemHasBeenUpdated_Detour->EnableDetour();
+	}
+
+	return;
+}
+
+CON_COMMAND(powerjack, "")
+{
+	if (args.ArgC() < 2)
+	{
+		META_CONPRINT("Usage: powerjack <player index>\n");
+		return;
+	}
+
+	int iPlayerIndex = atoi(args.Arg(1));
+
+	if (iPlayerIndex < 1)
+	{
+		META_CONPRINTF("Error: Invalid player index! (%d)\n", iPlayerIndex);
+		return;
+	}
+
+	CBaseEntity *pPlayer = GetCBaseEntityFromIndex(iPlayerIndex, true);
+
+	if (!pPlayer)
+	{
+		META_CONPRINT("Error: CBasePlayer pointer is null.\n");
+		return;
+	}
+
+	/*CTFPlayerInventory*/ CPlayerInventory *pInventory = GetInventory(pPlayer);
+
+	if (!pInventory)
+	{
+		META_CONPRINT("Error: CPlayerInventory pointer is null.\n");
+		return;
+	}
+
+	for (int i = 0; i < pInventory->m_BackPack.Count(); i++)
+	{
+		CScriptCreatedItem *pItem = &pInventory->m_BackPack.Element(i);
+		switch (pItem->m_iItemDefinitionIndex)
+		{
+		case 2:
+			pItem->m_iPosition &= ~0x00400000; // Dequip for Pyro
+			break;
+		case 38:
+			pItem->m_iPosition &= ~0x00400000; // Dequip for Pyro
+			break;
+		case 153:
+			pItem->m_iPosition &= ~0x00400000; // Dequip for Pyro
+			break;
+		case 192:
+			pItem->m_iPosition &= ~0x00400000; // Dequip for Pyro
+			break;
+		}
+		ItemHasBeenUpdated_Detour->DisableDetour();
+		ItemHasBeenUpdated(pInventory, pItem, false, false);
+		ItemHasBeenUpdated_Detour->EnableDetour();
+	}
+
+	return;
+
+	CScriptCreatedItem *sciPowerjack = new CScriptCreatedItem();
+
+	sciPowerjack->m_iItemDefinitionIndex = 214;
+	sciPowerjack->m_iEntityQuality = 6;
+	sciPowerjack->m_iEntityLevel = 5;
+
+	sciPowerjack->m_iGlobalIndex = 0x70F3F0F0;
+	sciPowerjack->m_iGlobalIndexHigh = 0x70F3;
+	sciPowerjack->m_iGlobalIndexLow = 0xF0F0;
+	sciPowerjack->m_iAccountID = pInventory->m_iAccountID;
+
+	sciPowerjack->m_iPosition = 0x8040005c;
+
+	sciPowerjack->m_Attributes.AddToTail(CScriptCreatedAttribute(180, 75));
+	sciPowerjack->m_Attributes.AddToTail(CScriptCreatedAttribute(2, 1.25));
+	sciPowerjack->m_Attributes.AddToTail(CScriptCreatedAttribute(15, 0));
+
+	sciPowerjack->m_bInitialized = true;
+
+	pInventory->m_BackPack.AddToTail(*sciPowerjack);
+
+	ItemHasBeenUpdated(pInventory, sciPowerjack, true, false);
+
+	delete sciPowerjack;
+
+	return;
+}
+
+DETOUR_DECL_MEMBER3(ItemHasBeenUpdated, int, CScriptCreatedItem *, pItem, bool, a, bool, b) {
+	META_CONPRINTF("ItemHasBeenUpdated called!\n");
 	META_CONPRINTF("this = 0x%.8X, pItem = 0x%.8X, a = %s, b = %s\n", this, pItem, (a?"true":"false"), (b?"true":"false"));
 	META_CONPRINTF("m_iItemDefinitionIndex = %d\n", pItem->m_iItemDefinitionIndex);
 	/*META_CONPRINTF("Scout: %d, ",		(0 != (pItem->m_iPosition & ( 1 << ( 0 + 16 )))));
@@ -265,18 +398,21 @@ DETOUR_DECL_MEMBER3(CTFPlayerInventory__ItemHasBeenUpdated, int, CScriptCreatedI
 	META_CONPRINTF("Spy: %d, ",			(0 != (pItem->m_iPosition & ( 1 << ( 7 + 16 )))));
 	META_CONPRINTF("Engineer: %d\n",	(0 != (pItem->m_iPosition & ( 1 << ( 8 + 16 )))));*/
 
-	pItem->m_iPosition &= ~0xFFF0000; // This will dequip all items.
+	//pItem->m_iPosition &= ~0x0FFF0000; // This will dequip all items.
 
-	return DETOUR_MEMBER_CALL(CTFPlayerInventory__ItemHasBeenUpdated)(pItem, a, b);
-}
-
-CPlayerInventory *GetInventory(CBaseEntity *pPlayer) {
-	if (!pPlayer || !g_TFInventoryOffset)
+	/*
+	switch (pItem->m_iItemDefinitionIndex)
 	{
-		return NULL;
+	case 40:
+		pItem->m_iPosition |= 0x00400000; // Equip for Pyro
+		break;
+	case 215:
+		pItem->m_iPosition &= ~0x00400000; // Dequip for Pyro
+		break;
 	}
+	*/
 
-	return (CPlayerInventory *)((char *)pPlayer + g_TFInventoryOffset);
+	return DETOUR_MEMBER_CALL(ItemHasBeenUpdated)(pItem, a, b);
 }
 
 void Dump_CScriptCreatedItem(CScriptCreatedItem *cscript)
@@ -444,16 +580,25 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 
 	CDetourManager::Init(g_pSM->GetScriptingEngine(), g_pGameConf);
 
-	CTFPlayerInventory__ItemHasBeenUpdated_Detour = DETOUR_CREATE_MEMBER(CTFPlayerInventory__ItemHasBeenUpdated, "CTFPlayerInventory__ItemHasBeenUpdated");
+	ItemHasBeenUpdated_Detour = DETOUR_CREATE_MEMBER(ItemHasBeenUpdated, "ItemHasBeenUpdated");
 
-	if (CTFPlayerInventory__ItemHasBeenUpdated_Detour != NULL)
+	if (ItemHasBeenUpdated_Detour != NULL)
 	{
-		CTFPlayerInventory__ItemHasBeenUpdated_Detour->EnableDetour();
+		ItemHasBeenUpdated_Detour->EnableDetour();
 	} else {
 		snprintf(error, maxlen, "Detour was null.");
 		//g_pSM->LogError(myself, "Detour was null.");
 		return false;
 	}
+
+	void *addr;
+	if (!g_pGameConf->GetMemSig("ItemHasBeenUpdated", &addr) || addr == NULL)
+	{
+		g_pSM->LogError(myself, "Couldn't find ItemHasBeenUpdated sig.");
+		return false;
+	}
+
+	ItemHasBeenUpdatedFunc = (ItemHasBeenUpdatedFuncType)addr;
 
 	// If it's a late load, there might be the chance there are players already on the server. Just
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean
@@ -549,10 +694,10 @@ bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
 	g_pSM->LogMessage(myself, "SDK_OnMetamodUnload called.");
 #endif // TF2ITEMS_DEBUG_HOOKING
 
-	if (CTFPlayerInventory__ItemHasBeenUpdated_Detour != NULL)
+	if (ItemHasBeenUpdated_Detour != NULL)
 	{
-		CTFPlayerInventory__ItemHasBeenUpdated_Detour->Destroy();
-		CTFPlayerInventory__ItemHasBeenUpdated_Detour = NULL;
+		ItemHasBeenUpdated_Detour->Destroy();
+		ItemHasBeenUpdated_Detour = NULL;
 	}
 
 	if (ClientPutInServer_Hook != 0) {
@@ -614,4 +759,23 @@ int GetIndexFromCBaseEntity(CBaseEntity * p_hEntity)
 	if (!edtEdict || edtEdict->IsFree()) return -1;
 
 	return gamehelpers->IndexOfEdict(edtEdict);
+}
+
+CPlayerInventory *GetInventory(CBaseEntity *pPlayer) {
+	if (!pPlayer || !g_TFInventoryOffset)
+	{
+		return NULL;
+	}
+
+	return (CPlayerInventory *)((char *)pPlayer + g_TFInventoryOffset);
+}
+
+void ItemHasBeenUpdated(CPlayerInventory *thisptr, CScriptCreatedItem *pItem, bool a, bool b)
+{
+	assert(ItemHasBeenUpdatedFunc);
+#ifndef WIN32
+	ItemHasBeenUpdatedFunc(thisptr, pItem, a, b);
+#else
+	ItemHasBeenUpdatedFunc(thisptr, NULL, pItem, a, b);
+#endif
 }

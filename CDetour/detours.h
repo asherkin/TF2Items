@@ -175,9 +175,7 @@ private:
 
 	patch_t detour_restore;
 	/* Address of the detoured function */
-public: // fuck
 	void *detour_address;
-private:
 	/* Address of the allocated trampoline function */
 	void *detour_trampoline;
 	/* Address of the callback handler */

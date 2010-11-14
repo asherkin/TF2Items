@@ -4,6 +4,13 @@
 class CScriptCreatedAttribute							// Win Length = 204 / Lin Length = 396
 {
 public:
+	CScriptCreatedAttribute() {}
+	CScriptCreatedAttribute(uint32 iAttributeDefinitionIndex, float flValue)
+	{
+		this->m_iAttributeDefinitionIndex = iAttributeDefinitionIndex;
+		this->m_flValue = flValue;
+	}
+public:
 	void * m_pVTable;									// Length = 4 / Win = 0 / Lin = 0
 
 	uint32 m_iAttributeDefinitionIndex;					// Length = 4 / Win = 4 / Lin = 4

@@ -35,7 +35,7 @@ public:
 	// ok, not a pointer, WTF is this
 	void * m_pUnknown;									// Length = 4 / Win = 3524 / Lin = 6844
 
-	CUtlVector<CScriptCreatedAttribute, CUtlMemoryTF2Items<CScriptCreatedAttribute> > m_Attributes;	// Length = 20 / Win = 3528 / Lin = 6848
+	CCopyableUtlVector<CScriptCreatedAttribute/*, CUtlMemoryTF2Items<CScriptCreatedAttribute> */> m_Attributes;	// Length = 20 / Win = 3528 / Lin = 6848
 
 	bool m_bInitialized;								// Length = 4 / Win = 3548 / Lin = 6868
 };

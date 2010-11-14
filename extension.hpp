@@ -107,4 +107,5 @@ CBaseEntity * GetCBaseEntityFromIndex(int p_iEntity, bool p_bOnlyPlayers);
 int GetIndexFromCBaseEntity(CBaseEntity * p_hEntity);
 void Dump_CScriptCreatedItem(CScriptCreatedItem *cscript);
 CPlayerInventory *GetInventory(CBaseEntity *pPlayer);
+void ItemHasBeenUpdated(CPlayerInventory *thisptr, CScriptCreatedItem *pItem, bool a, bool b);
 #endif // _INCLUDE_SOURCEMOD_EXTENSION_PROPER_H_
