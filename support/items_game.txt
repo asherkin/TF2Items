@@ -830,6 +830,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Medigun"
@@ -904,6 +905,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"blutsauger"
 			"show_in_armory"	"1"
@@ -961,6 +963,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"ubersaw"
 			"item_iconname"	"ubersaw"
@@ -1024,6 +1027,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"axtinguisher"
 			"item_iconname"	"axtinguisher"
@@ -1086,6 +1090,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Flaregun"
@@ -1137,6 +1142,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"backburner"
 			"show_in_armory"	"1"
@@ -1212,6 +1218,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Minigun"
@@ -1290,6 +1297,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_LunchBox"
@@ -1324,6 +1332,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Gloves"
@@ -1390,6 +1399,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Bat"
@@ -1446,6 +1456,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Scattergun"
@@ -1531,6 +1542,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_LunchBox"
@@ -1570,6 +1582,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -1598,6 +1611,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -1627,6 +1641,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -1656,6 +1671,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -1684,6 +1700,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -1713,6 +1730,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -1741,6 +1759,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -1770,6 +1789,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -1799,6 +1819,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -1827,6 +1848,7 @@
 			{
 				"nameable"		"1"
 				"can_modify_socket"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_CompoundBow"
@@ -1881,6 +1903,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" 	"#TF_Wearable_Shield"
@@ -1927,6 +1950,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Jar"
@@ -1972,6 +1996,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Watch"
@@ -2027,6 +2052,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Watch"
@@ -2077,6 +2103,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Revolver"
@@ -2147,6 +2174,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2180,6 +2208,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2213,6 +2242,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2242,6 +2272,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2270,6 +2301,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2303,6 +2335,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2336,6 +2369,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2365,6 +2399,7 @@
 			{
 				"paintable"		"1"
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2394,6 +2429,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2422,6 +2458,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2450,6 +2487,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2479,6 +2517,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2508,6 +2547,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2542,6 +2582,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2576,6 +2617,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2604,6 +2646,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2637,6 +2680,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2668,6 +2712,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2764,6 +2809,7 @@
 			{
 				"paintable"		"1"
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"loadondemand" "1"
 			"show_in_armory"	"1"
@@ -2774,21 +2820,11 @@
 			"item_quality"	"unique"
 			"min_ilevel"	"10"
 			"max_ilevel"	"10"
-			"image_inventory"	"backpack/player/items/all_class/all_domination"
+			"image_inventory"	"backpack/player/items/all_class/all_domination_2009"
 			"image_inventory_size_w"		"128"
 			"image_inventory_size_h"		"82"
-			"model_player_per_class"	
-			{
-				"scout"		"models/player/items/scout/scout_domination.mdl"
-				"sniper"	"models/player/items/sniper/sniper_domination.mdl"
-				"soldier"	"models/player/items/soldier/soldier_domination.mdl"
-				"demoman"	"models/player/items/demo/demo_domination.mdl"
-				"medic"		"models/player/items/medic/medic_domination.mdl"
-				"heavy"		"models/player/items/heavy/heavy_domination.mdl"
-				"spy"		"models/player/items/spy/spy_domination.mdl"
-				"engineer"	"models/player/items/engineer/engineer_domination.mdl"
-				"pyro"		"models/player/items/pyro/pyro_domination.mdl"
-			}
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/all_domination_2009.mdl"
 			"drop_type"	"drop"
 			"used_by_classes"
 			{
@@ -2804,10 +2840,10 @@
 			}
 			"attributes"
 			{
-				"cannot trade"
+				"halloween item"
 				{
-					"attribute_class"	"cannot_trade"
-					"value"				"1"
+					"attribute_class"	"halloween_item"
+					"value"				"2009"
 				}
 			}
 			"visuals"
@@ -2826,6 +2862,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2857,6 +2894,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2890,6 +2928,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -2933,14 +2972,6 @@
 			"used_by_classes"
 			{
 				"soldier"	"1"
-			}
-			"attributes"
-			{
-				"cannot trade"
-				{
-					"attribute_class"	"cannot_trade"
-					"value"				"1"
-				}
 			}
 			"visuals"
 			{
@@ -3094,6 +3125,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"loadondemand" "1"
 			"show_in_armory"	"1"
@@ -3148,6 +3180,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_RocketLauncher"
@@ -3216,6 +3249,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Pickaxe"
@@ -3273,6 +3307,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Battle_Banner"
@@ -3321,6 +3356,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_PipebombLauncher"
@@ -3410,6 +3446,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" 	"#TF_Wearable_Shield"
@@ -3463,6 +3500,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Sword"
@@ -3528,6 +3566,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" 	"#TF_Wearable_Boots"
@@ -3628,6 +3667,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -3733,6 +3773,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -3838,6 +3879,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -3889,6 +3931,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Laser_Pointer"
@@ -3937,6 +3980,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Shotgun"
@@ -4000,6 +4044,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Robot_Arm"
@@ -4127,6 +4172,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -4156,6 +4202,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -4186,6 +4233,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -4219,6 +4267,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -4251,6 +4300,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -4298,6 +4348,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -4331,6 +4382,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -4359,6 +4411,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -4390,6 +4443,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"sledgehammer"
 			"item_iconname"	"sledgehammer"
@@ -4439,6 +4493,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"paintrain"
 			"item_iconname"	"paintrain"
@@ -4497,6 +4552,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Wrench"
@@ -4586,6 +4642,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -4617,6 +4674,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_LunchBox"
@@ -4662,6 +4720,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Pistol"
@@ -4709,6 +4768,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Revolver"
@@ -4755,6 +4815,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -4806,6 +4867,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_LunchBox"
@@ -5123,6 +5185,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"tribalkukri"
 			"item_iconname"	"tribalkukri"
@@ -5182,6 +5245,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"battleaxe"
 			"item_iconname"	"battleaxe"
@@ -5248,6 +5312,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"battleneedle"
 			"item_iconname"	"battleneedle"
@@ -5307,6 +5372,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5339,6 +5405,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5367,6 +5434,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5398,6 +5466,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5429,6 +5498,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5461,6 +5531,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5494,6 +5565,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5526,6 +5598,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5553,6 +5626,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5586,6 +5660,7 @@
 			{
 				"paintable"		"1"
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5619,6 +5694,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -5646,6 +5722,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -6626,6 +6703,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"craft_class"	"hat"
 			"show_in_armory"	"1"
@@ -6656,6 +6734,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"powerjack"
 			"item_iconname"	"powerjack"
@@ -6706,6 +6785,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"degreaser"
 			"item_iconname"	"degreaser"
@@ -6760,6 +6840,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -6792,6 +6873,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -6826,6 +6908,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Peppergun"
@@ -6920,6 +7003,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Fish"
@@ -6972,6 +7056,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Jar_Milk"
@@ -7021,6 +7106,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -7049,6 +7135,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Revolver"
@@ -7099,6 +7186,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Knife"
@@ -7162,6 +7250,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Battle_Banner"
@@ -7212,6 +7301,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -7244,6 +7334,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_RocketLauncher"
@@ -7374,6 +7465,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -7406,6 +7498,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_SniperRifle"
@@ -7466,6 +7559,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" 	"#TF_Wearable_Shield"
@@ -7513,6 +7607,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"tribalkukri"
 			"item_iconname"	"tribalkukri"
@@ -7664,6 +7759,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_RocketLauncher"
@@ -7702,6 +7798,11 @@
 					"attribute_class"	"mult_maxammo_primary"
 					"value" "3.0"
 				}				
+				"max health additive penalty"
+				{
+					"attribute_class"	"add_maxhealth"
+					"value" "-100"
+				}
 			}
 		}
 		"239"
@@ -7712,6 +7813,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Weapon_Gloves"
@@ -7787,6 +7889,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -7799,6 +7902,8 @@
 			"image_inventory_size_h"		"82"
 			"model_player"	"models/player/items/soldier/worms_gear.mdl"
 			"drop_type"	"drop"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
 			"used_by_classes"
 			{
 				"soldier"	"1"
@@ -7847,6 +7952,14 @@
 				"spy" "1"
 				"engineer" "1"
 				"pyro" "1"
+			}
+			"attributes"
+			{
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_dueling_pistols_pickup.wav"
 			"drop_sound"		"ui/item_light_gun_drop.wav"
@@ -8046,6 +8159,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8075,6 +8189,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8104,6 +8219,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8133,6 +8249,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8166,6 +8283,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8199,6 +8317,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8232,6 +8351,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8265,6 +8385,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8294,6 +8415,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8323,6 +8445,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8352,6 +8475,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name" "#TF_Wearable_Hat"
@@ -8380,6 +8504,7 @@
 			{
 				"nameable"		"1"
 				"paintable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_Wearable_Hat"
@@ -8530,6 +8655,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"loadondemand" "1"
 			"show_in_armory"	"1"
@@ -8568,6 +8694,14 @@
 				"engineer" "1"
 				"pyro" "1"
 			}
+			"attributes"
+			{
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
 			"visuals"
 			{
 				"hide_player_bodygroup_name"	"hat"
@@ -8584,6 +8718,7 @@
 			"capabilities"
 			{
 				"nameable"		"1"
+				"can_gift_wrap" 	"1"
 			}
 			"item_logname"	"fryingpan"
 			"item_iconname"	"fryingpan"
@@ -8605,6 +8740,14 @@
 				"soldier"	"1"
 				"demoman"	"1"
 			}
+			"attributes"
+			{
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
 			"allowed_attributes"
 			{
 				"all_items"	"1"
@@ -8622,9 +8765,1346 @@
 			{
 				"sound_melee_hit"		"FryingPan.HitFlesh"
 				"sound_melee_hit_world"	"FryingPan.HitWorld"
-			}
+			}			
 			"mouse_pressed_sound"	"ui/item_metal_weapon_pickup.wav"
 			"drop_sound"		"ui/item_metal_weapon_drop.wav"
+		}
+		"265"
+		{
+			"name"	"Stickybomb Jumper"
+			"item_class"	"tf_weapon_pipebomblauncher"
+			"craft_class"	"weapon"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_modify_socket"		"1"
+			}
+			"show_in_armory"	"1"
+			"item_type_name"	"#Tf_Weapon_Pipebomblauncher"
+			"item_name"	"#TF_Weapon_StickyBomb_Jump"
+			"item_description"	"#TF_Weapon_StickyBomb_Jump_Desc"
+			"item_slot"	"primary"
+			"item_quality"	"unique"
+			"baseitem" "0"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"propername" 	"1"
+			"image_inventory"	"backpack/weapons/w_models/w_stickybomb_launcher"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/w_models/w_stickybomb_launcher.mdl"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+			"mouse_pressed_sound"	"ui/item_heavy_gun_pickup.wav"
+			"drop_sound"		"ui/item_heavy_gun_drop.wav"
+			"attributes"
+			{
+				"damage penalty"
+				{
+					"attribute_class"	"mult_dmg"
+					"value"	"0"
+				}
+				"no self blast dmg"
+				{
+					"attribute_class"	"no_self_blast_dmg"
+					"value" "1"
+				}
+				"maxammo secondary increased"
+				{
+					"attribute_class"	"mult_maxammo_secondary"
+					"value" "3.0"
+				}				
+				"max health additive penalty"
+				{
+					"attribute_class"	"add_maxhealth"
+					"value" "-75"
+				}
+			}
+		}
+		"266"
+		{
+			"name"	"The Horseless Headless Horseman's Headtaker"
+			"item_class"	"tf_weapon_sword"
+			"craft_class"	"weapon"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_modify_socket"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"show_in_armory"	"1"
+			"item_type_name"	"#TF_Weapon_Axe"
+			"item_name"	"#TF_HalloweenBoss_Axe"
+			"item_description"	"#TF_HalloweenBoss_Axe_Desc"
+			"item_slot"	"melee"
+			"item_quality"	"rarity4"
+			"item_logname"	"headtaker"
+			"item_iconname"	"headtaker"
+			"propername"	"1"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"image_inventory"	"backpack/weapons/c_models/c_headtaker/c_headtaker"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/weapons/c_models/c_headtaker/c_headtaker.mdl"
+			"attach_to_hands"	"1"
+			"used_by_classes"
+			{
+				"demoman"	"1"
+			}
+			"visuals"
+			{
+				"sound_melee_miss"	"Weapon_Sword.Swing"
+				"sound_melee_hit"	"Weapon_Sword.HitFlesh"
+				"sound_melee_hit_world"	"Weapon_Sword.HitWorld"
+				"sound_melee_burst"	"Weapon_Sword.SwingCrit"
+				"sound_special1"	"Sword.Hit"
+				"sound_special2"	"Sword.Idle"
+			}
+			"attributes"
+			{
+				"crit mod disabled"
+				{
+					"attribute_class"	"mult_crit_chance"
+					"value"	"0"
+				}
+				"max health additive penalty"
+				{
+					"attribute_class"	"add_maxhealth"
+					"value" "-25"
+				}
+			}
+			"allowed_attributes"
+			{
+				"all_items"	"1"
+				"dmg_reductions" "1"
+				"player_health" "1"
+				"attrib_healthregen" "1"
+				"player_movement" "1"
+				"attrib_dmgdone"	"1"
+				"attrib_critboosts"	"1"
+				"attrib_onhit_slow" "1"
+				"attrib_vs_burning" "1"
+				"attrib_firerate" "1"
+			}
+			"mouse_pressed_sound"	"ui/item_knife_large_pickup.wav"
+			"drop_sound"		"ui/item_metal_weapon_drop.wav"
+		}
+
+		"267"
+		{
+			"name"	"Haunted Metal Scrap"
+			"item_class"	"craft_item"
+			"craft_class"	"craft_bar"
+			"capabilities"
+			{
+				"can_gift_wrap" 	"1"
+			}
+			"show_in_armory"	"1"
+			"item_type_name"	"#TF_CraftItem"
+			"item_name"	"#TF_Haunted_Metal"
+			"item_description"	"#TF_Haunted_Metal_Desc"
+			"image_inventory"	"backpack/crafting/haunted_metal"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"rarity4"
+			"min_ilevel"	"4"
+			"max_ilevel"	"4"
+			"mouse_pressed_sound"	"ui/item_metal_scrap_pickup.wav"
+			"drop_sound"		"ui/item_metal_scrap_drop.wav"
+		}
+
+		"268"
+		{
+			"name"	"Halloween Mask - Scout"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Mask_Scout"
+			"item_description"	"#TF_Halloween_Mask_Scout_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/halloween_bag_scout.mdl"
+			"image_inventory"	"backpack/player/items/all_class/halloween_bag_scout"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"holiday_restriction"	"halloween"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+				"use_per_class_bodygroups" "1"
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+		"269"
+		{
+			"name"	"Halloween Mask - Sniper"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Mask_Sniper"
+			"item_description"	"#TF_Halloween_Mask_Sniper_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/halloween_bag_sniper.mdl"
+			"image_inventory"	"backpack/player/items/all_class/halloween_bag_sniper"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"holiday_restriction"	"halloween"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+				"use_per_class_bodygroups" "1"
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+		"270"
+		{
+			"name"	"Halloween Mask - Soldier"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Mask_Soldier"
+			"item_description"	"#TF_Halloween_Mask_Soldier_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/halloween_bag_soldier.mdl"
+			"image_inventory"	"backpack/player/items/all_class/halloween_bag_soldier"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"holiday_restriction"	"halloween"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+				"use_per_class_bodygroups" "1"
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+		"271"
+		{
+			"name"	"Halloween Mask - Demoman"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Mask_Demoman"
+			"item_description"	"#TF_Halloween_Mask_Demoman_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/halloween_bag_demo.mdl"
+			"image_inventory"	"backpack/player/items/all_class/halloween_bag_demo"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"holiday_restriction"	"halloween"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+				"use_per_class_bodygroups" "1"
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+		"272"
+		{
+			"name"	"Halloween Mask - Medic"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Mask_Medic"
+			"item_description"	"#TF_Halloween_Mask_Medic_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/halloween_bag_medic.mdl"
+			"image_inventory"	"backpack/player/items/all_class/halloween_bag_medic"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"holiday_restriction"	"halloween"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+				"use_per_class_bodygroups" "1"
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+		"273"
+		{
+			"name"	"Halloween Mask - Heavy"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Mask_Heavy"
+			"item_description"	"#TF_Halloween_Mask_Heavy_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/halloween_bag_heavy.mdl"
+			"image_inventory"	"backpack/player/items/all_class/halloween_bag_heavy"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"holiday_restriction"	"halloween"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+				"use_per_class_bodygroups" "1"
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+		"274"
+		{
+			"name"	"Halloween Mask - Spy"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Mask_Spy"
+			"item_description"	"#TF_Halloween_Mask_Spy_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/halloween_bag_spy.mdl"
+			"image_inventory"	"backpack/player/items/all_class/halloween_bag_spy"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"holiday_restriction"	"halloween"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+				"use_per_class_bodygroups" "1"
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+		"275"
+		{
+			"name"	"Halloween Mask - Engineer"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Mask_Engineer"
+			"item_description"	"#TF_Halloween_Mask_Engineer_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/halloween_bag_engineer.mdl"
+			"image_inventory"	"backpack/player/items/all_class/halloween_bag_engineer"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"holiday_restriction"	"halloween"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+				"use_per_class_bodygroups" "1"
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+		"276"
+		{
+			"name"	"Halloween Mask - Pyro"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Mask_Pyro"
+			"item_description"	"#TF_Halloween_Mask_Pyro_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/halloween_bag_pyro.mdl"
+			"image_inventory"	"backpack/player/items/all_class/halloween_bag_pyro"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"holiday_restriction"	"halloween"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+				"use_per_class_bodygroups" "1"
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+		"277"
+		{
+			"name"	"Halloween Mask - Saxton Hale"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Mask_SaxtonHale"
+			"item_description"	"#TF_Halloween_Mask_SaxtonHale_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/halloween_bag_saxton.mdl"
+			"image_inventory"	"backpack/player/items/all_class/halloween_bag_saxton"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+				"use_per_class_bodygroups" "1"
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+
+		"278"
+		{
+			"name"	"Horseless Headless Horseman's Head"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Head"
+			"item_description"	"#TF_Halloween_Head_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"31"
+			"max_ilevel"	"31"
+			"image_inventory"	"backpack/player/items/all_class/pumkin_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/all_class/pumkin_hat.mdl"
+			"drop_type"	"none"
+			"holiday_restriction"	"halloween"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+			"mouse_pressed_sound" 	"ui/item_default_pickup.wav"
+			"drop_sound" 		"ui/item_default_drop.wav"
+		}
+		"279"
+		{
+			"name"	"Ghastly Gibus 2010"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"paintable"		"1"
+				"nameable"		"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Domination_Hat_2010"
+			"item_description"	"#TF_Domination_Hat_2010_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"image_inventory"	"backpack/player/items/all_class/all_domination"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"set_sequence_to_class"	"1"
+			"model_player"	"models/player/items/all_class/all_domination.mdl"
+			"drop_type"	"drop"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"attributes"
+			{
+				"cannot trade"
+				{
+					"attribute_class"	"cannot_trade"
+					"value"				"1"
+				}
+				"halloween item"
+				{
+					"attribute_class"	"halloween_item"
+					"value"				"2010"
+				}
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+			"mouse_pressed_sound" 	"ui/item_hat_pickup.wav"
+			"drop_sound" 		"ui/item_hat_pickup.wav"
+		}
+		"280"
+		{
+			"name"	"Halloween Noise Maker - Black Cat"
+			"item_class"	"tf_wearable_item"
+			"tool"
+			{
+				"type"	"noise_maker"
+			}
+			"capabilities"
+			{
+				"usable"		"1"
+				"usable_gc"		"1"
+			}
+			"show_in_armory"	"1"
+			"armory_desc"		"action noisemaker"
+			"item_type_name"	"#TF_Party_Favor"
+			"item_name"	"#TF_NoiseMaker_BlackCat"
+			"item_slot"	"action"
+			"image_inventory"	"backpack/crafting/noisemaker_cat"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"model_player"	"models/player/items/all_class/id_badge.mdl"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"scout"		"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"		"1"
+				"heavy"		"1"
+				"spy" 		"1"
+				"engineer" 	"1"
+				"pyro" 		"1"
+			}
+			"attributes"
+			{
+				"noise maker"
+				{
+					"attribute_class"	"enable_misc2_noisemaker"
+					"value"			"1"
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
+			"visuals"
+			{
+				"custom_sound0"	"Halloween.BlackCat"
+			}
+			"mouse_pressed_sound" 	"Halloween.BlackCat"
+			"drop_sound"		"ui/item_metal_scrap_drop.wav"
+		}
+		"281"
+		{
+			"name"	"Halloween Noise Maker - Gremlin"
+			"item_class"	"tf_wearable_item"
+			"tool"
+			{
+				"type"	"noise_maker"
+			}
+			"capabilities"
+			{
+				"usable"		"1"
+				"usable_gc"		"1"
+			}
+			"show_in_armory"	"1"
+			"armory_desc"		"action noisemaker"
+			"item_type_name"	"#TF_Party_Favor"
+			"item_name"	"#TF_NoiseMaker_Gremlin"
+			"item_slot"	"action"
+			"image_inventory"	"backpack/crafting/noisemaker_gremlin"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"model_player"	"models/player/items/all_class/id_badge.mdl"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"scout"		"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"		"1"
+				"heavy"		"1"
+				"spy" 		"1"
+				"engineer" 	"1"
+				"pyro" 		"1"
+			}
+			"attributes"
+			{
+				"noise maker"
+				{
+					"attribute_class"	"enable_misc2_noisemaker"
+					"value"			"1"
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
+			"visuals"
+			{
+				"custom_sound0"	"Halloween.Gremlin"
+			}
+			"mouse_pressed_sound" 	"Halloween.Gremlin"
+			"drop_sound"		"ui/item_metal_scrap_drop.wav"
+		}
+		"282"
+		{
+			"name"	"Halloween Noise Maker - Werewolf"
+			"item_class"	"tf_wearable_item"
+			"tool"
+			{
+				"type"	"noise_maker"
+			}
+			"capabilities"
+			{
+				"usable"		"1"
+				"usable_gc"		"1"
+			}
+			"show_in_armory"	"1"
+			"armory_desc"		"action noisemaker"
+			"item_type_name"	"#TF_Party_Favor"
+			"item_name"	"#TF_NoiseMaker_Werewolf"
+			"item_slot"	"action"
+			"image_inventory"	"backpack/crafting/noisemaker_wolf"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"model_player"	"models/player/items/all_class/id_badge.mdl"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"scout"		"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"		"1"
+				"heavy"		"1"
+				"spy" 		"1"
+				"engineer" 	"1"
+				"pyro" 		"1"
+			}
+			"attributes"
+			{
+				"noise maker"
+				{
+					"attribute_class"	"enable_misc2_noisemaker"
+					"value"			"1"
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
+			"visuals"
+			{
+				"custom_sound0"	"Halloween.Werewolf"
+			}
+			"mouse_pressed_sound" 	"Halloween.Werewolf"
+			"drop_sound"		"ui/item_metal_scrap_drop.wav"
+		}
+		"283"
+		{
+			"name"	"Halloween Noise Maker - Witch"
+			"item_class"	"tf_wearable_item"
+			"tool"
+			{
+				"type"	"noise_maker"
+			}
+			"capabilities"
+			{
+				"usable"		"1"
+				"usable_gc"		"1"
+			}
+			"show_in_armory"	"1"
+			"armory_desc"		"action noisemaker"
+			"item_type_name"	"#TF_Party_Favor"
+			"item_name"	"#TF_NoiseMaker_Witch"
+			"item_slot"	"action"
+			"image_inventory"	"backpack/crafting/noisemaker_witch"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"model_player"	"models/player/items/all_class/id_badge.mdl"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"scout"		"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"		"1"
+				"heavy"		"1"
+				"spy" 		"1"
+				"engineer" 	"1"
+				"pyro" 		"1"
+			}
+			"attributes"
+			{
+				"noise maker"
+				{
+					"attribute_class"	"enable_misc2_noisemaker"
+					"value"			"1"
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
+			"visuals"
+			{
+				"custom_sound0"	"Halloween.Witch"
+			}
+			"mouse_pressed_sound" 	"Halloween.Witch"
+			"drop_sound"		"ui/item_metal_scrap_drop.wav"
+		}
+		"284"
+		{
+			"name"	"Halloween Noise Maker - Banshee"
+			"item_class"	"tf_wearable_item"
+			"tool"
+			{
+				"type"	"noise_maker"
+			}
+			"capabilities"
+			{
+				"usable"		"1"
+				"usable_gc"		"1"
+			}
+			"show_in_armory"	"1"
+			"armory_desc"		"action noisemaker"
+			"item_type_name"	"#TF_Party_Favor"
+			"item_name"	"#TF_NoiseMaker_Banshee"
+			"item_slot"	"action"
+			"image_inventory"	"backpack/crafting/noisemaker_banshee"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"model_player"	"models/player/items/all_class/id_badge.mdl"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"scout"		"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"		"1"
+				"heavy"		"1"
+				"spy" 		"1"
+				"engineer" 	"1"
+				"pyro" 		"1"
+			}
+			"attributes"
+			{
+				"noise maker"
+				{
+					"attribute_class"	"enable_misc2_noisemaker"
+					"value"			"1"
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
+			"visuals"
+			{
+				"custom_sound0"	"Halloween.Banshee"
+			}
+			"mouse_pressed_sound" 	"Halloween.Banshee"
+			"drop_sound"		"ui/item_metal_scrap_drop.wav"
+		}
+		"286"
+		{
+			"name"	"Halloween Noise Maker - Crazy Laugh"
+			"item_class"	"tf_wearable_item"
+			"tool"
+			{
+				"type"	"noise_maker"
+			}
+			"capabilities"
+			{
+				"usable"		"1"
+				"usable_gc"		"1"
+			}
+			"show_in_armory"	"1"
+			"armory_desc"		"action noisemaker"
+			"item_type_name"	"#TF_Party_Favor"
+			"item_name"	"#TF_NoiseMaker_CrazyLaugh"
+			"item_slot"	"action"
+			"image_inventory"	"backpack/crafting/noisemaker_laugh"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"model_player"	"models/player/items/all_class/id_badge.mdl"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"scout"		"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"		"1"
+				"heavy"		"1"
+				"spy" 		"1"
+				"engineer" 	"1"
+				"pyro" 		"1"
+			}
+			"attributes"
+			{
+				"noise maker"
+				{
+					"attribute_class"	"enable_misc2_noisemaker"
+					"value"			"1"
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
+			"visuals"
+			{
+				"custom_sound0"	"Halloween.CrazyLaugh"
+			}
+			"mouse_pressed_sound" 	"Halloween.CrazyLaugh"
+			"drop_sound"		"ui/item_metal_scrap_drop.wav"
+		}
+		"287"
+		{
+			"name"	"Spine-Chilling Skull"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"haunted_hat"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Skullcap"
+			"item_description"	"#TF_Halloween_Skullcap_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"31"
+			"max_ilevel"	"31"
+			"image_inventory"	"backpack/player/items/all_class/skull"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/all_class/skull.mdl"
+			"drop_type"	"drop"
+			"set_sequence_to_class" "1"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+			"attributes"
+			{
+				"halloween item"
+				{
+					"attribute_class"	"halloween_item"
+					"value"				"2010"
+				}
+			}
+			"mouse_pressed_sound" 	"ui/item_paper_pickup.wav"
+			"drop_sound" 		"ui/item_paper_pickup.wav"
+		}
+		"288"
+		{
+			"name"	"Halloween Noise Maker - Stabby"
+			"item_class"	"tf_wearable_item"
+			"tool"
+			{
+				"type"	"noise_maker"
+			}
+			"capabilities"
+			{
+				"usable"		"1"
+				"usable_gc"		"1"
+			}
+			"show_in_armory"	"1"
+			"armory_desc"		"action noisemaker"
+			"item_type_name"	"#TF_Party_Favor"
+			"item_name"	"#TF_NoiseMaker_Stabby"
+			"item_slot"	"action"
+			"image_inventory"	"backpack/crafting/noisemaker_stabby"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"model_player"	"models/player/items/all_class/id_badge.mdl"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"used_by_classes"
+			{
+				"scout"		"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"		"1"
+				"heavy"		"1"
+				"spy" 		"1"
+				"engineer" 	"1"
+				"pyro" 		"1"
+			}
+			"attributes"
+			{
+				"noise maker"
+				{
+					"attribute_class"	"enable_misc2_noisemaker"
+					"value"			"1"
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
+			"visuals"
+			{
+				"custom_sound0"	"Halloween.Stabby"
+			}
+			"mouse_pressed_sound" 	"Halloween.Stabby"
+			"drop_sound"		"ui/item_metal_scrap_drop.wav"
+		}
+		"289"
+		{
+			"name"	"Voodoo Juju"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"haunted_hat"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Halloween_Voodoo"
+			"item_description"	"#TF_Halloween_Voodoo_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"31"
+			"max_ilevel"	"31"
+			"image_inventory"	"backpack/player/items/all_class/voodoojuju_hat"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/all_class/voodoojuju_hat.mdl"
+			"drop_type"	"drop"
+			"set_sequence_to_class" "1"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+			"attributes"
+			{
+				"halloween item"
+				{
+					"attribute_class"	"halloween_item"
+					"value"				"2010"
+				}
+			}
+			"mouse_pressed_sound" 	"ui/item_hat_pickup.wav"
+			"drop_sound" 		"ui/item_hat_drop.wav"
+		}
+		"290"
+		{
+			"name"	"Cadaver's Cranium"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Cadavers_Cranium"
+			"item_description"	"#TF_Cadavers_Cranium_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"31"
+			"max_ilevel"	"31"
+			"image_inventory"	"backpack/player/items/heavy/cadavers_cranium"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/heavy/cadavers_cranium.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+			"mouse_pressed_sound" 	"ui/item_hat_pickup.wav"
+			"drop_sound" 		"ui/item_hat_drop.wav"
+		}
+		"291"
+		{
+			"name"	"Horrific Headsplitter"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"craft_class"	"hat"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"can_gift_wrap" 	"1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_Horrific_Headsplitter"
+			"item_description"	"#TF_Horrific_Headsplitter_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"31"
+			"max_ilevel"	"31"
+			"image_inventory"	"backpack/player/items/all_class/headsplitter"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/all_class/headsplitter.mdl"
+			"drop_type"	"drop"
+			"set_sequence_to_class" "1"
+			"used_by_classes"
+			{
+				"scout"	"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"	"1"
+				"heavy"	"1"
+				"spy" "1"
+				"engineer" "1"
+				"pyro" "1"
+			}
+			"visuals"
+			{
+				"hide_player_bodygroup_name"	"hat"
+				"hide_player_bodygroup_name"	"headphones"
+			}
+			"mouse_pressed_sound" 	"ui/item_hat_pickup.wav"
+			"drop_sound" 		"ui/item_hat_drop.wav"
+		}
+		"292"
+		{
+			"name"	"Poker Visor"
+			"hidden"	"0"
+			"item_class"	"tf_wearable_item"
+			"capabilities"
+			{
+				"nameable"		"1"
+				"paintable"		"1"
+				"can_gift_wrap" "1"
+			}
+			"loadondemand" "1"
+			"show_in_armory"	"1"
+			"item_type_name""#TF_Wearable_Hat"
+			"item_name"	"#TF_TTG_PokerVisor"
+			"item_description"	"#TF_TTG_PokerVisor_Desc"
+			"item_slot"	"head"
+			"item_quality"	"unique"
+			"min_ilevel"	"31"
+			"max_ilevel"	"31"
+			"image_inventory"	"backpack/player/items/heavy/ttg_visor"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"model_player"	"models/player/items/heavy/ttg_visor.mdl"
+			"drop_type"	"none"
+			"used_by_classes"
+			{
+				"heavy"	"1"
+			}
+			"mouse_pressed_sound" 	"ui/item_hat_pickup.wav"
+			"drop_sound" 		"ui/item_hat_drop.wav"
 		}
 
 		// store bundle items
@@ -8809,6 +10289,52 @@
 				"soldier"	"1"
 				"sniper"	"1"
 				"scout"		"1"
+			}
+			"mouse_pressed_sound"	"ui/item_bag_pickup.wav"
+			"drop_sound"		"ui/item_bag_drop.wav"
+		}
+		"2006"
+		{
+			"name" "Halloween Noise Maker Bundle"
+			"item_class"	"bundle"
+			"bundle"
+			{
+				"Halloween Noise Maker - Black Cat"		"1"
+				"Halloween Noise Maker - Gremlin"		"1"
+				"Halloween Noise Maker - Werewolf"		"1"
+				"Halloween Noise Maker - Witch"			"1"
+				"Halloween Noise Maker - Banshee"		"1"
+				"Halloween Noise Maker - Crazy Laugh"		"1"
+				"Halloween Noise Maker - Stabby"		"1"
+			}
+			"item_type_name"	"#TF_StoreBundle"
+			"item_name"		"#TF_Bundle_HalloweenNoiseMaker"
+			"item_description"	"#TF_Bundle_HalloweenNoiseMaker_Desc"
+			"image_inventory"	"backpack/crafting/noisemaker_bundle"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"min_ilevel"	"50"
+			"max_ilevel"	"50"
+			"used_by_classes"
+			{
+				"scout"		"1"
+				"sniper"	"1"
+				"soldier"	"1"
+				"demoman"	"1"
+				"medic"		"1"
+				"heavy"		"1"
+				"spy" 		"1"
+				"engineer" 	"1"
+				"pyro" 		"1"
+			}
+			"attributes"
+			{
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_bag_pickup.wav"
 			"drop_sound"		"ui/item_bag_drop.wav"
@@ -9151,6 +10677,14 @@
 					"nameable" "1"
 				}
 			}
+			"attributes"
+			{
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
 			"armory_desc" "nametag"
 			"show_in_armory"	"1"
 			"item_type_name"	"#TF_T"
@@ -9176,6 +10710,14 @@
 				"usage_capabilities"
 				{
 					"decodable"	"1"
+				}
+			}
+			"attributes"
+			{
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
 				}
 			}
 			"armory_desc" "key"
@@ -9225,7 +10767,7 @@
 				"set supply crate series"
 				{
 					"attribute_class"	"supply_crate_series"
-					"value" "1"
+					"value" "3"
 					"force_gc_to_generate" "1"
 				}
 			}
@@ -9265,6 +10807,11 @@
 					"attribute_class"	"set_item_tint_rgb"
 					"force_gc_to_generate" "1"
 				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
 			"drop_sound"		"ui/item_paint_can_pickup.wav"
@@ -9300,6 +10847,11 @@
 				{
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "7511618"	// 114 158 66
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
 				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
@@ -9337,6 +10889,11 @@
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "4345659"	// 66 79 59
 				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
 			"drop_sound"		"ui/item_paint_can_pickup.wav"
@@ -9372,6 +10929,11 @@
 				{
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "5322826"	// 81 56 74
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
 				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
@@ -9409,6 +10971,11 @@
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "14204632"	// 216 190 216
 				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
 			"drop_sound"		"ui/item_paint_can_pickup.wav"
@@ -9444,6 +11011,11 @@
 				{
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "8208497"	// 233 194 139
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
 				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
@@ -9481,6 +11053,11 @@
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "13595446"	// 207 115 54
 				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
 			"drop_sound"		"ui/item_paint_can_pickup.wav"
@@ -9516,6 +11093,11 @@
 				{
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "10843461"	// 165 117 69
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
 				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
@@ -9553,6 +11135,11 @@
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "12955537"	// 197 175 145
 				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
 			"drop_sound"		"ui/item_paint_can_pickup.wav"
@@ -9588,6 +11175,11 @@
 				{
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "6901050"	// 105 77 58
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
 				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
@@ -9625,6 +11217,11 @@
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "8154199"	// 124 108 87
 				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
 			"drop_sound"		"ui/item_paint_can_pickup.wav"
@@ -9660,6 +11257,11 @@
 				{
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "15185211"	// 231 181 59
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
 				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
@@ -9697,6 +11299,11 @@
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "8289918"	// 126 126 126
 				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
 			"drop_sound"		"ui/item_paint_can_pickup.wav"
@@ -9732,6 +11339,11 @@
 				{
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "15132390"	// 230 230 230
+				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
 				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
@@ -9769,6 +11381,11 @@
 					"attribute_class"	"set_item_tint_rgb"
 					"value" "1315860"	// 20 20 20
 				}
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
 			}
 			"mouse_pressed_sound"	"ui/item_paint_can_pickup.wav"
 			"drop_sound"		"ui/item_paint_can_pickup.wav"
@@ -9787,11 +11404,11 @@
 			}
 			"capabilities"
 			{
+				"can_gift_wrap" 	"1"
 				"decodable"		"1"
 			}
 			"armory_desc" "supply_crate"
-			"show_in_armory"	"1"
-			"show_in_armory" "1"
+			"show_in_armory"	"0"
 			"item_type_name"	"#TF_LockedCrate"
 			"item_name"		"#TF_SupplyCrate"
 			"item_description"	"#TF_SupplyCrate_Desc"
@@ -9806,7 +11423,155 @@
 				"set supply crate series"
 				{
 					"attribute_class"	"supply_crate_series"
-					"value" "2"
+					"value" "4"
+					"force_gc_to_generate" "1"
+				}
+			}
+			"mouse_pressed_sound"	"ui/item_crate_pickup.wav"
+			"drop_sound"		"ui/item_crate_drop.wav"
+		}
+		"5042"
+		{
+			"name"	"Gift Wrap"
+			"item_class"	"tool"
+			"craft_class"	"tool"
+			"tool"
+			{
+				"type"	"gift_wrap"
+				"use_string" "#WrapGift"
+				"usage_capabilities"
+				{
+					"can_gift_wrap" "1"
+				}
+			}
+			"attributes"
+			{
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
+			"armory_desc"		"gift_wrap"
+			"show_in_armory"	"1"
+			"item_type_name"	"#TF_T"
+			"item_name"		"#TF_Tool_GiftWrap"
+			"item_description"	"#TF_Tool_GiftWrap_Desc"
+			"image_inventory"	"backpack/crafting/gift_custom_supplies"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"96"
+			"item_quality"		"unique"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"mouse_pressed_sound"	"ui/item_cardboard_pickup.wav"
+			"drop_sound"		"ui/item_cardboard_drop.wav"
+		}
+		"5043"
+		{
+			"name"	"Wrapped Gift"
+			"item_class"	"tool"
+			"tool"
+			{
+				"type"	"wrapped_gift"
+				"use_string" "#UnwrapGift"
+			}
+			"capabilities"
+			{
+				"nameable"		"1"
+				"usable_gc"		"1"
+				"usable_out_of_game"	"1"
+			}
+			"armory_desc"		"gift"
+			"show_in_armory"	"1"
+			"item_type_name"	"#TF_GIFT"
+			"item_name"		"#TF_Tool_Gift"
+			"item_description"	"#TF_Tool_Gift_Desc"
+			"image_inventory"	"backpack/crafting/gift_custom"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"		"unique"
+			"min_ilevel"	"5"
+			"max_ilevel"	"5"
+			"mouse_pressed_sound"	"ui/item_cardboard_pickup.wav"
+			"drop_sound"		"ui/item_cardboard_drop.wav"
+			"attributes"
+			{
+				"cannot trade"
+				{
+					"attribute_class"	"cannot_trade"
+					"value"				"1"
+				}
+			}
+		}
+		"5044"
+		{
+			"name"	"Description Tag"
+			"item_class"	"tool"
+			"craft_class"	"tool"
+			"tool"
+			{
+				"type"	"desc"
+				"usage_capabilities"
+				{
+					"nameable" "1"
+				}
+			}
+			"attributes"
+			{
+				"always tradable"
+				{
+					"attribute_class"	"always_tradable"
+					"value"				"1"
+				}
+			}
+			"armory_desc" "desctag"
+			"show_in_armory"	"1"
+			"item_type_name"	"#TF_T"
+			"item_name"	"#TF_T_Dt"
+			"item_description"	"#TF_Tool_Desctag_Desc"
+			"image_inventory"	"backpack/crafting/desc_tag"
+			"image_inventory_size_w"		"128"
+			"image_inventory_size_h"		"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"1"
+			"max_ilevel"	"1"
+			"mouse_pressed_sound"	"ui/item_paper_pickup.wav"
+			"drop_sound"		"ui/item_paper_pickup.wav"
+		}
+		"5045"
+		{
+			"name"	"Supply Crate 3"
+			"item_class"	"supply_crate"
+			"craft_class"	"supply_crate"
+			"tool"
+			{
+				"type"	""
+				"usage"
+				{
+				}
+			}
+			"capabilities"
+			{
+				"can_gift_wrap" 	"1"
+				"decodable"		"1"
+			}
+			"armory_desc" "supply_crate"
+			"show_in_armory"	"0"
+			"item_type_name"	"#TF_LockedCrate"
+			"item_name"		"#TF_SupplyCrate"
+			"item_description"	"#TF_SupplyCrate_Desc"
+			"image_inventory"	"backpack/player/items/crafting/crate"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+			"item_quality"	"unique"
+			"min_ilevel"	"10"
+			"max_ilevel"	"10"
+			"attributes"
+			{
+				"set supply crate series"
+				{
+					"attribute_class"	"supply_crate_series"
+					"value" "5"
 					"force_gc_to_generate" "1"
 				}
 			}
@@ -11877,7 +13642,6 @@
 			"effect_type"	"neutral"
 			"stored_as_integer"	"0"
 		}
-
 		"146"
 		{
 			"name"	"damage applies to sappers"
@@ -12485,6 +14249,88 @@
 			"armory_desc"	"on_wearer"
 			"stored_as_integer"	"0"
 		}
+		"192"
+		{
+			"name"	"referenced item id low"
+			"attribute_class"	"referenced_item_id_low"
+			"min_value"	"0"
+			"max_value"	"0"
+			"group"	"only_on_unique"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"1"
+		}
+		"193"
+		{
+			"name"	"referenced item id high"
+			"attribute_class"	"referenced_item_id_high"
+			"min_value"	"0"
+			"max_value"	"0"
+			"group"	"only_on_unique"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"1"
+		}
+		"194"
+		{
+			"name"	"referenced item def"
+			"attribute_class"	"referenced_item_def"
+			"min_value"	"0"
+			"max_value"	"0"
+			"group"	"only_on_unique"
+			"description_string"	"#Attrib_ReferencedItem"
+			"description_format"	"value_is_item_def"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"armory_desc"	"on_wearer"
+			"stored_as_integer"	"1"
+		}
+		"195"
+		{
+			"name"	"always tradable"
+			"attribute_class"	"always_tradable"
+			"attribute_name"	"always tradable"
+			"min_value"	"0"
+			"max_value"	"0"
+			"group"	"only_on_unique"
+			"description_string"	"#Attrib_DamageDone_Negative"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}	
+		"196"
+		{
+			"name"	"noise maker"
+			"attribute_class"	"enable_misc2_noisemaker"
+			"attribute_name"	"Misc2 slot will be a noise maker"
+			"min_value"	"1"
+			"max_value"	"1"
+			"group"	"only_on_unique"
+			"description_string"	"#Attrib_DamageDone_Negative"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
+		}
+		"197"
+		{
+			"name"	"halloween item"
+			"attribute_class"	"halloween_item"
+			"attribute_name"	"halloween item"
+			"min_value"	"0"
+			"max_value"	"1"
+			"group"	"only_on_unique"
+			"description_string"	"#Attrib_Halloween_Item"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
 	}
 	"item_sets"
 	{
@@ -12625,7 +14471,10 @@
 		"TF_ENGINEER_ACHIEVE_PROGRESS1" "141"
 		"TF_ENGINEER_ACHIEVE_PROGRESS2" "142"
 		"TF_ENGINEER_ACHIEVE_PROGRESS3" "140"
-		"TF_HALLOWEEN_DOMINATE_FOR_HAT" "116"
+		"TF_HALLOWEEN_DOMINATE_FOR_HAT" "279"
+		"TF_HALLOWEEN_BOSS_KILL"	"278"
+		"TF_HALLOWEEN_BOSS_KILL_MELEE"	"267"
+		"TF_HALLOWEEN_COLLECT_PUMPKINS"	"115"
 		"ASW_PARA_HAT"
 		{ 
 			"SourceAppID"	"630"
@@ -12786,6 +14635,7 @@
 			"supply_crate"				"#TF_Armory_Item_Supply_Crate"
 			"key"						"#TF_Armory_Item_Key"
 			"nametag"					"#TF_Armory_Item_NameTag"
+			"desctag"					"#TF_Armory_Item_DescTag"
 			"paintcan"					"#TF_Armory_Item_PaintCan"
 			"action"					"#TF_Armory_Item_Action"
 			"tauntenabler"				"#TF_Armory_Item_Type_TauntEnabler"
@@ -12794,6 +14644,9 @@
 			"beachball"					"#TF_Armory_Item_BeachBall"
 			"craftitem"					"#TF_Armory_Item_Class_CraftItem"
 			"stockitem"					"#TF_Armory_Item_StockItem"
+			"gift_wrap"					"#TF_Armory_Item_Gift_Wrap"
+			"gift"						"#TF_Armory_Item_Gift"
+			"noisemaker"				"#TF_Armory_Item_Type_NoiseMaker"
 		}
 	}
 }
