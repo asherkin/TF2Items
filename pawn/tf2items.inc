@@ -3,6 +3,8 @@
 #endif
 #define _tf2items_included
 
+#include <tf2>
+
 // ====[ CONSTANTS ]===========================================================
 #define OVERRIDE_CLASSNAME		(1 << 0)	// Item will override the entity's classname.
 #define OVERRIDE_ITEM_DEF			(1 << 1)	// Item will override the item's definition index.
@@ -187,6 +189,14 @@ native TF2Items_GetAttributeId(Handle:hItem, iSlotIndex);
  * @return			The attribute value to use.
  */
 native Float:TF2Items_GetAttributeValue(Handle:hItem, iSlotIndex); 
+
+/**
+ * Retrieves the slot index of the last given item.
+ *
+ * @param class		Class.
+ * @return			Slot.
+ */
+native TF2Items_GetCurrentSlot(TFClassType:class); 
 
 // ====[ FORWARDS ]============================================================
 /**

@@ -233,10 +233,12 @@ static cell_t TF2Items_GetNumAttributes(IPluginContext *pContext, const cell_t *
 static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *params);
 static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t *params);
+static cell_t TF2Items_GetCurrentSlot(IPluginContext *pContext, const cell_t *params);
 
 CBaseEntity * GetCBaseEntityFromIndex(int p_iEntity, bool p_bOnlyPlayers);
 int GetIndexFromCBaseEntity(CBaseEntity * p_hEntity);
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext=NULL);
+int GetLoadoutSlot(CScriptCreatedItem *thisptr, int iClass);
 
 extern HandleType_t g_ScriptedItemOverrideHandleType;
 extern TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
