@@ -11,8 +11,8 @@
 			}
 			"InventoryOffset"
 			{
-				"windows"	"4400"
-				"linux"		"4412"
+				"windows"	"4368"
+				"linux"		"4388"
 			}
 		}
 		"Signatures"

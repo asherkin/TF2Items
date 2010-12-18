@@ -1,16 +1,18 @@
-// Listing generated from "server.so" by linux_vtable_dump.ida
-// vtable block @ 0x00D4A380
+// Auto reconstructed from vtable block @ 0x00D3FE00
+// from "server.so", by ida_vtables.idc
 0	CPlayerInventory::SOCreated(CSteamID  const&,GCSDK::CSharedObject  const*)
 1	CPlayerInventory::SOUpdated(CSteamID  const&,GCSDK::CSharedObject  const*)
 2	CPlayerInventory::SODestroyed(CSteamID  const&,GCSDK::CSharedObject  const*)
 3	CPlayerInventory::SOCacheSubscribed(CSteamID  const&)
 4	CPlayerInventory::SOCacheUnsubscribed(CSteamID  const&)
-5	CPlayerInventory::ItemShouldBeIncluded(int)
-6	CPlayerInventory::DumpInventoryToConsole(bool)
-7	CPlayerInventory::ExtractInventorySortPosition(unsigned int)
-8	CPlayerInventory::IsPositionEquipped(unsigned int)
-9	CPlayerInventory::RemoveItem(unsigned long long)
-10	CPlayerInventory::OnItemChangedPosition(CScriptCreatedItem *,unsigned int)
-11	CPlayerInventory::ValidateInventoryPositions(void)
-12	CPlayerInventory::ItemHasBeenUpdated(CScriptCreatedItem *,bool,bool)
-13	CPlayerInventory::ItemIsBeingRemoved(CScriptCreatedItem *)
+5	__cxa_pure_virtual
+6	CPlayerInventory::ItemShouldBeIncluded(int)
+7	CPlayerInventory::DumpInventoryToConsole(bool)
+8	CPlayerInventory::ExtractInventorySortPosition(unsigned int)
+9	CPlayerInventory::IsPositionEquipped(unsigned int)
+10	CPlayerInventory::RemoveItem(unsigned long long)
+11	CPlayerInventory::OnHasNewItems(void)
+12	CPlayerInventory::OnItemChangedPosition(CScriptCreatedItem *,unsigned int)
+13	CPlayerInventory::ValidateInventoryPositions(void)
+14	CPlayerInventory::ItemHasBeenUpdated(CScriptCreatedItem *,bool,bool)
+15	CPlayerInventory::ItemIsBeingRemoved(CScriptCreatedItem *)

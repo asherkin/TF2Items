@@ -35,7 +35,7 @@ public:
 	char m_Unknown[4];									// Length = 4 / Win = 3524 / Lin = 6844
 	char m_Unknown2[4];									// Length = 4 / Win = 3528 / Lin = 6848
 
-	CUtlVector<CScriptCreatedAttribute, CUtlMemoryTF2Items<CScriptCreatedAttribute> > m_Attributes;	// Length = 20 / Win = 3532 / Lin = 6852
+	CCopyableUtlVector<CScriptCreatedAttribute> m_Attributes;	// Length = 20 / Win = 3532 / Lin = 6852
 
 	bool m_bInitialized;								// Length = 4 / Win = 3552 / Lin = 6872
 };

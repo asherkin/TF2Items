@@ -37,8 +37,8 @@ SMEXT_LINK(&g_TF2Items);
 SH_DECL_HOOK2_void(IServerGameClients, ClientPutInServer, SH_NOATTRIB, 0, edict_t *, char const *);
 SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CScriptCreatedItem *, bool);
 
-SH_DECL_MANUALHOOK1_void(MCall_DumpInventoryToConsole, 6, 0, 0, bool);
-SH_DECL_MANUALHOOK3(MCall_ItemHasBeenUpdated, 12, 0, 0, int, CScriptCreatedItem *, bool, bool);
+SH_DECL_MANUALHOOK1_void(MCall_DumpInventoryToConsole, 7, 0, 0, bool);
+SH_DECL_MANUALHOOK3(MCall_ItemHasBeenUpdated, 13, 0, 0, int, CScriptCreatedItem *, bool, bool);
 
 ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
@@ -433,7 +433,6 @@ void Dump_CScriptCreatedItem(CScriptCreatedItem *cscript)
 	g_pSM->LogMessage(myself, ">>> m_iPosition = %u", cscript->m_iPosition);
 	g_pSM->LogMessage(myself, ">>> m_szWideName = %ls", cscript->m_szWideName);
 	g_pSM->LogMessage(myself, ">>> m_szName = %s", cscript->m_szName);
-	g_pSM->LogMessage(myself, ">>> m_pUnknown = 0x%.8X", cscript->m_pUnknown);
 	g_pSM->LogMessage(myself, ">>> No. of Attributes = %d", cscript->m_Attributes.Count());
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	for (int i = 0; i < ((cscript->m_Attributes.Count() > 16)?0:cscript->m_Attributes.Count()); i++)
@@ -473,34 +472,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 	g_pSM->LogMessage(myself, ">>> b = %s", b?"true":"false");
 	g_pSM->LogMessage(myself, "---------------------------------------");
 
-	if (cscript == NULL) {
-		RETURN_META_VALUE(MRES_IGNORED, NULL);
-	}
-
-	g_pSM->LogMessage(myself, ">>> m_pVTable = 0x%.8X", cscript->m_pVTable);
-	g_pSM->LogMessage(myself, ">>> m_iItemDefinitionIndex = %u", cscript->m_iItemDefinitionIndex);
-	g_pSM->LogMessage(myself, ">>> m_iEntityQuality = %u", cscript->m_iEntityQuality);
-	g_pSM->LogMessage(myself, ">>> m_iEntityLevel = %u", cscript->m_iEntityLevel);
-	g_pSM->LogMessage(myself, ">>> m_iGlobalIndex = %lu", cscript->m_iGlobalIndex);
-	g_pSM->LogMessage(myself, ">>> m_iGlobalIndexHigh = %u", cscript->m_iGlobalIndexHigh);
-	g_pSM->LogMessage(myself, ">>> m_iGlobalIndexLow = %u", cscript->m_iGlobalIndexLow);
-	g_pSM->LogMessage(myself, ">>> m_iAccountID = %u", cscript->m_iAccountID);
-	g_pSM->LogMessage(myself, ">>> m_iPosition = %u", cscript->m_iPosition);
-	g_pSM->LogMessage(myself, ">>> m_szWideName = %ls", cscript->m_szWideName);
-	g_pSM->LogMessage(myself, ">>> m_szName = %s", cscript->m_szName);
-	g_pSM->LogMessage(myself, ">>> m_pUnknown = 0x%.8X", cscript->m_pUnknown);
-	g_pSM->LogMessage(myself, ">>> No. of Attributes = %d", cscript->m_Attributes.Count());
-	g_pSM->LogMessage(myself, "---------------------------------------");
-	for (int i = 0; i < ((cscript->m_Attributes.Count() > 16)?0:cscript->m_Attributes.Count()); i++)
-	{
-		g_pSM->LogMessage(myself, ">>> m_pVTable = 0x%.8X", cscript->m_Attributes.Element(i).m_pVTable);
-		g_pSM->LogMessage(myself, ">>> m_iAttributeDefinitionIndex = %u", cscript->m_Attributes.Element(i).m_iAttributeDefinitionIndex);
-		g_pSM->LogMessage(myself, ">>> m_flValue = %f", cscript->m_Attributes.Element(i).m_flValue);
-		g_pSM->LogMessage(myself, ">>> m_szDescription = %ls", cscript->m_Attributes.Element(i).m_szDescription);
-		g_pSM->LogMessage(myself, "---------------------------------------");
-	}
-	g_pSM->LogMessage(myself, ">>> m_bInitialized = %s", cscript->m_bInitialized?"true":"false");
-	g_pSM->LogMessage(myself, "---------------------------------------");
+	Dump_CScriptCreatedItem(cscript);
 
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
 }
