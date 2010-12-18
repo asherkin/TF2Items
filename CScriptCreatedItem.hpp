@@ -32,11 +32,11 @@ public:
 	char m_szBlob[20];									// Length = 20 / Win = 432 / Lin = 680
 	wchar_t m_szBlob2[1536];							// Win Length = 3072 / Lin Length = 6144 / Win = 452 / Lin = 700
 
-	// ok, not a pointer, WTF is this
-	void * m_pUnknown;									// Length = 4 / Win = 3524 / Lin = 6844
+	char m_Unknown[4];									// Length = 4 / Win = 3524 / Lin = 6844
+	char m_Unknown2[4];									// Length = 4 / Win = 3528 / Lin = 6848
 
-	CCopyableUtlVector<CScriptCreatedAttribute/*, CUtlMemoryTF2Items<CScriptCreatedAttribute> */> m_Attributes;	// Length = 20 / Win = 3528 / Lin = 6848
+	CUtlVector<CScriptCreatedAttribute, CUtlMemoryTF2Items<CScriptCreatedAttribute> > m_Attributes;	// Length = 20 / Win = 3532 / Lin = 6852
 
-	bool m_bInitialized;								// Length = 4 / Win = 3548 / Lin = 6868
+	bool m_bInitialized;								// Length = 4 / Win = 3552 / Lin = 6872
 };
 #endif // CScriptCreatedItem_h__
