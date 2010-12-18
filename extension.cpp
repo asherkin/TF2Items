@@ -65,16 +65,6 @@ IForward * g_pForwardGiveItem = NULL;
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
 TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
 
-int g_iCurrentItemSlot[9] = {-1};
-
-#ifndef WIN32
-typedef int (* GetLoadoutSlotFuncType)(CScriptCreatedItem *, int m_iClass);
-#else
-typedef int (__fastcall * GetLoadoutSlotFuncType)(CScriptCreatedItem *, void *, int m_iClass);
-#endif
-
-GetLoadoutSlotFuncType GetLoadoutSlotFunc;
-
 sp_nativeinfo_t g_ExtensionNatives[] =
 {
 	{ "TF2Items_GiveNamedItem",		TF2Items_GiveNamedItem },
@@ -94,7 +84,6 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 	{ "TF2Items_SetAttribute",		TF2Items_SetAttribute },
 	{ "TF2Items_GetAttributeId",	TF2Items_GetAttributeId },
 	{ "TF2Items_GetAttributeValue",	TF2Items_GetAttributeValue },
-	{ "TF2Items_GetCurrentSlot",	TF2Items_GetCurrentSlot },
 	{ NULL,							NULL }
 };
 
@@ -115,10 +104,6 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 		RETURN_META_VALUE(MRES_IGNORED, NULL);
 	}
 
-	// Retrieve the item's slots
-	for (int i = 0; i < 9; i++)
-		g_iCurrentItemSlot[i] = GetLoadoutSlot(cscript, i+1);
-
 	// Retrieve client index.
 	edict_t *playerEdict = gameents->BaseEntityToEdict((CBaseEntity *)player);
 	IGamePlayer * pPlayer = playerhelpers->GetGamePlayer(playerEdict);
@@ -126,18 +111,17 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 
 #ifdef TF2ITEMS_DEBUG_ITEMS
 
-	/*char *roflmelon = new char[32];
+	char *roflmelon = new char[32];
 	sprintf(roflmelon, "debug_item_%d_%d.txt", cscript->m_iAccountID, cscript->m_iItemDefinitionIndex);
 	FILE *fp = fopen(roflmelon, "wb");
 	fwrite(cscript, sizeof(CScriptCreatedItem), 1, fp);
-	fclose(fp);*/
+	fclose(fp);
 	
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	g_pSM->LogMessage(myself, ">>> Client = %s", pPlayer->GetName());
 	g_pSM->LogMessage(myself, ">>> szClassname = %s", szClassname);
 	g_pSM->LogMessage(myself, ">>> iSubType = %d", iSubType);
 	g_pSM->LogMessage(myself, ">>> b = %s", b?"true":"false");
-	g_pSM->LogMessage(myself, ">>> iSlot = %d", iSlot);
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	g_pSM->LogMessage(myself, ">>> m_iItemDefinitionIndex = %u", cscript->m_iItemDefinitionIndex);
 	g_pSM->LogMessage(myself, ">>> m_iEntityQuality = %u", cscript->m_iEntityQuality);
@@ -275,6 +259,9 @@ void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
 	copymember(m_szBlob);
 	copymember(m_szBlob2);
 
+	copymember(m_Unknown);
+	copymember(m_Unknown2);
+
 	copymember(m_bInitialized);
 
 	newitem->m_Attributes = olditem->m_Attributes;
@@ -371,15 +358,6 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, iOffset, 0, 0);
 		g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
 	}
-
-	void *addr;
-	if (!g_pGameConf->GetMemSig("GetLoadoutSlot", &addr) || addr == NULL)
-	{
-		g_pSM->LogError(myself, "Couldn't find GetLoadoutSlot sig.");
-		return false;
-	}
-
-	GetLoadoutSlotFunc = (GetLoadoutSlotFuncType)addr;
 
 	// If it's a late load, there might be the chance there are players already on the server. Just
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean
@@ -556,9 +534,6 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 	#ifndef NO_FORCE_QUALITY
 		if (hScriptCreatedItem.m_iEntityQuality == 0 && hScriptCreatedItem.m_iAttributesCount > 0) hScriptCreatedItem.m_iEntityQuality = 3;
 	#endif
-
-	for (int i = 0; i < 9; i++)
-		g_iCurrentItemSlot[i] = GetLoadoutSlot(&hScriptCreatedItem, i+1);
 
 	// Call the function.
 	CBaseEntity *tempItem = NULL;
@@ -757,18 +732,6 @@ static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t 
 	return sp_ftoc(0.0f);
 }
 
-static cell_t TF2Items_GetCurrentSlot(IPluginContext *pContext, const cell_t *params)
-{
-	int iClass = params[1] - 1;
-
-	if (iClass < 0 || iClass > 8)
-	{
-		return pContext->ThrowNativeError("%d is out of range.", iClass+1);
-	}
-
-	return g_iCurrentItemSlot[iClass];
-}
-
 CBaseEntity * GetCBaseEntityFromIndex(int p_iEntity, bool p_bOnlyPlayers)
 {
 	edict_t *edtEdict = engine->PEntityOfEntIndex(p_iEntity);
@@ -794,16 +757,6 @@ int GetIndexFromCBaseEntity(CBaseEntity * p_hEntity)
 	if (!edtEdict || edtEdict->IsFree()) return -1;
 
 	return gamehelpers->IndexOfEdict(edtEdict);
-}
-
-int GetLoadoutSlot(CScriptCreatedItem *thisptr, int iClass)
-{
-	assert(GetLoadoutSlotFunc);
-#ifndef WIN32
-	return GetLoadoutSlotFunc(thisptr, iClass);
-#else
-	return GetLoadoutSlotFunc(thisptr, NULL, iClass);
-#endif
 }
 
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext)
