@@ -198,6 +198,9 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 					newitem.m_Attributes.AddMultipleToTail(pScriptedItemOverride->m_iCount, pScriptedItemOverride->m_Attributes);
 				}
 
+				if (cscript->m_iEntityQuality == 0)
+					newitem.m_iEntityQuality = 0;
+
 				// Done
 				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, b);
 				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
@@ -221,8 +224,12 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 					newitem.m_iAttributesCount = newitem.m_iAttributesLength = pScriptedItemOverride->m_iCount;
 				}
 
+				if (cscript->m_iEntityQuality == 0)
+					newitem.m_iEntityQuality = 0;
+
 				// Done
-				SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, b);
+				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, b);
+				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
 #endif
 				break;
 			}
