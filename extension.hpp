@@ -244,6 +244,7 @@ int GetLoadoutSlot(CScriptCreatedItem *thisptr, int iClass);
 extern HandleType_t g_ScriptedItemOverrideHandleType;
 extern TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
 extern sp_nativeinfo_t g_ExtensionNatives[];
-extern IForward * g_pForwardGiveItem;
+extern IForward *g_pForwardGiveItem;
+extern IForward *g_pForwardGiveItem_Post;
 
 #endif // _INCLUDE_SOURCEMOD_EXTENSION_PROPER_H_

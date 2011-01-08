@@ -206,12 +206,14 @@ native TF2Items_GetCurrentSlot(TFClassType:class);
  * Return Plugin_Handled to stop the item being given to the player.
  * Make sure the client gets atleast one weapon.
  *
- * @param iClient				Client Index.
- * @param strClassName			The classname of the entity that will be generated.
+ * @param client				Client Index.
+ * @param classname				The classname of the entity that will be generated.
  * @param iItemDefinitionIndex	Item definition index.
  * @param hItem					Handle to a TF2Item object wich describes what values will be overriden.
  */
-forward Action:TF2Items_OnGiveNamedItem(iClient, String:strClassName[], iItemDefinitionIndex, &Handle:hItem);
+forward Action:TF2Items_OnGiveNamedItem(client, String:classname[], iItemDefinitionIndex, &Handle:hItem);
+
+forward TF2Items_OnGiveNamedItem_Post(client, String:classname[], itemDefinitionIndex, itemLevel, itemQuality, entityIndex);
 
 /**
  * Do not edit below this line!

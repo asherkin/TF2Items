@@ -62,6 +62,8 @@ int GiveNamedItem_bot_Hook = 0;
 int ClientPutInServer_Hook = 0;
 
 IForward * g_pForwardGiveItem = NULL;
+IForward * g_pForwardGiveItem_Post = NULL;
+
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
 TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
 
@@ -157,13 +159,17 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 	g_pForwardGiveItem->PushCellByRef(&cellOverrideHandle);
 	g_pForwardGiveItem->Execute(&cellResults);
 
+	int iEntityIndex = 0;
+
 	// Determine what to do
 	switch(cellResults) {
 		case Pl_Changed:
 			{
 				TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(cellOverrideHandle);
 				if (pScriptedItemOverride == NULL) {
-					RETURN_META_VALUE(MRES_IGNORED, NULL);
+					CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(szClassname, iSubType, cscript, b);
+					iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
+					break;
 				}
 
 				// Execute the new attributes set and we're done!
@@ -193,7 +199,8 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				}
 
 				// Done
-				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, iSubType, &newitem, b));
+				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, b);
+				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
 #else
 				CScriptCreatedItem newitem;
 				memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
@@ -215,16 +222,31 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				}
 
 				// Done
-				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, iSubType, &newitem, b));
+				SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, b);
 #endif
+				break;
 			}
 		case Pl_Handled:
 			{
-				RETURN_META_VALUE(MRES_SUPERCEDE, NULL);
+				break;
+			}
+		default:
+			{
+				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(szClassname, iSubType, cscript, b);
+				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
+				break;
 			}
 	}
+
+	g_pForwardGiveItem_Post->PushCell(client);
+	g_pForwardGiveItem_Post->PushString(szClassname);
+	g_pForwardGiveItem_Post->PushCell(cscript->m_iItemDefinitionIndex);
+	g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityLevel);
+	g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityQuality);
+	g_pForwardGiveItem_Post->PushCell(iEntityIndex);
+	g_pForwardGiveItem_Post->Execute(&cellResults);
 	
-	RETURN_META_VALUE(MRES_IGNORED, NULL);
+	RETURN_META_VALUE(MRES_SUPERCEDE, NULL);
 }
 
 void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
@@ -412,6 +434,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 
 	// Create forwards
 	g_pForwardGiveItem = g_pForwards->CreateForward("TF2Items_OnGiveNamedItem", ET_Hook, 4, NULL, Param_Cell, Param_String, Param_Cell, Param_CellByRef);
+	g_pForwardGiveItem_Post = g_pForwards->CreateForward("TF2Items_OnGiveNamedItem_Post", ET_Ignore, 6, NULL, Param_Cell, Param_String, Param_Cell, Param_Cell, Param_Cell, Param_Cell);
 
 	return true;
 }
@@ -455,6 +478,7 @@ void TF2Items::SDK_OnUnload() {
 	gameconfs->CloseGameConfigFile(g_pGameConf);
 	g_pHandleSys->RemoveType(g_ScriptedItemOverrideHandleType, myself->GetIdentity());
 	g_pForwards->ReleaseForward(g_pForwardGiveItem);
+	g_pForwards->ReleaseForward(g_pForwardGiveItem_Post);
 }
 
 bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
@@ -540,7 +564,7 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 	tempItem = SH_MCALL(pEntity, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, true);
 
 	if (tempItem == NULL) {
-		return pContext->ThrowNativeError("Item is NULL. You may have hit Bug 18.");
+		return pContext->ThrowNativeError("Item is NULL. File a bug report if you are sure you set all the data correctly.");
 	}
 
 	return GetIndexFromCBaseEntity(tempItem);
