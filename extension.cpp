@@ -111,11 +111,11 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 
 #ifdef TF2ITEMS_DEBUG_ITEMS
 
-	char *roflmelon = new char[32];
+	/*char *roflmelon = new char[32];
 	sprintf(roflmelon, "debug_item_%d_%d.txt", cscript->m_iAccountID, cscript->m_iItemDefinitionIndex);
 	FILE *fp = fopen(roflmelon, "wb");
 	fwrite(cscript, sizeof(CScriptCreatedItem), 1, fp);
-	fclose(fp);
+	fclose(fp);*/
 	
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	g_pSM->LogMessage(myself, ">>> Client = %s", pPlayer->GetName());
@@ -537,7 +537,7 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 
 	// Call the function.
 	CBaseEntity *tempItem = NULL;
-	tempItem = SH_MCALL(pEntity, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, 0);
+	tempItem = SH_MCALL(pEntity, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, true);
 
 	if (tempItem == NULL) {
 		return pContext->ThrowNativeError("Item is NULL. You may have hit Bug 18.");
