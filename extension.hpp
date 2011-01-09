@@ -36,13 +36,11 @@
 #define OVERRIDE_ITEM_LEVEL		(1 << 2)
 #define OVERRIDE_ITEM_QUALITY	(1 << 3)
 #define OVERRIDE_ATTRIBUTES		(1 << 4)
-#ifdef USE_NEW_ATTRIBS
+
 #define PRESERVE_ATTRIBUTES		(1 << 5)
-#endif
 
 class CBasePlayer;
 
-#ifdef USE_NEW_ATTRIBS
 template< class T, class I = int >
 class CUtlMemoryTF2Items : public CUtlMemory< T, I >
 {
@@ -69,7 +67,6 @@ public:
 		}
 	}
 };
-#endif
 
 class CScriptCreatedAttribute							// Win Length = 204 / Lin Length = 396
 {
@@ -112,15 +109,7 @@ public:
 	char m_Unknown[4];									// Length = 4 / Win = 3524 / Lin = 6844
 	char m_Unknown2[4];									// Length = 4 / Win = 3528 / Lin = 6848
 
-#ifdef USE_NEW_ATTRIBS
 	CUtlVector<CScriptCreatedAttribute, CUtlMemoryTF2Items<CScriptCreatedAttribute> > m_Attributes;	// Length = 20 / Win = 3532 / Lin = 6852
-#else
-	CScriptCreatedAttribute * m_pAttributes;
-	uint32 m_iAttributesLength;
-	uint32 m_iPadding5;
-	uint32 m_iAttributesCount;
-	CScriptCreatedAttribute * m_pAttributes2;
-#endif
 
 	bool m_bInitialized;								// Length = 4 / Win = 3552 / Lin = 6872
 };

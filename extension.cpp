@@ -34,9 +34,9 @@
  *	==================
  */
 //#define TF2ITEMS_DEBUG_HOOKING
+//#define TF2ITEMS_DEBUG_HOOKING_GNI
 //#define TF2ITEMS_DEBUG_ITEMS
 
-#define USE_NEW_ATTRIBS // Use a CUtlVector for the attibutes
 #define NO_FORCE_QUALITY
 
 #include "extension.hpp"
@@ -91,7 +91,7 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 
 CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCreatedItem *cscript, bool b) {
 
-	#ifdef TF2ITEMS_DEBUG_HOOKING
+	#if defined TF2ITEMS_DEBUG_HOOKING || defined TF2ITEMS_DEBUG_HOOKING_GNI
 		 g_pSM->LogMessage(myself, "GiveNamedItem called.");
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
@@ -103,6 +103,10 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 	CBasePlayer *player = META_IFACEPTR(CBasePlayer);
 
 	if (cscript == NULL) {
+#if defined TF2ITEMS_DEBUG_HOOKING_GNI
+		g_pSM->LogMessage(myself, "(cscript == NULL), RETURN_META_VALUE(MRES_IGNORED, NULL);");
+#endif // TF2ITEMS_DEBUG_HOOKING_GNI
+
 		RETURN_META_VALUE(MRES_IGNORED, NULL);
 	}
 
@@ -163,24 +167,60 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 
 	// Determine what to do
 	switch(cellResults) {
+		case Pl_Continue:
+			{
+				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(szClassname, iSubType, cscript, b);
+				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
+
+#if defined TF2ITEMS_DEBUG_HOOKING_GNI
+				g_pSM->LogMessage(myself, "Pl_Continue, SH_MCALL(player, MHook_GiveNamedItem), 0x%.8X (%d)", pItemEntiy, iEntityIndex);
+#endif // TF2ITEMS_DEBUG_HOOKING_GNI
+
+				g_pForwardGiveItem_Post->PushCell(client);
+				g_pForwardGiveItem_Post->PushString(szClassname);
+				g_pForwardGiveItem_Post->PushCell(cscript->m_iItemDefinitionIndex);
+				g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityLevel);
+				g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityQuality);
+				g_pForwardGiveItem_Post->PushCell(iEntityIndex);
+				g_pForwardGiveItem_Post->Execute(&cellResults);
+	
+#if defined TF2ITEMS_DEBUG_HOOKING_GNI
+				g_pSM->LogMessage(myself, "Pl_Continue, RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);");
+#endif // TF2ITEMS_DEBUG_HOOKING_GNI
+
+				RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);
+	
+				break;
+			}
 		case Pl_Changed:
 			{
 				TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(cellOverrideHandle);
 				if (pScriptedItemOverride == NULL) {
 					CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(szClassname, iSubType, cscript, b);
 					iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
-					break;
+
+					g_pForwardGiveItem_Post->PushCell(client);
+					g_pForwardGiveItem_Post->PushString(szClassname);
+					g_pForwardGiveItem_Post->PushCell(cscript->m_iItemDefinitionIndex);
+					g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityLevel);
+					g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityQuality);
+					g_pForwardGiveItem_Post->PushCell(iEntityIndex);
+					g_pForwardGiveItem_Post->Execute(&cellResults);
+
+#if defined TF2ITEMS_DEBUG_HOOKING_GNI
+					g_pSM->LogMessage(myself, "Pl_Changed, (pScriptedItemOverride == NULL), RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);");
+#endif // TF2ITEMS_DEBUG_HOOKING_GNI
+
+					RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);
 				}
 
 				// Execute the new attributes set and we're done!
 				char * finalitem = (char*) szClassname;
 
-				// Override based on the flags passed to this object.
-#ifdef USE_NEW_ATTRIBS
 				CScriptCreatedItem newitem;
-				//memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
 				CSCICopy(cscript, &newitem);
 
+				// Override based on the flags passed to this object.
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
 				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
@@ -204,56 +244,41 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				// Done
 				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, b);
 				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
-#else
-				CScriptCreatedItem newitem;
-				memcpy(&newitem, cscript, sizeof(CScriptCreatedItem));
 
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_CLASSNAME) finalitem = pScriptedItemOverride->m_strWeaponClassname;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_DEF) newitem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_LEVEL) newitem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ITEM_QUALITY) newitem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
-				if (pScriptedItemOverride->m_bFlags & OVERRIDE_ATTRIBUTES)
-				{
-#ifndef NO_FORCE_QUALITY
-					// Even if we don't want to override the item quality, do if it's set to 0.
-					if (newitem.m_iEntityQuality == 0 && pScriptedItemOverride->m_iCount > 0) newitem.m_iEntityQuality = 3;
-#endif
+				g_pForwardGiveItem_Post->PushCell(client);
+				g_pForwardGiveItem_Post->PushString(finalitem);
+				g_pForwardGiveItem_Post->PushCell(newitem.m_iItemDefinitionIndex);
+				g_pForwardGiveItem_Post->PushCell(newitem.m_iEntityLevel);
+				g_pForwardGiveItem_Post->PushCell(newitem.m_iEntityQuality);
+				g_pForwardGiveItem_Post->PushCell(iEntityIndex);
+				g_pForwardGiveItem_Post->Execute(&cellResults);
 
-					// Setup the attributes.
-					newitem.m_pAttributes = newitem.m_pAttributes2 = pScriptedItemOverride->m_Attributes;
-					newitem.m_iAttributesCount = newitem.m_iAttributesLength = pScriptedItemOverride->m_iCount;
-				}
+#if defined TF2ITEMS_DEBUG_HOOKING_GNI
+				g_pSM->LogMessage(myself, "Pl_Changed, RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);");
+#endif // TF2ITEMS_DEBUG_HOOKING_GNI
 
-				if (cscript->m_iEntityQuality == 0)
-					newitem.m_iEntityQuality = 0;
+				RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);
 
-				// Done
-				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, b);
-				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
-#endif
 				break;
 			}
 		case Pl_Handled:
+		case Pl_Stop:
 			{
-				break;
-			}
-		default:
-			{
-				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(szClassname, iSubType, cscript, b);
-				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
+#if defined TF2ITEMS_DEBUG_HOOKING_GNI
+				g_pSM->LogMessage(myself, "Pl_Stop, RETURN_META_VALUE(MRES_SUPERCEDE, NULL);");
+#endif // TF2ITEMS_DEBUG_HOOKING_GNI
+
+				RETURN_META_VALUE(MRES_SUPERCEDE, NULL);
+
 				break;
 			}
 	}
 
-	g_pForwardGiveItem_Post->PushCell(client);
-	g_pForwardGiveItem_Post->PushString(szClassname);
-	g_pForwardGiveItem_Post->PushCell(cscript->m_iItemDefinitionIndex);
-	g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityLevel);
-	g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityQuality);
-	g_pForwardGiveItem_Post->PushCell(iEntityIndex);
-	g_pForwardGiveItem_Post->Execute(&cellResults);
+#if defined TF2ITEMS_DEBUG_HOOKING_GNI
+	g_pSM->LogMessage(myself, "RETURN_META_VALUE(MRES_IGNORED, NULL);");
+#endif // TF2ITEMS_DEBUG_HOOKING_GNI
 	
-	RETURN_META_VALUE(MRES_SUPERCEDE, NULL);
+	RETURN_META_VALUE(MRES_IGNORED, NULL);
 }
 
 void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
@@ -554,12 +579,7 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 	hScriptCreatedItem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
 	hScriptCreatedItem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
 	hScriptCreatedItem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
-	#ifdef USE_NEW_ATTRIBS
-		hScriptCreatedItem.m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
-	#else
-		hScriptCreatedItem.m_pAttributes = hScriptCreatedItem.m_pAttributes2 = p_hOverride->m_Attributes;
-		hScriptCreatedItem.m_iAttributesCount = hScriptCreatedItem.m_iAttributesLength = p_hOverride->m_iCount;
-	#endif
+	hScriptCreatedItem.m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
 	hScriptCreatedItem.m_bInitialized = true;
 		
 	#ifndef NO_FORCE_QUALITY

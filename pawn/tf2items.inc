@@ -190,14 +190,6 @@ native TF2Items_GetAttributeId(Handle:hItem, iSlotIndex);
  */
 native Float:TF2Items_GetAttributeValue(Handle:hItem, iSlotIndex); 
 
-/**
- * Retrieves the slot index of the last given item.
- *
- * @param class		Class.
- * @return			Slot.
- */
-native TF2Items_GetCurrentSlot(TFClassType:class); 
-
 // ====[ FORWARDS ]============================================================
 /**
  * Called when an item is about to be given to a client.
