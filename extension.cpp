@@ -20,10 +20,10 @@
 /*
  *	Attributions & Thanks:
  *	=====================
- *	AzuiSleet				-	Reversed CScriptCreatedItem and released it publicly, along with writing most of the item editing code below.
- *	Damizean				-	Fixed padding for CScriptCreatedItem in Linux. Wrote the SourcePawn Interface and the SourceMod item manager.
- *	Voogru					-	Inspiring the creation of this. Helped with fixing and improving the CScriptCreatedItem class used after the 119 update.
- *	Wazz					-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *. Helped with improving the CScriptCreatedItem class.
+ *	AzuiSleet				-	Reversed CEconItemView and released it publicly, along with writing most of the item editing code below.
+ *	Damizean				-	Fixed padding for CEconItemView in Linux. Wrote the SourcePawn Interface and the SourceMod item manager.
+ *	Voogru					-	Inspiring the creation of this. Helped with fixing and improving the CEconItemView class used after the 119 update.
+ *	Wazz					-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *. Helped with improving the CEconItemView class.
  *	Psychonic				-	"How did you write the wearable natives asherkin?" "I got all the code from psychonic, then disregarded it and wrote it from scratch."
  *	MatthiasVance			-	Reminded me to comment out '#define INFINITE_PROBLEMS 1'.
  *	Drunken_F00l			-	Inspiring the creation of this.
@@ -34,7 +34,7 @@
  *	==================
  */
 //#define TF2ITEMS_DEBUG_HOOKING
-//#define TF2ITEMS_DEBUG_HOOKING_GNI
+#define TF2ITEMS_DEBUG_HOOKING_GNI
 //#define TF2ITEMS_DEBUG_ITEMS
 
 #define NO_FORCE_QUALITY
@@ -46,7 +46,7 @@ TF2Items g_TF2Items;
 SMEXT_LINK(&g_TF2Items);
 
 SH_DECL_HOOK2_void(IServerGameClients, ClientPutInServer, SH_NOATTRIB, 0, edict_t *, char const *);
-SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CScriptCreatedItem *, bool);
+SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CEconItemView *, bool);
 
 ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
@@ -89,7 +89,7 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 	{ NULL,							NULL }
 };
 
-CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCreatedItem *cscript, bool b) {
+CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItemView *cscript, bool b) {
 
 	#if defined TF2ITEMS_DEBUG_HOOKING || defined TF2ITEMS_DEBUG_HOOKING_GNI
 		 g_pSM->LogMessage(myself, "GiveNamedItem called.");
@@ -120,7 +120,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 	/*char *roflmelon = new char[32];
 	sprintf(roflmelon, "debug_item_%d_%d.txt", cscript->m_iAccountID, cscript->m_iItemDefinitionIndex);
 	FILE *fp = fopen(roflmelon, "wb");
-	fwrite(cscript, sizeof(CScriptCreatedItem), 1, fp);
+	fwrite(cscript, sizeof(CEconItemView), 1, fp);
 	fclose(fp);*/
 	
 	g_pSM->LogMessage(myself, "---------------------------------------");
@@ -148,8 +148,8 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 		g_pSM->LogMessage(myself, ">>> m_szDescription = %ls", cscript->m_Attributes.Element(i).m_szDescription);
 		g_pSM->LogMessage(myself, "---------------------------------------");
 	}
-	g_pSM->LogMessage(myself, ">>> Size of CScriptCreatedItem = %d", sizeof(CScriptCreatedItem));
-	g_pSM->LogMessage(myself, ">>> Size of CScriptCreatedAttribute = %d", sizeof(CScriptCreatedAttribute));
+	g_pSM->LogMessage(myself, ">>> Size of CEconItemView = %d", sizeof(CEconItemView));
+	g_pSM->LogMessage(myself, ">>> Size of CEconItemAttribute = %d", sizeof(CEconItemAttribute));
 	g_pSM->LogMessage(myself, ">>> No. of Attributes = %d", cscript->m_Attributes.Count());
 	g_pSM->LogMessage(myself, "---------------------------------------");
 #endif
@@ -217,7 +217,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				// Execute the new attributes set and we're done!
 				char * finalitem = (char*) szClassname;
 
-				CScriptCreatedItem newitem;
+				CEconItemView newitem;
 				CSCICopy(cscript, &newitem);
 
 				// Override based on the flags passed to this object.
@@ -242,7 +242,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 					newitem.m_iEntityQuality = 0;
 
 				// Done
-				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, b);
+				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, /* BUGBUG */ true);
 				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
 
 				g_pForwardGiveItem_Post->PushCell(client);
@@ -254,6 +254,9 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 				g_pForwardGiveItem_Post->Execute(&cellResults);
 
 #if defined TF2ITEMS_DEBUG_HOOKING_GNI
+				g_pSM->LogMessage(myself, "m_iItemDefinitionIndex = %u, finalitem = %s", cscript->m_iItemDefinitionIndex, szClassname);
+				g_pSM->LogMessage(myself, "pItemEntiy = 0x%.8X, m_iItemDefinitionIndex = %u, finalitem = %s", pItemEntiy, newitem.m_iItemDefinitionIndex, finalitem);
+
 				g_pSM->LogMessage(myself, "Pl_Changed, RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);");
 #endif // TF2ITEMS_DEBUG_HOOKING_GNI
 
@@ -281,9 +284,9 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CScriptCr
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
 }
 
-void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
+void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 {
-	memset(newitem, 0, sizeof(CScriptCreatedItem));
+	memset(newitem, 0, sizeof(CEconItemView));
 	
 	//#define copymember(a) newitem->a = olditem->a
 	#define copymember(a) memcpy(&newitem->a, &olditem->a, sizeof(newitem->a));
@@ -302,18 +305,18 @@ void CSCICopy(CScriptCreatedItem *olditem, CScriptCreatedItem *newitem)
 	copymember(m_Padding2);
 #endif
 
-	copymember(m_iGlobalIndex);
-	copymember(m_iGlobalIndexHigh);
-	copymember(m_iGlobalIndexLow);
+	copymember(m_iItemID);
+	copymember(m_iItemIDHigh);
+	copymember(m_iItemIDLow);
 	copymember(m_iAccountID);
-	copymember(m_iPosition);
-	copymember(m_szWideName);
-	copymember(m_szName);
+	copymember(m_iInventoryPosition);
+	copymember(m_wszItemName);
+	copymember(m_szItemName);
 
-	copymember(m_szBlob);
-	copymember(m_szBlob2);
-
+	copymember(m_wszAttributeDescription);
 	copymember(m_Unknown);
+
+	copymember(m_pAlternateItemData);
 	copymember(m_Unknown2);
 
 	copymember(m_bInitialized);
@@ -572,8 +575,8 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 		return -1;
 		
 	// Create new script created item object and prepare it.
-	CScriptCreatedItem hScriptCreatedItem;
-	memset(&hScriptCreatedItem, 0, sizeof(CScriptCreatedItem));
+	CEconItemView hScriptCreatedItem;
+	memset(&hScriptCreatedItem, 0, sizeof(CEconItemView));
 		
 	char * strWeaponClassname = pScriptedItemOverride->m_strWeaponClassname;
 	hScriptCreatedItem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
