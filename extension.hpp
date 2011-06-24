@@ -83,17 +83,10 @@ class CEconItemView
 public:
 	void * m_pVTable;
 
-#ifdef _WIN32
-	char m_Padding[4];
-#endif
-
-	uint32 m_iItemDefinitionIndex;
-	int m_iEntityQuality;
+	uint16 m_iItemDefinitionIndex;
+	uint16 m_Unknown;
+	uint32 m_iEntityQuality;
 	uint32 m_iEntityLevel;
-
-#ifdef _WIN32
-	char m_Padding2[4];
-#endif
 
 	uint64 m_iItemID;
 	uint32 m_iItemIDHigh;
@@ -105,10 +98,10 @@ public:
 	char m_szItemName[128];
 
 	wchar_t m_wszAttributeDescription[1536];
-	char m_Unknown[20];
+	char m_Unknown2[20];
 
 	void *m_pAlternateItemData; // These are really wierd, no idea which way around.
-	char m_Unknown2[4];
+	char m_Unknown3[8];
 
 	CUtlVector<CEconItemAttribute, CUtlMemoryTF2Items<CEconItemAttribute> > m_Attributes;
 

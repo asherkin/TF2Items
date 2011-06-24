@@ -130,22 +130,23 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 	g_pSM->LogMessage(myself, ">>> b = %s", b?"true":"false");
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	g_pSM->LogMessage(myself, ">>> m_iItemDefinitionIndex = %u", cscript->m_iItemDefinitionIndex);
+	g_pSM->LogMessage(myself, ">>> m_Unknown = %u", cscript->m_Unknown);
 	g_pSM->LogMessage(myself, ">>> m_iEntityQuality = %u", cscript->m_iEntityQuality);
 	g_pSM->LogMessage(myself, ">>> m_iEntityLevel = %u", cscript->m_iEntityLevel);
-	g_pSM->LogMessage(myself, ">>> m_iGlobalIndex = %lu", cscript->m_iGlobalIndex);
-	g_pSM->LogMessage(myself, ">>> m_iGlobalIndexHigh = %u", cscript->m_iGlobalIndexHigh);
-	g_pSM->LogMessage(myself, ">>> m_iGlobalIndexLow = %u", cscript->m_iGlobalIndexLow);
+	g_pSM->LogMessage(myself, ">>> m_iGlobalIndex = %lu", cscript->m_iItemID);
+	g_pSM->LogMessage(myself, ">>> m_iGlobalIndexHigh = %u", cscript->m_iItemIDHigh);
+	g_pSM->LogMessage(myself, ">>> m_iGlobalIndexLow = %u", cscript->m_iItemIDLow);
 	g_pSM->LogMessage(myself, ">>> m_iAccountID = %u", cscript->m_iAccountID);
-	g_pSM->LogMessage(myself, ">>> m_iPosition = %u", cscript->m_iPosition);
-	g_pSM->LogMessage(myself, ">>> m_szWideName = %ls", cscript->m_szWideName);
-	g_pSM->LogMessage(myself, ">>> m_szName = %s", cscript->m_szName);
+	g_pSM->LogMessage(myself, ">>> m_iPosition = %u", cscript->m_iInventoryPosition);
+	g_pSM->LogMessage(myself, ">>> m_szWideName = %ls", cscript->m_wszItemName);
+	g_pSM->LogMessage(myself, ">>> m_szName = %s", cscript->m_szItemName);
 	g_pSM->LogMessage(myself, ">>> m_bInitialized = %s", cscript->m_bInitialized?"true":"false");
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	for (int i = 0; i < ((cscript->m_Attributes.Count() > 16)?0:cscript->m_Attributes.Count()); i++)
 	{
 		g_pSM->LogMessage(myself, ">>> m_iAttributeDefinitionIndex = %u", cscript->m_Attributes.Element(i).m_iAttributeDefinitionIndex);
 		g_pSM->LogMessage(myself, ">>> m_flValue = %f", cscript->m_Attributes.Element(i).m_flValue);
-		g_pSM->LogMessage(myself, ">>> m_szDescription = %ls", cscript->m_Attributes.Element(i).m_szDescription);
+		g_pSM->LogMessage(myself, ">>> m_szDescription = %ls", cscript->m_Attributes.Element(i).m_wszDescription);
 		g_pSM->LogMessage(myself, "---------------------------------------");
 	}
 	g_pSM->LogMessage(myself, ">>> Size of CEconItemView = %d", sizeof(CEconItemView));
@@ -292,18 +293,11 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	#define copymember(a) memcpy(&newitem->a, &olditem->a, sizeof(newitem->a));
 
 	copymember(m_pVTable);
-	
-#ifdef _WIN32
-	copymember(m_Padding);
-#endif
 
 	copymember(m_iItemDefinitionIndex);
+	copymember(m_Unknown);
 	copymember(m_iEntityQuality);
 	copymember(m_iEntityLevel);
-
-#ifdef _WIN32
-	copymember(m_Padding2);
-#endif
 
 	copymember(m_iItemID);
 	copymember(m_iItemIDHigh);
@@ -314,10 +308,10 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	copymember(m_szItemName);
 
 	copymember(m_wszAttributeDescription);
-	copymember(m_Unknown);
+	copymember(m_Unknown2);
 
 	copymember(m_pAlternateItemData);
-	copymember(m_Unknown2);
+	copymember(m_Unknown3);
 
 	copymember(m_bInitialized);
 
