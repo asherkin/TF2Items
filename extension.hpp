@@ -68,12 +68,46 @@ public:
 	}
 };
 
+class CTF2ItemsLocalizationProvider
+{
+	virtual wchar_t *Find(char const *tokenName)
+	{
+		META_CONPRINTF(">> CTF2ItemsLocalizationProvider::Find(%s)\n", tokenName);
+		return NULL;
+	}
+
+	virtual void ConstructString(wchar_t *, int, wchar_t *, int, ...)
+	{
+		META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConstructString(...)\n");
+		return;
+	}
+
+	virtual int ConvertLoccharToANSI(wchar_t const *, char *, int)
+	{
+		META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertLoccharToANSI(...)\n");
+		return 0;
+	}
+
+	virtual int ConvertLoccharToUnicode(wchar_t const *, wchar_t *, int)
+	{
+		META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertLoccharToUnicode(...)\n");
+		return 0;
+	}
+
+	virtual int ConvertUTF8ToLocchar(char const *, wchar_t *, int)
+	{
+		META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertUTF8ToLocchar(...)\n");
+		return 0;
+	}
+} g_LocalizationProvider;
+
 class CEconItemAttribute
 {
 public:
-	void * m_pVTable;
+	void *m_pVTable;
 
-	uint32 m_iAttributeDefinitionIndex;
+	uint16 m_iAttributeDefinitionIndex;
+	uint16 m_Unknown;
 	float m_flValue;
 	wchar_t m_wszDescription[96];
 };
@@ -81,7 +115,7 @@ public:
 class CEconItemView
 {
 public:
-	void * m_pVTable;
+	void *m_pVTable;
 
 	uint16 m_iItemDefinitionIndex;
 	uint16 m_Unknown;
@@ -100,8 +134,10 @@ public:
 	wchar_t m_wszAttributeDescription[1536];
 	char m_Unknown2[20];
 
-	void *m_pAlternateItemData; // These are really wierd, no idea which way around.
-	char m_Unknown3[8];
+	void *m_pAlternateItemData;
+	CTF2ItemsLocalizationProvider *m_pLocalizationProvider;
+
+	char m_Unknown3[4];
 
 	CUtlVector<CEconItemAttribute, CUtlMemoryTF2Items<CEconItemAttribute> > m_Attributes;
 
@@ -112,7 +148,7 @@ struct TScriptedItemOverride
 {
 	uint8 m_bFlags;									// Flags to what we should override.
 	char m_strWeaponClassname[256];					// Classname to override the GiveNamedItem call with.
-	uint32 m_iItemDefinitionIndex;					// New Item Def. Index.
+	uint16 m_iItemDefinitionIndex;					// New Item Def. Index.
 	uint8 m_iEntityQuality;							// New Item Quality Level.
 	uint8 m_iEntityLevel;							// New Item Level.
 	uint8 m_iCount;									// Count of Attributes.

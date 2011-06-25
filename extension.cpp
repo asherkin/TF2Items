@@ -311,6 +311,7 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	copymember(m_Unknown2);
 
 	copymember(m_pAlternateItemData);
+	copymember(m_pLocalizationProvider);
 	copymember(m_Unknown3);
 
 	copymember(m_bInitialized);
@@ -571,8 +572,10 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 	// Create new script created item object and prepare it.
 	CEconItemView hScriptCreatedItem;
 	memset(&hScriptCreatedItem, 0, sizeof(CEconItemView));
-		
-	char * strWeaponClassname = pScriptedItemOverride->m_strWeaponClassname;
+	
+	hScriptCreatedItem.m_pLocalizationProvider = &g_LocalizationProvider;
+
+	char *strWeaponClassname = pScriptedItemOverride->m_strWeaponClassname;
 	hScriptCreatedItem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
 	hScriptCreatedItem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
 	hScriptCreatedItem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
