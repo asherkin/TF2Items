@@ -295,7 +295,7 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	copymember(m_pVTable);
 
 	copymember(m_iItemDefinitionIndex);
-	copymember(m_Unknown);
+	copymember(m_Padding);
 	copymember(m_iEntityQuality);
 	copymember(m_iEntityLevel);
 
@@ -308,11 +308,12 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	copymember(m_szItemName);
 
 	copymember(m_wszAttributeDescription);
-	copymember(m_Unknown2);
+	copymember(m_vecAttributeColors);
 
 	copymember(m_pAlternateItemData);
 	copymember(m_pLocalizationProvider);
-	copymember(m_Unknown3);
+
+	copymember(m_pVTable_Attributes);
 
 	copymember(m_bInitialized);
 
