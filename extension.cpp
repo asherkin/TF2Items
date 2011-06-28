@@ -243,7 +243,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 					newitem.m_iEntityQuality = 0;
 
 				// Done
-				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, /* BUGBUG */ true);
+				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, ((pScriptedItemOverride->m_bFlags & FORCE_GENERATION) == FORCE_GENERATION));
 				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
 
 				g_pForwardGiveItem_Post->PushCell(client);
@@ -589,10 +589,10 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 
 	// Call the function.
 	CBaseEntity *tempItem = NULL;
-	tempItem = SH_MCALL(pEntity, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, true);
+	tempItem = SH_MCALL(pEntity, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, ((pScriptedItemOverride->m_bFlags & FORCE_GENERATION) == FORCE_GENERATION));
 
 	if (tempItem == NULL) {
-		return pContext->ThrowNativeError("Item is NULL. File a bug report if you are sure you set all the data correctly.");
+		return pContext->ThrowNativeError("Item is NULL. File a bug report if you are sure you set all the data correctly. (Try the FORCE_GENERATION flag.)");
 	}
 
 	return GetIndexFromCBaseEntity(tempItem);

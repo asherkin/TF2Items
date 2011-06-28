@@ -14,6 +14,7 @@
 #define OVERRIDE_ALL				(0b11111)	// Magically enables all the other flags.
 
 #define PRESERVE_ATTRIBUTES		(1 << 5)
+#define FORCE_GENERATION		(1 << 6)
 
 // ====[ NATIVES ]=============================================================
 

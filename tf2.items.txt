@@ -10,5 +10,14 @@
 				"linux"	"465"
 			}
 		}
+		"Signatures"
+		{
+			"ValidateWeapons"
+			{
+				"library"		"server"
+				"windows"		"\x83\xEC\x2A\x33\xC0\x56\x89\x44\x24\x10"
+				"linux"			"@_ZN9CTFPlayer15ValidateWeaponsEP19TFPlayerClassData_tb"
+			}
+		}
 	}
 }

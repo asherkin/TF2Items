@@ -38,6 +38,7 @@
 #define OVERRIDE_ATTRIBUTES		(1 << 4)
 
 #define PRESERVE_ATTRIBUTES		(1 << 5)
+#define FORCE_GENERATION		(1 << 6)
 
 class CBasePlayer;
 
