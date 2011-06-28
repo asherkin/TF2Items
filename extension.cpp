@@ -690,7 +690,7 @@ static cell_t TF2Items_SetQuality(IPluginContext *pContext, const cell_t *params
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < 0 || params[2] > 10) return pContext->ThrowNativeError("Quality out of bounds: %i [0 ... 10]", params[2]);
+		if (params[2] < -1 || params[2] > 11) return pContext->ThrowNativeError("Quality out of bounds: %i [-1 ... 11]", params[2]);
 		pScriptedItemOverride->m_iEntityQuality = params[2];
 	}
 	return 0;
@@ -711,7 +711,7 @@ static cell_t TF2Items_SetLevel(IPluginContext *pContext, const cell_t *params)
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < 0 || params[2] > 127) { pContext->ThrowNativeError("Level out of bounds: %i [0 ... 127]", params[2]); return 0; }
+		if (params[2] < 0) { pContext->ThrowNativeError("Level out of bounds: %i [0 ...]", params[2]); return 0; }
 		pScriptedItemOverride->m_iEntityLevel = params[2];
 	}
 	return 0;
