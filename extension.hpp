@@ -147,7 +147,7 @@ struct TScriptedItemOverride
 {
 	uint8 m_bFlags;									// Flags to what we should override.
 	char m_strWeaponClassname[256];					// Classname to override the GiveNamedItem call with.
-	uint16 m_iItemDefinitionIndex;					// New Item Def. Index.
+	uint32 m_iItemDefinitionIndex;					// New Item Def. Index.
 	uint8 m_iEntityQuality;							// New Item Quality Level.
 	uint8 m_iEntityLevel;							// New Item Level.
 	uint8 m_iCount;									// Count of Attributes.
