@@ -73,31 +73,31 @@ class CTF2ItemsLocalizationProvider
 {
 	virtual wchar_t *Find(char const *tokenName)
 	{
-		META_CONPRINTF(">> CTF2ItemsLocalizationProvider::Find(%s)\n", tokenName);
+		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::Find(%s)\n", tokenName);
 		return NULL;
 	}
 
 	virtual void ConstructString(wchar_t *, int, wchar_t *, int, ...)
 	{
-		META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConstructString(...)\n");
+		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConstructString(...)\n");
 		return;
 	}
 
 	virtual int ConvertLoccharToANSI(wchar_t const *, char *, int)
 	{
-		META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertLoccharToANSI(...)\n");
+		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertLoccharToANSI(...)\n");
 		return 0;
 	}
 
 	virtual int ConvertLoccharToUnicode(wchar_t const *, wchar_t *, int)
 	{
-		META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertLoccharToUnicode(...)\n");
+		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertLoccharToUnicode(...)\n");
 		return 0;
 	}
 
 	virtual int ConvertUTF8ToLocchar(char const *, wchar_t *, int)
 	{
-		META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertUTF8ToLocchar(...)\n");
+		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertUTF8ToLocchar(...)\n");
 		return 0;
 	}
 } g_LocalizationProvider;
