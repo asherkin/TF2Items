@@ -102,6 +102,9 @@ class CTF2ItemsLocalizationProvider
 	}
 } g_LocalizationProvider;
 
+// Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalve
+#define ATTRIBUTE_DESCRIPTION_LENGTH (192 / sizeof(wchar_t))
+
 class CEconItemAttribute
 {
 public:
@@ -109,7 +112,7 @@ public:
 
 	uint16 m_iAttributeDefinitionIndex;
 	float m_flValue;
-	wchar_t m_wszDescription[96];
+	wchar_t m_wszDescription[ATTRIBUTE_DESCRIPTION_LENGTH];
 };
 
 class CEconItemView
@@ -118,7 +121,7 @@ public:
 	void *m_pVTable;
 
 	uint16 m_iItemDefinitionIndex;
-	uint16 m_Padding;
+	
 	uint32 m_iEntityQuality;
 	uint32 m_iEntityLevel;
 
@@ -131,7 +134,7 @@ public:
 	wchar_t m_wszItemName[128];
 	char m_szItemName[128];
 
-	wchar_t m_wszAttributeDescription[1536];
+	wchar_t m_wszAttributeDescription[16 * ATTRIBUTE_DESCRIPTION_LENGTH];
 	char m_vecAttributeColors[20];
 
 	void *m_pAlternateItemData;
