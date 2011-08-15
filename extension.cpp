@@ -59,6 +59,8 @@ IGameConfig *g_pGameConf = NULL;
 
 int GiveNamedItem_player_Hook = 0;
 int GiveNamedItem_bot_Hook = 0;
+int GiveNamedItem_player_Hook_Post = 0;
+int GiveNamedItem_bot_Hook_Post = 0;
 int ClientPutInServer_Hook = 0;
 
 IForward * g_pForwardGiveItem = NULL;
@@ -102,9 +104,9 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 
 	CBasePlayer *player = META_IFACEPTR(CBasePlayer);
 
-	if (cscript == NULL) {
+	if (cscript == NULL || szClassname == NULL) {
 #if defined TF2ITEMS_DEBUG_HOOKING_GNI
-		g_pSM->LogMessage(myself, "(cscript == NULL), RETURN_META_VALUE(MRES_IGNORED, NULL);");
+		g_pSM->LogMessage(myself, "(cscript == NULL || szClassname == NULL), RETURN_META_VALUE(MRES_IGNORED, NULL);");
 #endif // TF2ITEMS_DEBUG_HOOKING_GNI
 
 		RETURN_META_VALUE(MRES_IGNORED, NULL);
@@ -164,55 +166,18 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 	g_pForwardGiveItem->PushCellByRef(&cellOverrideHandle);
 	g_pForwardGiveItem->Execute(&cellResults);
 
-	int iEntityIndex = 0;
-
 	// Determine what to do
 	switch(cellResults) {
 		case Pl_Continue:
 			{
-				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(szClassname, iSubType, cscript, b);
-				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
-
-#if defined TF2ITEMS_DEBUG_HOOKING_GNI
-				g_pSM->LogMessage(myself, "Pl_Continue, SH_MCALL(player, MHook_GiveNamedItem), 0x%.8X (%d)", pItemEntiy, iEntityIndex);
-#endif // TF2ITEMS_DEBUG_HOOKING_GNI
-
-				g_pForwardGiveItem_Post->PushCell(client);
-				g_pForwardGiveItem_Post->PushString(szClassname);
-				g_pForwardGiveItem_Post->PushCell(cscript->m_iItemDefinitionIndex);
-				g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityLevel);
-				g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityQuality);
-				g_pForwardGiveItem_Post->PushCell(iEntityIndex);
-				g_pForwardGiveItem_Post->Execute(&cellResults);
-	
-#if defined TF2ITEMS_DEBUG_HOOKING_GNI
-				g_pSM->LogMessage(myself, "Pl_Continue, RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);");
-#endif // TF2ITEMS_DEBUG_HOOKING_GNI
-
-				RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);
-	
+				RETURN_META_VALUE(MRES_IGNORED, NULL);
 				break;
 			}
 		case Pl_Changed:
 			{
 				TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(cellOverrideHandle);
 				if (pScriptedItemOverride == NULL) {
-					CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(szClassname, iSubType, cscript, b);
-					iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
-
-					g_pForwardGiveItem_Post->PushCell(client);
-					g_pForwardGiveItem_Post->PushString(szClassname);
-					g_pForwardGiveItem_Post->PushCell(cscript->m_iItemDefinitionIndex);
-					g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityLevel);
-					g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityQuality);
-					g_pForwardGiveItem_Post->PushCell(iEntityIndex);
-					g_pForwardGiveItem_Post->Execute(&cellResults);
-
-#if defined TF2ITEMS_DEBUG_HOOKING_GNI
-					g_pSM->LogMessage(myself, "Pl_Changed, (pScriptedItemOverride == NULL), RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);");
-#endif // TF2ITEMS_DEBUG_HOOKING_GNI
-
-					RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);
+					RETURN_META_VALUE(MRES_IGNORED, NULL);
 				}
 
 				// Execute the new attributes set and we're done!
@@ -242,47 +207,47 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 				if (cscript->m_iEntityQuality == 0)
 					newitem.m_iEntityQuality = 0;
 
-				// Done
-				CBaseEntity *pItemEntiy = SH_MCALL(player, MHook_GiveNamedItem)(finalitem, iSubType, &newitem, ((pScriptedItemOverride->m_bFlags & FORCE_GENERATION) == FORCE_GENERATION));
-				iEntityIndex = GetIndexFromCBaseEntity(pItemEntiy);
-
-				g_pForwardGiveItem_Post->PushCell(client);
-				g_pForwardGiveItem_Post->PushString(finalitem);
-				g_pForwardGiveItem_Post->PushCell(newitem.m_iItemDefinitionIndex);
-				g_pForwardGiveItem_Post->PushCell(newitem.m_iEntityLevel);
-				g_pForwardGiveItem_Post->PushCell(newitem.m_iEntityQuality);
-				g_pForwardGiveItem_Post->PushCell(iEntityIndex);
-				g_pForwardGiveItem_Post->Execute(&cellResults);
-
-#if defined TF2ITEMS_DEBUG_HOOKING_GNI
-				g_pSM->LogMessage(myself, "m_iItemDefinitionIndex = %u, finalitem = %s", cscript->m_iItemDefinitionIndex, szClassname);
-				g_pSM->LogMessage(myself, "pItemEntiy = 0x%.8X, m_iItemDefinitionIndex = %u, finalitem = %s", pItemEntiy, newitem.m_iItemDefinitionIndex, finalitem);
-
-				g_pSM->LogMessage(myself, "Pl_Changed, RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);");
-#endif // TF2ITEMS_DEBUG_HOOKING_GNI
-
-				RETURN_META_VALUE(MRES_SUPERCEDE, pItemEntiy);
+				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, iSubType, &newitem, ((pScriptedItemOverride->m_bFlags & FORCE_GENERATION) == FORCE_GENERATION)));
 
 				break;
 			}
 		case Pl_Handled:
 		case Pl_Stop:
 			{
-#if defined TF2ITEMS_DEBUG_HOOKING_GNI
-				g_pSM->LogMessage(myself, "Pl_Stop, RETURN_META_VALUE(MRES_SUPERCEDE, NULL);");
-#endif // TF2ITEMS_DEBUG_HOOKING_GNI
-
 				RETURN_META_VALUE(MRES_SUPERCEDE, NULL);
 
 				break;
 			}
 	}
-
-#if defined TF2ITEMS_DEBUG_HOOKING_GNI
-	g_pSM->LogMessage(myself, "RETURN_META_VALUE(MRES_IGNORED, NULL);");
-#endif // TF2ITEMS_DEBUG_HOOKING_GNI
 	
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
+}
+
+CBaseEntity *Hook_GiveNamedItem_Post(char const *szClassname, int iSubType, CEconItemView *cscript, bool b)
+{
+	CBaseEntity *player = META_IFACEPTR(CBaseEntity);
+
+	CBaseEntity *pItemEntiy;
+	if (META_RESULT_STATUS >= MRES_OVERRIDE)
+		pItemEntiy = META_RESULT_OVERRIDE_RET(CBaseEntity *);
+	else
+		pItemEntiy = META_RESULT_ORIG_RET(CBaseEntity *);
+
+	if (!player || !szClassname || !cscript || !pItemEntiy)
+		RETURN_META_VALUE(MRES_IGNORED, pItemEntiy);
+
+	int client = gamehelpers->EntityToBCompatRef(player);
+	int iEntityIndex = gamehelpers->EntityToBCompatRef(pItemEntiy);
+
+	g_pForwardGiveItem_Post->PushCell(client);
+	g_pForwardGiveItem_Post->PushString(szClassname);
+	g_pForwardGiveItem_Post->PushCell(cscript->m_iItemDefinitionIndex);
+	g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityLevel);
+	g_pForwardGiveItem_Post->PushCell(cscript->m_iEntityQuality);
+	g_pForwardGiveItem_Post->PushCell(iEntityIndex);
+	g_pForwardGiveItem_Post->Execute(NULL);
+	
+	RETURN_META_VALUE(MRES_IGNORED, pItemEntiy);
 }
 
 void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
@@ -363,6 +328,13 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 					g_pSM->LogMessage(myself, "GiveNamedItem hooked (bot).");
 				#endif // TF2ITEMS_DEBUG_HOOKING
 			}
+			if(GiveNamedItem_bot_Hook_Post == 0)
+			{
+				GiveNamedItem_bot_Hook_Post = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem_Post), true);
+#ifdef TF2ITEMS_DEBUG_HOOKING
+				g_pSM->LogMessage(myself, "GiveNamedItem hooked (bot) (post).");
+#endif // TF2ITEMS_DEBUG_HOOKING
+			}
 		} else {
 			if(GiveNamedItem_player_Hook == 0)
 			{
@@ -370,6 +342,13 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername) {
 				#ifdef TF2ITEMS_DEBUG_HOOKING
 					g_pSM->LogMessage(myself, "GiveNamedItem hooked (player).");
 				#endif // TF2ITEMS_DEBUG_HOOKING
+			}
+			if(GiveNamedItem_player_Hook_Post == 0)
+			{
+				GiveNamedItem_player_Hook_Post = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem_Post), true);
+#ifdef TF2ITEMS_DEBUG_HOOKING
+				g_pSM->LogMessage(myself, "GiveNamedItem hooked (player).");
+#endif // TF2ITEMS_DEBUG_HOOKING
 			}
 			if (!HookTFBot.GetBool() && ClientPutInServer_Hook != 0) {
 				SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
@@ -541,6 +520,19 @@ bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen) {
 	#ifdef TF2ITEMS_DEBUG_HOOKING
 		else {
 			 g_pSM->LogMessage(myself, "GiveNamedItem did not need to be unhooked.");
+		}
+	#endif // TF2ITEMS_DEBUG_HOOKING
+
+	if (GiveNamedItem_player_Hook_Post != 0) {
+		SH_REMOVE_HOOK_ID(GiveNamedItem_player_Hook_Post);
+		GiveNamedItem_player_Hook_Post = 0;
+		#ifdef TF2ITEMS_DEBUG_HOOKING
+			g_pSM->LogMessage(myself, "GiveNamedItem (post) unhooked.");
+		#endif // TF2ITEMS_DEBUG_HOOKING
+	}
+	#ifdef TF2ITEMS_DEBUG_HOOKING
+		else {
+			g_pSM->LogMessage(myself, "GiveNamedItem (post) did not need to be unhooked.");
 		}
 	#endif // TF2ITEMS_DEBUG_HOOKING
 
