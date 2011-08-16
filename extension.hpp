@@ -134,6 +134,7 @@ public:
 	wchar_t m_wszItemName[128];
 	char m_szItemName[128];
 
+	wchar_t m_wszLevelDescription[ATTRIBUTE_DESCRIPTION_LENGTH];
 	wchar_t m_wszAttributeDescription[16 * ATTRIBUTE_DESCRIPTION_LENGTH];
 	char m_vecAttributeColors[20];
 
