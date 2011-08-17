@@ -587,7 +587,18 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 		return pContext->ThrowNativeError("Item is NULL. File a bug report if you are sure you set all the data correctly. (Try the FORCE_GENERATION flag.)");
 	}
 
-	return GetIndexFromCBaseEntity(tempItem);
+	int entIndex = gamehelpers->EntityToBCompatRef(tempItem);
+
+	// Need to manually fire the forward.
+	g_pForwardGiveItem_Post->PushCell(params[1]);
+	g_pForwardGiveItem_Post->PushString(strWeaponClassname);
+	g_pForwardGiveItem_Post->PushCell(hScriptCreatedItem.m_iItemDefinitionIndex);
+	g_pForwardGiveItem_Post->PushCell(hScriptCreatedItem.m_iEntityLevel);
+	g_pForwardGiveItem_Post->PushCell(hScriptCreatedItem.m_iEntityQuality);
+	g_pForwardGiveItem_Post->PushCell(entIndex);
+	g_pForwardGiveItem_Post->Execute(NULL);
+
+	return entIndex;
 }
 
 static cell_t TF2Items_CreateItem(IPluginContext *pContext, const cell_t *params)

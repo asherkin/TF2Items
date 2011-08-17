@@ -100,6 +100,12 @@ class CTF2ItemsLocalizationProvider
 		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertUTF8ToLocchar(...)\n");
 		return 0;
 	}
+
+	virtual int GetELang()
+	{
+		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::GetELang(...)\n");
+		return 0;
+	}
 } g_LocalizationProvider;
 
 // Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalve
