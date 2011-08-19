@@ -108,8 +108,7 @@ class CTF2ItemsLocalizationProvider
 	}
 } g_LocalizationProvider;
 
-// Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalve
-#define ATTRIBUTE_DESCRIPTION_LENGTH (192 / sizeof(wchar_t))
+#define ATTRIBUTE_DESCRIPTION_LENGTH (256 / sizeof(wchar_t))
 
 class CEconItemAttribute
 {

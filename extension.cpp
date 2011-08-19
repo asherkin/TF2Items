@@ -272,6 +272,7 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	copymember(m_wszItemName);
 	copymember(m_szItemName);
 
+	copymember(m_wszLevelDescription);
 	copymember(m_wszAttributeDescription);
 	copymember(m_vecAttributeColors);
 
