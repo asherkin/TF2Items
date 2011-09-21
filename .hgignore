@@ -1,0 +1,11 @@
+syntax: glob
+extension/version.aps
+extension/version_auto.h
+build/*
+Voogru/*
+extension/msvc10/ipch
+extension/msvc10/Release*
+extension/msvc10/Debug*
+extension/msvc10/tf2items.sdf
+extension/msvc10/tf2items.sln
+extension/msvc10/tf2items.suo

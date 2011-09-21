@@ -2,14 +2,14 @@
 # Makefile written by David "BAILOPAN" Anderson
 # Modified by Asher Baker (asherkin) for the "tf2items" project
 
-SMSDK = ../sdks/sourcemod-1.3
+SMSDK = ../../sdks/sourcemod-1.3
 SRCDS_BASE = /home/hlds/tf2
-HL2SDK_ORIG = ../sdks/hl2sdk
-HL2SDK_OB = ../sdks/hl2sdk-ob
-HL2SDK_OB_VALVE = ../sdks/hl2sdk-ob-valve
-HL2SDK_L4D = ../sdks/hl2sdk-l4d
-HL2SDK_L4D2 = ../sdks/hl2sdk-l4d2
-MMSOURCE18 = ../sdks/mmsource-1.8
+HL2SDK_ORIG = ../../sdks/hl2sdk
+HL2SDK_OB = ../../sdks/hl2sdk-ob
+HL2SDK_OB_VALVE = ../../sdks/hl2sdk-ob-valve
+HL2SDK_L4D = ../../sdks/hl2sdk-l4d
+HL2SDK_L4D2 = ../../sdks/hl2sdk-l4d2
+MMSOURCE18 = ../../sdks/mmsource-1.8
 
 #####################################
 ### EDIT BELOW FOR OTHER PROJECTS ###
