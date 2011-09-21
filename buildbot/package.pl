@@ -39,7 +39,7 @@ else
 chdir(Build::PathFormat('../../OUTPUT/package'));
 
 my ($filename);
-$filename = 'tfdodgeball-' . $version;
+$filename = 'tf2items-' . $version;
 if ($^O eq "linux")
 {
     $filename .= '.tar.gz';
