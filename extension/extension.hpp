@@ -69,87 +69,38 @@ public:
 	}
 };
 
-class CTF2ItemsLocalizationProvider
-{
-	virtual wchar_t *Find(char const *tokenName)
-	{
-		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::Find(%s)\n", tokenName);
-		return NULL;
-	}
-
-	virtual void ConstructString(wchar_t *, int, wchar_t *, int, ...)
-	{
-		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConstructString(...)\n");
-		return;
-	}
-
-	virtual int ConvertLoccharToANSI(wchar_t const *, char *, int)
-	{
-		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertLoccharToANSI(...)\n");
-		return 0;
-	}
-
-	virtual int ConvertLoccharToUnicode(wchar_t const *, wchar_t *, int)
-	{
-		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertLoccharToUnicode(...)\n");
-		return 0;
-	}
-
-	virtual int ConvertUTF8ToLocchar(char const *, wchar_t *, int)
-	{
-		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::ConvertUTF8ToLocchar(...)\n");
-		return 0;
-	}
-
-	virtual int GetELang()
-	{
-		//META_CONPRINTF(">> CTF2ItemsLocalizationProvider::GetELang(...)\n");
-		return 0;
-	}
-} g_LocalizationProvider;
-
-#define ATTRIBUTE_DESCRIPTION_LENGTH (256 / sizeof(wchar_t))
-
 class CEconItemAttribute
 {
 public:
-	void *m_pVTable;
+	void *m_pVTable; //0
 
-	uint16 m_iAttributeDefinitionIndex;
-	float m_flValue;
-	wchar_t m_wszDescription[ATTRIBUTE_DESCRIPTION_LENGTH];
+	uint16 m_iAttributeDefinitionIndex; //4
+	float m_flValue; //8
+	bool m_bSetBonus; //12
 };
 
 class CEconItemView
 {
 public:
-	void *m_pVTable;
+	void *m_pVTable; //0
 
-	uint16 m_iItemDefinitionIndex;
+	uint16 m_iItemDefinitionIndex; //4
 	
-	uint32 m_iEntityQuality;
-	uint32 m_iEntityLevel;
+	uint32 m_iEntityQuality; //8
+	uint32 m_iEntityLevel; //12
 
-	uint64 m_iItemID;
-	uint32 m_iItemIDHigh;
-	uint32 m_iItemIDLow;
-	uint32 m_iAccountID;
-	uint32 m_iInventoryPosition;
+	uint64 m_iItemID; //16
+	uint32 m_iItemIDHigh; //24
+	uint32 m_iItemIDLow; //28
+	uint32 m_iAccountID; //32
+	uint32 m_iInventoryPosition; //36
 
-	wchar_t m_wszItemName[128];
-	char m_szItemName[128];
+	void *m_pAlternateItemData; //40
+	bool m_bInitialized; //44
 
-	wchar_t m_wszLevelDescription[ATTRIBUTE_DESCRIPTION_LENGTH];
-	wchar_t m_wszAttributeDescription[16 * ATTRIBUTE_DESCRIPTION_LENGTH];
-	char m_vecAttributeColors[20];
-
-	void *m_pAlternateItemData;
-	CTF2ItemsLocalizationProvider *m_pLocalizationProvider;
-
-	void *m_pVTable_Attributes;
-	CUtlVector<CEconItemAttribute, CUtlMemoryTF2Items<CEconItemAttribute> > m_Attributes;
-
-	bool m_bInitialized;
+	void *m_pVTable_Attributes; //48
+	CUtlVector<CEconItemAttribute, CUtlMemoryTF2Items<CEconItemAttribute> > m_Attributes; //52 (56, 60, 64, 68)
+	void *m_pAttributeManager; //72
 };
 
 struct TScriptedItemOverride

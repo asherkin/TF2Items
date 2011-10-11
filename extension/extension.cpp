@@ -132,23 +132,20 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 	g_pSM->LogMessage(myself, ">>> b = %s", b?"true":"false");
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	g_pSM->LogMessage(myself, ">>> m_iItemDefinitionIndex = %u", cscript->m_iItemDefinitionIndex);
-	g_pSM->LogMessage(myself, ">>> m_Unknown = %u", cscript->m_Unknown);
 	g_pSM->LogMessage(myself, ">>> m_iEntityQuality = %u", cscript->m_iEntityQuality);
 	g_pSM->LogMessage(myself, ">>> m_iEntityLevel = %u", cscript->m_iEntityLevel);
-	g_pSM->LogMessage(myself, ">>> m_iGlobalIndex = %lu", cscript->m_iItemID);
-	g_pSM->LogMessage(myself, ">>> m_iGlobalIndexHigh = %u", cscript->m_iItemIDHigh);
-	g_pSM->LogMessage(myself, ">>> m_iGlobalIndexLow = %u", cscript->m_iItemIDLow);
+	g_pSM->LogMessage(myself, ">>> m_iItemID = %lu", cscript->m_iItemID);
+	g_pSM->LogMessage(myself, ">>> m_iItemIDHigh = %u", cscript->m_iItemIDHigh);
+	g_pSM->LogMessage(myself, ">>> m_iItemIDLow = %u", cscript->m_iItemIDLow);
 	g_pSM->LogMessage(myself, ">>> m_iAccountID = %u", cscript->m_iAccountID);
 	g_pSM->LogMessage(myself, ">>> m_iPosition = %u", cscript->m_iInventoryPosition);
-	g_pSM->LogMessage(myself, ">>> m_szWideName = %ls", cscript->m_wszItemName);
-	g_pSM->LogMessage(myself, ">>> m_szName = %s", cscript->m_szItemName);
 	g_pSM->LogMessage(myself, ">>> m_bInitialized = %s", cscript->m_bInitialized?"true":"false");
 	g_pSM->LogMessage(myself, "---------------------------------------");
 	for (int i = 0; i < ((cscript->m_Attributes.Count() > 16)?0:cscript->m_Attributes.Count()); i++)
 	{
 		g_pSM->LogMessage(myself, ">>> m_iAttributeDefinitionIndex = %u", cscript->m_Attributes.Element(i).m_iAttributeDefinitionIndex);
 		g_pSM->LogMessage(myself, ">>> m_flValue = %f", cscript->m_Attributes.Element(i).m_flValue);
-		g_pSM->LogMessage(myself, ">>> m_szDescription = %ls", cscript->m_Attributes.Element(i).m_wszDescription);
+		g_pSM->LogMessage(myself, ">>> m_bSetBonus = %s", cscript->m_Attributes.Element(i).m_bSetBonus?"true":"false");
 		g_pSM->LogMessage(myself, "---------------------------------------");
 	}
 	g_pSM->LogMessage(myself, ">>> Size of CEconItemView = %d", sizeof(CEconItemView));
@@ -269,19 +266,12 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	copymember(m_iItemIDLow);
 	copymember(m_iAccountID);
 	copymember(m_iInventoryPosition);
-	copymember(m_wszItemName);
-	copymember(m_szItemName);
-
-	copymember(m_wszLevelDescription);
-	copymember(m_wszAttributeDescription);
-	copymember(m_vecAttributeColors);
 
 	copymember(m_pAlternateItemData);
-	copymember(m_pLocalizationProvider);
+	copymember(m_bInitialized);
 
 	copymember(m_pVTable_Attributes);
-
-	copymember(m_bInitialized);
+	copymember(m_pAttributeManager);
 
 	newitem->m_Attributes = olditem->m_Attributes;
 	
