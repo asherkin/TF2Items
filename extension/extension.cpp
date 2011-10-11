@@ -556,8 +556,6 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 	// Create new script created item object and prepare it.
 	CEconItemView hScriptCreatedItem;
 	memset(&hScriptCreatedItem, 0, sizeof(CEconItemView));
-	
-	hScriptCreatedItem.m_pLocalizationProvider = &g_LocalizationProvider;
 
 	char *strWeaponClassname = pScriptedItemOverride->m_strWeaponClassname;
 	hScriptCreatedItem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
