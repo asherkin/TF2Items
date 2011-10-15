@@ -682,7 +682,7 @@ static cell_t TF2Items_SetQuality(IPluginContext *pContext, const cell_t *params
 	TScriptedItemOverride * pScriptedItemOverride = GetScriptedItemOverrideFromHandle(params[1], pContext);
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < -1 || params[2] > 11) return pContext->ThrowNativeError("Quality out of bounds: %i [-1 ... 11]", params[2]);
+		if (params[2] < -1 || params[2] > 12) return pContext->ThrowNativeError("Quality out of bounds: %i [-1 ... 12]", params[2]);
 		pScriptedItemOverride->m_iEntityQuality = params[2];
 	}
 	return 0;
