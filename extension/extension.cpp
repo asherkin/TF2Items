@@ -379,7 +379,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		return false;
 	} else {
 		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, iOffset, 0, 0);
-		g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
+		//g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
 	}
 
 	// If it's a late load, there might be the chance there are players already on the server. Just
