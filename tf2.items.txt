@@ -6,9 +6,9 @@
 		{
 			"GiveNamedItem"
 			{
-				"windows"	"461"
-				"linux"	"469"
-				"mac"	"469"
+				"windows"	"460"
+				"linux"	"468"
+				"mac"	"468"
 			}
 		}
 		"Signatures"
