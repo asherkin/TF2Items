@@ -67,7 +67,13 @@ class CopyFile(Command):
 		shutil.copy(self.fromFile, self.toPath)
 
 
-folders = [['addons', 'sourcemod', 'extensions'], ['addons', 'sourcemod', 'configs'], ['addons', 'sourcemod', 'gamedata'], ['addons', 'sourcemod', 'scripting', 'include']]
+folders = [
+		['addons', 'sourcemod', 'extensions'], 
+		['addons', 'sourcemod', 'configs'], 
+		['addons', 'sourcemod', 'gamedata'], 
+		['addons', 'sourcemod', 'scripting', 'include']
+	]
+
 
 #Setup
 job.AddCommand(DestroyPath(os.path.join(AMBuild.outputFolder, 'package')))
@@ -90,7 +96,14 @@ bincopies = []
 def AddNormalLibrary(name, dest):
 	dest = os.path.join('addons', 'sourcemod', dest)
 	bincopies.append(CopyFile(os.path.join('..', name, name + osutil.SharedLibSuffix()), dest))
-	#pdb_list.append(name + '\\' + name + '.pdb')
+	
+	# Each platform's version of dump_syms needs the path in a different format.
+	if AMBuild.target['platform'] == 'linux':
+		debug_info.append(name + '/' + name + '.so')
+	elif AMBuild.target['platform'] == 'darwin':
+		debug_info.append(name + '/' + name + '.dylib.dSYM')
+	elif AMBuild.target['platform'] == 'windows':
+		debug_info.append(name + '\\' + name + '.pdb')
 
 def AddHL2Library(name, dest):
 	for i in SM.sdkInfo:
@@ -99,15 +112,14 @@ def AddHL2Library(name, dest):
 			continue
 		AddNormalLibrary(name + '.ext.' + sdk['ext'], dest)
 
-#pdb_list = []
+debug_info = []
 
 AddHL2Library('tf2items', 'extensions')
 
 job.AddCommandGroup(bincopies)
-
-#if AMBuild.target['platform'] == 'windows':
-#	pdblog = open(os.path.join(AMBuild.outputFolder, 'pdblog.txt'), 'wt')
-#	for pdb in pdb_list:
-#		pdblog.write(pdb + '\n')
-#	pdblog.close()
+	
+pdblog = open(os.path.join(AMBuild.outputFolder, 'pdblog.txt'), 'wt')
+for pdb in debug_info:
+	pdblog.write(pdb + '\n')
+pdblog.close()
 
