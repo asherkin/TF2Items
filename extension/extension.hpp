@@ -217,7 +217,6 @@ static cell_t TF2Items_GetCurrentSlot(IPluginContext *pContext, const cell_t *pa
 CBaseEntity * GetCBaseEntityFromIndex(int p_iEntity, bool p_bOnlyPlayers);
 int GetIndexFromCBaseEntity(CBaseEntity * p_hEntity);
 TScriptedItemOverride * GetScriptedItemOverrideFromHandle(cell_t cellHandle, IPluginContext *pContext=NULL);
-int GetLoadoutSlot(CEconItemView *thisptr, int iClass);
 
 extern HandleType_t g_ScriptedItemOverrideHandleType;
 extern TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
