@@ -6,19 +6,9 @@
 		{
 			"GiveNamedItem"
 			{
-				"windows"	"461"
-				"linux"	"469"
-				"mac"	"469"
-			}
-		}
-		"Signatures"
-		{
-			"ValidateWeapons"
-			{
-				"library"		"server"
-				"windows"		"\x83\xEC\x2A\x33\xC0\x56\x89\x44\x24\x10"
-				"linux"			"@_ZN9CTFPlayer15ValidateWeaponsEP19TFPlayerClassData_tb"
-				"mac"			"@_ZN9CTFPlayer15ValidateWeaponsEP19TFPlayerClassData_tb"
+				"windows"	"464"
+				"linux"	"471"
+				"mac"	"471"
 			}
 		}
 	}
