@@ -573,6 +573,19 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 	tempItem = SH_MCALL(pEntity, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, ((pScriptedItemOverride->m_bFlags & FORCE_GENERATION) == FORCE_GENERATION));
 
 	if (tempItem == NULL) {
+		g_pSM->LogError(myself, "---------------------------------------");
+		g_pSM->LogError(myself, ">>> szClassname = %s", strWeaponClassname);
+		g_pSM->LogError(myself, ">>> iItemDefinitionIndex = %u", hScriptCreatedItem.m_iItemDefinitionIndex);
+		g_pSM->LogError(myself, ">>> iEntityQuality = %u", hScriptCreatedItem.m_iEntityQuality);
+		g_pSM->LogError(myself, ">>> iEntityLevel = %u", hScriptCreatedItem.m_iEntityLevel);
+		g_pSM->LogError(myself, "---------------------------------------");
+		for (int i = 0; i < ((hScriptCreatedItem.m_Attributes.Count() > 16)?0:hScriptCreatedItem.m_Attributes.Count()); i++)
+		{
+			g_pSM->LogError(myself, ">>> iAttributeDefinitionIndex = %u", hScriptCreatedItem.m_Attributes.Element(i).m_iAttributeDefinitionIndex);
+			g_pSM->LogError(myself, ">>> flValue = %f", hScriptCreatedItem.m_Attributes.Element(i).m_flValue);
+			g_pSM->LogError(myself, "---------------------------------------");
+		}
+
 		return pContext->ThrowNativeError("Item is NULL. File a bug report if you are sure you set all the data correctly. (Try the FORCE_GENERATION flag.)");
 	}
 
