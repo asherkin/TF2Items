@@ -280,10 +280,7 @@ class SM:
 					try:
 						os.lstat(link)
 					except:
-						if vboxhack == 1:
-							job.AddCommand(command.DirectCommand(['cp', '-f', target, link]))
-						else:
-							job.AddCommand(SymlinkCommand(link, target))
+						job.AddCommand(SymlinkCommand(link, target))
 			elif sdk in ['l4d', 'l4d2']:
 				for i in ['tier1_i486.a', 'mathlib_i486.a', 'libvstdlib.so', 'libtier0.so']:
 					link = os.path.join(workFolder, i)
