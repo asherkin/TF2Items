@@ -8,6 +8,9 @@ for i in SM.sdkInfo:
 
 	compiler = SM.DefaultHL2Compiler('extension', i)
 	
+	compiler['CXXINCLUDES'].append(os.path.join(AMBuild.sourceFolder, 'extension'))
+	compiler['CXXINCLUDES'].append(os.path.join(AMBuild.sourceFolder, 'extension', 'sdk'))
+	
 	compiler['CXXINCLUDES'].append(os.path.join(AMBuild.cache['SOURCEMOD14'], 'public'))
 	compiler['CXXINCLUDES'].append(os.path.join(AMBuild.cache['SOURCEMOD14'], 'public', 'sourcepawn'))
 
@@ -27,5 +30,5 @@ for i in SM.sdkInfo:
 	
 	SM.PostSetupHL2Job(extension, binary, i)
 	SM.AutoVersion('extension', binary)
+	SM.ExtractDebugInfo(extension, binary)
 	binary.SendToJob()
-	SM.StripBinary(extension, binary)
