@@ -24,7 +24,7 @@ def PerformReversioning():
 			return False
 	cache.CacheVariable('cset', cset)
 
-	productFile = open(os.path.join(AMBuild.sourceFolder, 'buildbot', 'product.version'), 'r')
+	productFile = open(os.path.join(AMBuild.sourceFolder, 'product.version'), 'r')
 	productContents = productFile.read()
 	productFile.close()
 	m = re.match('(\d+)\.(\d+)\.(\d+)(.*)', productContents)
