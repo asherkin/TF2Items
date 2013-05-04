@@ -8,8 +8,8 @@ for i in SM.sdkInfo:
 
 	compiler = SM.DefaultHL2Compiler('extension', i)
 	
-	compiler['CXXINCLUDES'].append(os.path.join(AMBuild.cache['SOURCEMOD13'], 'public'))
-	compiler['CXXINCLUDES'].append(os.path.join(AMBuild.cache['SOURCEMOD13'], 'public', 'sourcepawn'))
+	compiler['CXXINCLUDES'].append(os.path.join(AMBuild.cache['SOURCEMOD14'], 'public'))
+	compiler['CXXINCLUDES'].append(os.path.join(AMBuild.cache['SOURCEMOD14'], 'public', 'sourcepawn'))
 
 	if compiler.cc.name == 'gcc':
 		compiler['CFLAGS'].append('-Wno-parentheses')
