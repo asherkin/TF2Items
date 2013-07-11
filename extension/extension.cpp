@@ -145,7 +145,6 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 	{
 		g_pSM->LogMessage(myself, ">>> m_iAttributeDefinitionIndex = %u", cscript->m_Attributes.Element(i).m_iAttributeDefinitionIndex);
 		g_pSM->LogMessage(myself, ">>> m_flValue = %f", cscript->m_Attributes.Element(i).m_flValue);
-		g_pSM->LogMessage(myself, ">>> m_bSetBonus = %s", cscript->m_Attributes.Element(i).m_bSetBonus?"true":"false");
 		g_pSM->LogMessage(myself, "---------------------------------------");
 	}
 	g_pSM->LogMessage(myself, ">>> Size of CEconItemView = %d", sizeof(CEconItemView));

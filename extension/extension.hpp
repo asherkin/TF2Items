@@ -77,8 +77,6 @@ public:
 	uint16 m_iAttributeDefinitionIndex; //4
 	float m_flValue; //8
 	float m_flInitialValue; //12
-	int32 m_nRefundableCurrency; //16
-	bool m_bSetBonus; //20
 };
 
 class CEconItemView
