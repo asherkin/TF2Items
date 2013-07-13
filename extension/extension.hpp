@@ -41,6 +41,7 @@
 #define FORCE_GENERATION		(1 << 6)
 
 class CBasePlayer;
+class IEconItemAttributeIterator;
 
 template< class T, class I = int >
 class CUtlMemoryTF2Items : public CUtlMemory< T, I >

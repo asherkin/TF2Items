@@ -10,6 +10,18 @@
 				"linux"	"477"
 				"mac"	"477"
 			}
+			"ItemIterateAttributes"
+			{
+				"windows"	"16"
+				"linux"	"17"
+				"mac"	"17"
+			}
+			"AttributeIterateAttributes"
+			{
+				"windows"	"22"
+				"linux"	"29"
+				"mac"	"29"
+			}
 		}
 	}
 }
