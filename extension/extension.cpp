@@ -612,6 +612,7 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 static cell_t TF2Items_CreateItem(IPluginContext *pContext, const cell_t *params)
 {
 	TScriptedItemOverride * pScriptedItemOverride = new TScriptedItemOverride;
+	memset(pScriptedItemOverride, 0, sizeof(TScriptedItemOverride));
 	pScriptedItemOverride->m_bFlags = params[1];
 
 	HandleError hndlError;
