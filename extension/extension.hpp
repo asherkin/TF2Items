@@ -37,11 +37,10 @@
 #define OVERRIDE_ITEM_QUALITY	(1 << 3)
 #define OVERRIDE_ATTRIBUTES		(1 << 4)
 
-#define PRESERVE_ATTRIBUTES		(1 << 5)
+//#define PRESERVE_ATTRIBUTES		(1 << 5)
 #define FORCE_GENERATION		(1 << 6)
 
 class CBasePlayer;
-class IEconItemAttributeIterator;
 
 template< class T, class I = int >
 class CUtlMemoryTF2Items : public CUtlMemory< T, I >
