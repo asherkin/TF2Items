@@ -90,6 +90,9 @@ job.AddCommand(CopyFile(os.path.join(AMBuild.sourceFolder, 'tf2.items.txt'),
 						
 job.AddCommand(CopyFile(os.path.join(AMBuild.sourceFolder, 'tf2items.weapons.example.txt'),
                         os.path.join('addons', 'sourcemod', 'configs')))
+						
+job.AddCommand(CopyFile(os.path.join(AMBuild.sourceFolder, 'tf2items.autoload'),
+                        os.path.join('addons', 'sourcemod', 'extensions')))
 
 bincopies = []
 
