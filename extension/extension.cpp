@@ -264,6 +264,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 						g_ShouldHookIterateAttributes = true;
 					}
 
+					newitem.m_Attributes.RemoveAll();
 					newitem.m_Attributes.AddMultipleToTail(pScriptedItemOverride->m_iCount, pScriptedItemOverride->m_Attributes);
 				}
 
