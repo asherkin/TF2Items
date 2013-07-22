@@ -115,7 +115,11 @@ void Hook_IterateAttributes(IEconItemAttributeIterator *iterator) {
 	if (item == NULL || g_pIterateAttributesFunc == NULL) {
 		RETURN_META(MRES_IGNORED);
 	}
-	
+
+	if (item->m_iAccountID != 0xFFFFFFFF) {
+		RETURN_META(MRES_IGNORED);
+	}
+
 	void *attributes = &item->m_pVTable_Attributes;
 
 #ifndef WIN32
@@ -163,8 +167,12 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 		
 		void *address = *(void **)((intptr_t)g_pVTable + (4 * g_iItemIterateAttributesOffset));
 		address = (void *)((intptr_t)address + g_iAttributeIterateAttributesOffset);
-		intptr_t offset = (intptr_t)(*(void **)address);
-		g_pIterateAttributesFunc = (IterateAttributesFunc)((intptr_t)address + offset + sizeof(intptr_t));
+		if (*(uint8 *)((intptr_t)address - 1) == 0xE8) {
+			intptr_t offset = (intptr_t)(*(void **)address);
+			g_pIterateAttributesFunc = (IterateAttributesFunc)((intptr_t)address + offset + sizeof(intptr_t));
+		} else {
+			g_pSM->LogError(myself, "Something is wrong with the gamedata! Some functionality has been disabled.");
+		}
 	}
 
 #ifdef TF2ITEMS_DEBUG_ITEMS
@@ -303,7 +311,13 @@ CBaseEntity *Hook_GiveNamedItem_Post(char const *szClassname, int iSubType, CEco
 	if (g_ShouldHookIterateAttributes)
 	{
 		CEconItemView *realitem = (CEconItemView *)((intptr_t)pItemEntiy + EconEntity_ItemOffset);
-		SH_ADD_MANUALHOOK(MHook_IterateAttributes, realitem, SH_STATIC(Hook_IterateAttributes), false);
+
+		if (realitem->m_iAccountID != 0xFFFFFFFF)
+		{
+			SH_ADD_MANUALHOOK(MHook_IterateAttributes, realitem, SH_STATIC(Hook_IterateAttributes), false);
+			realitem->m_iAccountID = 0xFFFFFFFF;
+		}
+
 		g_ShouldHookIterateAttributes = false;
 	}
 	
@@ -713,7 +727,12 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 	if (!(pScriptedItemOverride->m_bFlags & PRESERVE_ATTRIBUTES))
 	{
 		CEconItemView *realitem = (CEconItemView *)((intptr_t)tempItem + EconEntity_ItemOffset);
-		SH_ADD_MANUALHOOK(MHook_IterateAttributes, realitem, SH_STATIC(Hook_IterateAttributes), false);
+
+		if (realitem->m_iAccountID != 0xFFFFFFFF)
+		{
+			SH_ADD_MANUALHOOK(MHook_IterateAttributes, realitem, SH_STATIC(Hook_IterateAttributes), false);
+			realitem->m_iAccountID = 0xFFFFFFFF;
+		}
 	}
 
 	int entIndex = gamehelpers->EntityToBCompatRef(tempItem);
