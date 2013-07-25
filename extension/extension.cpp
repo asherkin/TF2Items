@@ -48,7 +48,6 @@ SMEXT_LINK(&g_TF2Items);
 
 SH_DECL_HOOK2_void(IServerGameClients, ClientPutInServer, SH_NOATTRIB, 0, edict_t *, char const *);
 SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CEconItemView *, bool);
-SH_DECL_MANUALHOOK1_void(MHook_IterateAttributes, 0, 0, 0, IEconItemAttributeIterator *);
 
 ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
@@ -64,8 +63,6 @@ int GiveNamedItem_bot_Hook = 0;
 int GiveNamedItem_player_Hook_Post = 0;
 int GiveNamedItem_bot_Hook_Post = 0;
 int ClientPutInServer_Hook = 0;
-
-int EconEntity_ItemOffset = 0;
 
 IForward *g_pForwardGiveItem = NULL;
 IForward *g_pForwardGiveItem_Post = NULL;
@@ -98,41 +95,6 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 	{ NULL,							NULL }
 };
 
-int g_iItemIterateAttributesOffset = 0;
-int g_iAttributeIterateAttributesOffset = 0;
-
-#ifndef WIN32
-typedef void (*IterateAttributesFunc)(void *, IEconItemAttributeIterator *iterator);
-#else
-typedef void (__fastcall *IterateAttributesFunc)(void *, void *, IEconItemAttributeIterator *iterator);
-#endif
-
-IterateAttributesFunc g_pIterateAttributesFunc = NULL;
-
-void Hook_IterateAttributes(IEconItemAttributeIterator *iterator) {
-	CEconItemView *item = META_IFACEPTR(CEconItemView);
-	
-	if (item == NULL || g_pIterateAttributesFunc == NULL) {
-		RETURN_META(MRES_IGNORED);
-	}
-
-	if (item->m_iAccountID != 0xFFFFFFFF) {
-		RETURN_META(MRES_IGNORED);
-	}
-
-	void *attributes = &item->m_pVTable_Attributes;
-
-#ifndef WIN32
-	g_pIterateAttributesFunc(attributes, iterator);
-#else
-	g_pIterateAttributesFunc(attributes, NULL, iterator);
-#endif
-
-	RETURN_META(MRES_SUPERCEDE);
-}
-
-bool g_ShouldHookIterateAttributes = false;
-
 CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItemView *cscript, bool b)
 {
 	#if defined TF2ITEMS_DEBUG_HOOKING || defined TF2ITEMS_DEBUG_HOOKING_GNI
@@ -164,15 +126,6 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 	{
 		g_pVTable = cscript->m_pVTable;
 		g_pVTable_Attributes = cscript->m_pVTable_Attributes;
-		
-		void *address = *(void **)((intptr_t)g_pVTable + (4 * g_iItemIterateAttributesOffset));
-		address = (void *)((intptr_t)address + g_iAttributeIterateAttributesOffset);
-		if (*(uint8 *)((intptr_t)address - 1) == 0xE8) {
-			intptr_t offset = (intptr_t)(*(void **)address);
-			g_pIterateAttributesFunc = (IterateAttributesFunc)((intptr_t)address + offset + sizeof(intptr_t));
-		} else {
-			g_pSM->LogError(myself, "Something is wrong with the gamedata! Some functionality has been disabled.");
-		}
 	}
 
 #ifdef TF2ITEMS_DEBUG_ITEMS
@@ -269,7 +222,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 
 					if (!(pScriptedItemOverride->m_bFlags & PRESERVE_ATTRIBUTES))
 					{
-						g_ShouldHookIterateAttributes = true;
+						newitem.m_bDoNotIterateStaticAttributes = true;
 					}
 
 					newitem.m_Attributes.RemoveAll();
@@ -307,19 +260,6 @@ CBaseEntity *Hook_GiveNamedItem_Post(char const *szClassname, int iSubType, CEco
 
 	if (!player || !szClassname || !cscript || !pItemEntiy)
 		RETURN_META_VALUE(MRES_IGNORED, pItemEntiy);
-	
-	if (g_ShouldHookIterateAttributes)
-	{
-		CEconItemView *realitem = (CEconItemView *)((intptr_t)pItemEntiy + EconEntity_ItemOffset);
-
-		if (realitem->m_iAccountID != 0xFFFFFFFF)
-		{
-			SH_ADD_MANUALHOOK(MHook_IterateAttributes, realitem, SH_STATIC(Hook_IterateAttributes), false);
-			realitem->m_iAccountID = 0xFFFFFFFF;
-		}
-
-		g_ShouldHookIterateAttributes = false;
-	}
 	
 	int client = gamehelpers->EntityToBCompatRef(player);
 	int iEntityIndex = gamehelpers->EntityToBCompatRef(pItemEntiy);
@@ -360,6 +300,8 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 
 	copymember(m_pVTable_Attributes);
 	copymember(m_pAttributeManager);
+	
+	copymember(m_bDoNotIterateStaticAttributes);
 
 	newitem->m_Attributes = olditem->m_Attributes;
 	
@@ -475,26 +417,6 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, iOffset, 0, 0);
 		g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
 	}
-
-	if (!g_pGameConf->GetOffset("ItemIterateAttributes", &iOffset))
-    {
-        snprintf(error, maxlen, "Could not find offset for ItemIterateAttributes");
-        return false;
-    } else {
-		g_iItemIterateAttributesOffset = iOffset;
-        SH_MANUALHOOK_RECONFIGURE(MHook_IterateAttributes, iOffset, 0, 0);
-        g_pSM->LogMessage(myself, "\"ItemIterateAttributes\" offset = %d", iOffset);
-    }
-
-    if (!g_pGameConf->GetOffset("AttributeIterateAttributes", &g_iAttributeIterateAttributesOffset))
-    {
-    	snprintf(error, maxlen, "Could not find offset for AttributeIterateAttributes");
-    	return false;
-    }
-	
-	sm_sendprop_info_t prop;
-	gamehelpers->FindSendPropInfo("CEconEntity", "m_Item", &prop);
-	EconEntity_ItemOffset = prop.actual_offset;
 
 	// If it's a late load, there might be the chance there are players already on the server. Just
 	// check for this and try to hook them instead of waiting for the next player. -- Damizean
@@ -692,11 +614,16 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 	hScriptCreatedItem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
 	hScriptCreatedItem.m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
 	hScriptCreatedItem.m_bInitialized = true;
+	
+	if (!(pScriptedItemOverride->m_bFlags & PRESERVE_ATTRIBUTES))
+	{
+		hScriptCreatedItem.m_bDoNotIterateStaticAttributes = true;
+	}
 
 #ifndef NO_FORCE_QUALITY
 	if (hScriptCreatedItem.m_iEntityQuality == 0 && hScriptCreatedItem.m_iAttributesCount > 0)
 	{
-		hScriptCreatedItem.m_iEntityQuality = 3;
+		hScriptCreatedItem.m_iEntityQuality = 6;
 	}
 #endif
 
@@ -721,18 +648,6 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 		}
 
 		return pContext->ThrowNativeError("Item is NULL. File a bug report if you are sure you set all the data correctly. (Try the FORCE_GENERATION flag.)");
-	}
-	
-	
-	if (!(pScriptedItemOverride->m_bFlags & PRESERVE_ATTRIBUTES))
-	{
-		CEconItemView *realitem = (CEconItemView *)((intptr_t)tempItem + EconEntity_ItemOffset);
-
-		if (realitem->m_iAccountID != 0xFFFFFFFF)
-		{
-			SH_ADD_MANUALHOOK(MHook_IterateAttributes, realitem, SH_STATIC(Hook_IterateAttributes), false);
-			realitem->m_iAccountID = 0xFFFFFFFF;
-		}
 	}
 
 	int entIndex = gamehelpers->EntityToBCompatRef(tempItem);

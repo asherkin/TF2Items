@@ -41,7 +41,6 @@
 #define FORCE_GENERATION		(1 << 6)
 
 class CBasePlayer;
-class IEconItemAttributeIterator;
 
 template< class T, class I = int >
 class CUtlMemoryTF2Items : public CUtlMemory< T, I >
@@ -102,6 +101,8 @@ public:
 	void *m_pVTable_Attributes; //48
 	CUtlVector<CEconItemAttribute, CUtlMemoryTF2Items<CEconItemAttribute> > m_Attributes; //52 (56, 60, 64, 68)
 	void *m_pAttributeManager; //72
+	
+	bool m_bDoNotIterateStaticAttributes; //76
 };
 
 struct TScriptedItemOverride
