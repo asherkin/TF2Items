@@ -33,11 +33,13 @@
  * @file smsdk_config.hpp
  * @brief Contains macros for configuring basic extension information.
  */
+ 
+ #include "version.h"
 
 /* Basic information exposed publicly */
 #define SMEXT_CONF_NAME			"TF2Items"
 #define SMEXT_CONF_DESCRIPTION	"TF2 Item Modifier"
-#define SMEXT_CONF_VERSION		"1.5.3"
+#define SMEXT_CONF_VERSION		SM_VERSION
 #define SMEXT_CONF_AUTHOR		"Asherkin & AzuiSleet & Damizean"
 #define SMEXT_CONF_URL			"http://limetech.org/"
 #define SMEXT_CONF_LOGTAG		"TF2ITEMS"
