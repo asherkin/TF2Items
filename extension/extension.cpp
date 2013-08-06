@@ -872,6 +872,11 @@ static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *para
 		{
 			return pContext->ThrowNativeError("Attribute index out of bounds: %i [0 ... 15]", params[2]);
 		}
+		
+		if (params[3] == 0)
+		{
+			return pContext->ThrowNativeError("Cowardly refusing to add invalid attribute index \"0\" to an item.");
+		}
 
 		pScriptedItemOverride->m_Attributes[params[2]].m_iAttributeDefinitionIndex = params[3];
 		pScriptedItemOverride->m_Attributes[params[2]].m_flValue = sp_ctof(params[4]);
