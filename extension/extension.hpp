@@ -96,13 +96,20 @@ public:
 	uint32 m_iInventoryPosition; //36
 
 	void *m_pAlternateItemData; //40
-	bool m_bInitialized; //44
 
-	void *m_pVTable_Attributes; //48
-	CUtlVector<CEconItemAttribute, CUtlMemoryTF2Items<CEconItemAttribute> > m_Attributes; //52 (56, 60, 64, 68)
-	void *m_pAttributeManager; //72
+	bool	m_bColorInit; //44
+	uint32	m_unHalloweenRGB; //48
+	uint32	m_unHalloweenAltRGB; //52
+	uint32	m_unRGB; //56
+	uint32	m_unAltRGB; //60
+
+	bool m_bInitialized; //64
+
+	void *m_pVTable_Attributes; //68
+	CUtlVector<CEconItemAttribute, CUtlMemoryTF2Items<CEconItemAttribute> > m_Attributes; //72 (76, 80, 84, 88)
+	void *m_pAttributeManager; //92
 	
-	bool m_bDoNotIterateStaticAttributes; //76
+	bool m_bDoNotIterateStaticAttributes; //96
 };
 
 struct TScriptedItemOverride

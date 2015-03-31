@@ -296,6 +296,13 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	copymember(m_iInventoryPosition);
 
 	copymember(m_pAlternateItemData);
+
+	copymember(m_bColorInit);
+	copymember(m_unHalloweenRGB);
+	copymember(m_unHalloweenAltRGB);
+	copymember(m_unRGB);
+	copymember(m_unAltRGB);
+
 	copymember(m_bInitialized);
 
 	copymember(m_pVTable_Attributes);
