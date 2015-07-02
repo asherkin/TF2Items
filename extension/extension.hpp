@@ -79,6 +79,29 @@ public:
 	int32 m_nRefundableCurrency; //12
 };
 
+#pragma pack(push, 4)
+
+class CAttributeList
+{
+public:
+	void *m_pVTable;
+
+	CUtlVector<CEconItemAttribute, CUtlMemoryTF2Items<CEconItemAttribute> > m_Attributes;
+	void *m_pAttributeManager;
+
+
+public:
+	CAttributeList& operator=( const CAttributeList &other )
+	{
+		m_pVTable = other.m_pVTable;
+
+		m_Attributes = other.m_Attributes;
+		m_pAttributeManager = other.m_pAttributeManager;
+
+		return *this;
+	}
+};
+
 class CEconItemView
 {
 public:
@@ -105,12 +128,12 @@ public:
 
 	bool m_bInitialized; //64
 
-	void *m_pVTable_Attributes; //68
-	CUtlVector<CEconItemAttribute, CUtlMemoryTF2Items<CEconItemAttribute> > m_Attributes; //72 (76, 80, 84, 88)
-	void *m_pAttributeManager; //92
+	CAttributeList m_AttributeList; //68 (72, 76, 80, 84, 88, 92)
 	
 	bool m_bDoNotIterateStaticAttributes; //96
 };
+
+#pragma pack(pop)
 
 struct TScriptedItemOverride
 {

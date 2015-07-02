@@ -125,7 +125,7 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 	if (g_pVTable == NULL)
 	{
 		g_pVTable = cscript->m_pVTable;
-		g_pVTable_Attributes = cscript->m_pVTable_Attributes;
+		g_pVTable_Attributes = cscript->m_AttributeList.m_pVTable;
 	}
 
 #ifdef TF2ITEMS_DEBUG_ITEMS
@@ -152,15 +152,15 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 	g_pSM->LogMessage(myself, ">>> m_iPosition = %u", cscript->m_iInventoryPosition);
 	g_pSM->LogMessage(myself, ">>> m_bInitialized = %s", cscript->m_bInitialized?"true":"false");
 	g_pSM->LogMessage(myself, "---------------------------------------");
-	for (int i = 0; i < ((cscript->m_Attributes.Count() > 16)?0:cscript->m_Attributes.Count()); i++)
+	for (int i = 0; i < ((cscript->m_AttributeList.m_Attributes.Count() > 16)?0:cscript->m_AttributeList.m_Attributes.Count()); i++)
 	{
-		g_pSM->LogMessage(myself, ">>> m_iAttributeDefinitionIndex = %u", cscript->m_Attributes.Element(i).m_iAttributeDefinitionIndex);
-		g_pSM->LogMessage(myself, ">>> m_flValue = %f", cscript->m_Attributes.Element(i).m_flValue);
+		g_pSM->LogMessage(myself, ">>> m_iAttributeDefinitionIndex = %u", cscript->m_AttributeList.m_Attributes.Element(i).m_iAttributeDefinitionIndex);
+		g_pSM->LogMessage(myself, ">>> m_flValue = %f", cscript->m_AttributeList.m_Attributes.Element(i).m_flValue);
 		g_pSM->LogMessage(myself, "---------------------------------------");
 	}
 	g_pSM->LogMessage(myself, ">>> Size of CEconItemView = %d", sizeof(CEconItemView));
 	g_pSM->LogMessage(myself, ">>> Size of CEconItemAttribute = %d", sizeof(CEconItemAttribute));
-	g_pSM->LogMessage(myself, ">>> No. of Attributes = %d", cscript->m_Attributes.Count());
+	g_pSM->LogMessage(myself, ">>> No. of Attributes = %d", cscript->m_AttributeList.m_Attributes.Count());
 	g_pSM->LogMessage(myself, "---------------------------------------");
 #endif
 
@@ -225,8 +225,8 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 						newitem.m_bDoNotIterateStaticAttributes = true;
 					}
 
-					newitem.m_Attributes.RemoveAll();
-					newitem.m_Attributes.AddMultipleToTail(pScriptedItemOverride->m_iCount, pScriptedItemOverride->m_Attributes);
+					newitem.m_AttributeList.m_Attributes.RemoveAll();
+					newitem.m_AttributeList.m_Attributes.AddMultipleToTail(pScriptedItemOverride->m_iCount, pScriptedItemOverride->m_Attributes);
 				}
 
 				if (cscript->m_iEntityQuality == 0)
@@ -305,12 +305,10 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 
 	copymember(m_bInitialized);
 
-	copymember(m_pVTable_Attributes);
-	copymember(m_pAttributeManager);
+	// copy ctor so the CUtlVector is copied correctly
+	newitem->m_AttributeList = olditem->m_AttributeList;
 	
 	copymember(m_bDoNotIterateStaticAttributes);
-
-	newitem->m_Attributes = olditem->m_Attributes;
 	
 	/*
 	META_CONPRINTF("Copying attributes...\n");
@@ -612,14 +610,15 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 	CEconItemView hScriptCreatedItem;
 	memset(&hScriptCreatedItem, 0, sizeof(CEconItemView));
 
+	// initialize the vtable pointers
 	hScriptCreatedItem.m_pVTable = g_pVTable;
-	hScriptCreatedItem.m_pVTable_Attributes = g_pVTable_Attributes;
+	hScriptCreatedItem.m_AttributeList.m_pVTable = g_pVTable_Attributes;
 
 	char *strWeaponClassname = pScriptedItemOverride->m_strWeaponClassname;
 	hScriptCreatedItem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;
 	hScriptCreatedItem.m_iEntityLevel = pScriptedItemOverride->m_iEntityLevel;
 	hScriptCreatedItem.m_iEntityQuality = pScriptedItemOverride->m_iEntityQuality;
-	hScriptCreatedItem.m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
+	hScriptCreatedItem.m_AttributeList.m_Attributes.CopyArray(pScriptedItemOverride->m_Attributes, pScriptedItemOverride->m_iCount);
 	hScriptCreatedItem.m_bInitialized = true;
 	
 	if (!(pScriptedItemOverride->m_bFlags & PRESERVE_ATTRIBUTES))
@@ -647,10 +646,10 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 		g_pSM->LogError(myself, ">>> iEntityLevel = %u", hScriptCreatedItem.m_iEntityLevel);
 		g_pSM->LogError(myself, "---------------------------------------");
 
-		for (int i = 0; i < ((hScriptCreatedItem.m_Attributes.Count() > 16) ? 0 : hScriptCreatedItem.m_Attributes.Count()); i++)
+		for (int i = 0; i < ((hScriptCreatedItem.m_AttributeList.m_Attributes.Count() > 16) ? 0 : hScriptCreatedItem.m_AttributeList.m_Attributes.Count()); i++)
 		{
-			g_pSM->LogError(myself, ">>> iAttributeDefinitionIndex = %u", hScriptCreatedItem.m_Attributes.Element(i).m_iAttributeDefinitionIndex);
-			g_pSM->LogError(myself, ">>> flValue = %f", hScriptCreatedItem.m_Attributes.Element(i).m_flValue);
+			g_pSM->LogError(myself, ">>> iAttributeDefinitionIndex = %u", hScriptCreatedItem.m_AttributeList.m_Attributes.Element(i).m_iAttributeDefinitionIndex);
+			g_pSM->LogError(myself, ">>> flValue = %f", hScriptCreatedItem.m_AttributeList.m_Attributes.Element(i).m_flValue);
 			g_pSM->LogError(myself, "---------------------------------------");
 		}
 
