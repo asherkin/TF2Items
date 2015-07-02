@@ -31,5 +31,8 @@
     <ClInclude Include="..\sdk\smsdk_ext.hpp">
       <Filter>SourceMod SDK</Filter>
     </ClInclude>
+    <ClInclude Include="..\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

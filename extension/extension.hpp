@@ -81,6 +81,21 @@ public:
 
 #pragma pack(push, 4)
 
+class CEconItem;
+
+class CEconItemHandle
+{
+public:
+	void *m_pVTable;
+
+	CEconItem *m_pItem;
+
+	int32 m_iUnk1;
+	int32 m_iUnk2;
+
+	uint64 m_SteamID;
+};
+
 class CAttributeList
 {
 public:
@@ -117,20 +132,30 @@ public:
 	uint32 m_iItemIDLow; //28
 	uint32 m_iAccountID; //32
 	uint32 m_iInventoryPosition; //36
-
-	void *m_pAlternateItemData; //40
-
-	bool	m_bColorInit; //44
-	uint32	m_unHalloweenRGB; //48
-	uint32	m_unHalloweenAltRGB; //52
-	uint32	m_unRGB; //56
-	uint32	m_unAltRGB; //60
-
-	bool m_bInitialized; //64
-
-	CAttributeList m_AttributeList; //68 (72, 76, 80, 84, 88, 92)
 	
-	bool m_bDoNotIterateStaticAttributes; //96
+	CEconItemHandle m_ItemHandle; //40 (44, 48, 52, 56, 60)
+
+	bool	m_bColorInit; //64
+	uint32	m_unHalloweenRGB; //68
+	uint32	m_unHalloweenAltRGB; //72
+	uint32	m_unRGB; //76
+	uint32	m_unAltRGB; //80
+
+	// no love given here
+	uint32 m_Unk1; //84
+	uint32 m_Unk2; //88
+	uint32 m_Unk3; //92
+	uint32 m_Unk4; //94
+	uint32 m_Unk5; //100
+
+	int32 m_iTeamNumber; //104
+
+	bool m_bInitialized; //108
+
+	CAttributeList m_AttributeList; //112 (116, 120, 124, 128, 132, 136)
+	CAttributeList m_NetworkedDynamicAttributesForDemos; //140 (144, 148, 152, 156, 160, 164)
+
+	bool m_bDoNotIterateStaticAttributes; //168
 };
 
 #pragma pack(pop)

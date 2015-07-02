@@ -295,7 +295,7 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	copymember(m_iAccountID);
 	copymember(m_iInventoryPosition);
 
-	copymember(m_pAlternateItemData);
+	copymember(m_ItemHandle);
 
 	copymember(m_bColorInit);
 	copymember(m_unHalloweenRGB);
@@ -303,10 +303,19 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	copymember(m_unRGB);
 	copymember(m_unAltRGB);
 
+	copymember(m_Unk1);
+	copymember(m_Unk2);
+	copymember(m_Unk3);
+	copymember(m_Unk4);
+	copymember(m_Unk5);
+
+	copymember(m_iTeamNumber);
+
 	copymember(m_bInitialized);
 
 	// copy ctor so the CUtlVector is copied correctly
 	newitem->m_AttributeList = olditem->m_AttributeList;
+	newitem->m_NetworkedDynamicAttributesForDemos = olditem->m_NetworkedDynamicAttributesForDemos;
 	
 	copymember(m_bDoNotIterateStaticAttributes);
 	
@@ -613,6 +622,7 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 	// initialize the vtable pointers
 	hScriptCreatedItem.m_pVTable = g_pVTable;
 	hScriptCreatedItem.m_AttributeList.m_pVTable = g_pVTable_Attributes;
+	hScriptCreatedItem.m_NetworkedDynamicAttributesForDemos.m_pVTable = g_pVTable_Attributes;
 
 	char *strWeaponClassname = pScriptedItemOverride->m_strWeaponClassname;
 	hScriptCreatedItem.m_iItemDefinitionIndex = pScriptedItemOverride->m_iItemDefinitionIndex;

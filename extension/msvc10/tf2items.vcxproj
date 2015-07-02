@@ -120,6 +120,7 @@
     <ClInclude Include="..\extension.hpp" />
     <ClInclude Include="..\sdk\smsdk_config.hpp" />
     <ClInclude Include="..\sdk\smsdk_ext.hpp" />
+    <ClInclude Include="..\version.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
