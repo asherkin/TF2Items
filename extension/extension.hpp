@@ -160,6 +160,18 @@ public:
 
 #pragma pack(pop)
 
+static_assert(sizeof(CEconItemView) == 172, "CEconItemView - incorrect size on this compiler");
+static_assert(sizeof(CEconItemHandle) == 24, "CEconItemHandle - incorrect size on this compiler");
+static_assert(sizeof(CAttributeList) == 28, "CAttributeList - incorrect size on this compiler");
+
+// enable to debug memory layout issues
+#if 0
+template<int s> struct Sizer;
+Sizer<sizeof(CEconItemView)> CEconItemViewSize;
+Sizer<sizeof(CEconItemHandle)> CEconItemHandleSize;
+Sizer<sizeof(CAttributeList)> CAttributeListSize;
+#endif
+
 struct TScriptedItemOverride
 {
 	uint8 m_bFlags;									// Flags to what we should override.
