@@ -20,13 +20,10 @@
 /*
  *	Attributions & Thanks:
  *	=====================
- *	AzuiSleet				-	Reversed CEconItemView and released it publicly, along with writing most of the item editing code below.
+ *	AzuiSleet				-	Reversed CEconItemView and released it publicly.
+ *	VoiDeD					-	Helped with fixing attribute removal after the July 10, 2013 update. Most game support updates since.
  *	Damizean				-	Fixed padding for CEconItemView in Linux. Wrote the SourcePawn Interface and the SourceMod item manager.
  *	Voogru					-	Inspiring the creation of this. Helped with fixing and improving the CEconItemView class used after the 119 update.
- *	VoiDeD					-	Helped with fixing attribute removal after the July 10, 2013 update.
- *	Wazz					-	Wrote "Shit not be void" in #sourcemod and revealed that GiveNamedItem returned CBaseEntity *. Helped with improving the CEconItemView class.
- *	Psychonic				-	"How did you write the wearable natives asherkin?" "I got all the code from psychonic, then disregarded it and wrote it from scratch."
- *	MatthiasVance			-	Reminded me to comment out '#define INFINITE_PROBLEMS 1'.
  *	Drunken_F00l			-	Inspiring the creation of this.
  */
 
