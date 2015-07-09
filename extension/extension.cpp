@@ -303,11 +303,12 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	copymember(m_unRGB);
 	copymember(m_unAltRGB);
 
+	copymember(m_pWeaponSkinBase);
+	copymember(m_pWeaponSkinBaseCompositor);
+
 	copymember(m_Unk1);
 	copymember(m_Unk2);
 	copymember(m_Unk3);
-	copymember(m_Unk4);
-	copymember(m_Unk5);
 
 	copymember(m_iTeamNumber);
 

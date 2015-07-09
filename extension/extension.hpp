@@ -41,6 +41,9 @@
 #define FORCE_GENERATION		(1 << 6)
 
 class CBasePlayer;
+class CEconItem;
+class ITexture;
+class ITextureCompositor;
 
 template< class T, class I = int >
 class CUtlMemoryTF2Items : public CUtlMemory< T, I >
@@ -81,7 +84,6 @@ public:
 
 #pragma pack(push, 4)
 
-class CEconItem;
 
 class CEconItemHandle
 {
@@ -90,9 +92,7 @@ public:
 
 	CEconItem *m_pItem;
 
-	int32 m_iUnk1;
-	int32 m_iUnk2;
-
+	int64 m_ulItemID;
 	uint64 m_SteamID;
 };
 
@@ -112,6 +112,7 @@ public:
 
 		m_Attributes = other.m_Attributes;
 		m_pAttributeManager = other.m_pAttributeManager;
+
 
 		return *this;
 	}
@@ -141,12 +142,13 @@ public:
 	uint32	m_unRGB; //76
 	uint32	m_unAltRGB; //80
 
+	ITexture *m_pWeaponSkinBase; //84
+	ITextureCompositor *m_pWeaponSkinBaseCompositor; //88
+
 	// no love given here
-	uint32 m_Unk1; //84
-	uint32 m_Unk2; //88
-	uint32 m_Unk3; //92
-	uint32 m_Unk4; //94
-	uint32 m_Unk5; //100
+	uint32 m_Unk1; //92
+	uint32 m_Unk2; //94
+	uint32 m_Unk3; //100
 
 	int32 m_iTeamNumber; //104
 
