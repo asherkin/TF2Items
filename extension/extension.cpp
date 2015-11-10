@@ -294,11 +294,13 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 
 	copymember(m_ItemHandle);
 
-	copymember(m_bColorInit);
-	copymember(m_unHalloweenRGB);
-	copymember(m_unHalloweenAltRGB);
+	copymember(m_bInitUnk1);
+	copymember(m_bInitUnk2);
+	copymember(m_bInitUnk3);
+
 	copymember(m_unRGB);
 	copymember(m_unAltRGB);
+	copymember(m_unHalloweenRGB);
 
 	copymember(m_iTeamNumber);
 
