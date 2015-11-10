@@ -133,7 +133,7 @@ class SM:
 					self.compiler.AddToListVar('CFLAGS', '-fvisibility=hidden')
 					self.compiler.AddToListVar('CXXFLAGS', '-fvisibility-inlines-hidden')
 				self.compiler.AddToListVar('CFLAGS', '-Wall')
-				self.compiler.AddToListVar('CFLAGS', '-Werror')
+				#self.compiler.AddToListVar('CFLAGS', '-Werror')
 				self.compiler.AddToListVar('CFLAGS', '-Wno-uninitialized')
 				self.compiler.AddToListVar('CFLAGS', '-Wno-unused')
 				self.compiler.AddToListVar('CFLAGS', '-Wno-switch')
@@ -235,6 +235,8 @@ class SM:
 				self.compiler.AddToListVar('CDEFINES', '_WINDOWS')
 
 			#Finish up
+			self.compiler.AddToListVar('CDEFINES', 'NO_HOOK_MALLOC')
+			self.compiler.AddToListVar('CDEFINES', 'NO_MALLOC_OVERRIDE')
 			self.compiler.AddToListVar('CDEFINES', 'SOURCEMOD_BUILD')
 			self.compiler.AddToListVar('CDEFINES', 'SM_GENERATED_BUILD')
 			self.compiler.AddToListVar('CINCLUDES',
