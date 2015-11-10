@@ -138,14 +138,14 @@ public:
 	
 	CEconItemHandle m_ItemHandle; //40 (44, 48, 52, 56, 60)
 
-	bool m_bInitUnk1; //64
-	bool m_bInitUnk2; //65
-	bool m_bInitUnk3; //66
+	bool m_bColorInit; //64
+	bool m_bPaintOverrideInit; //65
+	bool m_bHasPaintOverride; //66
 	//67
 
-	uint32 m_unRGB; //68
-	uint32 m_unAltRGB; //72
-	uint32 m_unHalloweenRGB; //76
+	float m_flOverrideIndex; //68
+	uint32 m_unRGB; //72
+	uint32 m_unAltRGB; //76
 
 	int32 m_iTeamNumber; //80
 
