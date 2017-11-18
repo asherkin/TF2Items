@@ -70,6 +70,9 @@ void *g_pVTable_Attributes;
 HandleType_t g_ScriptedItemOverrideHandleType = 0;
 TScriptedItemOverrideTypeHandler g_ScriptedItemOverrideHandler;
 
+// the maximum number of attributes that an item can support
+const int g_MaxAttributes = 20;
+
 sp_nativeinfo_t g_ExtensionNatives[] =
 {
 	{ "TF2Items_GiveNamedItem",		TF2Items_GiveNamedItem },
@@ -848,9 +851,9 @@ static cell_t TF2Items_SetNumAttributes(IPluginContext *pContext, const cell_t *
 
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < 0 || params[2] > 15)
+		if (params[2] < 0 || params[2] >= g_MaxAttributes)
 		{
-			return pContext->ThrowNativeError("Attributes size out of bounds: %i [0 ... 15]", params[2]);
+			return pContext->ThrowNativeError("Attributes size out of bounds: %i [0 ... %i]", params[2], g_MaxAttributes - 1);
 		}
 
 		pScriptedItemOverride->m_iCount = params[2];
@@ -877,9 +880,9 @@ static cell_t TF2Items_SetAttribute(IPluginContext *pContext, const cell_t *para
 
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < 0 || params[2] > 15)
+		if (params[2] < 0 || params[2] >= g_MaxAttributes)
 		{
-			return pContext->ThrowNativeError("Attribute index out of bounds: %i [0 ... 15]", params[2]);
+			return pContext->ThrowNativeError("Attribute index out of bounds: %i [0 ... %i]", params[2], g_MaxAttributes - 1);
 		}
 		
 		if (params[3] == 0)
@@ -902,9 +905,9 @@ static cell_t TF2Items_GetAttributeId(IPluginContext *pContext, const cell_t *pa
 
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < 0 || params[2] > 15)
+		if (params[2] < 0 || params[2] >= g_MaxAttributes)
 		{
-			return pContext->ThrowNativeError("Attribute index out of bounds: %i [0 ... 15]", params[2]);
+			return pContext->ThrowNativeError("Attribute index out of bounds: %i [0 ... %i]", params[2], g_MaxAttributes - 1);
 		}
 
 		return pScriptedItemOverride->m_Attributes[params[2]].m_iAttributeDefinitionIndex;
@@ -919,9 +922,9 @@ static cell_t TF2Items_GetAttributeValue(IPluginContext *pContext, const cell_t 
 
 	if (pScriptedItemOverride != NULL)
 	{
-		if (params[2] < 0 || params[2] > 15)
+		if (params[2] < 0 || params[2] >= g_MaxAttributes)
 		{
-			return pContext->ThrowNativeError("Attribute index out of bounds: %i [0 ... 15]", params[2]);
+			return pContext->ThrowNativeError("Attribute index out of bounds: %i [0 ... %i]", params[2], g_MaxAttributes - 1);
 		}
 
 		return sp_ftoc(pScriptedItemOverride->m_Attributes[params[2]].m_flValue);
