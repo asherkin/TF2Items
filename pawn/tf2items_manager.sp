@@ -18,12 +18,15 @@
 //#define DEBUG
 
 // ====[ VARIABLES ]===================================================
-Handle g_hPlayerInfo, g_hPlayerArray, g_hGlobalSettings;
-ConVar g_hCvarEnabled, g_hCvarPlayerControlEnabled;
-bool g_bPlayerEnabled[MAXPLAYERS + 1] =  true;
+Handle g_hPlayerInfo;
+Handle g_hPlayerArray;
+Handle g_hGlobalSettings;
+ConVar g_hCvarEnabled;
+ConVar g_hCvarPlayerControlEnabled;
+bool g_bPlayerEnabled[MAXPLAYERS + 1] =  { true, ... };
 
 // ====[ PLUGIN ]======================================================
-public Plugin myinfo ={
+public Plugin myinfo = {
 	name = PLUGIN_NAME,
 	author = PLUGIN_AUTHOR,
 	description = PLUGIN_NAME,
@@ -37,7 +40,7 @@ public Plugin myinfo ={
  *
  * When the plugin starts up.
  * -------------------------------------------------------------------------- */
-public void OnPluginStart(){
+public void OnPluginStart() {
 	// Create convars
 	CreateConVar("tf2items_manager_version", PLUGIN_VERSION, PLUGIN_NAME, FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY);
 	g_hCvarEnabled = CreateConVar("tf2items_manager", "1", "Enables/disables the manager (0 - Disabled / 1 - Enabled", FCVAR_REPLICATED|FCVAR_NOTIFY);
@@ -57,19 +60,19 @@ public void OnPluginStart(){
  *
  * When an item is about to be given to a client.
  * -------------------------------------------------------------------------- */
-public Action TF2Items_OnGiveNamedItem(int client, char[] classname, int weapon, Handle &override){
+public Action TF2Items_OnGiveNamedItem(int client, char[] classname, int itemDefIndex, Handle &override) {
 	// If disabled, use the default values.
 	if (!GetConVarBool(g_hCvarEnabled) || (GetConVarBool(g_hCvarPlayerControlEnabled) && !g_bPlayerEnabled[client]))
 		return Plugin_Continue;
 	
 	// If another plugin already tryied to override the item, let him go ahead.
-	if (override != INVALID_HANDLE)
+	if (override != null)
 		return Plugin_Continue; // Plugin_Changed
 	
 	// Find item. If any is found, override the attributes with these.
-	Handle hItem = FindItem(client, weapon);
-	if (hItem != INVALID_HANDLE){
-		override = hItem;
+	Handle item = FindItem(client, itemDefIndex);
+	if (item != null) {
+		override = item;
 		return Plugin_Changed;
 	}
 	
@@ -80,11 +83,11 @@ public Action TF2Items_OnGiveNamedItem(int client, char[] classname, int weapon,
 // Fuck it, only one is needed.
 // Doing this for just-in-casenesses sake
 
-public void OnClientConnected(int client){
+public void OnClientConnected(int client) {
 	g_bPlayerEnabled[client] = true;
 }
 
-public void OnClientDisconnect(int client){
+public void OnClientDisconnect(int client) {
 	g_bPlayerEnabled[client] = true;
 }
 
@@ -102,7 +105,7 @@ public void OnClientDisconnect(int client){
 **
 ** Reloads the item list.
 ** -------------------------------------------------------------------------- */
-public Action CmdReload(int client, int action){
+public Action CmdReload(int client, int action) {
 	// Fire a message telling about the operation.
 	if (client)
 		ReplyToCommand(client, "Reloading items list");
@@ -114,8 +117,8 @@ public Action CmdReload(int client, int action){
 	return Plugin_Handled;
 }
 
-public Action CmdEnable(int client, int action){
-	if (!GetConVarBool(g_hCvarPlayerControlEnabled)){
+public Action CmdEnable(int client, int action) {
+	if (!GetConVarBool(g_hCvarPlayerControlEnabled)) {
 		ReplyToCommand(client, "The server administrator has disabled this command.");
 		return Plugin_Handled;
 	}
@@ -125,8 +128,8 @@ public Action CmdEnable(int client, int action){
 	return Plugin_Handled;
 }
 
-public Action CmdDisable(int client, int action){
-	if (!GetConVarBool(g_hCvarPlayerControlEnabled)){
+public Action CmdDisable(int client, int action) {
+	if (!GetConVarBool(g_hCvarPlayerControlEnabled)) {
 		ReplyToCommand(client, "The server administrator has disabled this command.");
 		return Plugin_Handled;
 	}
@@ -151,69 +154,69 @@ public Action CmdDisable(int client, int action){
 **
 ** Tryies to find a custom item usable by the client.
 ** -------------------------------------------------------------------------- */
-Handle FindItem(int client, int weapon){
+Handle FindItem(int client, int itemDefIndex) {
 	// Check if the player is valid
 	if (!IsValidClient(client))
-		return INVALID_HANDLE;
+		return null;
 	
 	// Retrieve the STEAM auth string
 	char auth[64];
 	GetClientAuthId(client, AuthId_Steam2, auth, sizeof(auth));
 	
 	// Check if it's on the list. If not, try with the global settings.
-	Handle hItemArray = INVALID_HANDLE; 
-	GetTrieValue(g_hPlayerInfo, auth, hItemArray);
+	Handle itemArray = null; 
+	GetTrieValue(g_hPlayerInfo, auth, itemArray);
 	
 	// Check for each.
-	Handle hOutput;
-	hOutput = FindItemOnArray(client, hItemArray, weapon);
-	if (hOutput == INVALID_HANDLE)
-		hOutput = FindItemOnArray(client, g_hGlobalSettings, weapon);
+	Handle output;
+	output = FindItemOnArray(client, itemArray, itemDefIndex);
+	if (output == null)
+		output = FindItemOnArray(client, g_hGlobalSettings, itemDefIndex);
 	
 	// Done
-	return hOutput;
+	return output;
 }
 
 /* FindItemOnArray()
 **
 ** 
 ** -------------------------------------------------------------------------- */
-Handle FindItemOnArray(int client, Handle array, int weapon){
+Handle FindItemOnArray(int client, Handle array, int itemDefIndex) {
 	// Check if the array is valid.
-	if (array == INVALID_HANDLE)
-		return INVALID_HANDLE;
+	if (array == null)
+		return null;
 		
-	Handle hWildcardItem = INVALID_HANDLE;
+	Handle wildcardItem = null;
 	
 	// Iterate through each item entry and close the handle.
-	for (int item = 0; item < GetArraySize(array); item++){
+	for (int itemEntry = 0; itemEntry < GetArraySize(array); itemEntry++) {
 		// Retrieve item
-		Handle hItem = GetArrayCell(array, item, ARRAY_ITEM);
-		int itemflags = GetArrayCell(array, item, ARRAY_FLAGS);
-		if (hItem == INVALID_HANDLE)
+		Handle item = GetArrayCell(array, itemEntry, ARRAY_ITEM);
+		int itemflags = GetArrayCell(array, itemEntry, ARRAY_FLAGS);
+		if (item == null)
 			continue;
 		
 		// Is a wildcard item? If so, store it.
-		if (TF2Items_GetItemIndex(hItem) == -1 && hWildcardItem == INVALID_HANDLE)
+		if (TF2Items_GetItemIndex(item) == -1 && wildcardItem == null)
 			if (CheckItemUsage(client, itemflags))
-				hWildcardItem = hItem;
+				wildcardItem = item;
 			
 		// Is the item we're looking for? If so return item, but first
 		// check if it's possible due to the 
-		if (TF2Items_GetItemIndex(hItem) == weapon)
+		if (TF2Items_GetItemIndex(item) == itemDefIndex)
 			if (CheckItemUsage(client, itemflags))
-				return hItem;
+				return item;
 		}
 	
 	// Done, returns wildcard item if it exists.
-	return hWildcardItem;
+	return wildcardItem;
 }
 
 /* CheckItemUsage()
  *
  * Checks if a client has any of the specified flags.
  * -------------------------------------------------------------------------- */
-bool CheckItemUsage(int client, int flags){
+bool CheckItemUsage(int client, int flags) {
 	if (flags == 0)
 		return true;
 	
@@ -228,22 +231,22 @@ bool CheckItemUsage(int client, int flags){
  *
  * Reads up the items information from the Key-Values.
  * -------------------------------------------------------------------------- */
-void ParseItems(){
-	char bf[256], split[16][64];
+void ParseItems() {
+	char buffer[256], split[16][64];
 	
 	// Destroy the current items data.
 	DestroyItems();
 	
 	// Create key values object and parse file.
-	BuildPath(Path_SM, bf, sizeof(bf), "configs/tf2items.weapons.txt");
+	BuildPath(Path_SM, buffer, sizeof(buffer), "configs/tf2items.weapons.txt");
 	KeyValues kv = CreateKeyValues("TF2Items");
-	if (FileToKeyValues(kv, bf) == false)
-		SetFailState("Error, can't read file containing the item list : %s", bf);
+	if (FileToKeyValues(kv, buffer) == false)
+		SetFailState("Error, can't read file containing the item list : %s", buffer);
 	
 	// Check the version
-	KvGetSectionName(kv, bf, sizeof(bf));
-	if (StrEqual("custom_weapons_v3", bf) == false)
-		SetFailState("tf2items.weapons.txt structure corrupt or incorrect version: \"%s\"", bf);
+	KvGetSectionName(kv, buffer, sizeof(buffer));
+	if (StrEqual("custom_weapons_v3", buffer) == false)
+		SetFailState("tf2items.weapons.txt structure corrupt or incorrect version: \"%s\"", buffer);
 	
 	// Create the array and trie to store & access the item information.
 	g_hPlayerArray = CreateArray();
@@ -255,27 +258,27 @@ void ParseItems(){
 	#endif 
 	
 	// Jump into the first subkey and go on.
-	if (KvGotoFirstSubKey(kv)){
+	if (KvGotoFirstSubKey(kv)) {
 		do {
 			// Retrieve player information and split into multiple strings.
-			KvGetSectionName(kv, bf, sizeof(bf));
-			int auths = ExplodeString(bf, ";", split, 16, 64);
+			KvGetSectionName(kv, buffer, sizeof(buffer));
+			int auths = ExplodeString(buffer, ";", split, 16, 64);
 			
 			// Create new array entry and upload to the array.
-			Handle hEntry = CreateArray(2);
-			PushArrayCell(g_hPlayerArray, hEntry);
+			Handle entry = CreateArray(2);
+			PushArrayCell(g_hPlayerArray, entry);
 			
 			#if defined DEBUG
-				LogMessage("  Entry", bf);
+				LogMessage("  Entry", buffer);
 				LogMessage("  {");
 				LogMessage("    Used by:");
 			#endif
 			
 			// Iterate through each player auth strings and make an
 			// entry for each.
-			for (int auth = 0; auth < auths; auth++){
+			for (int auth = 0; auth < auths; auth++) {
 				TrimString(split[auth]);
-				SetTrieValue(g_hPlayerInfo, split[auth], hEntry);
+				SetTrieValue(g_hPlayerInfo, split[auth], entry);
 				
 				#if defined DEBUG
 					LogMessage("    \"%s\"", split[auth]);
@@ -287,7 +290,7 @@ void ParseItems(){
 			#endif
 			
 			// Read all the item entries
-			ParseItemsEntry(kv, hEntry);
+			ParseItemsEntry(kv, entry);
 			
 			#if defined DEBUG
 				LogMessage("  }");
@@ -298,7 +301,7 @@ void ParseItems(){
 	}
 	
 	// Close key values
-	CloseHandle(kv);
+	delete kv;
 	
 	// Try to find the global item settings.
 	GetTrieValue(g_hPlayerInfo, "*", g_hGlobalSettings);
@@ -313,49 +316,49 @@ void ParseItems(){
  *
  * Reads up a particular items entry.
  * -------------------------------------------------------------------------- */
-void ParseItemsEntry(KeyValues kv, Handle hEntry){
-	char bf[64], bf2[64], split[2][64];
+void ParseItemsEntry(KeyValues kv, Handle entry) {
+	char buffer[64], buffer2[64], split[2][64];
 	
 	// Jump into the first subkey.
-	if (KvGotoFirstSubKey(kv)){
+	if (KvGotoFirstSubKey(kv)) {
 		do {
-			Handle hItem = TF2Items_CreateItem(OVERRIDE_ALL);
+			Handle item = TF2Items_CreateItem(OVERRIDE_ALL);
 			int attrflags = 0;
 			
 			// Retrieve item definition index and store.
-			KvGetSectionName(kv, bf, sizeof(bf));
-			if (bf[0] == '*')
-				TF2Items_SetItemIndex(hItem, -1);
+			KvGetSectionName(kv, buffer, sizeof(buffer));
+			if (buffer[0] == '*')
+				TF2Items_SetItemIndex(item, -1);
 			else
-				TF2Items_SetItemIndex(hItem, StringToInt(bf));
+				TF2Items_SetItemIndex(item, StringToInt(buffer));
 			
 			#if defined DEBUG
-				LogMessage("    Item: %i", TF2Items_GetItemIndex(hItem));
+				LogMessage("    Item: %i", TF2Items_GetItemIndex(item));
 				LogMessage("    {");
 			#endif
 			
 			// Retrieve entity level
 			int level = KvGetNum(kv, "level", -1);
-			if (level != -1){
-				TF2Items_SetLevel(hItem, level);
+			if (level != -1) {
+				TF2Items_SetLevel(item, level);
 				attrflags |= OVERRIDE_ITEM_LEVEL;
 			}
 			
 			#if defined DEBUG
 				if (attrflags & OVERRIDE_ITEM_LEVEL)
-					LogMessage("      Level: %i", TF2Items_GetLevel(hItem));
+					LogMessage("      Level: %i", TF2Items_GetLevel(item));
 			#endif
 			
 			// Retrieve entity quality
 			int quality = KvGetNum(kv, "quality", -1);
-			if (quality != -1){
-				TF2Items_SetQuality(hItem, quality);
+			if (quality != -1) {
+				TF2Items_SetQuality(item, quality);
 				attrflags |= OVERRIDE_ITEM_QUALITY;
 			}
 			
 			#if defined DEBUG
 				if (attrflags & OVERRIDE_ITEM_QUALITY)
-					LogMessage("      Quality: %i", TF2Items_GetQuality(hItem));
+					LogMessage("      Quality: %i", TF2Items_GetQuality(item));
 			#endif
 			
 			// Check for attribute preservation key
@@ -373,56 +376,56 @@ void ParseItemsEntry(KeyValues kv, Handle hEntry){
 			#endif
 			
 			// Read all the attributes
-			int attributes = 0;
-			for (;;){
+			int attributeCount = 0;
+			for (;;) {
 				// Format the attribute entry name
-				Format(bf, sizeof(bf), "%i", attributes+1);
+				Format(buffer, sizeof(buffer), "%i", attributeCount+1);
 				
 				// Try to read the attribute
-				KvGetString(kv, bf, bf2, sizeof(bf2));
+				KvGetString(kv, buffer, buffer2, sizeof(buffer2));
 				
 				// If not found, break.
-				if (bf2[0] == '\0') break;
+				if (buffer2[0] == '\0') break;
 				
 				// Split the information in two buffers
-				ExplodeString(bf2, ";", split, 2, 64);
+				ExplodeString(buffer2, ";", split, 2, 64);
 				int attribute = StringToInt(split[0]);
 				float value = StringToFloat(split[1]);
 				
 				// Attribute found, set information.
-				TF2Items_SetAttribute(hItem, attributes, attribute, value);
+				TF2Items_SetAttribute(item, attributeCount, attribute, value);
 				
 				#if defined DEBUG
 					LogMessage("      Attribute[%i] : %i / %f",
-						attributes,
-						TF2Items_GetAttributeId(hItem, attributes),
-						TF2Items_GetAttributeValue(hItem, attributes)
+						attributeCount,
+						TF2Items_GetAttributeId(item, attributeCount),
+						TF2Items_GetAttributeValue(item, attributeCount)
 					);
 				#endif
 				
 				// Increase attribute count and continue.
-				attributes++;
+				attributeCount++;
 			}
 			
 			// Done, set attribute count and upload.
-			if (attributes != 0){
-				TF2Items_SetNumAttributes(hItem, attributes);
+			if (attributeCount != 0) {
+				TF2Items_SetNumAttributes(item, attributeCount);
 				attrflags |= OVERRIDE_ATTRIBUTES;
 			}
 			
 			// Retrieve the admin flags
-			KvGetString(kv, "admin-flags", bf, sizeof(bf), "");
-			int flags = ReadFlagString(bf);
+			KvGetString(kv, "admin-flags", buffer, sizeof(buffer), "");
+			int flags = ReadFlagString(buffer);
 			
 			// Set flags and upload.
-			TF2Items_SetFlags(hItem, attrflags);
-			PushArrayCell(hEntry, 0);
-			SetArrayCell(hEntry, GetArraySize(hEntry)-1, hItem, ARRAY_ITEM);
-			SetArrayCell(hEntry, GetArraySize(hEntry)-1, flags, ARRAY_FLAGS);
+			TF2Items_SetFlags(item, attrflags);
+			PushArrayCell(entry, 0);
+			SetArrayCell(entry, GetArraySize(entry)-1, item, ARRAY_ITEM);
+			SetArrayCell(entry, GetArraySize(entry)-1, flags, ARRAY_FLAGS);
 			
 			#if defined DEBUG
-				LogMessage("      Flags: %05b", TF2Items_GetFlags(hItem));
-				LogMessage("      Admin: %s", ((flags == 0)? "(none)":bf));
+				LogMessage("      Flags: %05b", TF2Items_GetFlags(item));
+				LogMessage("      Admin: %s", ((flags == 0)? "(none)":buffer));
 				LogMessage("    }");
 			#endif
 		}
@@ -435,47 +438,42 @@ void ParseItemsEntry(KeyValues kv, Handle hEntry){
  *
  * Destroys the current list for items.
  * -------------------------------------------------------------------------- */
-void DestroyItems(){
-	if (g_hPlayerArray != INVALID_HANDLE){
+void DestroyItems() {
+	if (g_hPlayerArray != null) {
 		// Iterate through each player and retrieve the internal
 		// weapon list.
-		for (int entry = 0; entry < GetArraySize(g_hPlayerArray); entry++){
+		for (int entry = 0; entry < GetArraySize(g_hPlayerArray); entry++) {
 			// Retrieve the item array.
-			Handle hItemArray = GetArrayCell(g_hPlayerArray, entry);
-			if (hItemArray == INVALID_HANDLE)
+			Handle itemArray = GetArrayCell(g_hPlayerArray, entry);
+			if (itemArray == null)
 				continue;
 			
 			// Iterate through each item entry and close the handle.
-			for (int item = 0; item < GetArraySize(hItemArray); item++){
+			for (int itemEntry = 0; itemEntry < GetArraySize(itemArray); itemEntry++) {
 				// Retrieve item
-				Handle hItem = GetArrayCell(hItemArray, item);
-				if (hItem == INVALID_HANDLE)
-					continue;
+				Handle item = GetArrayCell(itemArray, itemEntry);
 				
 				// Close handle
-				CloseHandle(hItem);
+				delete item;
 			}
 		}
 		
 		// Done, free array
-		CloseHandle(g_hPlayerArray);
+		delete g_hPlayerArray;
 	}
 	
 	// Free player trie
-	if (g_hPlayerInfo != INVALID_HANDLE)
-		CloseHandle(g_hPlayerInfo);
+	delete g_hPlayerInfo;
 	
 	// Done
-	g_hPlayerInfo = INVALID_HANDLE;
-	g_hPlayerArray = INVALID_HANDLE;
-	g_hGlobalSettings = INVALID_HANDLE;
+	g_hGlobalSettings = null;
 }
 
 /* IsValidClient()
  *
  * Checks if a client is valid.
  * -------------------------------------------------------------------------- */
-bool IsValidClient(int client){
+bool IsValidClient(int client) {
 	if (client < 1 || client > MaxClients)
 		return false;
 	if (!IsClientConnected(client))
