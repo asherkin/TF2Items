@@ -11,7 +11,7 @@
 #define OVERRIDE_ITEM_LEVEL		(1 << 2)	// Item will override the entity's level.
 #define OVERRIDE_ITEM_QUALITY		(1 << 3)	// Item will override the entity's quality.
 #define OVERRIDE_ATTRIBUTES		(1 << 4)	// Item will override the attributes for the item with the given ones.
-#define OVERRIDE_ALL			(0b11111) // Magically enables all the other flags.
+#define OVERRIDE_ALL			(0b11111) 	// Magically enables all the other flags.
 
 #define PRESERVE_ATTRIBUTES		(1 << 5)
 #define FORCE_GENERATION		(1 << 6)
