@@ -134,9 +134,9 @@ native int TF2Items_GetFlags(Handle item);
  * Gets the entity classname we'll use for the item.
  *
  * @param item            Handle to the TF2Items object that we'll be operating with.
- * @return                New classname to use for the entity.
+ * @return                Size of entity classname string.
  */
-native void TF2Items_GetClassname(Handle item, char[] dest, int size);
+native int TF2Items_GetClassname(Handle item, char[] dest, int size);
 
 /**
  * Gets the new item definition index we'll use to override.
@@ -144,7 +144,7 @@ native void TF2Items_GetClassname(Handle item, char[] dest, int size);
  * @param item            Handle to the TF2Items object that we'll be operating with.
  * @return                New definition index.
  */
-native int TF2Items_GetItemIndex(Handle item); 
+native int TF2Items_GetItemIndex(Handle item);
 
 /**
  * Gets the item's quality value, wich determines what color will be used for
