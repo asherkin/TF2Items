@@ -253,13 +253,13 @@ void ParseItems() {
 	// Create key values object and parse file.
 	BuildPath(Path_SM, buffer, sizeof(buffer), "configs/tf2items.weapons.txt");
 	KeyValues kv = new KeyValues("TF2Items");
-	if (kv.ImportFromFile(buffer) == false) {
+	if (!kv.ImportFromFile(buffer)) {
 		SetFailState("Error, can't read file containing the item list : %s", buffer);
 	}
 
 	// Check the version
 	kv.GetSectionName(buffer, sizeof(buffer));
-	if (StrEqual("custom_weapons_v3", buffer) == false) {
+	if (!StrEqual("custom_weapons_v3", buffer)) {
 		SetFailState("tf2items.weapons.txt structure corrupt or incorrect version: \"%s\"", buffer);
 	}
 
