@@ -496,5 +496,5 @@ void DestroyItems() {
  * Checks if a client is valid.
  * -------------------------------------------------------------------------- */
 bool IsValidClient(int client) {
-	return (0 < client <= MaxClients && IsClientConnected(client) && IsClientInGame(client));
+	return (0 < client <= MaxClients) && IsClientInGame(client);
 }
