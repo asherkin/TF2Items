@@ -206,7 +206,7 @@ native float TF2Items_GetAttributeValue(Handle item, int slot);
  */
 forward Action TF2Items_OnGiveNamedItem(int client, char[] classname, int itemDefIndex, Handle& item);
 
-forward int TF2Items_OnGiveNamedItem_Post(int client, char[] classname, int itemDefIndex, int level, int quality, int entity);
+forward void TF2Items_OnGiveNamedItem_Post(int client, char[] classname, int itemDefIndex, int level, int quality, int entity);
 
 /**
  * Do not edit below this line!
