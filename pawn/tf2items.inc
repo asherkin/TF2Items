@@ -56,7 +56,6 @@ native Handle TF2Items_CreateItem(int flags);
  *
  * @param item            Handle to the TF2Items object that we'll be operating with.
  * @param flags           Flags used to specify what to override.
- * @noreturn
  */
 native void TF2Items_SetFlags(Handle item, int flags);
 
@@ -65,7 +64,6 @@ native void TF2Items_SetFlags(Handle item, int flags);
  *
  * @param item            Handle to the TF2Items object that we'll be operating with.
  * @param classname       New classname to use for the entity.
- * @noreturn
  */
 native void TF2Items_SetClassname(Handle item, char[] classname);
 
@@ -76,7 +74,6 @@ native void TF2Items_SetClassname(Handle item, char[] classname);
  * 
  * @param item            Handle to the TF2Items object that we'll be operating with.
  * @param itemDefIndex    New definition index.
- * @noreturn
  */
 native void TF2Items_SetItemIndex(Handle item, int itemDefIndex);
 
@@ -86,7 +83,6 @@ native void TF2Items_SetItemIndex(Handle item, int itemDefIndex);
  * 
  * @param item            Handle to the TF2Items object that we'll be operating with.
  * @param quality         New item quality.
- * @noreturn
  */
 native void TF2Items_SetQuality(Handle item, int quality);
 
@@ -95,7 +91,6 @@ native void TF2Items_SetQuality(Handle item, int quality);
  * 
  * @param item            Handle to the TF2Items object that we'll be operating with.
  * @param level           New item level.
- * @noreturn
  */
 native void TF2Items_SetLevel(Handle item, int level);
 
@@ -105,7 +100,6 @@ native void TF2Items_SetLevel(Handle item, int level);
  * 
  * @param item            Handle to the TF2Items object that we'll be operating with.
  * @param attributes      Number of attributes.
- * @noreturn
  */
 native void TF2Items_SetNumAttributes(Handle item, int attributes);
 
@@ -117,7 +111,6 @@ native void TF2Items_SetNumAttributes(Handle item, int attributes);
  * @param slot            The attribute slot index, ranges from 0 to 15.
  * @param attribute       The attribute definition index, as it appears on game_items.txt.
  * @param value           The value assigned to the attribute (how much health, damage, etc.).
- * @noreturn
  */
 native void TF2Items_SetAttribute(Handle item, int slot, int attribute, float value);
 
