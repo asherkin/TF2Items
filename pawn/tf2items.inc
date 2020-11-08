@@ -134,9 +134,9 @@ native int TF2Items_GetFlags(Handle item);
  * Gets the entity classname we'll use for the item.
  *
  * @param item		Handle to the TF2Items object that we'll be operating with.
- * @return			New classname to use for the entity.
+ * @return		Size of entity classname string
  */
-native void TF2Items_GetClassname(Handle item, char[] dest, int size);
+native int TF2Items_GetClassname(Handle item, char[] dest, int size);
 
 /**
  * Gets the new item definition index we'll use to override.
@@ -206,7 +206,7 @@ native float TF2Items_GetAttributeValue(Handle item, int slot);
  */
 forward Action TF2Items_OnGiveNamedItem(int client, char[] classname, int itemDefIndex, Handle &item);
 
-forward int TF2Items_OnGiveNamedItem_Post(int client, char[] classname, int itemDefIndex, int level, int quality, int entity);
+forward void TF2Items_OnGiveNamedItem_Post(int client, char[] classname, int itemDefIndex, int level, int quality, int entity);
 
 /**
  * Do not edit below this line!
@@ -226,30 +226,30 @@ public Extension __ext_tf2items =
 /**
 * I'll just leave this here...
 * 
-* _(º< _(º< _(º< _(º< _(º< _(º< _(º< _(º< _(º< 
+* _(Âº< _(Âº< _(Âº< _(Âº< _(Âº< _(Âº< _(Âº< _(Âº< _(Âº< 
 * \__) \__) \__) \__) \__) \__) \__) \__) \__) 
 *                     .  .
 *                    // //  __
-*         __  ______||_//_.´.´
-*       _/__`´            ¯ `
+*         __  ______||_//_.Â´.Â´
+*       _/__`Â´            Â¯ `
 *      /  / _          _     \
-*     /  /( · )      ( · )    |
-*    /  |   ¯     __   ¯    _/\/|
-*   |    \  ___.-´  `-.___  \   /
-*    \    \(     ` ´      `)|   \
+*     /  /( Â· )      ( Â· )    |
+*    /  |   Â¯     __   Â¯    _/\/|
+*   |    \  ___.-Â´  `-.___  \   /
+*    \    \(     ` Â´      `)|   \
 *     \     )              //     \
 *      \/  /              | |     |
 *     /   /               | |     |
-*    ·   |                |  \___/
+*    Â·   |                |  \___/
 *    |    \_            _/      \  ____
-*    ·      `----------´         |´    \
-*     \                         /    _·´
-*      \                       /  _-´ 
-*        `-._               _·´-´
-*        _.-´`---________--´ \ 
-*       ´-.-. _--·   / .   ._ \
-*            ´       `´ `·´  `´
-* >º)_ >º)_ >º)_ >º)_ >º)_ >º)_ >º)_ >º)_ >º)_ 
+*    Â·      `----------Â´         |Â´    \
+*     \                         /    _Â·Â´
+*      \                       /  _-Â´ 
+*        `-._               _Â·Â´-Â´
+*        _.-Â´`---________--Â´ \ 
+*       Â´-.-. _--Â·   / .   ._ \
+*            Â´       `Â´ `Â·Â´  `Â´
+* >Âº)_ >Âº)_ >Âº)_ >Âº)_ >Âº)_ >Âº)_ >Âº)_ >Âº)_ >Âº)_ 
 * (__/ (__/ (__/ (__/ (__/ (__/ (__/ (__/ (__/ 
 * 
 */
