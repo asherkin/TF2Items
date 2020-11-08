@@ -34,9 +34,9 @@
  * so please make sure you fill out everything: Classname, item definition index,
  * quality, level and attributes.
  * 
- * @param client    Client that the item will be generated for.
- * @param item      Handle to the TF2Items object that we'll be operating with.
- * @return          Entity index of the newly created item.
+ * @param client          Client that the item will be generated for.
+ * @param item            Handle to the TF2Items object that we'll be operating with.
+ * @return                Entity index of the newly created item.
  */
 native int TF2Items_GiveNamedItem(int client, Handle item);
 
