@@ -54,7 +54,7 @@ native Handle TF2Items_CreateItem(int flags);
  * Sets the flags to determine what the item will override on the GiveNamedItem.
  * Use the OVERRIDE_ defines to set what you will be changing.
  *
- * @param item			Handle to the TF2Items object that we'll be operating with.
+ * @param item          Handle to the TF2Items object that we'll be operating with.
  * @param flags		Flags used to specify what to override.
  * @noreturn
  */
@@ -134,7 +134,7 @@ native int TF2Items_GetFlags(Handle item);
  * Gets the entity classname we'll use for the item.
  *
  * @param item		Handle to the TF2Items object that we'll be operating with.
- * @return		Size of entity classname string
+ * @return			Size of entity classname string
  */
 native int TF2Items_GetClassname(Handle item, char[] dest, int size);
 
