@@ -82,9 +82,6 @@ public:
 	int32 m_nRefundableCurrency; //12
 };
 
-#pragma pack(push, 4)
-
-
 class CEconItemHandle
 {
 public:
@@ -123,45 +120,49 @@ class CEconItemView
 public:
 	void *m_pVTable; //0
 
-	uint16 m_iItemDefinitionIndex; //4
+	uint16 m_iItemDefinitionIndex; //4 // 8
 	
-	int32 m_iEntityQuality; //8
-	uint32 m_iEntityLevel; //12
+	int32 m_iEntityQuality; //8 // 12
+	uint32 m_iEntityLevel; //12 // 16
 
-	uint64 m_iItemID; //16
-	uint32 m_iItemIDHigh; //24
-	uint32 m_iItemIDLow; //28
+	uint64 m_iItemID; //16 // 24
+	uint32 m_iItemIDHigh; //24 // 32
+	uint32 m_iItemIDLow; //28 // 36
 
-	uint32 m_iAccountID; //32
+	uint32 m_iAccountID; //32 // 40
 
-	uint32 m_iInventoryPosition; //36
+	uint32 m_iInventoryPosition; //36 // 44
 	
-	CEconItemHandle m_ItemHandle; //40 (44, 48, 52, 56, 60)
+	CEconItemHandle m_ItemHandle; //40 (44, 48, 52, 56, 60) // 48
 
-	bool m_bColorInit; //64
-	bool m_bPaintOverrideInit; //65
-	bool m_bHasPaintOverride; //66
+	bool m_bColorInit; //64 // 80
+	bool m_bPaintOverrideInit; //65 // 81
+	bool m_bHasPaintOverride; //66 // 82
 	//67
 
-	float m_flOverrideIndex; //68
-	uint32 m_unRGB; //72
-	uint32 m_unAltRGB; //76
+	float m_flOverrideIndex; //68 // 84
+	uint32 m_unRGB; //72 // 88
+	uint32 m_unAltRGB; //76 // 92
 
-	int32 m_iTeamNumber; //80
+	int32 m_iTeamNumber; //80 // 96
 
-	bool m_bInitialized; //84
+	bool m_bInitialized; //84 // 100
 
-	CAttributeList m_AttributeList; //88 (92, 96, 100, 104, 108, 112)
-	CAttributeList m_NetworkedDynamicAttributesForDemos; //116 (120, 124, 128, 132, 136, 140)
+	CAttributeList m_AttributeList; //88 (92, 96, 100, 104, 108, 112) // 104
+	CAttributeList m_NetworkedDynamicAttributesForDemos; //116 (120, 124, 128, 132, 136, 140) // 152
 
-	bool m_bDoNotIterateStaticAttributes; //144
+	bool m_bDoNotIterateStaticAttributes; //144 // 200
 };
 
-#pragma pack(pop)
-
+#ifdef TF2ITEMS_x64
+static_assert(sizeof(CEconItemView) == 208, "CEconItemView - incorrect size on this compiler");
+static_assert(sizeof(CEconItemHandle) == 32, "CEconItemHandle - incorrect size on this compiler");
+static_assert(sizeof(CAttributeList) == 48, "CAttributeList - incorrect size on this compiler");
+#else
 static_assert(sizeof(CEconItemView) == 148, "CEconItemView - incorrect size on this compiler");
 static_assert(sizeof(CEconItemHandle) == 24, "CEconItemHandle - incorrect size on this compiler");
 static_assert(sizeof(CAttributeList) == 28, "CAttributeList - incorrect size on this compiler");
+#endif
 
 // enable to debug memory layout issues
 #if 0
