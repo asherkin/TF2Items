@@ -208,12 +208,16 @@ public Extension __ext_tf2items =
 {
 	name = "TF2Items",
 	file = "tf2items.ext.2.ep2v",
+#if defined AUTOLOAD_EXTENSIONS
+	autoload = 1,
+#else
 	autoload = 0,
-	#if defined REQUIRE_EXTENSIONS
-		required = 1,
-	#else
-		required = 0,
-	#endif
+#endif
+#if defined REQUIRE_EXTENSIONS
+	required = 1,
+#else
+	required = 0,
+#endif
 }
 	
 /**
