@@ -4,7 +4,7 @@ import os
 project = builder.LibraryProject('tf2items.ext')
 project.sources = [
   'extension.cpp',
-  'sdk/smsdk_ext.cpp'
+  os.path.join(Extension.sm_root, 'public', 'smsdk_ext.cpp')
 ]
 
 sdk = Extension.sdks['tf2']
@@ -12,7 +12,10 @@ sdk = Extension.sdks['tf2']
 for cxx in Extension.targets:
   if not cxx.target.arch in sdk['platforms'][cxx.target.platform]:
     continue
+  oldcode = sdk['extension']
+  sdk['extension'] = '2.ep2v'
   binary = Extension.ConfigureExtensionSDK(project, cxx, builder, sdk)
+  sdk['extension'] = oldcode
   binary.compiler.cxxincludes += [  os.path.join(builder.currentSourcePath, 'sdk') ]
 
 Extension.extension = builder.Add(project)

@@ -195,6 +195,7 @@ class Config(object):
   def configure_extension(self, binary, context):
     binary.compiler.cxxincludes += [
       os.path.join(context.currentSourcePath),
+      os.path.join(context.currentSourcePath, 'sdk'),
       os.path.join(self.sm_root, 'public'),
       os.path.join(self.sm_root, 'public', 'extensions'),
       os.path.join(self.sm_root, 'public', 'amtl', 'amtl'),
@@ -204,7 +205,7 @@ class Config(object):
 
     binary.compiler.cxxincludes += [
       os.path.join(self.mms_root, 'core'),
-      os.path.join(self.mms_root, 'core', 'sourcehook'),
+      os.path.join(self.mms_root, 'third_party', 'khook', 'include'),
     ]
 
   def ConfigureLibrary(self, project, name, compiler, context):

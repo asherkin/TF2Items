@@ -26,7 +26,7 @@
  * @brief TF2Items extension code header.
  */
 
-#include "smsdk_ext.hpp"
+#include "smsdk_ext.h"
 
 //#include "iplayerinfo.h"
 //#include "convar.h"
