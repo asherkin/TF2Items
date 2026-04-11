@@ -40,11 +40,18 @@
 #include "extension.hpp"
 
 TF2Items g_TF2Items;
-
 SMEXT_LINK(&g_TF2Items);
 
-SH_DECL_HOOK2_void(IServerGameClients, ClientPutInServer, SH_NOATTRIB, 0, edict_t *, char const *);
-SH_DECL_MANUALHOOK4(MHook_GiveNamedItem, 0, 0, 0, CBaseEntity *, char const *, int, CEconItemView *, bool);
+class CBaseEntity {};
+class CBasePlayer : public CBaseEntity {};
+class CTFPlayer : public CBasePlayer {};
+
+KHook::Return<void> Hook_ClientPutInServer_POST(IServerGameClients*, edict_t*, const char*);
+KHook::Virtual<IServerGameClients, void, edict_t*, const char*> g_Hook_ClientPutInServer(&IServerGameClients::ClientPutInServer, nullptr, Hook_ClientPutInServer_POST);
+
+KHook::Return<CBaseEntity*> Hook_GiveNamedItem_PRE(CTFPlayer* player, char const*, int, CEconItemView*, bool);
+KHook::Return<CBaseEntity*> Hook_GiveNamedItem_POST(CTFPlayer* player, char const*, int, CEconItemView*, bool);
+KHook::Virtual<CTFPlayer, CBaseEntity*, char const*, int, CEconItemView*, bool> g_MHook_GiveNamedItem(Hook_GiveNamedItem_PRE, Hook_GiveNamedItem_POST);
 
 ICvar *icvar = NULL;
 IServerGameClients *gameclients = NULL;
@@ -55,10 +62,7 @@ ConVar HookTFBot("tf2items_bothook", "1", FCVAR_NONE, "Hook intelligent TF2 bots
 
 IGameConfig *g_pGameConf = NULL;
 
-int GiveNamedItem_player_Hook = 0;
-int GiveNamedItem_bot_Hook = 0;
-int GiveNamedItem_player_Hook_Post = 0;
-int GiveNamedItem_bot_Hook_Post = 0;
+bool GiveNamedItem_Hook = false;
 int ClientPutInServer_Hook = 0;
 
 IForward *g_pForwardGiveItem = NULL;
@@ -95,7 +99,7 @@ sp_nativeinfo_t g_ExtensionNatives[] =
 	{ NULL,							NULL }
 };
 
-CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItemView *cscript, bool b)
+KHook::Return<CBaseEntity*> Hook_GiveNamedItem_PRE(CTFPlayer* player, char const* szClassname, int iSubType, CEconItemView* cscript, bool b)
 {
 	#if defined TF2ITEMS_DEBUG_HOOKING || defined TF2ITEMS_DEBUG_HOOKING_GNI
 		 g_pSM->LogMessage(myself, "GiveNamedItem called.");
@@ -106,15 +110,12 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 		 g_pSM->LogMessage(myself, ">>> Start of GiveNamedItem call.");
 	#endif
 
-	CBasePlayer *player = META_IFACEPTR(CBasePlayer);
-
 	if (cscript == NULL || szClassname == NULL)
 	{
 #if defined TF2ITEMS_DEBUG_HOOKING_GNI
 		g_pSM->LogMessage(myself, "(cscript == NULL || szClassname == NULL), RETURN_META_VALUE(MRES_IGNORED, NULL);");
 #endif // TF2ITEMS_DEBUG_HOOKING_GNI
-
-		RETURN_META_VALUE(MRES_IGNORED, NULL);
+		return { KHook::Action::Ignore };
 	}
 
 	// Retrieve client index.
@@ -177,13 +178,13 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 	switch(cellResults) {
 		case Pl_Continue:
 			{
-				RETURN_META_VALUE(MRES_IGNORED, NULL);
+				return { KHook::Action::Ignore };
 			}
 		case Pl_Changed:
 			{
 				TScriptedItemOverride *pScriptedItemOverride = GetScriptedItemOverrideFromHandle(cellOverrideHandle);
 				if (pScriptedItemOverride == NULL) {
-					RETURN_META_VALUE(MRES_IGNORED, NULL);
+					return { KHook::Action::Ignore };
 				}
 
 				// Execute the new attributes set and we're done!
@@ -234,32 +235,24 @@ CBaseEntity *Hook_GiveNamedItem(char const *szClassname, int iSubType, CEconItem
 					newitem.m_iEntityQuality = 0;
 				}
 
-				RETURN_META_VALUE_MNEWPARAMS(MRES_HANDLED, NULL, MHook_GiveNamedItem, (finalitem, iSubType, &newitem, ((pScriptedItemOverride->m_bFlags & FORCE_GENERATION) == FORCE_GENERATION)));
+				KHook::Recall<CTFPlayer, CBaseEntity*, char const*, int, CEconItemView*, bool>({ KHook::Action::Ignore, nullptr } , player, finalitem, iSubType, &newitem, ((pScriptedItemOverride->m_bFlags & FORCE_GENERATION) == FORCE_GENERATION));
 			}
 		case Pl_Handled:
 		case Pl_Stop:
 			{
-				RETURN_META_VALUE(MRES_SUPERCEDE, NULL);
+				return { KHook::Action::Supersede, nullptr };
 			}
 	}
 	
-	RETURN_META_VALUE(MRES_IGNORED, NULL);
+	return { KHook::Action::Ignore };
 }
 
-CBaseEntity *Hook_GiveNamedItem_Post(char const *szClassname, int iSubType, CEconItemView *cscript, bool b)
+KHook::Return<CBaseEntity*> Hook_GiveNamedItem_POST(CTFPlayer* player, char const* szClassname, int iSubType, CEconItemView* cscript, bool b)
 {
-	CBaseEntity *player = META_IFACEPTR(CBaseEntity);
-
-	CBaseEntity *pItemEntiy;
-	if (META_RESULT_STATUS >= MRES_OVERRIDE)
-	{
-		pItemEntiy = META_RESULT_OVERRIDE_RET(CBaseEntity *);
-	} else {
-		pItemEntiy = META_RESULT_ORIG_RET(CBaseEntity *);
-	}
+	CBaseEntity *pItemEntiy = *(CBaseEntity**)KHook::GetCurrentValuePtr();
 
 	if (!player || !szClassname || !cscript || !pItemEntiy)
-		RETURN_META_VALUE(MRES_IGNORED, pItemEntiy);
+		return { KHook::Action::Ignore };
 	
 	int client = gamehelpers->EntityToBCompatRef(player);
 	int iEntityIndex = gamehelpers->EntityToBCompatRef(pItemEntiy);
@@ -272,7 +265,7 @@ CBaseEntity *Hook_GiveNamedItem_Post(char const *szClassname, int iSubType, CEco
 	g_pForwardGiveItem_Post->PushCell(iEntityIndex);
 	g_pForwardGiveItem_Post->Execute(NULL);
 	
-	RETURN_META_VALUE(MRES_IGNORED, pItemEntiy);
+	return { KHook::Action::Ignore };
 }
 
 void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
@@ -328,7 +321,16 @@ void CSCICopy(CEconItemView *olditem, CEconItemView *newitem)
 	*/
 }
 
-void Hook_ClientPutInServer(edict_t *pEntity, char const *playername)
+void SetupHook(CBasePlayer* player) {
+	if (GiveNamedItem_Hook) {
+		return;
+	}
+
+	g_MHook_GiveNamedItem.AddGlobal((CTFPlayer*)player);
+	GiveNamedItem_Hook = true;
+}
+
+KHook::Return<void> Hook_ClientPutInServer_POST(IServerGameClients* clients, edict_t* pEntity, const char* playername)
 {
 #ifdef TF2ITEMS_DEBUG_HOOKING
 	 g_pSM->LogMessage(myself, "ClientPutInServer called.");
@@ -339,7 +341,7 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername)
 		CBaseEntity *baseentity = pEntity->m_pNetworkable->GetBaseEntity();
 		if(!baseentity)
 		{
-			return;
+			return { KHook::Action::Ignore };
 		}
 
 		CBasePlayer *player = (CBasePlayer *)baseentity;
@@ -353,57 +355,10 @@ void Hook_ClientPutInServer(edict_t *pEntity, char const *playername)
 		g_pSM->LogMessage(myself, "---------------------------------------");
 #endif
 
-		if (HookTFBot.GetBool() && strcmp(pEntity->GetClassName(), "tf_bot") == 0)
-		{
-			if(GiveNamedItem_bot_Hook == 0)
-			{
-				GiveNamedItem_bot_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem), false);
-#ifdef TF2ITEMS_DEBUG_HOOKING
-				g_pSM->LogMessage(myself, "GiveNamedItem hooked (bot).");
-#endif // TF2ITEMS_DEBUG_HOOKING
-			}
-
-			if(GiveNamedItem_bot_Hook_Post == 0)
-			{
-				GiveNamedItem_bot_Hook_Post = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem_Post), true);
-#ifdef TF2ITEMS_DEBUG_HOOKING
-				g_pSM->LogMessage(myself, "GiveNamedItem hooked (bot) (post).");
-#endif // TF2ITEMS_DEBUG_HOOKING
-			}
-		} else {
-			if(GiveNamedItem_player_Hook == 0)
-			{
-				GiveNamedItem_player_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem), false);
-#ifdef TF2ITEMS_DEBUG_HOOKING
-				g_pSM->LogMessage(myself, "GiveNamedItem hooked (player).");
-#endif // TF2ITEMS_DEBUG_HOOKING
-			}
-
-			if(GiveNamedItem_player_Hook_Post == 0)
-			{
-				GiveNamedItem_player_Hook_Post = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, player, SH_STATIC(Hook_GiveNamedItem_Post), true);
-#ifdef TF2ITEMS_DEBUG_HOOKING
-				g_pSM->LogMessage(myself, "GiveNamedItem hooked (player).");
-#endif // TF2ITEMS_DEBUG_HOOKING
-			}
-
-			if (!HookTFBot.GetBool() && ClientPutInServer_Hook != 0) {
-				SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
-				ClientPutInServer_Hook = 0;
-#ifdef TF2ITEMS_DEBUG_HOOKING
-				g_pSM->LogMessage(myself, "ClientPutInServer unhooked.");
-#endif // TF2ITEMS_DEBUG_HOOKING
-			}
-		}
-
-		if (ClientPutInServer_Hook != 0 && GiveNamedItem_player_Hook != 0 && GiveNamedItem_bot_Hook != 0) {
-			SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
-			ClientPutInServer_Hook = 0;
-#ifdef TF2ITEMS_DEBUG_HOOKING
-			g_pSM->LogMessage(myself, "ClientPutInServer unhooked.");
-#endif // TF2ITEMS_DEBUG_HOOKING
-		}
+		SetupHook(player);
+		g_Hook_ClientPutInServer.Remove(clients);
 	}
+	return { KHook::Action::Ignore };
 }
 
 bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
@@ -424,7 +379,7 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 		snprintf(error, maxlen, "Could not find offset for GiveNamedItem");
 		return false;
 	} else {
-		SH_MANUALHOOK_RECONFIGURE(MHook_GiveNamedItem, iOffset, 0, 0);
+		g_MHook_GiveNamedItem.Configure(iOffset);
 		g_pSM->LogMessage(myself, "\"GiveNamedItem\" offset = %d", iOffset);
 	}
 
@@ -460,26 +415,20 @@ bool TF2Items::SDK_OnLoad(char *error, size_t maxlen, bool late) {
 			}
 
 			// Done, hook the BasePlayer
-			GiveNamedItem_player_Hook = SH_ADD_MANUALVPHOOK(MHook_GiveNamedItem, pBasePlayer, SH_STATIC(Hook_GiveNamedItem), false);
-			
-			if (GiveNamedItem_player_Hook != 0)
-			{
+			SetupHook(pBasePlayer);
 #ifdef TF2ITEMS_DEBUG_HOOKING
-				g_pSM->LogMessage(myself, "GiveNamedItem hooked.");
+			g_pSM->LogMessage(myself, "GiveNamedItem hooked.");
 #endif // TF2ITEMS_DEBUG_HOOKING
-				break;
-			}
 		}
 	}
 
-	if (GiveNamedItem_player_Hook == 0)
+	if (!GiveNamedItem_Hook)
 	{
 #ifdef TF2ITEMS_DEBUG_HOOKING
 		g_pSM->LogMessage(myself, "Is a NOT late load or no players found, attempting to hook ClientPutInServer.");
 #endif // TF2ITEMS_DEBUG_HOOKING
 
-		ClientPutInServer_Hook = SH_ADD_HOOK_STATICFUNC(IServerGameClients, ClientPutInServer, gameclients, Hook_ClientPutInServer, true);
-
+		g_Hook_ClientPutInServer.Add(gameclients);
 #ifdef TF2ITEMS_DEBUG_HOOKING
 		g_pSM->LogMessage(myself, "ClientPutInServer hooked.");
 #endif // TF2ITEMS_DEBUG_HOOKING
@@ -531,51 +480,6 @@ bool TF2Items::SDK_OnMetamodUnload(char *error, size_t maxlen)
 {
 #ifdef TF2ITEMS_DEBUG_HOOKING
 	g_pSM->LogMessage(myself, "SDK_OnMetamodUnload called.");
-#endif // TF2ITEMS_DEBUG_HOOKING
-
-	if (ClientPutInServer_Hook != 0)
-	{
-		SH_REMOVE_HOOK_ID(ClientPutInServer_Hook);
-		ClientPutInServer_Hook = 0;
-
-#ifdef TF2ITEMS_DEBUG_HOOKING
-		g_pSM->LogMessage(myself, "ClientPutInServer unhooked.");
-#endif // TF2ITEMS_DEBUG_HOOKING
-	}
-#ifdef TF2ITEMS_DEBUG_HOOKING
-	else {
-		g_pSM->LogMessage(myself, "ClientPutInServer did not need to be unhooked.");
-	}
-#endif // TF2ITEMS_DEBUG_HOOKING
-
-	if (GiveNamedItem_player_Hook != 0)
-	{
-		SH_REMOVE_HOOK_ID(GiveNamedItem_player_Hook);
-		GiveNamedItem_player_Hook = 0;
-
-#ifdef TF2ITEMS_DEBUG_HOOKING
-		g_pSM->LogMessage(myself, "GiveNamedItem unhooked.");
-#endif // TF2ITEMS_DEBUG_HOOKING
-	}
-#ifdef TF2ITEMS_DEBUG_HOOKING
-	else {
-		g_pSM->LogMessage(myself, "GiveNamedItem did not need to be unhooked.");
-	}
-#endif // TF2ITEMS_DEBUG_HOOKING
-
-	if (GiveNamedItem_player_Hook_Post != 0)
-	{
-		SH_REMOVE_HOOK_ID(GiveNamedItem_player_Hook_Post);
-		GiveNamedItem_player_Hook_Post = 0;
-
-#ifdef TF2ITEMS_DEBUG_HOOKING
-		g_pSM->LogMessage(myself, "GiveNamedItem (post) unhooked.");
-#endif // TF2ITEMS_DEBUG_HOOKING
-	}
-#ifdef TF2ITEMS_DEBUG_HOOKING
-	else {
-		g_pSM->LogMessage(myself, "GiveNamedItem (post) did not need to be unhooked.");
-	}
 #endif // TF2ITEMS_DEBUG_HOOKING
 
 	return true;
@@ -640,8 +544,7 @@ static cell_t TF2Items_GiveNamedItem(IPluginContext *pContext, const cell_t *par
 #endif
 
 	// Call the function.
-	CBaseEntity *tempItem = NULL;
-	tempItem = SH_MCALL(pEntity, MHook_GiveNamedItem)(strWeaponClassname, 0, &hScriptCreatedItem, ((pScriptedItemOverride->m_bFlags & FORCE_GENERATION) == FORCE_GENERATION));
+	CBaseEntity *tempItem = g_MHook_GiveNamedItem.CallOriginal((CTFPlayer*)pEntity, strWeaponClassname, 0, &hScriptCreatedItem, ((pScriptedItemOverride->m_bFlags & FORCE_GENERATION) == FORCE_GENERATION));
 
 	if (tempItem == NULL)
 	{
