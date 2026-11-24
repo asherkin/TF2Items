@@ -31,4 +31,6 @@ for i in SM.sdkInfo:
 	SM.PostSetupHL2Job(extension, binary, i)
 	SM.AutoVersion('extension', binary)
 	SM.ExtractDebugInfo(extension, binary)
+	if AMBuild.target['platform'] == 'linux':
+		binary.compiler['POSTLINKFLAGS'].append('-lstdc++')
 	binary.SendToJob()
